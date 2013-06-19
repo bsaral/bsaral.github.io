@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Teknik | Betül SARAL]]></title>
+  <link href="http://bsaral.github.io/blog/categories/teknik/atom.xml" rel="self"/>
+  <link href="http://bsaral.github.io/"/>
+  <updated>2013-06-19T02:15:48+03:00</updated>
+  <id>http://bsaral.github.io/</id>
+  <author>
+    <name><![CDATA[BETÜL SARAL]]></name>
+    <email><![CDATA[betul.saral@bil.omu.edu.tr]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Localhost Beyaz Sayfa Hatası]]></title>
+    <link href="http://bsaral.github.io/blog/2013/06/01/pid/"/>
+    <updated>2013-06-01T22:14:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/06/01/pid</id>
+    <content type="html"><![CDATA[<p>Bugün yerelimde bir problemle karşılaştım. Yerelimi çalıştırdığımda bomboş beyaz bir sayfa(blank page) önüme geliyordu. Sistemimde WampServer kurulu.
+İnternette biraz araştırma yaptıktan sonra bu sorunu da hallettim.  </p>
+
+<p>Beyaz sayfa hatasının temel nedeni port çakışmasıdır. Yerelden başka port 80 ‘ni kullanan  bir uygulama varsa çakışma yaşanır ve localhost çalışmaz.
+Bu çakışmayı anlamak için pid ‘leri kontrol etmeliyiz . Öncelikle cmd ‘yi açalım ve şu komutu yazalım.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>netstat -aon
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Eğer aşağıdaki gibi bir sonuç üretiliyorsa :</p>
+
+<p><img src="http://bsaral.github.io/images/pid.PNG" />
+&gt;</p>
+
+<li> Görev Yöneticisini açın. </li>
+<li> Görünüm kısmından "sütun seç " deyip "pid" işaretleyin.  </li>
+<li> port 80 de çalışan uygulamanın pid 'sini bulup prosesi sonlandır diyerek işlemi bitirin. </li>
+<blockquote>
+
+</blockquote>
+
+<p>Şimdi önemli bir noktaya geldik. Eğer 80 portu pid ‘si 4 olan bir uygulamada çalışıyorsa yani komutun çıktısı aşağıdaki gibiyse :</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>TCP     0.0.0.0:80     0.0.0.0:0     LISTENING     4
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+portunuz IIS (Internet Information Services) tarafından kullanılıyor demektir. Bu sorunun çözümü basit. </p>
+
+<li> Internet Information Services (IIS) Yöneticisini çalıştırın.  </li>
+<li> Sunucuyu durdurun </li>
+<blockquote>
+
+</blockquote>
+
+<p><img src="http://bsaral.github.io/images/pid2.PNG" style="width:800px;height:400px;" /></p>
+
+<p>WampServer’ tekrar çalıştırın yeşil rengini almışsa sorununuz halledilmiş demektir.</p>
+
+<h2> EDIT !!! </h2>
+<blockquote>
+
+</blockquote>
+
+<p>Bilgisayarınızı yeniden başlattığınızda yine aynı sorunla karşılaşıyorsanız aşağıdaki adımları uygulayarak sorunu tamamen ortadan kaldırabilirsiniz.
+&gt;</p>
+
+<li> İlk olarak şunu bilmek gerekir ki IIS prosesi görev yöneticisinden kaldırılmaz. IIS yöneticisine gidip servisi durdurmak ise bize sadece geçici çözüm sunar. </li>
+<li> Masaüstüne gelip "bilgisayar" sağa tıklayın ve "Yönet" i seçin. </li>
+<li> Karşınıza gelen ekranda  "Hizmetler ve Uygulamar" açın ve "hizmetler" kısmına çift tıklayın. </li>
+<li> En aşağıdan "Web dağıtım aracı hizmeti" ni seçin . (Web Deployment Agent Service) </li>
+<li> Servisi durdurun ve tekrar başlamaması için devredışı bırakın. Aşağıdaki gibi bir görüntü oluşturmanız gerekir. </li>
+<blockquote>
+
+</blockquote>
+
+<p><img src="http://bsaral.github.io/images/pid3.PNG" />
+&gt;</p>
+
+<p>Şimdi yerelinizi tekrar çalıştırın. Artık port 80 sadece yereline ait.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Java Servlet API Problemi]]></title>
+    <link href="http://bsaral.github.io/blog/2013/05/21/java/"/>
+    <updated>2013-05-21T22:38:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/05/21/java</id>
+    <content type="html"><![CDATA[<p>Gün geçmiyor ki Eclipse’den bir hata almayalım. Bugün Servlet ile ilgili bir hata aldım. Yeni bir proje oluşturduğunuz da yada varolan bir
+projeyi <a href="http://tugdev.github.io/105/JAVA-PROJES%C4%B0N%C4%B0-ECL%C4%B0PSTE-%C4%B0CE-AKTAR/"> import ettiğinizde </a>  Servlet’ın her 
+bir köşesi size hata veriyorsa aşağıdaki adımları uygulayarak bu problemi çözebilirsiniz.
+&gt;</p>
+
+<p><img src="http://bsaral.github.io/images/java.png" /> 
+&gt;</p>
+
+<p><img src="http://bsaral.github.io/images/servlet.PNG" /> 
+&gt;</p>
+
+<p><img src="http://bsaral.github.io/images/servlet2.PNG" /> </p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Java da Mysql Bağlantısı]]></title>
+    <link href="http://bsaral.github.io/blog/2013/05/17/jdbc/"/>
+    <updated>2013-05-17T22:37:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/05/17/jdbc</id>
+    <content type="html"><![CDATA[<p>Merhabalar,</p>
+
+<p>Java da mysql bağlantısı yapmak için öncelikle wampserver ya da xampp gibi herhangi bir paket sunucu programının yüklü olması gerekir.
+Mysql’ e bağlanabilmek için bu gibi bir paket program gerekmektedir. Daha sonra java ile bağlantıyı sağlamak için mysql-connector isimli
+jar dosyası indirmemiz gerekir. <a href="http://www.mysql.com/products/connector/"> Buradan </a> JDBC Driver for MySQL (Connector/J) jar 
+dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşağıdaki adımları gerçekleyin.</p>
+
+<p><img src="http://bsaral.github.io/images/java.png" /></p>
+
+<blockquote>
+
+</blockquote>
+
+<p><img src="http://bsaral.github.io/images/java2.png" /></p>
+
+<p>İndirdiğimiz jar dosyasını ekleyin. Ekleme işlemi bittikten sonra projenizin src klasörü altına Database adında bir class oluşturun ve aşağıdaki kodları ekleyin.
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Database.java </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.sql.DriverManager</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.sql.SQLException</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">java.util.Properties</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kn">import</span> <span class="nn">com.mysql.jdbc.Connection</span><span class="o">;</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">com.mysql.jdbc.Statement</span><span class="o">;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Database</span> <span class="o">{</span>
+</span><span class='line'>	 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ClassNotFoundException</span><span class="o">,</span> <span class="n">SQLException</span> <span class="o">{</span>
+</span><span class='line'>		<span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="err">“</span><span class="n">com</span><span class="o">.</span><span class="na">mysql</span><span class="o">.</span><span class="na">jdbc</span><span class="o">.</span><span class="na">Driver</span><span class="err">”</span><span class="o">);</span>
+</span><span class='line'>		<span class="n">Connection</span> <span class="n">baglanti</span> <span class="o">=</span> <span class="o">(</span><span class="n">Connection</span><span class="o">)</span> <span class="n">DriverManager</span><span class="o">.</span><span class="na">getConnection</span>
+</span><span class='line'>					  <span class="o">(</span><span class="err">“</span><span class="nl">jdbc:mysql:</span><span class="c1">//localhost/deneme”,”root”,””);</span>
+</span><span class='line'>		<span class="n">Statement</span> <span class="n">komut</span> <span class="o">=</span> <span class="o">(</span><span class="n">Statement</span><span class="o">)</span> <span class="n">baglanti</span><span class="o">.</span><span class="na">createStatement</span><span class="o">();</span>
+</span><span class='line'>		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="err">“</span><span class="n">Ba</span><span class="err">ğ</span><span class="n">lant</span><span class="err">ı</span> <span class="n">Ba</span><span class="err">ş</span><span class="n">ar</span><span class="err">ı</span><span class="n">l</span><span class="err">ı”</span><span class="o">);</span>
+</span><span class='line'>		<span class="n">baglanti</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span><span class='line'>	<span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+Kaydedip çalıştırdığınız da “Bağlantı Başarılı” şeklinde bir çıktı alıyorsanız mysql ile bağlantıyı sağladınız demektir.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PhpMyAdmin Error #1142]]></title>
+    <link href="http://bsaral.github.io/blog/2013/05/17/error/"/>
+    <updated>2013-05-17T22:37:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/05/17/error</id>
+    <content type="html"><![CDATA[<p>Phpmyadmin de aşağıdaki gibi bir hata alıyorsanız;</p>
+
+<pre><code>#1142 - SELECT command denied to user ''@'localhost' for table 'pma_column_info' 
+</code></pre>
+
+<p>Şu adımları takip ederek düzeltebilirsiniz:</p>
+
+<li> Ayarlar kısmına girin </li>
+
+<li> Rehber çerçevesi kısmına tıklayın </li>
+
+<li> Son kullanılan tablolar kısmını 0 olarak değiştirin </li>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ncurses Kurulumu ve Kullanımı]]></title>
+    <link href="http://bsaral.github.io/blog/2013/03/31/ncurses/"/>
+    <updated>2013-03-31T22:39:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/03/31/ncurses</id>
+    <content type="html"><![CDATA[<p>Merhabalar,</p>
+
+<p>Bugünkü konumuz ncurses. Ncurses’ın ne olduğunu , kurulumunun nasıl yapıldığını ve kullanımıyla ilgili bilgiler vereceğim.</p>
+
+<li><a href="#n1"> NCURSES Nedir ?</a></li>
+<li><a href="#n2"> Nasıl Kurulur ? </a></li>
+<li><a href="#n3"> Nasıl Derlenir ? </a></li>
+<blockquote>
+
+</blockquote>
+
+<h3 id="a-idn1-1--ncurses-nedir--a"><a id="n1"> 1- NCURSES Nedir ? </a></h3>
+
+<p>Bir uygulamanın karakter tabanlı uçbirimlerde görüntüleri üzerinde çalışabilmeyi sağlayan ve özgür olarak dağıtılan işlevler kütüphanesidir. NCURSES sadece uçbirim yetenekleri sarmalayan bir yapı oluşturmaz aynı 
+zamanda metin kipinde hoş görüşünüşlü arayüzler oluşturmak için sağlam bir çalışma taslağı da oluşturur. Pencereler v.b. görünümleri oluşturmak için işlevler sağlar. Kardeş kütüphaneleri olan panel, menu ve form, 
+temel curses kütüphanesine bir genişleme sağlar. </p>
+
+<h3 id="a-idn2-2--nasl-kurulur--a"><a id="n2"> 2- Nasıl Kurulur ? </a></h3>
+
+<p>İlk olarak <a href="http://ftp.gnu.org/pub/gnu/ncurses/ "> bu adresten  </a> ncurses kütüphanesini indiriyoruz.Sonra arşivi açıyoruz yani :</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>tar zxvf ncurses-4.2.tar.gz &lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span><span class="nb">cd </span>ncurses-4.2  &lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>./configure &lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>make &lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo make install
+</span></code></pre></td></tr></table></div></figure></notextile></div>	</p>
+
+<h3 id="a-idn3-3--nasl-derlenir--a"><a id="n3"> 3- Nasıl Derlenir ? </a></h3>
+
+<p>Şimdi bir örnekle bunu açıklayalım. Merhaba.c adında bir belge açın ve içine aşağıdakileri kopyalayın.
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Merhaba.c </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">include</span> <span class="o">&lt;</span><span class="n">ncurses</span><span class="p">.</span><span class="n">h</span> <span class="o">/&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+</span><span class='line'>  <span class="n">initscr</span><span class="p">();</span>                      <span class="cm">/* Curses kipine giriş           &lt;em&gt;/</span>
+</span><span class='line'><span class="cm">  printw(“Merhaba Dünya !!!”);    /&lt;/em&gt; Merhaba Dünya yazdırma        &lt;em&gt;/</span>
+</span><span class='line'><span class="cm">  refresh();                      /&lt;/em&gt; Onu gerçek ekrana yazdırın    &lt;em&gt;/</span>
+</span><span class='line'><span class="cm">  getch();                        /&lt;/em&gt; Kullanıcıyı bekleyin          &lt;em&gt;/</span>
+</span><span class='line'><span class="cm">  endwin();                       /&lt;/em&gt; Curses kipinden çıkış         */</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Şimdi derleyelim, terminali açalım ve dosyanın olduğu dizine geldikten sonra :
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>gcc merhaba.c -lncurses
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Ve işte bu kadar…</p>
+
+<p>Kaynak : <a href="http://docs.comu.edu.tr/howto/ncurses-howto-intro.html">http://docs.comu.edu.tr/howto/ncurses-howto-intro.html</a></p>
+]]></content>
+  </entry>
+  
+</feed>

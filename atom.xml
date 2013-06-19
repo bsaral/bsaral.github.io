@@ -1,120 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Betül SARAL</title>
-  <meta name="author" content="BETÜL SARAL">
-
-  
-  <meta name="description" content="Bugün yerelimde bir problemle karşılaştım. Yerelimi çalıştırdığımda bomboş beyaz bir sayfa(blank page) önüme geliyordu. Sistemimde WampServer kurulu &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><![CDATA[Betül SARAL]]></title>
+  <link href="http://bsaral.github.io/atom.xml" rel="self"/>
+  <link href="http://bsaral.github.io/"/>
+  <updated>2013-06-19T02:15:48+03:00</updated>
+  <id>http://bsaral.github.io/</id>
+  <author>
+    <name><![CDATA[BETÜL SARAL]]></name>
+    <email><![CDATA[betul.saral@bil.omu.edu.tr]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-  <link rel="canonical" href="http://bsaral.github.io/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Betül SARAL" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
-
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-24335221-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
-</head>
-
-<body>
-  <header role="banner"><hgroup>
-  <h1><a href="/">Betül SARAL</a></h1>
-  
-    <h2>Bilgisayar Mühendisi</h2>
-  
-</hgroup>
-
-</header>
-  <div id="navigation">
-    <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:bsaral.github.io" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
- <li><a href="/blog/archives">Arşiv</a></li>
-  <li><a href="http://www.linkedin.com/profile/view?id=127477375&trk=hb_tab_pro_top">Hakkımda</a></li>
-  <li><a href="/blog/categories/kisisel/">Kişisel Yazılar</a></li>
-  <li><a href="/blog/categories/teknik/">Teknik Yazılar</a></li>
-</ul>
-
-</nav>
-  </div>
-  <div id="body"  >
-    <div id="main">
-      <div id="content">
-        <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/01/pid/">Localhost Beyaz Sayfa Hatası</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-06-01T22:14:00+03:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
-        
-         | <a href="/blog/2013/06/01/pid/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Bugün yerelimde bir problemle karşılaştım. Yerelimi çalıştırdığımda bomboş beyaz bir sayfa(blank page) önüme geliyordu. Sistemimde WampServer kurulu.
+  <entry>
+    <title type="html"><![CDATA[Localhost Beyaz Sayfa Hatası]]></title>
+    <link href="http://bsaral.github.io/blog/2013/06/01/pid/"/>
+    <updated>2013-06-01T22:14:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/06/01/pid</id>
+    <content type="html"><![CDATA[<p>Bugün yerelimde bir problemle karşılaştım. Yerelimi çalıştırdığımda bomboş beyaz bir sayfa(blank page) önüme geliyordu. Sistemimde WampServer kurulu.
 İnternette biraz araştırma yaptıktan sonra bu sorunu da hallettim.  </p>
 
 <p>Beyaz sayfa hatasının temel nedeni port çakışmasıdır. Yerelden başka port 80 ‘ni kullanan  bir uygulama varsa çakışma yaşanır ve localhost çalışmaz.
@@ -127,7 +31,7 @@ Bu çakışmayı anlamak için pid ‘leri kontrol etmeliyiz . Öncelikle cmd �
 
 <p>Eğer aşağıdaki gibi bir sonuç üretiliyorsa :</p>
 
-<p><img src="/images/pid.PNG" />
+<p><img src="http://bsaral.github.io/images/pid.PNG" />
 &gt;</p>
 
 <li> Görev Yöneticisini açın. </li>
@@ -152,7 +56,7 @@ Bu çakışmayı anlamak için pid ‘leri kontrol etmeliyiz . Öncelikle cmd �
 
 </blockquote>
 
-<p><img src="/images/pid2.PNG" style="width:800px;height:400px;" /></p>
+<p><img src="http://bsaral.github.io/images/pid2.PNG" style="width:800px;height:400px;" /></p>
 
 <p>WampServer’ tekrar çalıştırın yeşil rengini almışsa sorununuz halledilmiş demektir.</p>
 
@@ -173,111 +77,53 @@ Bu çakışmayı anlamak için pid ‘leri kontrol etmeliyiz . Öncelikle cmd �
 
 </blockquote>
 
-<p><img src="/images/pid3.PNG" />
+<p><img src="http://bsaral.github.io/images/pid3.PNG" />
 &gt;</p>
 
 <p>Şimdi yerelinizi tekrar çalıştırın. Artık port 80 sadece yereline ait.</p>
 
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/21/java/">Java Servlet API Problemi</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-21T22:38:00+03:00" pubdate data-updated="true">May 21<span>st</span>, 2013</time>
-        
-         | <a href="/blog/2013/05/21/java/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Gün geçmiyor ki Eclipse’den bir hata almayalım. Bugün Servlet ile ilgili bir hata aldım. Yeni bir proje oluşturduğunuz da yada varolan bir
+  <entry>
+    <title type="html"><![CDATA[Java Servlet API Problemi]]></title>
+    <link href="http://bsaral.github.io/blog/2013/05/21/java/"/>
+    <updated>2013-05-21T22:38:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/05/21/java</id>
+    <content type="html"><![CDATA[<p>Gün geçmiyor ki Eclipse’den bir hata almayalım. Bugün Servlet ile ilgili bir hata aldım. Yeni bir proje oluşturduğunuz da yada varolan bir
 projeyi <a href="http://tugdev.github.io/105/JAVA-PROJES%C4%B0N%C4%B0-ECL%C4%B0PSTE-%C4%B0CE-AKTAR/"> import ettiğinizde </a>  Servlet’ın her 
 bir köşesi size hata veriyorsa aşağıdaki adımları uygulayarak bu problemi çözebilirsiniz.
 &gt;</p>
 
-<p><img src="/images/java.png" /> 
+<p><img src="http://bsaral.github.io/images/java.png" /> 
 &gt;</p>
 
-<p><img src="/images/servlet.PNG" /> 
+<p><img src="http://bsaral.github.io/images/servlet.PNG" /> 
 &gt;</p>
 
-<p><img src="/images/servlet2.PNG" /> </p>
-</div>
+<p><img src="http://bsaral.github.io/images/servlet2.PNG" /> </p>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/17/jdbc/">Java Da Mysql Bağlantısı</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-17T22:37:00+03:00" pubdate data-updated="true">May 17<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/05/17/jdbc/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Merhabalar,</p>
+  <entry>
+    <title type="html"><![CDATA[Java da Mysql Bağlantısı]]></title>
+    <link href="http://bsaral.github.io/blog/2013/05/17/jdbc/"/>
+    <updated>2013-05-17T22:37:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/05/17/jdbc</id>
+    <content type="html"><![CDATA[<p>Merhabalar,</p>
 
 <p>Java da mysql bağlantısı yapmak için öncelikle wampserver ya da xampp gibi herhangi bir paket sunucu programının yüklü olması gerekir.
 Mysql’ e bağlanabilmek için bu gibi bir paket program gerekmektedir. Daha sonra java ile bağlantıyı sağlamak için mysql-connector isimli
 jar dosyası indirmemiz gerekir. <a href="http://www.mysql.com/products/connector/"> Buradan </a> JDBC Driver for MySQL (Connector/J) jar 
 dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşağıdaki adımları gerçekleyin.</p>
 
-<p><img src="/images/java.png" /></p>
+<p><img src="http://bsaral.github.io/images/java.png" /></p>
 
 <blockquote>
 
 </blockquote>
 
-<p><img src="/images/java2.png" /></p>
+<p><img src="http://bsaral.github.io/images/java2.png" /></p>
 
 <p>İndirdiğimiz jar dosyasını ekleyin. Ekleme işlemi bittikten sonra projenizin src klasörü altına Database adında bir class oluşturun ve aşağıdaki kodları ekleyin.</p>
 
@@ -325,44 +171,15 @@ dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşa�
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Kaydedip çalıştırdığınız da “Bağlantı Başarılı” şeklinde bir çıktı alıyorsanız mysql ile bağlantıyı sağladınız demektir.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/17/error/">PhpMyAdmin Error #1142</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-17T22:37:00+03:00" pubdate data-updated="true">May 17<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/05/17/error/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Phpmyadmin de aşağıdaki gibi bir hata alıyorsanız;</p>
+  <entry>
+    <title type="html"><![CDATA[PhpMyAdmin Error #1142]]></title>
+    <link href="http://bsaral.github.io/blog/2013/05/17/error/"/>
+    <updated>2013-05-17T22:37:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/05/17/error</id>
+    <content type="html"><![CDATA[<p>Phpmyadmin de aşağıdaki gibi bir hata alıyorsanız;</p>
 
 <pre><code>#1142 - SELECT command denied to user ''@'localhost' for table 'pma_column_info' 
 </code></pre>
@@ -374,44 +191,15 @@ dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşa�
 <li> Rehber çerçevesi kısmına tıklayın </li>
 
 <li> Son kullanılan tablolar kısmını 0 olarak değiştirin </li>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/31/ncurses/">Ncurses Kurulumu Ve Kullanımı</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-31T22:39:00+03:00" pubdate data-updated="true">Mar 31<span>st</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/31/ncurses/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Merhabalar,</p>
+  <entry>
+    <title type="html"><![CDATA[Ncurses Kurulumu ve Kullanımı]]></title>
+    <link href="http://bsaral.github.io/blog/2013/03/31/ncurses/"/>
+    <updated>2013-03-31T22:39:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/03/31/ncurses</id>
+    <content type="html"><![CDATA[<p>Merhabalar,</p>
 
 <p>Bugünkü konumuz ncurses. Ncurses’ın ne olduğunu , kurulumunun nasıl yapıldığını ve kullanımıyla ilgili bilgiler vereceğim.</p>
 
@@ -494,44 +282,15 @@ temel curses kütüphanesine bir genişleme sağlar. </p>
 <p>Ve işte bu kadar…</p>
 
 <p>Kaynak : <a href="http://docs.comu.edu.tr/howto/ncurses-howto-intro.html">http://docs.comu.edu.tr/howto/ncurses-howto-intro.html</a></p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/15/production/">Rails 3 Production Mod</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-15T22:36:00+02:00" pubdate data-updated="true">Mar 15<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/03/15/production/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Merhabalar,</p>
+  <entry>
+    <title type="html"><![CDATA[Rails 3 Production Mod]]></title>
+    <link href="http://bsaral.github.io/blog/2013/03/15/production/"/>
+    <updated>2013-03-15T22:36:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2013/03/15/production</id>
+    <content type="html"><![CDATA[<p>Merhabalar,</p>
 
 <p>Rails ile yaptığınız uygulamayı production modda çalıştırmanız gerekebilir. Bunun için aşağıdaki işlemleri yapmalısınız.
 İlk önce veritabanımızı production moduna almamız gerekir.Terminale gidip;</p>
@@ -582,44 +341,15 @@ temel curses kütüphanesine bir genişleme sağlar. </p>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Ve böylece uygulamanızı production modda çalıştırmış olursunuz.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/19/devise/">Rails Devise Sign_up Problemi</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-19T22:37:00+02:00" pubdate data-updated="true">Feb 19<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/02/19/devise/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Merhabalar;</p>
+  <entry>
+    <title type="html"><![CDATA[Rails Devise Sign_up Problemi]]></title>
+    <link href="http://bsaral.github.io/blog/2013/02/19/devise/"/>
+    <updated>2013-02-19T22:37:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2013/02/19/devise</id>
+    <content type="html"><![CDATA[<p>Merhabalar;</p>
 
 <p>Devise kurulumundan sonra  <a href="http://localhost:3000/users/registration/sign_up">http://localhost:3000/users/registration/sign_up </a>  sayfasında aşağıdaki gibi bir hata alıyorsanız ;</p>
 
@@ -642,44 +372,15 @@ Gemfile içerisinde devise gem’inin versiyonu yazılmamalıdır yani aşağıd
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>yazdıktan sonra sorununuz çözülecektir.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/16/rmagick/">ImageMagick / RMagick Gem Install Error</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-16T22:37:00+02:00" pubdate data-updated="true">Feb 16<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/02/16/rmagick/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Gemfile içerisinde bulunan <code> gem "rmagick" ,   '~&gt; 2.13.2' </code> bundle ettiğiniz zaman aşağıdaki gibi bir hata alıyorsanız ;</p>
+  <entry>
+    <title type="html"><![CDATA[ImageMagick / RMagick Gem Install Error]]></title>
+    <link href="http://bsaral.github.io/blog/2013/02/16/rmagick/"/>
+    <updated>2013-02-16T22:37:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2013/02/16/rmagick</id>
+    <content type="html"><![CDATA[<p>Gemfile içerisinde bulunan <code> gem "rmagick" ,   '~&gt; 2.13.2' </code> bundle ettiğiniz zaman aşağıdaki gibi bir hata alıyorsanız ;</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
@@ -715,44 +416,15 @@ Gemfile içerisinde devise gem’inin versiyonu yazılmamalıdır yani aşağıd
 </span><span class="line">	
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/11/nested-forms/">Rails 3 De Nested Form Nasıl Oluşturulur ?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-11T22:16:00+02:00" pubdate data-updated="true">Feb 11<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/02/11/nested-forms/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Aşağıdakilerin adım adım uygulanması gerekir.</p>
+  <entry>
+    <title type="html"><![CDATA[Rails 3 de Nested Form Nasıl Oluşturulur ?]]></title>
+    <link href="http://bsaral.github.io/blog/2013/02/11/nested-forms/"/>
+    <updated>2013-02-11T22:16:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2013/02/11/nested-forms</id>
+    <content type="html"><![CDATA[<p>Aşağıdakilerin adım adım uygulanması gerekir.</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
@@ -848,44 +520,15 @@ Gemfile içerisinde devise gem’inin versiyonu yazılmamalıdır yani aşağıd
 </span><span class="line"><span class="sx">&lt;% end %&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/11/sqlite3-from-mysql/">Rails De Sqlite3 Veritabanını Mysql&#8217;e Aktarmak</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-11T22:16:00+02:00" pubdate data-updated="true">Jan 11<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/01/11/sqlite3-from-mysql/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Veritabanını Sqlite 3 ile sağladığınız bir rails projesinde , her ne kadar ilerlemiş olursanız olun her zaman mysql’e çevirme
+  <entry>
+    <title type="html"><![CDATA[Rails de Sqlite3 Veritabanını Mysql'e Aktarmak]]></title>
+    <link href="http://bsaral.github.io/blog/2013/01/11/sqlite3-from-mysql/"/>
+    <updated>2013-01-11T22:16:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2013/01/11/sqlite3-from-mysql</id>
+    <content type="html"><![CDATA[<p>Veritabanını Sqlite 3 ile sağladığınız bir rails projesinde , her ne kadar ilerlemiş olursanız olun her zaman mysql’e çevirme
 şansınız vardır.İlk olarak ;</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>database.yml </span></figcaption>
@@ -1060,128 +703,507 @@ tüm tabloları silin ve yeniden oluşturun yani :</p>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>Kolay gelsin.</p>
-</div>
+]]></content>
+  </entry>
   
+  <entry>
+    <title type="html"><![CDATA[Phpmyadmin 404 hatası]]></title>
+    <link href="http://bsaral.github.io/blog/2012/12/28/phpmyadmin/"/>
+    <updated>2012-12-28T22:39:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2012/12/28/phpmyadmin</id>
+    <content type="html"><![CDATA[<p>Yerelinizde (http://localhost/phpmyadmin) phpmyadmin’i çalıştırdığınız da aşağıdaki gibi bir hata alıyorsarsanız ;</p>
+
+<p><code> The requested URL /phpmyadmin was not found on this server. </code></p>
+
+<p>şu kodları terminalde çalıştırarak bu problemi halledebilirsiniz.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo dpkg-reconfigure -plow phpmyadmin
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf.d/phpmyadmin.conf
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo /etc/init.d/apache2 reload
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+]]></content>
+  </entry>
   
+  <entry>
+    <title type="html"><![CDATA[Rails de Csv ile Kullanıcıları İçe Aktarmak]]></title>
+    <link href="http://bsaral.github.io/blog/2012/12/19/csv/"/>
+    <updated>2012-12-19T22:37:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2012/12/19/csv</id>
+    <content type="html"><![CDATA[<p>Elimiz de kullanıcıların bulunduğu bir tablo var ve biz bunu csv ile içe aktarmak istiyoruz. İlk olarak gem’i yüklememiz gerekiyor.</p>
 
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="l-Scalar-Plain">gem &#39;roo&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-    </article>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle install
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>sessions/index.html.erb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;h2&gt;</span>Import Users<span class="nt">&lt;/h2&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="err">&lt;</span>%= form_tag import_sessions_path, multipart: true do %&gt;
+</span><span class="line">  <span class="err">&lt;</span>%= file_field_tag :file %&gt;
+</span><span class="line">  <span class="err">&lt;</span>%= submit_tag &quot;Import&quot; %&gt;
+</span><span class="line"><span class="err">&lt;</span>% end %&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/routes.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">resources</span> <span class="ss">:sessions</span> <span class="k">do</span>
+</span><span class="line">	<span class="n">collection</span> <span class="p">{</span> <span class="n">post</span> <span class="ss">:import</span> <span class="p">}</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line">	
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/application.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
+</span><span class="line"><span class="nb">require</span> <span class="s1">&#39;iconv&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>controllers/sessions_controller.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">def</span> <span class="nf">import</span>
+</span><span class="line">  <span class="no">User</span><span class="o">.</span><span class="n">import</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:file</span><span class="o">]</span><span class="p">)</span>
+</span><span class="line">  <span class="n">redirect_to</span> <span class="n">root_url</span><span class="p">,</span> <span class="ss">notice</span><span class="p">:</span> <span class="s2">&quot;Products imported.&quot;</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line">	
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>models/user.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">import</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</span><span class="line">  <span class="n">spreadsheet</span> <span class="o">=</span> <span class="n">open_spreadsheet</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</span><span class="line">  <span class="n">header</span> <span class="o">=</span> <span class="n">spreadsheet</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class="line">  <span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="n">.spreadsheet</span><span class="o">.</span><span class="n">last_row</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class="line">	<span class="n">row</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">[[</span><span class="n">header</span><span class="p">,</span> <span class="n">spreadsheet</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">].</span><span class="n">transpose</span><span class="o">]</span>
+</span><span class="line">	<span class="n">product</span> <span class="o">=</span> <span class="n">find_by_id</span><span class="p">(</span><span class="n">row</span><span class="o">[</span><span class="s2">&quot;id&quot;</span><span class="o">]</span><span class="p">)</span> <span class="o">||</span> <span class="kp">new</span>
+</span><span class="line">	<span class="n">product</span><span class="o">.</span><span class="n">attributes</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">to_hash</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="o">*</span><span class="n">accessible_attributes</span><span class="p">)</span>
+</span><span class="line">	<span class="n">product</span><span class="o">.</span><span class="n">save!</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line">
+</span><span class="line"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">open_spreadsheet</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</span><span class="line">  <span class="k">case</span> <span class="no">File</span><span class="o">.</span><span class="n">extname</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">original_filename</span><span class="p">)</span>
+</span><span class="line">  <span class="k">when</span> <span class="s2">&quot;.csv&quot;</span> <span class="k">then</span> <span class="no">Csv</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="ss">:ignore</span><span class="p">)</span>
+</span><span class="line">  <span class="k">when</span> <span class="s2">&quot;.xls&quot;</span> <span class="k">then</span> <span class="no">Excel</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="ss">:ignore</span><span class="p">)</span>
+</span><span class="line">  <span class="k">when</span> <span class="s2">&quot;.xlsx&quot;</span> <span class="k">then</span> <span class="no">Excelx</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="ss">:ignore</span><span class="p">)</span>
+</span><span class="line">  <span class="k">else</span> <span class="k">raise</span> <span class="s2">&quot;Unknown file type: </span><span class="si">#{</span><span class="n">file</span><span class="o">.</span><span class="n">original_filename</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Eğer yerelinizde çalışıyorsanız sisteme http://localhost:3000/sessions  ulaşabilirsiniz.</p>
+
+<h4> DİKKAT !  </h4>
+<p>İmport edilen csv dosyasının içeriği, oluşturduğunuz kullanıcı tablosundaki özellikleri dikkate alınarak şekillenmelidir. </p>
+]]></content>
+  </entry>
   
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/page/2/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
+  <entry>
+    <title type="html"><![CDATA[Rails Therubyracer gem kurulum problemi]]></title>
+    <link href="http://bsaral.github.io/blog/2012/12/18/therubyracer/"/>
+    <updated>2012-12-18T22:37:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2012/12/18/therubyracer</id>
+    <content type="html"><![CDATA[<p>Deponuzda gemfile içerisinde therubyracer gem kurulumunda eğer aşağıdaki gibi bir kurulum hatası alıyorsanız ;</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">Gem::Installer::ExtensionBuildError: ERROR: Failed to build gem native extension.
+</span><span class="line">
+</span><span class="line">		/usr/bin/ruby1.9.1 extconf.rb
+</span><span class="line">*** extconf.rb failed ***
+</span><span class="line">Could not create Makefile due to some reason, probably lack of
+</span><span class="line">necessary libraries and/or headers.  Check the mkmf.log file <span class="k">for </span>more
+</span><span class="line">details.  You may need configuration options.
+</span><span class="line">
+</span><span class="line">Provided configuration options:
+</span><span class="line">	--with-opt-dir
+</span><span class="line">	--without-opt-dir
+</span><span class="line">	--with-opt-include
+</span><span class="line">	--without-opt-include<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/include
+</span><span class="line">	--with-opt-lib
+</span><span class="line">	--without-opt-lib<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/lib
+</span><span class="line">	--with-make-prog
+</span><span class="line">	--without-make-prog
+</span><span class="line">	--srcdir<span class="o">=</span>.
+</span><span class="line">	--curdir
+</span><span class="line">	--ruby<span class="o">=</span>/usr/bin/ruby1.9.1
+</span><span class="line">extconf.rb:15:in &lt;main&gt;: undefined method include_path <span class="k">for </span>Libv8:Module <span class="o">(</span>NoMethodError<span class="o">)</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">Gem files will remain installed in /home/uzem/.bundler/tmp/8120/gems/therubyracer-0.10.1 <span class="k">for </span>inspection.
+</span><span class="line">Results logged to /home/uzem/.bundler/tmp/8120/gems/therubyracer-0.10.1/ext/v8/gem_make.out
+</span><span class="line">
+</span><span class="line">An error occurred <span class="k">while </span>installing therubyracer <span class="o">(</span>0.10.1<span class="o">)</span>, and Bundler cannot <span class="k">continue</span>.
+</span><span class="line">Make sure that gem install therubyracer -v <span class="s1">&#39;0.10.1&#39;</span>succeeds before bundling.
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>aşağıdaki kodlar bu sorunu ortadan kaldırır.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem uninstall libv8
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>çıktı aşağıdaki gibiyse 3 ‘e basıp devam ediniz ;</p>
+
+<pre><code>Select gem to uninstall:
+ 1. libv8-3.3.10.4-x86-linux
+ 2. libv8-3.11.8.4
+ 3. All versions
+ &gt; 3 
+</code></pre>
+
+<p>en son olarak da </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem install therubyracer
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle install
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>sorunumuz çözüldü.</p>
+]]></content>
+  </entry>
   
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2013/06/01/pid/">Localhost Beyaz Sayfa Hatası</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/21/java/">Java Servlet API Problemi</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/17/jdbc/">Java da Mysql Bağlantısı</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/17/error/">PhpMyAdmin Error #1142</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/31/ncurses/">Ncurses Kurulumu ve Kullanımı</a>
-      </li>
-    
-  </ul>
-</section>
+  <entry>
+    <title type="html"><![CDATA[Rails Sqlite3 Gem Problemi]]></title>
+    <link href="http://bsaral.github.io/blog/2012/11/23/sqlite3/"/>
+    <updated>2012-11-23T22:38:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2012/11/23/sqlite3</id>
+    <content type="html"><![CDATA[<p>Yeni bir rails projesi oluştururken</p>
 
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle install
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>gemler yüklendiğinde sqlite3 gem problemiyle karşılaşıyorsanız ;</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo apt-get install libsqlite3-0 libsqlite3-dev
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem install sqlite3-ruby
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+]]></content>
+  </entry>
   
-  <a href="https://github.com/bsaral">@bsaral</a> on GitHub
+  <entry>
+    <title type="html"><![CDATA[TTNET Yeteneğe Destek Eğitim Projesi]]></title>
+    <link href="http://bsaral.github.io/blog/2012/09/05/ttnet/"/>
+    <updated>2012-09-05T21:30:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2012/09/05/ttnet</id>
+    <content type="html"><![CDATA[<p>Bugün sabahın erken vakitlerinde kalkarak (saat tam olarak 7 de ) üniversitemizde Ttnet’in yaptığı eğitim seminerinin katıldık. 2 gün sürecek olana seminerin ilk gününü geride bıraktık.Açık konuşmak gerekirse arkadaş zoruyla katıldığım ve hiç de iyi geçmeyeceğini düşündüğüm bir seminerdi.
+Ama böyle olmadı. Verilen eğitimler,yapılan sohbetler son derece önemliydi ve özellikle seminerde ki hocalarımızın kendi anılarını anlatması,örnekler vermesi,kişiler ve gruplarla birebir ilgilenilmesi katılımcılara büyük fayda sağladı.</p>
+
+<p>Şimdi can alıcı noktaya değinmek istiyorum.Seminerde eğitim kısmı bittikten sonra son 45 dk hocaların rastgele belirlediği grubunla bir proje fikri üretmen gerekiyor.Düşünün grupta kimse kimseyi tanımıyor ama her ağızdan farklı bir fikir çıkıyor iyi olsun kötü olsun her şekilde saygı duyuluyor ve eleştiriliyor.Hem karşındaki insanın ufku genişliyor,hem de senin hiç aklına gelmiyecek ya da ilgi alanının olmadığı bir konu hakkında sende bilgi sahibi olup kendi alanında bunu nasıl geliştirebileceğini düşünmeye başlıyorsun.Zaten ttnet de bu seminerden bu amacın çıkarılmasını istiyor.Katılımcıları özellikle rastgele farklı gruplara dağıtıyor ki, gruplarda alanlar ne kadar farklı olursa o kadar büyük düşünülüyor ve çok değişik fikirler ortaya çıkıyor.</p>
+
+<p>Kısacası gerçekten bizim için yararlı ve güzel bir seminerdi.Ayrıca en kısa zaman içerisinde anlatılan teknik konuları buraya da aktarmayı planlıyorum.</p>
+]]></content>
+  </entry>
   
-  <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
+  <entry>
+    <title type="html"><![CDATA[Mysql Root Şifresini Yeniden Oluşturmak]]></title>
+    <link href="http://bsaral.github.io/blog/2012/06/01/mysql/"/>
+    <updated>2012-06-01T22:14:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2012/06/01/mysql</id>
+    <content type="html"><![CDATA[<p>Mysql root şifrenizi unuttuysanız eğer aşağıdaki adımları takip ederek
+şifrenizi yeniden oluşturabilirsiniz.</p>
 
-        github.showRepos({
-            user: 'bsaral',
-            count: 0,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
+<li> ilk olarak mysql durdurulur. </li>
+<blockquote>
 
+</blockquote>
 
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$/</span>etc/init.d/mysql stop
+</span><span class="line">
+</span><span class="line">Stopping MySQL:		<span class="o">[</span>OK<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<li> şimdi mysql skip-grant özelliği ile yeniden başlatalım </li>
+<blockquote>
 
+</blockquote>
 
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>mysqld_safe --skip-grant-tables &amp;
+</span><span class="line">
+</span><span class="line">Starting mysqld daemon with databases from /var/lib/mysql
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>mysql -u root
+</span><span class="line">
+</span><span class="line">Welcome to the MySQL monitor.  Commands end with ; or g.
+</span><span class="line">Your MySQL connection id is 1
+</span><span class="line">Server version: 5.0.45 Source distribution
+</span><span class="line">
+</span><span class="line">Type <span class="s1">&#39;help;&#39;</span> or <span class="s1">&#39;h&#39;</span> <span class="k">for </span>help. Type <span class="s1">&#39;c&#39;</span> to clear the buffer.
+</span><span class="line">
+</span><span class="line">mysql&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<li> şimdi yeniden şifre oluşturalım </li>
+<blockquote>
+
+</blockquote>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">mysql&gt; use mysql;
+</span><span class="line">mysql&gt; update user <span class="nb">set </span><span class="nv">password</span><span class="o">=</span>PASSWORD<span class="o">(</span><span class="s2">&quot;Yeni_Sifreniz&quot;</span><span class="o">)</span> where <span class="nv">User</span><span class="o">=</span><span class="s1">&#39;root&#39;</span>;
+</span><span class="line">mysql&gt; flush privileges;
+</span><span class="line">mysql&gt; quit;
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<li> mysql yeniden durdurulur. </li>
+<blockquote>
+
+</blockquote>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>/etc/init.d/mysqld stop
+</span><span class="line">
+</span><span class="line">Stopping MySQL:      <span class="o">[</span>  OK  <span class="o">]</span>
+</span><span class="line"><span class="o">[</span>1<span class="o">]</span>+  Done mysqld_safe --skip-grant-tables
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<li> ve son adım da mysql normal olarak yeniden başlatılır. </li>
+<blockquote>
+
+</blockquote>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>/etc/init.d/mysqld start
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+]]></content>
+  </entry>
   
-</aside>
+  <entry>
+    <title type="html"><![CDATA[Google Chrome Gizli Mod]]></title>
+    <link href="http://bsaral.github.io/blog/2012/05/31/chrome/"/>
+    <updated>2012-05-31T22:40:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2012/05/31/chrome</id>
+    <content type="html"><![CDATA[<p>Gizli mod Google Chrome ‘un kullanıcılarına sunduğu önemli özelliklerinden biridir. Peki bu gizli mod ne işe yarar? Nasıl kullanılır ?</p>
 
-      </div>
-    </div>
-    <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - BETÜL SARAL 
-</p>
+<li> Gizli moddayken açılan web sayfaları,indirilen dosyalar tarama ve indirme geçmişinde gözükmez. </li>
 
-</footer>
-    
+<li> Tüm çerezler gizli mod kapatıldıktan sonra silinir. </li>
 
-<script type="text/javascript">
-      var disqus_shortname = 'bsaral';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
+<li> Gizli moddayken Google Chrome yer işaretleriniz ve genel ayarlarınız üzerinde yapılan değişiklikler her zaman kaydedilir. </li>
 
+<li> Yazmış olduğunuz şifreler ve kullanıcı adları kaydedilmez.</li>
 
+<p>Browser da gizli modu açmak için CTRL+SHIFT+N tuş kombinasyonu kullanılır.<img src="http://bsaral.github.io/images/secret.gif" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Heroku Nedir? Nasıl Kullanılır?]]></title>
+    <link href="http://bsaral.github.io/blog/2012/03/08/heroku/"/>
+    <updated>2012-03-08T22:15:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2012/03/08/heroku</id>
+    <content type="html"><![CDATA[<p>Heroku Bir bulut (cloud) uygulama platformudur. Java, php, python vb gibi dilleri hızlıca geliştirmenizi ve server kurmaya ya da çalışma ortamı yaratmaya gerek kalmadan  doğrudan canlı ortamı görmenizi sağlayan bir platformdur. </p>
 
+<p><b> Nasıl Kullanılır? </b></p>
 
+<li><a href="http://www.heroku.com/"> heroku sitesine </a> üye olmanız gerekir.</li>
 
+<li>Eğer github ı kullanıyorsanız  <code> $ heroku keys:add </code> ile heroku public key ortak kullanılmasını sağlar.</li>
 
+<li><code> $ heroku create </code> bir uygulama örneği oluşturursunuz. </li>
 
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
+<li><code> $ git push heroku master </code> push ederek değişiklikleri heroku ya aktarmış olursunuz. </li>
 
+<li><code> $ heroku open </code> sayfanın size açılmasını sağlar. </li>
 
+<li> ayrıca eğer size verilen sitenin ismini değiştirmek istiyorsanız <code> $ heroku rename newname </code> kodunu kullanabilirsiniz </li>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Debian Kullanıcı Eklemek ve Şifresini Değiştirmek]]></title>
+    <link href="http://bsaral.github.io/blog/2012/03/05/debian-kullanici-sifresi/"/>
+    <updated>2012-03-05T22:15:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2012/03/05/debian-kullanici-sifresi</id>
+    <content type="html"><![CDATA[<li> Yeni bir kullanıcı eklemek </li>
 
+<p>Sisteme yeni bir kullanıcı eklemek için ilk önce <code> su </code> komutu ile root olmak gerekir.
+Daha sonra <code> adduser username </code> ile ekleme işlemini gerçekleştiririz.(username hesap isminizdir.)</p>
 
+<li> Şifre Değiştirmek </li>
 
-  </div>
-</body>
-</html>
+<p>Kullanıcı şifresini <code> passwd username </code> kodunu kullanarak değiştirebilirsiniz.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Debian Testing Grafik Arayüzü Oluşturma]]></title>
+    <link href="http://bsaral.github.io/blog/2012/03/02/debian-testing/"/>
+    <updated>2012-03-02T22:15:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2012/03/02/debian-testing</id>
+    <content type="html"><![CDATA[<p>Temel kurulumu başarılı bir şekilde tamamlamış olduğunuzu ve sistemi başlattığınızda aşağıdaki gibi bir görüntü elde ettiğinizi varsayıyorum.</p>
+
+<p><img src="http://bsaral.github.io/images/debian.gif" /></p>
+
+<p>Grafik arayüzüne geçilmesi için 3 komutun kullanılır.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>apt-get install x-window-system
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>apt-get install gdm
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Bu komut ile Gnome Desktop Manager kurulacak. Gdm bizim oturum açmamız için kullanıcı adı ve şifre gireceğimiz güzel bir grafik karşılayıcıdır.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>apt-get install gnome
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Bu komut ile Gnome grafik ortamı ve beraberindeki uygulamaları kuracağız.</p>
+
+<p>Eğer grafik ortamını KDE olmasını;</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>apt-get install kde
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>yada XFCE olmasını istiyorsanız :</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>apt-get install xfce4
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>komutlarını kullanabilirsiniz.</p>
+
+<p>Kurulum işlemleri bittikten sonra <b> gdm </b> yazarak grafik ortamına geçebiliriz.</p>
+
+<h4> UYARI ! </h4>
+
+<p>Eğer komutları yazdığınızda “Debian E:unable to locate package sorunu” şeklinde hatalar alıyorsanız çözüme
+<a href="http://mogutcan.github.com/902/Debian-E:-unable-to-locate-package-sorunu/"> buradan </a> ulaşabilirsiniz.</p>
+
+<h4> UYARI-2 ! </h4>
+<p>Sistemde gedit,vim şeklinde editörleriniz bulunmuyorsa nano editörünü kullanarak işlerinizi halledebilirsiniz.</p>
+
+<h4> NOT : </h4>
+<p>Eğer yapılan değişikleri geri almak,kaldırmak istiyorsanız (örn:gnome grafik ortamını kaldıralım) ;
+<code> $ apt-get remove gnome </code> kodu ile halledebilirsiniz.</p>
+
+]]></content>
+  </entry>
+  
+</feed>

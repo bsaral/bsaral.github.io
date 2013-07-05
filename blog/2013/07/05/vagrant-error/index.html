@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Ubuntuda LAMP Server Kurulumu - Betül SARAL</title>
+  <title>Vagrant - Ansible Playbook  - Betül SARAL</title>
   <meta name="author" content="BETÜL SARAL">
 
   
-  <meta name="description" content="Linux ‘ ta yapılan web sitelerini yayınlamak amacıyla PHP+Apache+Mysql üçlüsü
-gereklidir.Bunları sisteme ayrı ayrı kurmak mümkündür. Fakat Ubuntu ve &hellip;">
+  <meta name="description" content="Merhabalar, Vagrant ansible playbook paketlerinin bulunduğu bir depoyu kurmaya çalışırken $ vagrant up kısmında aşağıdaki hata ile karşılaştım. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ gereklidir.Bunları sisteme ayrı ayrı kurmak mümkündür. Fakat Ubuntu ve &he
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://bsaral.github.io/blog/2011/12/20/ubuntu-lampserver/">
+  <link rel="canonical" href="http://bsaral.github.io/blog/2013/07/05/vagrant-error/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -84,7 +83,7 @@ gereklidir.Bunları sisteme ayrı ayrı kurmak mümkündür. Fakat Ubuntu ve &he
   
   <header>
     
-      <h1 class="entry-title">Ubuntuda LAMP Server Kurulumu</h1>
+      <h1 class="entry-title">Vagrant - Ansible Playbook</h1>
     
     
       <p class="meta">
@@ -100,7 +99,7 @@ gereklidir.Bunları sisteme ayrı ayrı kurmak mümkündür. Fakat Ubuntu ve &he
   
 
 
-<time datetime="2011-12-20T22:38:00+02:00" pubdate data-updated="true">Dec 20<span>th</span>, 2011</time>
+<time datetime="2013-07-05T21:27:00+03:00" pubdate data-updated="true">Jul 5<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -109,50 +108,106 @@ gereklidir.Bunları sisteme ayrı ayrı kurmak mümkündür. Fakat Ubuntu ve &he
   </header>
 
 
-<div class="entry-content"><p>Linux ‘ ta yapılan web sitelerini yayınlamak amacıyla PHP+Apache+Mysql üçlüsü
-gereklidir.Bunları sisteme ayrı ayrı kurmak mümkündür. Fakat Ubuntu ve diğer
-birçok Linux dağıtımlarında bu iş için LAMP(Linux, Apache, Mysql, Php) paketi geliştirilmiştir.
-Şimdi terminali açıp sırayla aşağıdaki kodları girelim :</p>
+<div class="entry-content"><p>Merhabalar,</p>
+
+<p>Vagrant ansible playbook paketlerinin bulunduğu bir depoyu kurmaya çalışırken <code> $ vagrant up </code> kısmında aşağıdaki hata ile karşılaştım.</p>
+
+<p><img src="http://i.imgur.com/i5N41sq.png" /></p>
+
+<p>Hatada anlatılmak istenilen vagrant-ansible geminin kurulmamış olmasıdır. Bu sorunu düzeltmek için ilk önce sistemi update ettim.</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo apt-get install tasksel
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo apt-get update
 </span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sistemim kendini update ederken /etc/apt/sources.list.d dizini altındaki bazı dosyalar yüzünden birkaç hata ile karşılaşarak güncelleştirmeyi yarıda kesti.</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo tasksel install lamp-server
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo apt-get install phpmyadmin
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>son kod yazıldıktan sonra phpmyadmin kurulumu gerçekleşmeye başlar.ilk olarak karşınıza [E-H]
-seçeneği gelir E ye basarak devam edin. Daha sonra karşınıza iki seçeneğin çıktığı bi ekran
-gelir burda Apache2 yi seçerek devam edin.son olarak sizden şifre girmenizi isteyecektir.şifre girebilir
-ya da boş bırakıp ENTER a basarak devam edebilirsiniz.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo chmod 0777 /var/www/
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Bu kodu da yazdıktan sonra var/www/ (yani burası localhostumuzun klasörüdür.) klasörünün içine
-deneme.php adlı yeni bi belge açın ve aşağıdaki kodları girin :</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>var/www/deneme.php </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="php"><span class="line"><span class="cp">&lt;?php</span>
-</span><span class="line">	<span class="k">echo</span> 	<span class="s2">&quot;merhaba&quot;</span><span class="p">;</span>
-</span><span class="line"><span class="cp">?&gt;</span><span class="x"></span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">...
+</span><span class="line">
+</span><span class="line">N: Ignoring file <span class="s1">&#39;ferramroberto-java-oneiric.list.save&#39;</span> in directory <span class="s1">&#39;/etc/apt/sources.list.d/&#39;</span> as it has an invalid filename extension
+</span><span class="line">N: Ignoring file <span class="s1">&#39;webupd8team-java-oneiric.list.save&#39;</span> in directory <span class="s1">&#39;/etc/apt/sources.list.d/&#39;</span> as it has an invalid filename extension
+</span><span class="line">N: Ignoring file <span class="s1">&#39;oneiric-partner.list.save&#39;</span> in directory <span class="s1">&#39;/etc/apt/sources.list.d/&#39;</span> as it has an invalid filename extension
+</span><span class="line">
+</span><span class="line">...
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>Yazıp kaydettikten sonra web tarayıcınız da <code> http://localhost/deneme.php </code> yazın.Eğer sayfanız açılıyorsa
-LAMP server başarıyla kurulmuş demektir.</p>
+<p>Bu sorunu halletmek için sources.list.d dizinimiz altındaki hata veren dosyaları silmeliyiz.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span><span class="nb">cd</span> /etc/apt/sources.list.d/
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo rm ferramroberto-java-oneiric.list.save webupd8team-java-oneiric.list.save oneiric-partner.list.save
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get update
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Böylece sistemimiz sorunsuz bir şekilde güncelleştirmesini tamamlamış oldu. Şimdi ansible gem kurulumunu yapalım.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo add-apt-repository ppa:rquillo/ansible
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get update
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get install ansible -y
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo gem install vagrant-ansible
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Ve gemimiz kurulmuş oldu. Şimdi depomuza giderek</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span><span class="nb">cd </span>repository
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>vagrant up
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>vagrant ssh
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sanal makinanız sorunsuz bir şekilde çalışmış olmalıdır. Eğer <code> $ vagrant up </code> kısmında </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">...
+</span><span class="line">
+</span><span class="line">ImportError: No module named yaml
+</span><span class="line">...
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get install python-yaml
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sorunumuz halledilir. Kolay gelsin.</p>
+
 </div>
 
 
@@ -175,7 +230,7 @@ LAMP server başarıyla kurulmuş demektir.</p>
   
 
 
-<time datetime="2011-12-20T22:38:00+02:00" pubdate data-updated="true">Dec 20<span>th</span>, 2011</time>
+<time datetime="2013-07-05T21:27:00+03:00" pubdate data-updated="true">Jul 5<span>th</span>, 2013</time>
       
 
 <span class="categories">
@@ -189,7 +244,7 @@ LAMP server başarıyla kurulmuş demektir.</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://bsaral.github.io/blog/2011/12/20/ubuntu-lampserver/" data-via="bsaral19" data-counturl="http://bsaral.github.io/blog/2011/12/20/ubuntu-lampserver/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://bsaral.github.io/blog/2013/07/05/vagrant-error/" data-via="bsaral19" data-counturl="http://bsaral.github.io/blog/2013/07/05/vagrant-error/" >Tweet</a>
   
   
   
@@ -200,10 +255,8 @@ LAMP server başarıyla kurulmuş demektir.</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2011/12/17/less-css/" title="Previous Post: Less Css NEDİR?">&laquo; Less Css NEDİR?</a>
+        <a class="basic-alignment left" href="/blog/2013/06/23/octopress-blog/" title="Previous Post: Octopress İle Blog Oluşturma">&laquo; Octopress İle Blog Oluşturma</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2011/12/22/html-php-mysql/" title="Next Post: HTML-PHP-MYSQL İle Form Tasarlamak">HTML-PHP-MYSQL İle Form Tasarlamak &raquo;</a>
       
     </p>
   </footer>
@@ -298,8 +351,8 @@ LAMP server başarıyla kurulmuş demektir.</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://bsaral.github.io/blog/2011/12/20/ubuntu-lampserver/';
-        var disqus_url = 'http://bsaral.github.io/blog/2011/12/20/ubuntu-lampserver/';
+        var disqus_identifier = 'http://bsaral.github.io/blog/2013/07/05/vagrant-error/';
+        var disqus_url = 'http://bsaral.github.io/blog/2013/07/05/vagrant-error/';
         var disqus_script = 'embed.js';
       
     (function () {

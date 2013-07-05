@@ -4,7 +4,7 @@
   <title><![CDATA[Betül SARAL]]></title>
   <link href="http://bsaral.github.io/atom.xml" rel="self"/>
   <link href="http://bsaral.github.io/"/>
-  <updated>2013-06-24T00:03:41+03:00</updated>
+  <updated>2013-07-05T22:25:17+03:00</updated>
   <id>http://bsaral.github.io/</id>
   <author>
     <name><![CDATA[BETÜL SARAL]]></name>
@@ -12,6 +12,114 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Vagrant - Ansible Playbook ]]></title>
+    <link href="http://bsaral.github.io/blog/2013/07/05/vagrant-error/"/>
+    <updated>2013-07-05T21:27:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/07/05/vagrant-error</id>
+    <content type="html"><![CDATA[<p>Merhabalar,</p>
+
+<p>Vagrant ansible playbook paketlerinin bulunduğu bir depoyu kurmaya çalışırken <code> $ vagrant up </code> kısmında aşağıdaki hata ile karşılaştım.</p>
+
+<p><img src="http://i.imgur.com/i5N41sq.png" /></p>
+
+<p>Hatada anlatılmak istenilen vagrant-ansible geminin kurulmamış olmasıdır. Bu sorunu düzeltmek için ilk önce sistemi update ettim.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo apt-get update
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sistemim kendini update ederken /etc/apt/sources.list.d dizini altındaki bazı dosyalar yüzünden birkaç hata ile karşılaşarak güncelleştirmeyi yarıda kesti.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">...
+</span><span class="line">
+</span><span class="line">N: Ignoring file <span class="s1">&#39;ferramroberto-java-oneiric.list.save&#39;</span> in directory <span class="s1">&#39;/etc/apt/sources.list.d/&#39;</span> as it has an invalid filename extension
+</span><span class="line">N: Ignoring file <span class="s1">&#39;webupd8team-java-oneiric.list.save&#39;</span> in directory <span class="s1">&#39;/etc/apt/sources.list.d/&#39;</span> as it has an invalid filename extension
+</span><span class="line">N: Ignoring file <span class="s1">&#39;oneiric-partner.list.save&#39;</span> in directory <span class="s1">&#39;/etc/apt/sources.list.d/&#39;</span> as it has an invalid filename extension
+</span><span class="line">
+</span><span class="line">...
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Bu sorunu halletmek için sources.list.d dizinimiz altındaki hata veren dosyaları silmeliyiz.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span><span class="nb">cd</span> /etc/apt/sources.list.d/
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo rm ferramroberto-java-oneiric.list.save webupd8team-java-oneiric.list.save oneiric-partner.list.save
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get update
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Böylece sistemimiz sorunsuz bir şekilde güncelleştirmesini tamamlamış oldu. Şimdi ansible gem kurulumunu yapalım.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo add-apt-repository ppa:rquillo/ansible
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get update
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get install ansible -y
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo gem install vagrant-ansible
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Ve gemimiz kurulmuş oldu. Şimdi depomuza giderek</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span><span class="nb">cd </span>repository
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>vagrant up
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>vagrant ssh
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sanal makinanız sorunsuz bir şekilde çalışmış olmalıdır. Eğer <code> $ vagrant up </code> kısmında </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">...
+</span><span class="line">
+</span><span class="line">ImportError: No module named yaml
+</span><span class="line">...
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get install python-yaml
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sorunumuz halledilir. Kolay gelsin.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress İle Blog Oluşturma]]></title>
@@ -1364,22 +1472,6 @@ Ama böyle olmadı. Verilen eğitimler,yapılan sohbetler son derece önemliydi 
 <li><code> $ heroku open </code> sayfanın size açılmasını sağlar. </li>
 
 <li> ayrıca eğer size verilen sitenin ismini değiştirmek istiyorsanız <code> $ heroku rename newname </code> kodunu kullanabilirsiniz </li>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Debian Kullanıcı Eklemek ve Şifresini Değiştirmek]]></title>
-    <link href="http://bsaral.github.io/blog/2012/03/05/debian-kullanici-sifresi/"/>
-    <updated>2012-03-05T22:15:00+02:00</updated>
-    <id>http://bsaral.github.io/blog/2012/03/05/debian-kullanici-sifresi</id>
-    <content type="html"><![CDATA[<li> Yeni bir kullanıcı eklemek </li>
-
-<p>Sisteme yeni bir kullanıcı eklemek için ilk önce <code> su </code> komutu ile root olmak gerekir.
-Daha sonra <code> adduser username </code> ile ekleme işlemini gerçekleştiririz.(username hesap isminizdir.)</p>
-
-<li> Şifre Değiştirmek </li>
-
-<p>Kullanıcı şifresini <code> passwd username </code> kodunu kullanarak değiştirebilirsiniz.</p>
 ]]></content>
   </entry>
   

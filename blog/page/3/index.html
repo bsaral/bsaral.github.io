@@ -9,7 +9,8 @@
   <meta name="author" content="BETÜL SARAL">
 
   
-  <meta name="description" content="Temel kurulumu başarılı bir şekilde tamamlamış olduğunuzu ve sistemi başlattığınızda aşağıdaki gibi bir görüntü elde ettiğinizi varsayıyorum. Grafik &hellip;">
+  <meta name="description" content="Yeni bir kullanıcı eklemek Sisteme yeni bir kullanıcı eklemek için ilk önce su komutu ile root olmak gerekir.
+Daha sonra adduser username ile ekleme &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +81,51 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/05/debian-kullanici-sifresi/">Debian Kullanıcı Eklemek Ve Şifresini Değiştirmek</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-05T22:15:00+02:00" pubdate data-updated="true">Mar 5<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/03/05/debian-kullanici-sifresi/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><li> Yeni bir kullanıcı eklemek </li>
+
+<p>Sisteme yeni bir kullanıcı eklemek için ilk önce <code> su </code> komutu ile root olmak gerekir.
+Daha sonra <code> adduser username </code> ile ekleme işlemini gerçekleştiririz.(username hesap isminizdir.)</p>
+
+<li> Şifre Değiştirmek </li>
+
+<p>Kullanıcı şifresini <code> passwd username </code> kodunu kullanarak değiştirebilirsiniz.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -961,60 +1007,6 @@ Bilgisayarı yeniden başlattığınızda yaptığnız işlemleri görebilirsini
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/15/google-analytics/">Google Analytics Takip Kodu</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-15T22:15:00+03:00" pubdate data-updated="true">Jul 15<span>th</span>, 2011</time>
-        
-         | <a href="/blog/2011/07/15/google-analytics/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Google Analytics, google ın ücretsiz olarak verdiği bir site takip sistemidir.
-Sitenizde ki ziyaretçi sayısı, toplam sayfa gösterimi, sayfa başına geçen ortalama süre, ziyaretçi ülke ve durum bilgileri, yeni ziyaret sayısı vb…
-birçok bilgiye bu sistem tarafından ulaşabilirsiniz.</p>
-
-<p>Google Analytics için önce <a href="http://www.google.com/analytics/" target="_blank"> sitesine gidip </a> Analytics erişim butonuna basıp google hesabınızla giriş yapmalısınız.</p>
-
-<p>Çıkan sayfada sitenizin url sini girin.</p>
-
-<p><img src="/images/7.png" /></p>
-
-<p>eğer herşey doğru gitmişse karşınıza aşağıdaki gibi bir sayfa gelir.</p>
-
-<p><img src="/images/8.png" /></p>
-
-<p>bu bölümde sitenizin Google Analytics kodu yer alır.bu kodların tamamını kopyalayıp sitenizin html sindeki head tag ının kapanışından öncesine yerleştirmelisiniz.(tam olarak  “head BU ARADADA Kİ BOŞLUĞA /head” yerleştiriniz.) işlemleri yaptıktan sonra save and finish e tıklayın.
-en az 24 saat sonra sisteminiz aktif hale gelecektir.eğer süre 24 saati geçmişse ve hala sistem aktif değilse herhangi bir yerde hata yapmışsınız demektir.işlemleri baştan tekrarlayarak bu problemleri halledebilirsiniz.</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -1032,6 +1024,10 @@ en az 24 saat sonra sisteminiz aktif hale gelecektir.eğer süre 24 saati geçmi
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/05/vagrant-error/">Vagrant - Ansible Playbook </a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/06/23/octopress-blog/">Octopress İle Blog Oluşturma</a>
       </li>
     
@@ -1045,10 +1041,6 @@ en az 24 saat sonra sisteminiz aktif hale gelecektir.eğer süre 24 saati geçmi
     
       <li class="post">
         <a href="/blog/2013/05/17/jdbc/">Java da Mysql Bağlantısı</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/17/error/">PhpMyAdmin Error #1142</a>
       </li>
     
   </ul>

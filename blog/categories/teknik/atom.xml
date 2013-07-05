@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Teknik | Betül SARAL]]></title>
   <link href="http://bsaral.github.io/blog/categories/teknik/atom.xml" rel="self"/>
   <link href="http://bsaral.github.io/"/>
-  <updated>2013-06-24T00:03:41+03:00</updated>
+  <updated>2013-07-05T22:25:17+03:00</updated>
   <id>http://bsaral.github.io/</id>
   <author>
     <name><![CDATA[BETÜL SARAL]]></name>
@@ -12,6 +12,142 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Vagrant - Ansible Playbook ]]></title>
+    <link href="http://bsaral.github.io/blog/2013/07/05/vagrant-error/"/>
+    <updated>2013-07-05T21:27:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/07/05/vagrant-error</id>
+    <content type="html"><![CDATA[<p>Merhabalar,</p>
+
+<p>Vagrant ansible playbook paketlerinin bulunduğu bir depoyu kurmaya çalışırken <code> $ vagrant up </code> kısmında aşağıdaki hata ile karşılaştım.</p>
+
+<p><img src="http://i.imgur.com/i5N41sq.png" /></p>
+
+<p>Hatada anlatılmak istenilen vagrant-ansible geminin kurulmamış olmasıdır. Bu sorunu düzeltmek için ilk önce sistemi update ettim.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>sudo apt-get update
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Sistemim kendini update ederken /etc/apt/sources.list.d dizini altındaki bazı dosyalar yüzünden birkaç hata ile karşılaşarak güncelleştirmeyi yarıda kesti.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>…&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;N: Ignoring file ‘ferramroberto-java-oneiric.list.save’ in directory ‘/etc/apt/sources.list.d/’ as it has an invalid filename extension
+</span><span class='line'>N: Ignoring file ‘webupd8team-java-oneiric.list.save’ in directory ‘/etc/apt/sources.list.d/’ as it has an invalid filename extension
+</span><span class='line'>N: Ignoring file ‘oneiric-partner.list.save’ in directory ‘/etc/apt/sources.list.d/’ as it has an invalid filename extension&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;…
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Bu sorunu halletmek için sources.list.d dizinimiz altındaki hata veren dosyaları silmeliyiz.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span><span class="nb">cd</span> /etc/apt/sources.list.d/&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo rm ferramroberto-java-oneiric.list.save webupd8team-java-oneiric.list.save oneiric-partner.list.save&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo apt-get update
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Böylece sistemimiz sorunsuz bir şekilde güncelleştirmesini tamamlamış oldu. Şimdi ansible gem kurulumunu yapalım.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo add-apt-repository ppa:rquillo/ansible&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo apt-get update&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo apt-get install ansible -y&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo gem install vagrant-ansible&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Ve gemimiz kurulmuş oldu. Şimdi depomuza giderek</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span><span class="nb">cd </span>repository&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>vagrant up &lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>vagrant ssh &lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Sanal makinanız sorunsuz bir şekilde çalışmış olmalıdır. Eğer <code> $ vagrant up </code> kısmında </p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;…&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ImportError: No module named yaml
+</span><span class='line'>…&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo apt-get install python-yaml&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Sorunumuz halledilir. Kolay gelsin.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress İle Blog Oluşturma]]></title>
@@ -426,26 +562,6 @@ dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşa�
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 Kaydedip çalıştırdığınız da “Bağlantı Başarılı” şeklinde bir çıktı alıyorsanız mysql ile bağlantıyı sağladınız demektir.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[PhpMyAdmin Error #1142]]></title>
-    <link href="http://bsaral.github.io/blog/2013/05/17/error/"/>
-    <updated>2013-05-17T22:37:00+03:00</updated>
-    <id>http://bsaral.github.io/blog/2013/05/17/error</id>
-    <content type="html"><![CDATA[<p>Phpmyadmin de aşağıdaki gibi bir hata alıyorsanız;</p>
-
-<pre><code>#1142 - SELECT command denied to user ''@'localhost' for table 'pma_column_info' 
-</code></pre>
-
-<p>Şu adımları takip ederek düzeltebilirsiniz:</p>
-
-<li> Ayarlar kısmına girin </li>
-
-<li> Rehber çerçevesi kısmına tıklayın </li>
-
-<li> Son kullanılan tablolar kısmını 0 olarak değiştirin </li>
 ]]></content>
   </entry>
   

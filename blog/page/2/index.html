@@ -9,11 +9,15 @@
   <meta name="author" content="BETÜL SARAL">
 
   
-  <meta name="description" content="Aşağıdakilerin adım adım uygulanması gerekir. Gemfile 1
-gem &quot;nested_form&quot; Terminal 1
+  <meta name="description" content="Gemfile içerisinde bulunan gem "rmagick" , '~&gt; 2.13.2' bundle ettiğiniz zaman aşağıdaki gibi bir hata alıyorsanız ; Terminal 1
 2
 3
-$ bundle install $ rails g nested_form:install Bu &hellip;">
+4
+5
+6
+7
+8
+9 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +88,79 @@ $ bundle install $ rails g nested_form:install Bu &hellip;">
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/16/rmagick/">ImageMagick / RMagick Gem Install Error</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-16T22:37:00+02:00" pubdate data-updated="true">Feb 16<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/02/16/rmagick/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Gemfile içerisinde bulunan <code> gem "rmagick" ,   '~&gt; 2.13.2' </code> bundle ettiğiniz zaman aşağıdaki gibi bir hata alıyorsanız ;</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">ERROR:  Error installing rmagick:
+</span><span class="line">ERROR: Failed to build gem native extension.
+</span><span class="line">
+</span><span class="line">..........
+</span><span class="line">..........
+</span><span class="line">
+</span><span class="line">Gem files will remain installed in /usr/lib/ruby/gems/1.8/gems/rmagick-2.13.1 <span class="k">for </span>inspection.
+</span><span class="line">Results logged to /usr/lib/ruby/gems/1.8/gems/rmagick-2.13.1/ext/RMagick/gem_make.out
+</span><span class="line">	
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sorunu halletmek için ;</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo apt-get install libmagickwand-dev
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>bundle install
+</span><span class="line">	
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1032,58 +1109,6 @@ Ama böyle olmadı. Verilen eğitimler,yapılan sohbetler son derece önemliydi 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/08/heroku/">Heroku Nedir? Nasıl Kullanılır?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-08T22:15:00+02:00" pubdate data-updated="true">Mar 8<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/03/08/heroku/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Heroku Bir bulut (cloud) uygulama platformudur. Java, php, python vb gibi dilleri hızlıca geliştirmenizi ve server kurmaya ya da çalışma ortamı yaratmaya gerek kalmadan  doğrudan canlı ortamı görmenizi sağlayan bir platformdur. </p>
-
-<p><b> Nasıl Kullanılır? </b></p>
-
-<li><a href="http://www.heroku.com/"> heroku sitesine </a> üye olmanız gerekir.</li>
-
-<li>Eğer github ı kullanıyorsanız  <code> $ heroku keys:add </code> ile heroku public key ortak kullanılmasını sağlar.</li>
-
-<li><code> $ heroku create </code> bir uygulama örneği oluşturursunuz. </li>
-
-<li><code> $ git push heroku master </code> push ederek değişiklikleri heroku ya aktarmış olursunuz. </li>
-
-<li><code> $ heroku open </code> sayfanın size açılmasını sağlar. </li>
-
-<li> ayrıca eğer size verilen sitenin ismini değiştirmek istiyorsanız <code> $ heroku rename newname </code> kodunu kullanabilirsiniz </li>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1101,6 +1126,10 @@ Ama böyle olmadı. Verilen eğitimler,yapılan sohbetler son derece önemliydi 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/09/12/android-database/">Android - Veritabanı Kullanımı</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/07/05/vagrant/">Vagrant - Ansible Playbook</a>
       </li>
     
@@ -1114,10 +1143,6 @@ Ama böyle olmadı. Verilen eğitimler,yapılan sohbetler son derece önemliydi 
     
       <li class="post">
         <a href="/blog/2013/05/21/java/">Java Servlet API Problemi</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/17/jdbc/">Java da Mysql Bağlantısı</a>
       </li>
     
   </ul>

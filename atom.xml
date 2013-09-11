@@ -4,7 +4,7 @@
   <title><![CDATA[Betül SARAL]]></title>
   <link href="http://bsaral.github.io/atom.xml" rel="self"/>
   <link href="http://bsaral.github.io/"/>
-  <updated>2013-09-12T01:24:33+03:00</updated>
+  <updated>2013-09-12T02:04:28+03:00</updated>
   <id>http://bsaral.github.io/</id>
   <author>
     <name><![CDATA[BETÜL SARAL]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Android - Veritabanı Kullanımı]]></title>
+    <link href="http://bsaral.github.io/blog/2013/09/12/android-database/"/>
+    <updated>2013-09-12T01:35:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/09/12/android-database</id>
+    <content type="html"><![CDATA[<p>Android’e yeni başlayanlar için önemli ve uğraştırıcı olan bir konu veritabanıdır. Android uygulamalarında veritabanı olarak Oracle, Mysql, Sqlite gibi birçok seçenek vardır. Ama kurulum ve konfigürasyon bakımından en kolayı Sqlite olduğu için genellikle Android de bu tercih edilir.</p>
+
+<p>Android de oluşturduğumuz ya da var olan veritabanları <b> /data/data/package_name/databases </b> dizini altında bulunur. Bu dizine erişebilmek için Eclipse ‘de DDMS sekmesinden ya da açık değilse, Window-Show View-File Explorer ‘ı seçmemiz gerekiyor. Daha sonra dizin altından veritabanımıza erişebiliriz. DDMS ‘den sadece veritabanına erişimi sağlayabiliriz. Veritabanı içerisindeki tabloları,yapıları görmek için 
+SQLiteManager kullanabiliriz. SQLiteManager, Firefox <a href="https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/"> eklentisi </a> olarak kullanılır.</p>
+
+<p><img src="http://i.imgur.com/zk5UezT.png" /></p>
+
+<p>Şimdi oluşturduğumuz veritabanını önce push ederek dışarı aktaralım. Databasename.db adındaki dosyamızı push ettikten sonra Firefox’dan SQLiteManager’ı açarak veritabanımızı içeri aktaralım. Burda veritabanında yaptığımız her değişiklik .db dosyamıza kaydedilir. Yaptığımız değişiklikleri uygulamamızın içerisine aktarmak içinde tekrar DDMS sekmesinden dizinimizin altındaki veritabanımıza gelip, önceden dışarı aktardığımız ve üzerinde SQLiteManager ile çalıştığımız veritabanı dosyamızı pull ederek yaparız.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Vagrant - Ansible Playbook]]></title>
@@ -1437,29 +1453,6 @@ Ama böyle olmadı. Verilen eğitimler,yapılan sohbetler son derece önemliydi 
 <li> Yazmış olduğunuz şifreler ve kullanıcı adları kaydedilmez.</li>
 
 <p>Browser da gizli modu açmak için CTRL+SHIFT+N tuş kombinasyonu kullanılır.<img src="http://bsaral.github.io/images/secret.gif" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Heroku Nedir? Nasıl Kullanılır?]]></title>
-    <link href="http://bsaral.github.io/blog/2012/03/08/heroku/"/>
-    <updated>2012-03-08T22:15:00+02:00</updated>
-    <id>http://bsaral.github.io/blog/2012/03/08/heroku</id>
-    <content type="html"><![CDATA[<p>Heroku Bir bulut (cloud) uygulama platformudur. Java, php, python vb gibi dilleri hızlıca geliştirmenizi ve server kurmaya ya da çalışma ortamı yaratmaya gerek kalmadan  doğrudan canlı ortamı görmenizi sağlayan bir platformdur. </p>
-
-<p><b> Nasıl Kullanılır? </b></p>
-
-<li><a href="http://www.heroku.com/"> heroku sitesine </a> üye olmanız gerekir.</li>
-
-<li>Eğer github ı kullanıyorsanız  <code> $ heroku keys:add </code> ile heroku public key ortak kullanılmasını sağlar.</li>
-
-<li><code> $ heroku create </code> bir uygulama örneği oluşturursunuz. </li>
-
-<li><code> $ git push heroku master </code> push ederek değişiklikleri heroku ya aktarmış olursunuz. </li>
-
-<li><code> $ heroku open </code> sayfanın size açılmasını sağlar. </li>
-
-<li> ayrıca eğer size verilen sitenin ismini değiştirmek istiyorsanız <code> $ heroku rename newname </code> kodunu kullanabilirsiniz </li>
 ]]></content>
   </entry>
   

@@ -9,7 +9,8 @@
   <meta name="author" content="BETÜL SARAL">
 
   
-  <meta name="description" content="GOOGLE PROFİL Google profil sayesinde arama kutusuna isminiz girildiğinde profiliniz, sonuçlar sayfasında yer alacaktır.Kişilerin sizi daha kolay &hellip;">
+  <meta name="description" content="Google Analytics, google ın ücretsiz olarak verdiği bir site takip sistemidir.
+Sitenizde ki ziyaretçi sayısı, toplam sayfa gösterimi, sayfa başına &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +81,112 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/15/google-analytics/">Google Analytics Takip Kodu</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-15T22:15:00+03:00" pubdate data-updated="true">Jul 15<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/07/15/google-analytics/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Google Analytics, google ın ücretsiz olarak verdiği bir site takip sistemidir.
+Sitenizde ki ziyaretçi sayısı, toplam sayfa gösterimi, sayfa başına geçen ortalama süre, ziyaretçi ülke ve durum bilgileri, yeni ziyaret sayısı vb…
+birçok bilgiye bu sistem tarafından ulaşabilirsiniz.</p>
+
+<p>Google Analytics için önce <a href="http://www.google.com/analytics/" target="_blank"> sitesine gidip </a> Analytics erişim butonuna basıp google hesabınızla giriş yapmalısınız.</p>
+
+<p>Çıkan sayfada sitenizin url sini girin.</p>
+
+<p><img src="/images/7.png" /></p>
+
+<p>eğer herşey doğru gitmişse karşınıza aşağıdaki gibi bir sayfa gelir.</p>
+
+<p><img src="/images/8.png" /></p>
+
+<p>bu bölümde sitenizin Google Analytics kodu yer alır.bu kodların tamamını kopyalayıp sitenizin html sindeki head tag ının kapanışından öncesine yerleştirmelisiniz.(tam olarak  “head BU ARADADA Kİ BOŞLUĞA /head” yerleştiriniz.) işlemleri yaptıktan sonra save and finish e tıklayın.
+en az 24 saat sonra sisteminiz aktif hale gelecektir.eğer süre 24 saati geçmişse ve hala sistem aktif değilse herhangi bir yerde hata yapmışsınız demektir.işlemleri baştan tekrarlayarak bu problemleri halledebilirsiniz.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/27/ubuntu-kullanici-sifresi/">Ubuntu Da Kullanıcı Şifresinin Unutulması</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-27T22:39:00+03:00" pubdate data-updated="true">Jun 27<span>th</span>, 2011</time>
+        
+         | <a href="/blog/2011/06/27/ubuntu-kullanici-sifresi/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Kullanıcı şifresi unutulduysa,ilk yapmanız gereken sisteminizi kurtarma modunda (Recovery Mode) yani GRUB menüsünün 2.seçeneğinden başlatmak olacaktır.sistem açıldığında karşınıza bir pencere çıkar.bu pencerenin en sonunda bulunan “root kullanıcısı olarak uçbirimi aç” seçeneğini tercih edin.altta uçbirim açılır.uçbirime ilk olarak</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>passwd KULLANICI_ADINIZ
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>yazıp ENTER a basın.bu kodu yazdıktan sonra sizden yeni şifrenizi girmenizi isteyecektir.şifreyi girdikten sonra</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>reboot
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>yazıp ENTER a bastığınızda işleminiz tamamlanmış olur.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -250,6 +357,14 @@ istiyorsanız hosts dosyasında yazdığınız sitenin IP adresini ve kendisini 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/05/vagrant/">Vagrant - Ansible Playbook</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/23/octopress/">Octopress İle Blog Oluşturma</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/06/01/pid/">Localhost Beyaz Sayfa Hatası</a>
       </li>
     
@@ -259,14 +374,6 @@ istiyorsanız hosts dosyasında yazdığınız sitenin IP adresini ve kendisini 
     
       <li class="post">
         <a href="/blog/2013/05/17/jdbc/">Java da Mysql Bağlantısı</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/17/error/">PhpMyAdmin Error #1142</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/31/ncurses/">Ncurses Kurulumu ve Kullanımı</a>
       </li>
     
   </ul>

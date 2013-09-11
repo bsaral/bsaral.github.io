@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Teknik | Betül SARAL]]></title>
   <link href="http://bsaral.github.io/blog/categories/teknik/atom.xml" rel="self"/>
   <link href="http://bsaral.github.io/"/>
-  <updated>2013-09-12T00:30:05+03:00</updated>
+  <updated>2013-09-12T01:24:33+03:00</updated>
   <id>http://bsaral.github.io/</id>
   <author>
     <name><![CDATA[BETÜL SARAL]]></name>
@@ -14,12 +14,373 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Vagrant - Ansible Playbook]]></title>
+    <link href="http://bsaral.github.io/blog/2013/07/05/vagrant/"/>
+    <updated>2013-07-05T01:18:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/07/05/vagrant</id>
+    <content type="html"><![CDATA[<p>Merhabalar,</p>
+
+<p>Vagrant ansible playbook paketlerinin bulunduğu bir depoyu kurmaya çalışırken $ vagrant up kısmında aşağıdaki hata ile karşılaştım.</p>
+
+<p><img src="http://i.imgur.com/i5N41sq.png" /></p>
+
+<p>Hatada anlatılmak istenilen vagrant-ansible geminin kurulmamış olmasıdır. Bu sorunu düzeltmek için ilk önce sistemi update ettim.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>sudo apt-get update
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Sistemim kendini update ederken /etc/apt/sources.list.d dizini altındaki bazı dosyalar yüzünden birkaç hata ile karşılaşarak güncelleştirmeyi yarıda kesti.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>…&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;N: Ignoring file ‘ferramroberto-java-oneiric.list.save’ in directory ‘/etc/apt/sources.list.d/’ as it has an invalid filename extension
+</span><span class='line'>N: Ignoring file ‘webupd8team-java-oneiric.list.save’ in directory ‘/etc/apt/sources.list.d/’ as it has an invalid filename extension
+</span><span class='line'>N: Ignoring file ‘oneiric-partner.list.save’ in directory ‘/etc/apt/sources.list.d/’ as it has an invalid filename extension&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;…
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Bu sorunu halletmek için sources.list.d dizinimiz altındaki hata veren dosyaları silmeliyiz.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span><span class="nb">cd</span> /etc/apt/sources.list.d/&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo rm ferramroberto-java-oneiric.list.save webupd8team-java-oneiric.list.save oneiric-partner.list.save&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo apt-get update
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Böylece sistemimiz sorunsuz bir şekilde güncelleştirmesini tamamlamış oldu. Şimdi ansible gem kurulumunu yapalım.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>sudo add-apt-repository ppa:rquillo/ansible&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo apt-get update&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo apt-get install ansible -y&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo gem install vagrant-ansible
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Ve gemimiz kurulmuş oldu. Şimdi depomuza giderek</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span><span class="nb">cd </span>repository&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>vagrant up&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>vagrant ssh
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Sanal makinanız sorunsuz bir şekilde çalışmış olmalıdır. Eğer $ vagrant up kısmında</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>…&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ImportError: No module named yaml
+</span><span class='line'>…&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo apt-get install python-yaml
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Sorunumuz halledilir. Kolay gelsin.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress İle Blog Oluşturma]]></title>
+    <link href="http://bsaral.github.io/blog/2013/06/23/octopress/"/>
+    <updated>2013-06-23T01:04:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/06/23/octopress</id>
+    <content type="html"><![CDATA[<p>Octopress, Jekyll için hazırlanan, Github Pages’in arkasında da kullanılan bir statik blog framework’ü. En popüler engine olarak görülüyor. Octopress rails tabanlı olduğundan kullanımı diğer blog yazılımlarına göre çok farklı. Şimdi adım adım octopress kurulumu ve kullanımına geçelim. Sisteminizde Ruby kurulu olmalıdır.</p>
+
+<p>İlk olarak Octopress deposunu klonlayalım.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git clone git://github.com/imathis/octopress.git octopress&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span><span class="nb">cd </span>octopress&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>bundle install
+</span><span class='line'>…
+</span><span class='line'>…
+</span><span class='line'>Your bundle is <span class="nb">complete</span>!&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>rake install&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h2 <span class="nv">id</span><span class="o">=</span><span class="s2">&quot;copying-classic-theme-into-source-and-sass&quot;</span>&gt;Copying classic theme into ./source and ./sass&lt;/h2&gt;
+</span><span class='line'>&lt;p&gt;mkdir -p <span class="nb">source</span>
+</span><span class='line'>cp -r .themes/classic/source/. <span class="nb">source</span>
+</span><span class='line'>mkdir -p sass
+</span><span class='line'>cp -r .themes/classic/sass/. sass
+</span><span class='line'>mkdir -p <span class="nb">source</span>/_posts
+</span><span class='line'>mkdir -p public&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Blogumuz oluştu. Şimdi blog içerisindeki ayarlamaları yapalım. Bunun için octopress ayarlarının bulunduğu _config.yml dosyasında düzenlemeler yapmamız gerekiyor. Bu dosyadaki kesin düzenlenmesi gereken kısım aşağıdaki gibidir.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>url:  			<span class="c"># Blog adresiniz</span>
+</span><span class='line'>title:  		<span class="c"># Blog Başlığı</span>
+</span><span class='line'>subtitle: 		<span class="c"># Alt Başlık</span>
+</span><span class='line'>author: 		<span class="c"># Blogger Adı</span>
+</span><span class='line'>simple_search: 		<span class="c"># http://google.com/search</span>
+</span><span class='line'>description:		<span class="c"># Blog Hakkında Bilgi&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Dosyanın alt taraflarında sosyal ağ bağlantılarınızla ilgili ayarlamalarınızı yapmanız mümkündür.</p>
+
+<p>Şimdi ilk blog yazımızı oluşturalım.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>rake new_post<span class="o">[</span>“hello-octopress”<span class="o">]</span>
+</span><span class='line'>…
+</span><span class='line'>Creating new post: <span class="nb">source</span>/_posts/2013-06-23-hello-octopress.markdown&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>_posts dizinimizin altında dosyamız oluştu. Şimdi dosyayı açıp blogunuzu markdown syntax uygun bir biçimde yazabilirsiniz.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>rake generate&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;…
+</span><span class='line'>Building site: <span class="nb">source</span> -&amp;gt; public
+</span><span class='line'>Successfully generated site: <span class="nb">source</span> -&amp;gt; public&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>rake preview&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Configuration from /home/betul/octopress/_config.yml
+</span><span class='line'><span class="o">[</span>2013-06-23 23:43:46<span class="o">]</span> INFO  WEBrick 1.3.1
+</span><span class='line'><span class="o">[</span>2013-06-23 23:43:46<span class="o">]</span> INFO  ruby 1.9.2 <span class="o">(</span>2011-07-09<span class="o">)</span> <span class="o">[</span>i686-linux<span class="o">]</span>
+</span><span class='line'><span class="o">[</span>2013-06-23 23:43:46<span class="o">]</span> INFO  WEBrick::HTTPServer#start: <span class="nv">pid</span><span class="o">=</span>4168 <span class="nv">port</span><span class="o">=</span>4000
+</span><span class='line'>Auto-regenerating enabled: <span class="nb">source</span> -&amp;gt; public
+</span><span class='line'><span class="o">[</span>2013-06-23 23:43:46<span class="o">]</span> regeneration: 94 files changed
+</span><span class='line'>»&amp;gt; Change detected at 23:43:46 to: screen.scss
+</span><span class='line'>identical public/stylesheets/screen.css&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Dear developers making use of FSSM in your projects,
+</span><span class='line'>FSSM is essentially dead at this point. Further development will
+</span><span class='line'>be taking place in the new shared guard/listen project. Please
+</span><span class='line'><span class="nb">let </span>us know <span class="k">if </span>you need <span class="nb">help </span>transitioning! ^_^b
+</span><span class='line'>- Travis Tilley&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>En son kodumuz ile localhost:4000 adresinde bir server açtık. Bu adrese girdiğinizde blogunuzun güncel halini görebilirsiniz.</p>
+
+<p>Blogumuzu oluşturduk şimdi deploy aşamasına geçelim. Ben github üzerinden gidicem fakat octopress sadece github değil heroku,rsync gibi hosting servisleri sağlayan sitelerede deploy edilebilir.</p>
+
+<p>İlk olarak github da create new Github reposity diyerek kendi kullanıcı adımızla oluşturduğumuz yani username.github.io adında bir depo oluşturalım. Daha sonra yerelimizde bulunan octopress dizinine girip terminalde şu kodları yazalım :</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>rake setup_github_pages&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Enter the <span class="nb">read</span>/write url <span class="k">for </span>your repository: git@github.com:username/username.github.com.git&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Added remote git@github.com:username/username.github.com.git as origin
+</span><span class='line'>Set origin as default remote
+</span><span class='line'>Master branch renamed to ‘source’ <span class="k">for </span>committing your blog <span class="nb">source </span>files
+</span><span class='line'>Initialized empty Git repository in /home/username/source/octopress/_deploy/.git/
+</span><span class='line'><span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 2a4e9e7<span class="o">]</span> Octopress init
+</span><span class='line'>1 files changed, 1 insertions<span class="o">(</span>+<span class="o">)</span>, 0 deletions<span class="o">(</span>-<span class="o">)</span>
+</span><span class='line'>create mode 100644 index.html&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;hr /&gt;
+</span><span class='line'>&lt;p&gt;## Now you can deploy to http://username.github.com with &lt;code&gt;rake deploy&lt;/code&gt; <span class="c">##&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Her yeni blog yazısı oluşturduğumuzda</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>rake generate&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>rake deploy
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>username.github.io adresinizden blogunuzu görebilirsiniz.</p>
+
+<h2 id="ortaya-kabilecek-sorunlar">Ortaya Çıkabilecek Sorunlar</h2>
+
+<p>Yerelime kurulum yaparken bazı sorunlarla karşılaştım. Siz de karşılaşmış olabilirsiniz.</p>
+
+<li> İlk olarak depoyu bundle ettiğimde aşağıdaki hatayı aldım. </li>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>….
+</span><span class='line'>An error occurred <span class="k">while </span>installing rdiscount <span class="o">(</span>2.0.7.3<span class="o">)</span>, and Bundler cannot
+</span><span class='line'><span class="k">continue</span>.
+</span><span class='line'>Make sure that &lt;code&gt;gem install rdiscount -v <span class="s1">&#39;2.0.7.3&#39;</span>&lt;/code&gt; succeeds before bundling.&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Bu rdiscount geminin versiyonuyla ilgili bir hatadır. Gemfile içerisinde bu gem’i bulup versiyon kısmını silip tekrar bundle ettiğimizde sorunumuz ortadan kalkar.</p>
+
+<li> Diğerini ise blog yazımı oluşturduktan sonra aldım. </li>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>rake generate
+</span><span class='line'>…&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Building site: <span class="nb">source</span> -&amp;gt; public
+</span><span class='line'>/var/lib/gems/1.9.1/gems/rdiscount-1.6.8/lib/rdiscount.rb:89:in &lt;code&gt;block in initialize<span class="err">&#39;</span>: undefined method &lt;/code&gt;footnotes<span class="o">=</span>’ <span class="k">for</span> <span class="c">#&amp;lt;RDiscount:0xac76988 @text=””, @autolink=true&amp;gt; (NoMethodError)&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Bu hata rdiscount yani markdown syntax’ı için kullanılan bir gem tarafından kaynaklanmaktadır. Markdown için rdiscount dışında maruku,kramdown gibi seçenekleri de kullanabiliriz. Şimdi _config.yml dosyasını açıp markdown kısmındaki rdiscount’u silmeniz gerekir ve yerine maruku yada kromdown dan birini yazın.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>…
+</span><span class='line'>markdown: kramdown
+</span><span class='line'>pygments: <span class="nb">false</span> <span class="c"># default python pygments have been replaced by pygments.rb</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Localhost Beyaz Sayfa Hatası]]></title>
     <link href="http://bsaral.github.io/blog/2013/06/01/pid/"/>
     <updated>2013-06-01T22:14:00+03:00</updated>
     <id>http://bsaral.github.io/blog/2013/06/01/pid</id>
     <content type="html"><![CDATA[<p>Bugün yerelimde bir problemle karşılaştım. Yerelimi çalıştırdığımda bomboş beyaz bir sayfa(blank page) önüme geliyordu. Sistemimde WampServer kurulu.
-İnternette biraz araştırma yaptıktan sonra bu sorunu da hallettim.  </p>
+İnternette biraz araştırma yaptıktan sonra bu sorunu da hallettim.</p>
 
 <p>Beyaz sayfa hatasının temel nedeni port çakışmasıdır. Yerelden başka port 80 ‘ni kullanan  bir uygulama varsa çakışma yaşanır ve localhost çalışmaz.
 Bu çakışmayı anlamak için pid ‘leri kontrol etmeliyiz . Öncelikle cmd ‘yi açalım ve şu komutu yazalım.</p>
@@ -172,121 +533,6 @@ dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşa�
 </span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 Kaydedip çalıştırdığınız da “Bağlantı Başarılı” şeklinde bir çıktı alıyorsanız mysql ile bağlantıyı sağladınız demektir.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[PhpMyAdmin Error #1142]]></title>
-    <link href="http://bsaral.github.io/blog/2013/05/17/error/"/>
-    <updated>2013-05-17T22:37:00+03:00</updated>
-    <id>http://bsaral.github.io/blog/2013/05/17/error</id>
-    <content type="html"><![CDATA[<p>Phpmyadmin de aşağıdaki gibi bir hata alıyorsanız;</p>
-
-<pre><code>#1142 - SELECT command denied to user ''@'localhost' for table 'pma_column_info' 
-</code></pre>
-
-<p>Şu adımları takip ederek düzeltebilirsiniz:</p>
-
-<li> Ayarlar kısmına girin </li>
-
-<li> Rehber çerçevesi kısmına tıklayın </li>
-
-<li> Son kullanılan tablolar kısmını 0 olarak değiştirin </li>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ncurses Kurulumu ve Kullanımı]]></title>
-    <link href="http://bsaral.github.io/blog/2013/03/31/ncurses/"/>
-    <updated>2013-03-31T22:39:00+03:00</updated>
-    <id>http://bsaral.github.io/blog/2013/03/31/ncurses</id>
-    <content type="html"><![CDATA[<p>Merhabalar,</p>
-
-<p>Bugünkü konumuz ncurses. Ncurses’ın ne olduğunu , kurulumunun nasıl yapıldığını ve kullanımıyla ilgili bilgiler vereceğim.</p>
-
-<li><a href="#n1"> NCURSES Nedir ?</a></li>
-<li><a href="#n2"> Nasıl Kurulur ? </a></li>
-<li><a href="#n3"> Nasıl Derlenir ? </a></li>
-<blockquote>
-
-</blockquote>
-
-<h3 id="a-idn1-1--ncurses-nedir--a"><a id="n1"> 1- NCURSES Nedir ? </a></h3>
-
-<p>Bir uygulamanın karakter tabanlı uçbirimlerde görüntüleri üzerinde çalışabilmeyi sağlayan ve özgür olarak dağıtılan işlevler kütüphanesidir. NCURSES sadece uçbirim yetenekleri sarmalayan bir yapı oluşturmaz aynı 
-zamanda metin kipinde hoş görüşünüşlü arayüzler oluşturmak için sağlam bir çalışma taslağı da oluşturur. Pencereler v.b. görünümleri oluşturmak için işlevler sağlar. Kardeş kütüphaneleri olan panel, menu ve form, 
-temel curses kütüphanesine bir genişleme sağlar. </p>
-
-<h3 id="a-idn2-2--nasl-kurulur--a"><a id="n2"> 2- Nasıl Kurulur ? </a></h3>
-
-<p>İlk olarak <a href="http://ftp.gnu.org/pub/gnu/ncurses/ "> bu adresten  </a> ncurses kütüphanesini indiriyoruz.Sonra arşivi açıyoruz yani :</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>tar zxvf ncurses-4.2.tar.gz &lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span><span class="nb">cd </span>ncurses-4.2  &lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>./configure &lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>make &lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo make install
-</span></code></pre></td></tr></table></div></figure></notextile></div>	</p>
-
-<h3 id="a-idn3-3--nasl-derlenir--a"><a id="n3"> 3- Nasıl Derlenir ? </a></h3>
-
-<p>Şimdi bir örnekle bunu açıklayalım. Merhaba.c adında bir belge açın ve içine aşağıdakileri kopyalayın.
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Merhaba.c </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">include</span> <span class="o">&lt;</span><span class="n">ncurses</span><span class="p">.</span><span class="n">h</span> <span class="o">/&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
-</span><span class='line'>  <span class="n">initscr</span><span class="p">();</span>                      <span class="cm">/* Curses kipine giriş           &lt;em&gt;/</span>
-</span><span class='line'><span class="cm">  printw(“Merhaba Dünya !!!”);    /&lt;/em&gt; Merhaba Dünya yazdırma        &lt;em&gt;/</span>
-</span><span class='line'><span class="cm">  refresh();                      /&lt;/em&gt; Onu gerçek ekrana yazdırın    &lt;em&gt;/</span>
-</span><span class='line'><span class="cm">  getch();                        /&lt;/em&gt; Kullanıcıyı bekleyin          &lt;em&gt;/</span>
-</span><span class='line'><span class="cm">  endwin();                       /&lt;/em&gt; Curses kipinden çıkış         */</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>Şimdi derleyelim, terminali açalım ve dosyanın olduğu dizine geldikten sonra :
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>gcc merhaba.c -lncurses
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>Ve işte bu kadar…</p>
-
-<p>Kaynak : <a href="http://docs.comu.edu.tr/howto/ncurses-howto-intro.html">http://docs.comu.edu.tr/howto/ncurses-howto-intro.html</a></p>
 ]]></content>
   </entry>
   

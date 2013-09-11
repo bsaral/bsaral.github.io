@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Rails Devise Sign_up Problemi - Betül SARAL</title>
+  <title>Vagrant - Ansible Playbook - Betül SARAL</title>
   <meta name="author" content="BETÜL SARAL">
 
   
-  <meta name="description" content="Merhabalar; Devise kurulumundan sonra http://localhost:3000/users/registration/sign_up sayfasında aşağıdaki gibi bir hata alıyorsanız ; Terminal 1 &hellip;">
+  <meta name="description" content="Merhabalar, Vagrant ansible playbook paketlerinin bulunduğu bir depoyu kurmaya çalışırken $ vagrant up kısmında aşağıdaki hata ile karşılaştım. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://bsaral.github.io/blog/2013/02/19/devise/">
+  <link rel="canonical" href="http://bsaral.github.io/blog/2013/07/05/vagrant/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -83,7 +83,7 @@
   
   <header>
     
-      <h1 class="entry-title">Rails Devise Sign_up Problemi</h1>
+      <h1 class="entry-title">Vagrant - Ansible Playbook</h1>
     
     
       <p class="meta">
@@ -99,7 +99,7 @@
   
 
 
-<time datetime="2013-02-19T22:37:00+02:00" pubdate data-updated="true">Feb 19<span>th</span>, 2013</time>
+<time datetime="2013-07-05T01:18:00+03:00" pubdate data-updated="true">Jul 5<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -108,29 +108,106 @@
   </header>
 
 
-<div class="entry-content"><p>Merhabalar;</p>
+<div class="entry-content"><p>Merhabalar,</p>
 
-<p>Devise kurulumundan sonra  <a href="http://localhost:3000/users/registration/sign_up">http://localhost:3000/users/registration/sign_up </a>  sayfasında aşağıdaki gibi bir hata alıyorsanız ;</p>
+<p>Vagrant ansible playbook paketlerinin bulunduğu bir depoyu kurmaya çalışırken $ vagrant up kısmında aşağıdaki hata ile karşılaştım.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">undefined method <span class="sb">`</span>user_registration_path<span class="err">&#39;</span> <span class="k">for</span> <span class="c">#&lt;#&lt;Class:0x007fd5d3503d58&gt;:0x007fd5d3b0dcd0&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p><img src="http://i.imgur.com/i5N41sq.png" /></p>
 
-<p>Ya da sign_up kısmı hiç açılmıyorsa sürekli problem yaşıyorsanız bu sorunun sebebi Gemfile içerisinde bulunan <b> devise </b> gem’inin versiyonuyla ilgilidir.
-Gemfile içerisinde devise gem’inin versiyonu yazılmamalıdır yani aşağıdaki gibi yer almalıdır.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="l-Scalar-Plain">gem &#39;devise&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>Hatada anlatılmak istenilen vagrant-ansible geminin kurulmamış olmasıdır. Bu sorunu düzeltmek için ilk önce sistemi update ettim.</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle update
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo apt-get update
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>yazdıktan sonra sorununuz çözülecektir.</p>
+<p>Sistemim kendini update ederken /etc/apt/sources.list.d dizini altındaki bazı dosyalar yüzünden birkaç hata ile karşılaşarak güncelleştirmeyi yarıda kesti.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">...
+</span><span class="line">
+</span><span class="line">N: Ignoring file <span class="s1">&#39;ferramroberto-java-oneiric.list.save&#39;</span> in directory <span class="s1">&#39;/etc/apt/sources.list.d/&#39;</span> as it has an invalid filename extension
+</span><span class="line">N: Ignoring file <span class="s1">&#39;webupd8team-java-oneiric.list.save&#39;</span> in directory <span class="s1">&#39;/etc/apt/sources.list.d/&#39;</span> as it has an invalid filename extension
+</span><span class="line">N: Ignoring file <span class="s1">&#39;oneiric-partner.list.save&#39;</span> in directory <span class="s1">&#39;/etc/apt/sources.list.d/&#39;</span> as it has an invalid filename extension
+</span><span class="line">
+</span><span class="line">...
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Bu sorunu halletmek için sources.list.d dizinimiz altındaki hata veren dosyaları silmeliyiz.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span><span class="nb">cd</span> /etc/apt/sources.list.d/
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo rm ferramroberto-java-oneiric.list.save webupd8team-java-oneiric.list.save oneiric-partner.list.save
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get update
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Böylece sistemimiz sorunsuz bir şekilde güncelleştirmesini tamamlamış oldu. Şimdi ansible gem kurulumunu yapalım.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo add-apt-repository ppa:rquillo/ansible
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get update
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get install ansible -y
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo gem install vagrant-ansible
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Ve gemimiz kurulmuş oldu. Şimdi depomuza giderek</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span><span class="nb">cd </span>repository
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>vagrant up
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>vagrant ssh
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sanal makinanız sorunsuz bir şekilde çalışmış olmalıdır. Eğer $ vagrant up kısmında</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">...
+</span><span class="line">
+</span><span class="line">ImportError: No module named yaml
+</span><span class="line">...
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get install python-yaml
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sorunumuz halledilir. Kolay gelsin.</p>
+
 </div>
 
 
@@ -153,7 +230,7 @@ Gemfile içerisinde devise gem’inin versiyonu yazılmamalıdır yani aşağıd
   
 
 
-<time datetime="2013-02-19T22:37:00+02:00" pubdate data-updated="true">Feb 19<span>th</span>, 2013</time>
+<time datetime="2013-07-05T01:18:00+03:00" pubdate data-updated="true">Jul 5<span>th</span>, 2013</time>
       
 
 <span class="categories">
@@ -167,7 +244,7 @@ Gemfile içerisinde devise gem’inin versiyonu yazılmamalıdır yani aşağıd
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://bsaral.github.io/blog/2013/02/19/devise/" data-via="bsaral19" data-counturl="http://bsaral.github.io/blog/2013/02/19/devise/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://bsaral.github.io/blog/2013/07/05/vagrant/" data-via="bsaral19" data-counturl="http://bsaral.github.io/blog/2013/07/05/vagrant/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -180,10 +257,8 @@ Gemfile içerisinde devise gem’inin versiyonu yazılmamalıdır yani aşağıd
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/02/16/rmagick/" title="Previous Post: ImageMagick / RMagick Gem Install Error">&laquo; ImageMagick / RMagick Gem Install Error</a>
+        <a class="basic-alignment left" href="/blog/2013/06/23/octopress/" title="Previous Post: Octopress İle Blog Oluşturma">&laquo; Octopress İle Blog Oluşturma</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/03/15/production/" title="Next Post: Rails 3 Production Mod">Rails 3 Production Mod &raquo;</a>
       
     </p>
   </footer>
@@ -278,8 +353,8 @@ Gemfile içerisinde devise gem’inin versiyonu yazılmamalıdır yani aşağıd
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://bsaral.github.io/blog/2013/02/19/devise/';
-        var disqus_url = 'http://bsaral.github.io/blog/2013/02/19/devise/';
+        var disqus_identifier = 'http://bsaral.github.io/blog/2013/07/05/vagrant/';
+        var disqus_url = 'http://bsaral.github.io/blog/2013/07/05/vagrant/';
         var disqus_script = 'embed.js';
       
     (function () {

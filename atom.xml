@@ -4,7 +4,7 @@
   <title><![CDATA[Betül SARAL]]></title>
   <link href="http://bsaral.github.io/atom.xml" rel="self"/>
   <link href="http://bsaral.github.io/"/>
-  <updated>2013-09-12T00:30:05+03:00</updated>
+  <updated>2013-09-12T01:24:33+03:00</updated>
   <id>http://bsaral.github.io/</id>
   <author>
     <name><![CDATA[BETÜL SARAL]]></name>
@@ -14,12 +14,347 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Vagrant - Ansible Playbook]]></title>
+    <link href="http://bsaral.github.io/blog/2013/07/05/vagrant/"/>
+    <updated>2013-07-05T01:18:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/07/05/vagrant</id>
+    <content type="html"><![CDATA[<p>Merhabalar,</p>
+
+<p>Vagrant ansible playbook paketlerinin bulunduğu bir depoyu kurmaya çalışırken $ vagrant up kısmında aşağıdaki hata ile karşılaştım.</p>
+
+<p><img src="http://i.imgur.com/i5N41sq.png" /></p>
+
+<p>Hatada anlatılmak istenilen vagrant-ansible geminin kurulmamış olmasıdır. Bu sorunu düzeltmek için ilk önce sistemi update ettim.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo apt-get update
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sistemim kendini update ederken /etc/apt/sources.list.d dizini altındaki bazı dosyalar yüzünden birkaç hata ile karşılaşarak güncelleştirmeyi yarıda kesti.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">...
+</span><span class="line">
+</span><span class="line">N: Ignoring file <span class="s1">&#39;ferramroberto-java-oneiric.list.save&#39;</span> in directory <span class="s1">&#39;/etc/apt/sources.list.d/&#39;</span> as it has an invalid filename extension
+</span><span class="line">N: Ignoring file <span class="s1">&#39;webupd8team-java-oneiric.list.save&#39;</span> in directory <span class="s1">&#39;/etc/apt/sources.list.d/&#39;</span> as it has an invalid filename extension
+</span><span class="line">N: Ignoring file <span class="s1">&#39;oneiric-partner.list.save&#39;</span> in directory <span class="s1">&#39;/etc/apt/sources.list.d/&#39;</span> as it has an invalid filename extension
+</span><span class="line">
+</span><span class="line">...
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Bu sorunu halletmek için sources.list.d dizinimiz altındaki hata veren dosyaları silmeliyiz.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span><span class="nb">cd</span> /etc/apt/sources.list.d/
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo rm ferramroberto-java-oneiric.list.save webupd8team-java-oneiric.list.save oneiric-partner.list.save
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get update
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Böylece sistemimiz sorunsuz bir şekilde güncelleştirmesini tamamlamış oldu. Şimdi ansible gem kurulumunu yapalım.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo add-apt-repository ppa:rquillo/ansible
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get update
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get install ansible -y
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo gem install vagrant-ansible
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Ve gemimiz kurulmuş oldu. Şimdi depomuza giderek</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span><span class="nb">cd </span>repository
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>vagrant up
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>vagrant ssh
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sanal makinanız sorunsuz bir şekilde çalışmış olmalıdır. Eğer $ vagrant up kısmında</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">...
+</span><span class="line">
+</span><span class="line">ImportError: No module named yaml
+</span><span class="line">...
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get install python-yaml
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sorunumuz halledilir. Kolay gelsin.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress İle Blog Oluşturma]]></title>
+    <link href="http://bsaral.github.io/blog/2013/06/23/octopress/"/>
+    <updated>2013-06-23T01:04:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2013/06/23/octopress</id>
+    <content type="html"><![CDATA[<p>Octopress, Jekyll için hazırlanan, Github Pages’in arkasında da kullanılan bir statik blog framework’ü. En popüler engine olarak görülüyor. Octopress rails tabanlı olduğundan kullanımı diğer blog yazılımlarına göre çok farklı. Şimdi adım adım octopress kurulumu ve kullanımına geçelim. Sisteminizde Ruby kurulu olmalıdır.</p>
+
+<p>İlk olarak Octopress deposunu klonlayalım.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>git clone git://github.com/imathis/octopress.git octopress
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span><span class="nb">cd </span>octopress
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>bundle install
+</span><span class="line">...
+</span><span class="line">...
+</span><span class="line">Your bundle is <span class="nb">complete</span>!
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>rake install
+</span><span class="line">
+</span><span class="line"><span class="c">## Copying classic theme into ./source and ./sass</span>
+</span><span class="line">mkdir -p <span class="nb">source</span>
+</span><span class="line">cp -r .themes/classic/source/. <span class="nb">source</span>
+</span><span class="line">mkdir -p sass
+</span><span class="line">cp -r .themes/classic/sass/. sass
+</span><span class="line">mkdir -p <span class="nb">source</span>/_posts
+</span><span class="line">mkdir -p public
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Blogumuz oluştu. Şimdi blog içerisindeki ayarlamaları yapalım. Bunun için octopress ayarlarının bulunduğu _config.yml dosyasında düzenlemeler yapmamız gerekiyor. Bu dosyadaki kesin düzenlenmesi gereken kısım aşağıdaki gibidir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>_config.yml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">url:  			<span class="c"># Blog adresiniz</span>
+</span><span class="line">title:  		<span class="c"># Blog Başlığı</span>
+</span><span class="line">subtitle: 		<span class="c"># Alt Başlık</span>
+</span><span class="line">author: 		<span class="c"># Blogger Adı</span>
+</span><span class="line">simple_search: 		<span class="c"># http://google.com/search</span>
+</span><span class="line">description:		<span class="c"># Blog Hakkında Bilgi</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Dosyanın alt taraflarında sosyal ağ bağlantılarınızla ilgili ayarlamalarınızı yapmanız mümkündür.</p>
+
+<p>Şimdi ilk blog yazımızı oluşturalım.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rake new_post<span class="o">[</span><span class="s2">&quot;hello-octopress&quot;</span><span class="o">]</span>
+</span><span class="line">...
+</span><span class="line">Creating new post: <span class="nb">source</span>/_posts/2013-06-23-hello-octopress.markdown
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>_posts dizinimizin altında dosyamız oluştu. Şimdi dosyayı açıp blogunuzu markdown syntax uygun bir biçimde yazabilirsiniz.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rake generate
+</span><span class="line">
+</span><span class="line">...
+</span><span class="line">Building site: <span class="nb">source</span> -&gt; public
+</span><span class="line">Successfully generated site: <span class="nb">source</span> -&gt; public
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>rake preview
+</span><span class="line">
+</span><span class="line">Configuration from /home/betul/octopress/_config.yml
+</span><span class="line"><span class="o">[</span>2013-06-23 23:43:46<span class="o">]</span> INFO  WEBrick 1.3.1
+</span><span class="line"><span class="o">[</span>2013-06-23 23:43:46<span class="o">]</span> INFO  ruby 1.9.2 <span class="o">(</span>2011-07-09<span class="o">)</span> <span class="o">[</span>i686-linux<span class="o">]</span>
+</span><span class="line"><span class="o">[</span>2013-06-23 23:43:46<span class="o">]</span> INFO  WEBrick::HTTPServer#start: <span class="nv">pid</span><span class="o">=</span>4168 <span class="nv">port</span><span class="o">=</span>4000
+</span><span class="line">Auto-regenerating enabled: <span class="nb">source</span> -&gt; public
+</span><span class="line"><span class="o">[</span>2013-06-23 23:43:46<span class="o">]</span> regeneration: 94 files changed
+</span><span class="line">&gt;&gt;&gt; Change detected at 23:43:46 to: screen.scss
+</span><span class="line">identical public/stylesheets/screen.css
+</span><span class="line">
+</span><span class="line">Dear developers making use of FSSM in your projects,
+</span><span class="line">FSSM is essentially dead at this point. Further development will
+</span><span class="line">be taking place in the new shared guard/listen project. Please
+</span><span class="line"><span class="nb">let </span>us know <span class="k">if </span>you need <span class="nb">help </span>transitioning! ^_^b
+</span><span class="line">- Travis Tilley
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>En son kodumuz ile localhost:4000 adresinde bir server açtık. Bu adrese girdiğinizde blogunuzun güncel halini görebilirsiniz.</p>
+
+<p>Blogumuzu oluşturduk şimdi deploy aşamasına geçelim. Ben github üzerinden gidicem fakat octopress sadece github değil heroku,rsync gibi hosting servisleri sağlayan sitelerede deploy edilebilir.</p>
+
+<p>İlk olarak github da create new Github reposity diyerek kendi kullanıcı adımızla oluşturduğumuz yani username.github.io adında bir depo oluşturalım. Daha sonra yerelimizde bulunan octopress dizinine girip terminalde şu kodları yazalım :</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rake setup_github_pages
+</span><span class="line">
+</span><span class="line">Enter the <span class="nb">read</span>/write url <span class="k">for </span>your repository: git@github.com:username/username.github.com.git
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">Added remote git@github.com:username/username.github.com.git as origin
+</span><span class="line">Set origin as default remote
+</span><span class="line">Master branch renamed to <span class="s1">&#39;source&#39;</span> <span class="k">for </span>committing your blog <span class="nb">source </span>files
+</span><span class="line">Initialized empty Git repository in /home/username/source/octopress/_deploy/.git/
+</span><span class="line"><span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 2a4e9e7<span class="o">]</span> Octopress init
+</span><span class="line">1 files changed, 1 insertions<span class="o">(</span>+<span class="o">)</span>, 0 deletions<span class="o">(</span>-<span class="o">)</span>
+</span><span class="line">create mode 100644 index.html
+</span><span class="line">
+</span><span class="line">---
+</span><span class="line"><span class="c">## Now you can deploy to http://username.github.com with `rake deploy` ##</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Her yeni blog yazısı oluşturduğumuzda</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rake generate
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>rake deploy
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>username.github.io adresinizden blogunuzu görebilirsiniz.</p>
+
+<h2 id="ortaya-kabilecek-sorunlar">Ortaya Çıkabilecek Sorunlar</h2>
+
+<p>Yerelime kurulum yaparken bazı sorunlarla karşılaştım. Siz de karşılaşmış olabilirsiniz.</p>
+
+<li> İlk olarak depoyu bundle ettiğimde aşağıdaki hatayı aldım. </li>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">....
+</span><span class="line">An error occurred <span class="k">while </span>installing rdiscount <span class="o">(</span>2.0.7.3<span class="o">)</span>, and Bundler cannot
+</span><span class="line"><span class="k">continue</span>.
+</span><span class="line">Make sure that <span class="sb">`</span>gem install rdiscount -v <span class="s1">&#39;2.0.7.3&#39;</span><span class="sb">`</span> succeeds before bundling.
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Bu rdiscount geminin versiyonuyla ilgili bir hatadır. Gemfile içerisinde bu gem’i bulup versiyon kısmını silip tekrar bundle ettiğimizde sorunumuz ortadan kalkar.</p>
+
+<li> Diğerini ise blog yazımı oluşturduktan sonra aldım. </li>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rake generate
+</span><span class="line">...
+</span><span class="line">
+</span><span class="line">Building site: <span class="nb">source</span> -&gt; public
+</span><span class="line">/var/lib/gems/1.9.1/gems/rdiscount-1.6.8/lib/rdiscount.rb:89:in <span class="sb">`</span>block in initialize<span class="s1">&#39;: undefined method `footnotes=&#39;</span> <span class="k">for</span> <span class="c">#&lt;RDiscount:0xac76988 @text=&quot;&quot;, @autolink=true&gt; (NoMethodError)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Bu hata rdiscount yani markdown syntax’ı için kullanılan bir gem tarafından kaynaklanmaktadır. Markdown için rdiscount dışında maruku,kramdown gibi seçenekleri de kullanabiliriz. Şimdi _config.yml dosyasını açıp markdown kısmındaki rdiscount’u silmeniz gerekir ve yerine maruku yada kromdown dan birini yazın.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>_config.yml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">...
+</span><span class="line">markdown: kramdown
+</span><span class="line">pygments: <span class="nb">false</span> <span class="c"># default python pygments have been replaced by pygments.rb</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Localhost Beyaz Sayfa Hatası]]></title>
     <link href="http://bsaral.github.io/blog/2013/06/01/pid/"/>
     <updated>2013-06-01T22:14:00+03:00</updated>
     <id>http://bsaral.github.io/blog/2013/06/01/pid</id>
     <content type="html"><![CDATA[<p>Bugün yerelimde bir problemle karşılaştım. Yerelimi çalıştırdığımda bomboş beyaz bir sayfa(blank page) önüme geliyordu. Sistemimde WampServer kurulu.
-İnternette biraz araştırma yaptıktan sonra bu sorunu da hallettim.  </p>
+İnternette biraz araştırma yaptıktan sonra bu sorunu da hallettim.</p>
 
 <p>Beyaz sayfa hatasının temel nedeni port çakışmasıdır. Yerelden başka port 80 ‘ni kullanan  bir uygulama varsa çakışma yaşanır ve localhost çalışmaz.
 Bu çakışmayı anlamak için pid ‘leri kontrol etmeliyiz . Öncelikle cmd ‘yi açalım ve şu komutu yazalım.</p>
@@ -1125,84 +1460,6 @@ Ama böyle olmadı. Verilen eğitimler,yapılan sohbetler son derece önemliydi 
 <li><code> $ heroku open </code> sayfanın size açılmasını sağlar. </li>
 
 <li> ayrıca eğer size verilen sitenin ismini değiştirmek istiyorsanız <code> $ heroku rename newname </code> kodunu kullanabilirsiniz </li>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Debian Kullanıcı Eklemek ve Şifresini Değiştirmek]]></title>
-    <link href="http://bsaral.github.io/blog/2012/03/05/debian-kullanici-sifresi/"/>
-    <updated>2012-03-05T22:15:00+02:00</updated>
-    <id>http://bsaral.github.io/blog/2012/03/05/debian-kullanici-sifresi</id>
-    <content type="html"><![CDATA[<li> Yeni bir kullanıcı eklemek </li>
-
-<p>Sisteme yeni bir kullanıcı eklemek için ilk önce <code> su </code> komutu ile root olmak gerekir.
-Daha sonra <code> adduser username </code> ile ekleme işlemini gerçekleştiririz.(username hesap isminizdir.)</p>
-
-<li> Şifre Değiştirmek </li>
-
-<p>Kullanıcı şifresini <code> passwd username </code> kodunu kullanarak değiştirebilirsiniz.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Debian Testing Grafik Arayüzü Oluşturma]]></title>
-    <link href="http://bsaral.github.io/blog/2012/03/02/debian-testing/"/>
-    <updated>2012-03-02T22:15:00+02:00</updated>
-    <id>http://bsaral.github.io/blog/2012/03/02/debian-testing</id>
-    <content type="html"><![CDATA[<p>Temel kurulumu başarılı bir şekilde tamamlamış olduğunuzu ve sistemi başlattığınızda aşağıdaki gibi bir görüntü elde ettiğinizi varsayıyorum.</p>
-
-<p><img src="http://bsaral.github.io/images/debian.gif" /></p>
-
-<p>Grafik arayüzüne geçilmesi için 3 komutun kullanılır.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>apt-get install x-window-system
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>apt-get install gdm
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Bu komut ile Gnome Desktop Manager kurulacak. Gdm bizim oturum açmamız için kullanıcı adı ve şifre gireceğimiz güzel bir grafik karşılayıcıdır.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>apt-get install gnome
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Bu komut ile Gnome grafik ortamı ve beraberindeki uygulamaları kuracağız.</p>
-
-<p>Eğer grafik ortamını KDE olmasını;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>apt-get install kde
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>yada XFCE olmasını istiyorsanız :</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>apt-get install xfce4
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>komutlarını kullanabilirsiniz.</p>
-
-<p>Kurulum işlemleri bittikten sonra <b> gdm </b> yazarak grafik ortamına geçebiliriz.</p>
-
-<h4> UYARI ! </h4>
-
-<p>Eğer komutları yazdığınızda “Debian E:unable to locate package sorunu” şeklinde hatalar alıyorsanız çözüme
-<a href="http://mogutcan.github.com/902/Debian-E:-unable-to-locate-package-sorunu/"> buradan </a> ulaşabilirsiniz.</p>
-
-<h4> UYARI-2 ! </h4>
-<p>Sistemde gedit,vim şeklinde editörleriniz bulunmuyorsa nano editörünü kullanarak işlerinizi halledebilirsiniz.</p>
-
-<h4> NOT : </h4>
-<p>Eğer yapılan değişikleri geri almak,kaldırmak istiyorsanız (örn:gnome grafik ortamını kaldıralım) ;
-<code> $ apt-get remove gnome </code> kodu ile halledebilirsiniz.</p>
-
 ]]></content>
   </entry>
   

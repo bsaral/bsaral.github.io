@@ -9,7 +9,11 @@
   <meta name="author" content="BETÜL SARAL">
 
   
-  <meta name="description" content="Yerelinizde (http://localhost/phpmyadmin) phpmyadmin’i çalıştırdığınız da aşağıdaki gibi bir hata alıyorsarsanız ; The requested URL /phpmyadmin was &hellip;">
+  <meta name="description" content="Aşağıdakilerin adım adım uygulanması gerekir. Gemfile 1
+gem &quot;nested_form&quot; Terminal 1
+2
+3
+$ bundle install $ rails g nested_form:install Bu &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +84,351 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/11/nested-forms/">Rails 3 De Nested Form Nasıl Oluşturulur ?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-11T22:16:00+02:00" pubdate data-updated="true">Feb 11<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/02/11/nested-forms/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Aşağıdakilerin adım adım uygulanması gerekir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">gem <span class="s2">&quot;nested_form&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle install
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>rails g nested_form:install
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Bu koddan sonra <code> public/javascripts/nested_form.js </code>  oluşması gerekiyor.Biz bu js belgesini <code> app/assets/javascripts/ </code> altına kopyalayalım. Daha sonra;</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>controllers/projects_controller.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">def</span> <span class="nf">new</span>
+</span><span class="line">	<span class="vi">@project</span><span class="o">=</span><span class="no">Project</span><span class="o">.</span><span class="n">new</span>
+</span><span class="line">	<span class="vi">@project</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">build</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>model/project.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Project</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class="line">
+</span><span class="line">	<span class="n">has_many</span> <span class="ss">:tasks</span><span class="p">,</span> <span class="ss">:dependent</span> <span class="o">=&gt;</span> <span class="ss">:destroy</span>
+</span><span class="line">	<span class="n">attr_accessible</span> <span class="ss">:tasks_attributes</span><span class="p">,</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:description</span>
+</span><span class="line">	<span class="n">accepts_nested_attributes_for</span> <span class="ss">:tasks</span><span class="p">,</span> <span class="ss">:allow_destroy</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+</span><span class="line">
+</span><span class="line"><span class="k">end</span>
+</span><span class="line">	
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>model/task.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Task</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class="line">	<span class="n">belongs_to</span> <span class="ss">:project</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line">	
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>views/projects/_form.html.erb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="o">&lt;</span><span class="sx">%= nested_form_for @project do |f| %&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="sx">	&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:name</span> <span class="sx">%&gt;</span>
+</span><span class="line"><span class="sx">	&lt;%= f.text_field(:name) %&gt;</span><span class="o">&lt;</span><span class="n">br</span> <span class="sr">/&gt;</span>
+</span><span class="line"><span class="sr">	&lt;%= f.label :description %&gt;</span>
+</span><span class="line"><span class="sr">	&lt;%= f.text_field(:description) %&gt;&lt;br /</span><span class="o">&gt;</span>
+</span><span class="line">	
+</span><span class="line">	<span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span> <span class="no">Tasks</span><span class="o">&lt;</span><span class="sr">/h3&gt;</span>
+</span><span class="line"><span class="sr">	</span>
+</span><span class="line"><span class="sr">	&lt;%= f.fields_for :tasks do |task| %&gt;</span>
+</span><span class="line"><span class="sr">		&lt;%= task.label :name %&gt;&lt;br /</span><span class="o">&gt;</span>
+</span><span class="line">		<span class="o">&lt;</span><span class="sx">%= task.text_field :name %&gt;&lt;br /&gt;</span>
+</span><span class="line"><span class="sx">		&lt;%=</span> <span class="n">task</span><span class="o">.</span><span class="n">link_to_remove</span> <span class="s2">&quot;Remove this task&quot;</span> <span class="sx">%&gt;</span>
+</span><span class="line"><span class="sx">	&lt;% end %&gt;</span>
+</span><span class="line">	<span class="o">&lt;</span><span class="sx">%= f.link_to_add &quot;Add a task&quot;, :tasks %&gt;</span>
+</span><span class="line"><span class="sx">	&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">submit</span> <span class="sx">%&gt;</span>
+</span><span class="line"><span class="sx">&lt;% end %&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/11/sqlite3-from-mysql/">Rails De Sqlite3 Veritabanını Mysql&#8217;e Aktarmak</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-11T22:16:00+02:00" pubdate data-updated="true">Jan 11<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/01/11/sqlite3-from-mysql/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Veritabanını Sqlite 3 ile sağladığınız bir rails projesinde , her ne kadar ilerlemiş olursanız olun her zaman mysql’e çevirme
+şansınız vardır.İlk olarak ;</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>database.yml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="err">	</span><span class="l-Scalar-Plain">development</span><span class="p-Indicator">:</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mysql2</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">reconnect</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">databasename_development</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">root</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&quot;parola&quot;</span><span class="p-Indicator">]</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">socket</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/var/run/mysqld/mysqld.sock</span>
+</span><span class="line">
+</span><span class="line"><span class="err">	</span><span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mysql2</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">reconnect</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">databasename_test</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">root</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&quot;parola&quot;</span><span class="p-Indicator">]</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">socket</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/var/run/mysqld/mysqld.sock</span>
+</span><span class="line">
+</span><span class="line"><span class="err">	</span><span class="l-Scalar-Plain">production</span><span class="p-Indicator">:</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mysql2</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">reconnect</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">databasename_production</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">root</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&quot;parola&quot;</span><span class="p-Indicator">]</span>
+</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">socket</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/var/run/mysqld/mysqld.sock</span>
+</span><span class="line"><span class="err">	</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>şimdi bu kodları terminale girmemiz gerekiyor.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:create
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:schema:dump
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>bu koddan sonra aşağıdaki gibi bir hata alıyorsanız ;</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">rake aborted!
+</span><span class="line">
+</span><span class="line">Please install the mysql2 adapter: gem install activerecord-mysql2-adapter
+</span><span class="line">   <span class="o">(</span>mysql2 is not part of the bundle.
+</span><span class="line">Add it to Gemfile.<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Bu hata için;</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem install activerecord-mysql2-adapter
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">gem</span> <span class="s2">&quot;activerecord-mysql2-adapter&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:load
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Ve hata alırız:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">	rake aborted!
+</span><span class="line">	Don<span class="s1">&#39;t know how to build task &#39;</span>db:load<span class="err">&#39;</span>
+</span><span class="line">	<span class="o">(</span>See full trace by running task with --trace<span class="o">)</span>
+</span><span class="line">	
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">gem</span> <span class="s1">&#39;yaml_db&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:load
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:migrate
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Ve veritabanlarımızı mysql’e aktarmış olduk.Eğer sisteminiz de phpmyadmin varsa, aktarmış olduğumuz tabloları orda takip edebilirsiniz.</p>
+
+<blockquote>
+
+</blockquote>
+
+<h4>UYARI : </h4>
+<p>Eğer rails server çalıştırdığınız da </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">mysql undefined method <span class="sb">`</span>accept<span class="err">&#39;</span> <span class="k">for </span>nil:NilClass
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>hatasını alıyorsanız Gemfile içerisinde <code> gem "activerecord-mysql2-adapter" </code> silmeniz gerekiyor.Ayrıca
+<code> gem  "mysql2", "&gt;= 0.3.11" </code> Gemfile içerisinde bulunması gerekir.Bu işlemleri yaptıktan sonra veritabanınızda bulunan
+tüm tabloları silin ve yeniden oluşturun yani :</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rake db:migrate
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>ve seed dosyanız dolu ise;</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rake db:seed
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Kolay gelsin.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -735,142 +1084,6 @@ Ama böyle olmadı. Verilen eğitimler,yapılan sohbetler son derece önemliydi 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/05/debian-kullanici-sifresi/">Debian Kullanıcı Eklemek Ve Şifresini Değiştirmek</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-05T22:15:00+02:00" pubdate data-updated="true">Mar 5<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/03/05/debian-kullanici-sifresi/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><li> Yeni bir kullanıcı eklemek </li>
-
-<p>Sisteme yeni bir kullanıcı eklemek için ilk önce <code> su </code> komutu ile root olmak gerekir.
-Daha sonra <code> adduser username </code> ile ekleme işlemini gerçekleştiririz.(username hesap isminizdir.)</p>
-
-<li> Şifre Değiştirmek </li>
-
-<p>Kullanıcı şifresini <code> passwd username </code> kodunu kullanarak değiştirebilirsiniz.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/03/02/debian-testing/">Debian Testing Grafik Arayüzü Oluşturma</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-02T22:15:00+02:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2012</time>
-        
-         | <a href="/blog/2012/03/02/debian-testing/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Temel kurulumu başarılı bir şekilde tamamlamış olduğunuzu ve sistemi başlattığınızda aşağıdaki gibi bir görüntü elde ettiğinizi varsayıyorum.</p>
-
-<p><img src="/images/debian.gif" /></p>
-
-<p>Grafik arayüzüne geçilmesi için 3 komutun kullanılır.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>apt-get install x-window-system
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>apt-get install gdm
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Bu komut ile Gnome Desktop Manager kurulacak. Gdm bizim oturum açmamız için kullanıcı adı ve şifre gireceğimiz güzel bir grafik karşılayıcıdır.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>apt-get install gnome
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Bu komut ile Gnome grafik ortamı ve beraberindeki uygulamaları kuracağız.</p>
-
-<p>Eğer grafik ortamını KDE olmasını;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>apt-get install kde
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>yada XFCE olmasını istiyorsanız :</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>apt-get install xfce4
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>komutlarını kullanabilirsiniz.</p>
-
-<p>Kurulum işlemleri bittikten sonra <b> gdm </b> yazarak grafik ortamına geçebiliriz.</p>
-
-<h4> UYARI ! </h4>
-
-<p>Eğer komutları yazdığınızda “Debian E:unable to locate package sorunu” şeklinde hatalar alıyorsanız çözüme
-<a href="http://mogutcan.github.com/902/Debian-E:-unable-to-locate-package-sorunu/"> buradan </a> ulaşabilirsiniz.</p>
-
-<h4> UYARI-2 ! </h4>
-<p>Sistemde gedit,vim şeklinde editörleriniz bulunmuyorsa nano editörünü kullanarak işlerinizi halledebilirsiniz.</p>
-
-<h4> NOT : </h4>
-<p>Eğer yapılan değişikleri geri almak,kaldırmak istiyorsanız (örn:gnome grafik ortamını kaldıralım) ;
-<code> $ apt-get remove gnome </code> kodu ile halledebilirsiniz.</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -888,6 +1101,14 @@ Daha sonra <code> adduser username </code> ile ekleme işlemini gerçekleştirir
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/05/vagrant/">Vagrant - Ansible Playbook</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/23/octopress/">Octopress İle Blog Oluşturma</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/06/01/pid/">Localhost Beyaz Sayfa Hatası</a>
       </li>
     
@@ -897,14 +1118,6 @@ Daha sonra <code> adduser username </code> ile ekleme işlemini gerçekleştirir
     
       <li class="post">
         <a href="/blog/2013/05/17/jdbc/">Java da Mysql Bağlantısı</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/17/error/">PhpMyAdmin Error #1142</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/31/ncurses/">Ncurses Kurulumu ve Kullanımı</a>
       </li>
     
   </ul>

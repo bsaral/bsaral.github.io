@@ -9,7 +9,8 @@
   <meta name="author" content="BETÜL SARAL">
 
   
-  <meta name="description" content="Dünya bilgisayar sektöründe önemli bir yere sahip olan IBM bilgisayarlarının kurucusu Tom Watson’un eğitim anlayışı ve insan yetiştirmesi hakkında &hellip;">
+  <meta name="description" content="Yeni bir kullanıcı eklemek Sisteme yeni bir kullanıcı eklemek için ilk önce su komutu ile root olmak gerekir.
+Daha sonra adduser username ile ekleme &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +81,142 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/05/debian-kullanici-sifresi/">Debian Kullanıcı Eklemek Ve Şifresini Değiştirmek</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-05T22:15:00+02:00" pubdate data-updated="true">Mar 5<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/03/05/debian-kullanici-sifresi/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><li> Yeni bir kullanıcı eklemek </li>
+
+<p>Sisteme yeni bir kullanıcı eklemek için ilk önce <code> su </code> komutu ile root olmak gerekir.
+Daha sonra <code> adduser username </code> ile ekleme işlemini gerçekleştiririz.(username hesap isminizdir.)</p>
+
+<li> Şifre Değiştirmek </li>
+
+<p>Kullanıcı şifresini <code> passwd username </code> kodunu kullanarak değiştirebilirsiniz.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/03/02/debian-testing/">Debian Testing Grafik Arayüzü Oluşturma</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-02T22:15:00+02:00" pubdate data-updated="true">Mar 2<span>nd</span>, 2012</time>
+        
+         | <a href="/blog/2012/03/02/debian-testing/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Temel kurulumu başarılı bir şekilde tamamlamış olduğunuzu ve sistemi başlattığınızda aşağıdaki gibi bir görüntü elde ettiğinizi varsayıyorum.</p>
+
+<p><img src="/images/debian.gif" /></p>
+
+<p>Grafik arayüzüne geçilmesi için 3 komutun kullanılır.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>apt-get install x-window-system
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>apt-get install gdm
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Bu komut ile Gnome Desktop Manager kurulacak. Gdm bizim oturum açmamız için kullanıcı adı ve şifre gireceğimiz güzel bir grafik karşılayıcıdır.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>apt-get install gnome
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Bu komut ile Gnome grafik ortamı ve beraberindeki uygulamaları kuracağız.</p>
+
+<p>Eğer grafik ortamını KDE olmasını;</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>apt-get install kde
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>yada XFCE olmasını istiyorsanız :</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>apt-get install xfce4
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>komutlarını kullanabilirsiniz.</p>
+
+<p>Kurulum işlemleri bittikten sonra <b> gdm </b> yazarak grafik ortamına geçebiliriz.</p>
+
+<h4> UYARI ! </h4>
+
+<p>Eğer komutları yazdığınızda “Debian E:unable to locate package sorunu” şeklinde hatalar alıyorsanız çözüme
+<a href="http://mogutcan.github.com/902/Debian-E:-unable-to-locate-package-sorunu/"> buradan </a> ulaşabilirsiniz.</p>
+
+<h4> UYARI-2 ! </h4>
+<p>Sistemde gedit,vim şeklinde editörleriniz bulunmuyorsa nano editörünü kullanarak işlerinizi halledebilirsiniz.</p>
+
+<h4> NOT : </h4>
+<p>Eğer yapılan değişikleri geri almak,kaldırmak istiyorsanız (örn:gnome grafik ortamını kaldıralım) ;
+<code> $ apt-get remove gnome </code> kodu ile halledebilirsiniz.</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -870,112 +1007,6 @@ Bilgisayarı yeniden başlattığınızda yaptığnız işlemleri görebilirsini
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/15/google-analytics/">Google Analytics Takip Kodu</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-15T22:15:00+03:00" pubdate data-updated="true">Jul 15<span>th</span>, 2011</time>
-        
-         | <a href="/blog/2011/07/15/google-analytics/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Google Analytics, google ın ücretsiz olarak verdiği bir site takip sistemidir.
-Sitenizde ki ziyaretçi sayısı, toplam sayfa gösterimi, sayfa başına geçen ortalama süre, ziyaretçi ülke ve durum bilgileri, yeni ziyaret sayısı vb…
-birçok bilgiye bu sistem tarafından ulaşabilirsiniz.</p>
-
-<p>Google Analytics için önce <a href="http://www.google.com/analytics/" target="_blank"> sitesine gidip </a> Analytics erişim butonuna basıp google hesabınızla giriş yapmalısınız.</p>
-
-<p>Çıkan sayfada sitenizin url sini girin.</p>
-
-<p><img src="/images/7.png" /></p>
-
-<p>eğer herşey doğru gitmişse karşınıza aşağıdaki gibi bir sayfa gelir.</p>
-
-<p><img src="/images/8.png" /></p>
-
-<p>bu bölümde sitenizin Google Analytics kodu yer alır.bu kodların tamamını kopyalayıp sitenizin html sindeki head tag ının kapanışından öncesine yerleştirmelisiniz.(tam olarak  “head BU ARADADA Kİ BOŞLUĞA /head” yerleştiriniz.) işlemleri yaptıktan sonra save and finish e tıklayın.
-en az 24 saat sonra sisteminiz aktif hale gelecektir.eğer süre 24 saati geçmişse ve hala sistem aktif değilse herhangi bir yerde hata yapmışsınız demektir.işlemleri baştan tekrarlayarak bu problemleri halledebilirsiniz.</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/06/27/ubuntu-kullanici-sifresi/">Ubuntu Da Kullanıcı Şifresinin Unutulması</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-06-27T22:39:00+03:00" pubdate data-updated="true">Jun 27<span>th</span>, 2011</time>
-        
-         | <a href="/blog/2011/06/27/ubuntu-kullanici-sifresi/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Kullanıcı şifresi unutulduysa,ilk yapmanız gereken sisteminizi kurtarma modunda (Recovery Mode) yani GRUB menüsünün 2.seçeneğinden başlatmak olacaktır.sistem açıldığında karşınıza bir pencere çıkar.bu pencerenin en sonunda bulunan “root kullanıcısı olarak uçbirimi aç” seçeneğini tercih edin.altta uçbirim açılır.uçbirime ilk olarak</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>passwd KULLANICI_ADINIZ
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>yazıp ENTER a basın.bu kodu yazdıktan sonra sizden yeni şifrenizi girmenizi isteyecektir.şifreyi girdikten sonra</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>reboot
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>yazıp ENTER a bastığınızda işleminiz tamamlanmış olur.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -993,6 +1024,14 @@ en az 24 saat sonra sisteminiz aktif hale gelecektir.eğer süre 24 saati geçmi
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/05/vagrant/">Vagrant - Ansible Playbook</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/23/octopress/">Octopress İle Blog Oluşturma</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/06/01/pid/">Localhost Beyaz Sayfa Hatası</a>
       </li>
     
@@ -1002,14 +1041,6 @@ en az 24 saat sonra sisteminiz aktif hale gelecektir.eğer süre 24 saati geçmi
     
       <li class="post">
         <a href="/blog/2013/05/17/jdbc/">Java da Mysql Bağlantısı</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/17/error/">PhpMyAdmin Error #1142</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/31/ncurses/">Ncurses Kurulumu ve Kullanımı</a>
       </li>
     
   </ul>

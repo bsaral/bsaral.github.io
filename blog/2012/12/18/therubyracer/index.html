@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Rails Therubyracer gem kurulum problemi - Betül SARAL</title>
+  <meta name="author" content="BETÜL SARAL">
+
+  
+  <meta name="description" content="Deponuzda gemfile içerisinde therubyracer gem kurulumunda eğer aşağıdaki gibi bir kurulum hatası alıyorsanız ; Terminal 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bsaral.github.io/blog/2012/12/18/therubyracer/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Betül SARAL" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-24335221-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Betül SARAL</a></h1>
+  
+    <h2>Bilgisayar Mühendisi</h2>
+  
+</hgroup>
+
+</header>
+  <div id="navigation">
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:bsaral.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  </div>
+  <div id="body"  >
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Rails Therubyracer Gem Kurulum Problemi</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-18T22:37:00+02:00" pubdate data-updated="true">Dec 18<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Deponuzda gemfile içerisinde therubyracer gem kurulumunda eğer aşağıdaki gibi bir kurulum hatası alıyorsanız ;</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">Gem::Installer::ExtensionBuildError: ERROR: Failed to build gem native extension.
+</span><span class="line">
+</span><span class="line">		/usr/bin/ruby1.9.1 extconf.rb
+</span><span class="line">*** extconf.rb failed ***
+</span><span class="line">Could not create Makefile due to some reason, probably lack of
+</span><span class="line">necessary libraries and/or headers.  Check the mkmf.log file <span class="k">for </span>more
+</span><span class="line">details.  You may need configuration options.
+</span><span class="line">
+</span><span class="line">Provided configuration options:
+</span><span class="line">	--with-opt-dir
+</span><span class="line">	--without-opt-dir
+</span><span class="line">	--with-opt-include
+</span><span class="line">	--without-opt-include<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/include
+</span><span class="line">	--with-opt-lib
+</span><span class="line">	--without-opt-lib<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/lib
+</span><span class="line">	--with-make-prog
+</span><span class="line">	--without-make-prog
+</span><span class="line">	--srcdir<span class="o">=</span>.
+</span><span class="line">	--curdir
+</span><span class="line">	--ruby<span class="o">=</span>/usr/bin/ruby1.9.1
+</span><span class="line">extconf.rb:15:in &lt;main&gt;: undefined method include_path <span class="k">for </span>Libv8:Module <span class="o">(</span>NoMethodError<span class="o">)</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">Gem files will remain installed in /home/uzem/.bundler/tmp/8120/gems/therubyracer-0.10.1 <span class="k">for </span>inspection.
+</span><span class="line">Results logged to /home/uzem/.bundler/tmp/8120/gems/therubyracer-0.10.1/ext/v8/gem_make.out
+</span><span class="line">
+</span><span class="line">An error occurred <span class="k">while </span>installing therubyracer <span class="o">(</span>0.10.1<span class="o">)</span>, and Bundler cannot <span class="k">continue</span>.
+</span><span class="line">Make sure that gem install therubyracer -v <span class="s1">&#39;0.10.1&#39;</span>succeeds before bundling.
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>aşağıdaki kodlar bu sorunu ortadan kaldırır.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem uninstall libv8
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>çıktı aşağıdaki gibiyse 3 ‘e basıp devam ediniz ;</p>
+
+<pre><code>Select gem to uninstall:
+ 1. libv8-3.3.10.4-x86-linux
+ 2. libv8-3.11.8.4
+ 3. All versions
+ &gt; 3 
+</code></pre>
+
+<p>en son olarak da </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem install therubyracer
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle install
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>sorunumuz çözüldü.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">BETÜL SARAL</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-18T22:37:00+02:00" pubdate data-updated="true">Dec 18<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/teknik/'>Teknik</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://bsaral.github.io/blog/2012/12/18/therubyracer/" data-via="bsaral19" data-counturl="http://bsaral.github.io/blog/2012/12/18/therubyracer/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/11/23/sqlite3/" title="Previous Post: Rails Sqlite3 Gem Problemi">&laquo; Rails Sqlite3 Gem Problemi</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/12/19/csv/" title="Next Post: Rails de Csv ile Kullanıcıları İçe Aktarmak">Rails de Csv ile Kullanıcıları İçe Aktarmak &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/06/01/pid/">Localhost Beyaz Sayfa Hatası</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/21/java/">Java Servlet API Problemi</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/17/jdbc/">Java da Mysql Bağlantısı</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/17/error/">PhpMyAdmin Error #1142</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/31/ncurses/">Ncurses Kurulumu ve Kullanımı</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/bsaral">@bsaral</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'bsaral',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - BETÜL SARAL -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a></span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'bsaral';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://bsaral.github.io/blog/2012/12/18/therubyracer/';
+        var disqus_url = 'http://bsaral.github.io/blog/2012/12/18/therubyracer/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

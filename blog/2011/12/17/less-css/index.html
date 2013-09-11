@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Less Css NEDİR? - Betül SARAL</title>
+  <meta name="author" content="BETÜL SARAL">
+
+  
+  <meta name="description" content="LESS CSS Nedir? Neden Less Css Kullanmalıyız ? Less Css Kurulum Ve Kullanımı Less Css Özellikleri 1- LESS CSS Nedir? Less css adından da &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://bsaral.github.io/blog/2011/12/17/less-css/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Betül SARAL" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-24335221-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Betül SARAL</a></h1>
+  
+    <h2>Bilgisayar Mühendisi</h2>
+  
+</hgroup>
+
+</header>
+  <div id="navigation">
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:bsaral.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  </div>
+  <div id="body"  >
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Less Css NEDİR?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-17T22:37:00+02:00" pubdate data-updated="true">Dec 17<span>th</span>, 2011</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><li><a href="#less1"> LESS CSS Nedir?</a></li>
+<li><a href="#less2"> Neden Less Css Kullanmalıyız ? </a></li>
+<li><a href="#less3"> Less Css Kurulum Ve Kullanımı</a></li>
+<li><a href="#less4"> Less Css Özellikleri</a></li>
+<blockquote>
+
+</blockquote>
+
+<h3 id="a-idless1-1--less-css-nedir-a"><a id="less1"> 1- LESS CSS Nedir? </a></h3>
+
+<p>Less css adından da anlaşılacağı gibi css de daha az kod yazarak daha kısa zamanda çok iş yapmamızı sağlar. Ayrıca kodların daha düzenli ve anlaşılır bir biçime gelmesine de önemli bir rol oynar.</p>
+
+<h3 id="a-idless2-2--neden-less-css-kullanmalyz--a"><a id="less2"> 2- Neden Less Css Kullanmalıyız ? </a></h3>
+
+<p>Artık web uygulamaları basit veya küçük css dosyaları ile şekillendirilen uygulamalar olmaktan çıkıp daha karmaşık ve daha uzun stil dosyalarına dönüştüler.Kodlarımızın anlaşılır olması,belirli bir düzene sahip olması
+ve daha az yer kaplamasını sağlamak amacıyla less css yi kullanırız.</p>
+
+<h3 id="a-idless3-3--less-css-kurulum-ve-kullanm-abr"><a id="less3"> 3- Less Css Kurulum Ve Kullanımı </a><br /></h3>
+
+<h4> A-)Linux ve Türevleri İçin </h4>
+
+<p>Linux ve türevleri olan işletim sistemlerinde less css yi kurmak için ilk başta aşağıdaki 4 kod terminale girilir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo apt-get install rubygems1.8 ruby1.8-dev
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo gem install rubygems-update
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo gem update rubygems
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo gem install less
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Kurulum tamamlandıktan sonra .less uzantılı belgemizi aşağıdaki komut sayesinde terminalden derlemiş oluruz.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>lessc deneme.less
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4> B-)Windows İçin </h4>
+
+<p>Windows işletim sisteminde less css yi kullanmak için <a href="http://winless.org"> WİNLESS </a> adında bir derleyici program kullanılır.Kullanıcının yaptığı .less uzantılı belge bu derleyicide seçilir ve derleme işlemi sonunda .less belgesiyle aynı isimde yeni bir css belgesi
+oluşur.</p>
+
+<h3 id="a-idless4-4--less-css-zellikleri-a"><a id="less4"> 4- Less Css Özellikleri </a></h3>
+
+<h4> A-)Değişkenler </h4>
+
+<p>CSS de tekrar tekrar kullanmamız gereken değerleri bir değişkene atamamızı sağlar.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="o">//</span> <span class="nt">LESS</span> <span class="nt">CSS</span>					<span class="c">/* COMPİLED CSS */</span>
+</span><span class="line">
+</span><span class="line">	  <span class="k">@renk</span><span class="o">:</span> <span class="nf">#4D926F</span><span class="p">;</span>			<span class="nf">#header</span> <span class="p">{</span>
+</span><span class="line">	  <span class="m">#header</span> <span class="err">{</span>	
+</span><span class="line">									<span class="k">color</span><span class="o">:</span> <span class="m">#4D926F</span><span class="p">;</span>
+</span><span class="line">		<span class="k">color</span><span class="o">:</span> <span class="o">@</span><span class="n">renk</span><span class="p">;</span>
+</span><span class="line">	  <span class="p">}</span> 						<span class="err">}</span>
+</span><span class="line">	  <span class="nt">h2</span> <span class="p">{</span> 						<span class="n">h2</span> <span class="err">{</span>
+</span><span class="line">									<span class="k">color</span><span class="o">:</span> <span class="m">#4D926F</span><span class="p">;</span>
+</span><span class="line">		<span class="k">color</span><span class="o">:</span> <span class="o">@</span><span class="n">renk</span><span class="p">;</span>			<span class="p">}</span>
+</span><span class="line">	  <span class="err">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4> B-)Katmanlar </h4>
+
+<p>Bir sınıfı başka bir sınıf içerisinde kullanabilme olanağı sağlar.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="o">//</span><span class="nt">LESS</span> <span class="nt">CSS</span>							<span class="c">/* COMPİLED CSS */</span>
+</span><span class="line">
+</span><span class="line">	<span class="nc">.bordered</span> <span class="p">{</span>  						<span class="m">#menu</span> <span class="n">a</span> <span class="err">{</span>
+</span><span class="line">	  <span class="k">border-top</span><span class="o">:</span> <span class="k">dotted</span> <span class="m">1px</span>			  	<span class="k">color</span><span class="o">:</span> <span class="m">#111</span><span class="p">;</span>
+</span><span class="line">	  <span class="nb">black</span><span class="p">;</span>					  			<span class="k">border-top</span><span class="o">:</span> <span class="k">dotted</span> <span class="m">1px</span> <span class="nb">black</span><span class="p">;</span>
+</span><span class="line">	<span class="k">border-bottom</span><span class="o">:</span> <span class="k">solid</span> <span class="m">2px</span>				<span class="k">border-bottom</span><span class="o">:</span>		  		
+</span><span class="line">		<span class="nb">black</span><span class="p">;</span>					  			<span class="k">solid</span> <span class="m">2px</span> <span class="nb">black</span><span class="p">;</span>
+</span><span class="line">	<span class="p">}</span>						 			<span class="err">}</span>
+</span><span class="line">	<span class="nf">#menu</span> <span class="nt">a</span> <span class="p">{</span>					
+</span><span class="line">		<span class="k">color</span><span class="o">:</span> <span class="m">#111</span><span class="p">;</span>
+</span><span class="line">		<span class="o">.</span><span class="n">bordered</span><span class="p">;</span>
+</span><span class="line">	<span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4> C-)İç İçe Kurallar </h4>
+
+<p>Kodları iç içe yazarak daha anlaşılır bir hale getirebilriz.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="o">//</span><span class="nt">LESS</span> <span class="nt">CSS</span>					<span class="c">/*COMPİLED CSS */</span>
+</span><span class="line">
+</span><span class="line">   <span class="nf">#header</span> <span class="p">{</span>						<span class="m">#header</span> <span class="n">h1</span> <span class="err">{</span>
+</span><span class="line">	<span class="n">h1</span> <span class="err">{</span>					 		 	<span class="k">font-weight</span><span class="o">:</span> <span class="k">bold</span><span class="p">;</span>
+</span><span class="line">	<span class="k">font-size</span><span class="o">:</span> <span class="m">26px</span><span class="p">;</span>			  			<span class="k">font-size</span><span class="o">:</span> <span class="m">26px</span><span class="p">;}</span>
+</span><span class="line">	<span class="nt">font-weight</span><span class="o">:</span> <span class="nt">bold</span><span class="o">;</span>
+</span><span class="line">        <span class="err">}</span>									<span class="nf">#header</span> <span class="nt">p</span> <span class="p">{</span>
+</span><span class="line">   <span class="n">p</span> <span class="err">{</span> <span class="k">font-size</span><span class="o">:</span> <span class="m">12px</span><span class="p">;</span>				  			<span class="k">font-size</span><span class="o">:</span> <span class="m">12px</span><span class="p">;}</span>
+</span><span class="line">		<span class="nt">a</span> <span class="p">{</span> <span class="k">text-decoration</span><span class="o">:</span>				<span class="m">#header</span> <span class="n">p</span> <span class="n">a</span> <span class="err">{</span>
+</span><span class="line">			<span class="k">none</span><span class="p">;</span>					  			<span class="k">text-decoration</span><span class="o">:</span><span class="k">none</span><span class="p">;}</span>
+</span><span class="line">			<span class="o">&amp;</span><span class="nd">:hover</span> <span class="p">{</span> <span class="k">border-width</span><span class="o">:</span> <span class="m">1px</span>     <span class="m">#header</span> <span class="n">p</span> <span class="n">a</span> <span class="o">:</span><span class="n">hover</span><span class="err">{</span>
+</span><span class="line">					<span class="p">}</span>				  			<span class="nt">border-width</span><span class="nd">:1px</span><span class="err">}</span> 				
+</span><span class="line">		<span class="err">}</span>
+</span><span class="line">     <span class="err">}</span>
+</span><span class="line">  <span class="err">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h4> D-)Fonksiyonlar Ve Operatörler </h4>
+
+<p>Fonksiyonlar üzerinde çarpma, çıkarma, toplama, bölme gibi işlemler yaparak değerleri yeniden ayarlayabiliriz.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="css"><span class="line"><span class="o">//</span><span class="nt">LESS</span> <span class="nt">CSS</span>						<span class="c">/*COMPİLED CSS */</span>
+</span><span class="line">
+</span><span class="line"><span class="k">@the-border</span><span class="o">:</span> <span class="nt">1px</span><span class="p">;</span>							<span class="nf">#header</span> <span class="p">{</span>
+</span><span class="line"><span class="cp">@base-color: #111;								color:#333;</span>
+</span><span class="line"><span class="cp">@red:  #842210;									border-left:1px;</span>
+</span><span class="line"><span class="m">#header</span> <span class="err">{</span>										<span class="k">border-right</span><span class="o">:</span><span class="m">2px</span><span class="p">;</span>
+</span><span class="line">	<span class="k">color</span><span class="o">:</span> <span class="o">@</span><span class="n">base</span><span class="o">-</span><span class="k">color</span> <span class="o">*</span> <span class="m">3</span><span class="p">;</span>					<span class="p">}</span>
+</span><span class="line">	<span class="nt">border-left</span><span class="o">:</span> <span class="k">@the-border</span><span class="p">;</span>		
+</span><span class="line">	<span class="nt">border-right</span><span class="o">:</span> <span class="k">@the-border</span> <span class="o">*</span> <span class="nt">2</span><span class="p">;</span>			<span class="nf">#footer</span> <span class="p">{</span>
+</span><span class="line"><span class="p">}</span>												<span class="nt">color</span><span class="o">:</span><span class="nf">#114411</span><span class="o">;</span>
+</span><span class="line">												<span class="nt">border-color</span><span class="o">:</span><span class="nf">#7d2717</span><span class="o">;</span>
+</span><span class="line"><span class="nf">#footer</span> <span class="p">{</span>									<span class="p">}</span>
+</span><span class="line">	<span class="nt">color</span><span class="o">:</span> <span class="k">@base-color</span> <span class="o">+</span> <span class="nf">#003300</span><span class="p">;</span>
+</span><span class="line">	<span class="nt">border-color</span><span class="o">:</span> <span class="nt">desaturate</span><span class="o">(</span><span class="k">@red</span><span class="o">,</span> <span class="nt">10</span><span class="o">%)</span><span class="p">;</span>
+</span><span class="line"><span class="err">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">BETÜL SARAL</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-17T22:37:00+02:00" pubdate data-updated="true">Dec 17<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/teknik/'>Teknik</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://bsaral.github.io/blog/2011/12/17/less-css/" data-via="bsaral19" data-counturl="http://bsaral.github.io/blog/2011/12/17/less-css/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/07/29/grub-ayarlari/" title="Previous Post: Grub Ayarlarının Değiştirilmesi">&laquo; Grub Ayarlarının Değiştirilmesi</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/12/20/ubuntu-lampserver/" title="Next Post: Ubuntuda LAMP Server Kurulumu">Ubuntuda LAMP Server Kurulumu &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/06/01/pid/">Localhost Beyaz Sayfa Hatası</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/21/java/">Java Servlet API Problemi</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/17/jdbc/">Java da Mysql Bağlantısı</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/17/error/">PhpMyAdmin Error #1142</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/31/ncurses/">Ncurses Kurulumu ve Kullanımı</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/bsaral">@bsaral</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'bsaral',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - BETÜL SARAL -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a></span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'bsaral';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://bsaral.github.io/blog/2011/12/17/less-css/';
+        var disqus_url = 'http://bsaral.github.io/blog/2011/12/17/less-css/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

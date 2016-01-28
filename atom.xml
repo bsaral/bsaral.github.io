@@ -4,7 +4,7 @@
   <title><![CDATA[Betül SARAL]]></title>
   <link href="http://bsaral.github.io/atom.xml" rel="self"/>
   <link href="http://bsaral.github.io/"/>
-  <updated>2013-09-12T02:04:28+03:00</updated>
+  <updated>2016-01-28T12:16:59+02:00</updated>
   <id>http://bsaral.github.io/</id>
   <author>
     <name><![CDATA[BETÜL SARAL]]></name>
@@ -12,6 +12,1205 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Node.js - Async]]></title>
+    <link href="http://bsaral.github.io/blog/2016/01/28/node-async/"/>
+    <updated>2016-01-28T12:14:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2016/01/28/node-async</id>
+    <content type="html"><![CDATA[<p>Async, asenkron işlemler için kullanılan bir javascript kütüphanesidir. Bu kütüphanede önemli olan asenkron işlemlerinin yönetimini kolaylaştıracak control flow fonksiyonlarıdır. Async ile işlem yapabilmek için önce npm ile <a href="https://www.npmjs.com/package/async"> modülü </a> yüklemek gerekir.</p>
+
+<p>İlk olarak async.parallel fonksiyonuna bakalım. Bu kullanım, fonksiyonların birbirlerini bekletmeden çalışmasını sağlar. Yani 3 fonksiyonunuzda aynı anda çalışmaya başlar ve işlem bittiğinde size sonuç döner. Aşağıda örnek kullanımı bulunmaktadır.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>async2.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+</pre></td><td class="code"><pre><code class="js"><span class="line">	<span class="kd">var</span> <span class="nx">async</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;async&#39;</span><span class="p">)</span>
+</span><span class="line">	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
+</span><span class="line">	<span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class="line">	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">());</span>
+</span><span class="line">
+</span><span class="line">	<span class="nx">async</span><span class="p">.</span><span class="nx">parallel</span><span class="p">({</span>
+</span><span class="line">        <span class="nx">one</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class="line">           <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">j</span><span class="o">&lt;=</span> <span class="mi">3000000000</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">){</span>
+</span><span class="line">                <span class="k">if</span><span class="p">(</span><span class="nx">j</span> <span class="o">===</span> <span class="mi">3000000000</span><span class="p">){</span>
+</span><span class="line">                    <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="s2">&quot;one&quot;</span><span class="p">)</span>
+</span><span class="line">                <span class="p">}</span>
+</span><span class="line">            <span class="p">}</span>
+</span><span class="line">        <span class="p">},</span>
+</span><span class="line">        <span class="nx">two</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class="line">            <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">k</span><span class="o">&lt;=</span> <span class="mi">6000000000</span><span class="p">;</span> <span class="nx">k</span><span class="o">++</span><span class="p">){</span>
+</span><span class="line">                <span class="k">if</span><span class="p">(</span><span class="nx">k</span> <span class="o">===</span> <span class="mi">6000000000</span><span class="p">){</span>
+</span><span class="line">                    <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="s2">&quot;two&quot;</span><span class="p">)</span>
+</span><span class="line">                <span class="p">}</span>
+</span><span class="line">            <span class="p">}</span>
+</span><span class="line">        <span class="p">},</span>
+</span><span class="line">        <span class="nx">three</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class="line">            <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;=</span> <span class="mi">100</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+</span><span class="line">                <span class="k">if</span><span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="mi">100</span><span class="p">){</span>
+</span><span class="line">                    <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="s2">&quot;three&quot;</span><span class="p">)</span>
+</span><span class="line">                <span class="p">}</span>
+</span><span class="line">            <span class="p">}</span>
+</span><span class="line">        <span class="p">},</span>
+</span><span class="line">    <span class="p">},</span>
+</span><span class="line">    <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class="line">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">());</span>
+</span><span class="line">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
+</span><span class="line">    <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Fonksiyonun ne kadar süre çalıştığını göstermek için zamanı da ekledim. Sonuç aşağıdaki gibidir </p>
+
+<p><img src="http://bsaral.github.io/images/async1.png" /></p>
+
+<p>İkinci olarak ise async.series fonksiyonuna bakalım. Bu kullanımda ise fonksiyonlar sıraya dizilir ve birbirlerini bekleyip callback döndürürler. Örnek olarak aşağıdaki gibidir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>async2.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+</pre></td><td class="code"><pre><code class="js"><span class="line">	<span class="kd">var</span> <span class="nx">async</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;async&#39;</span><span class="p">)</span>
+</span><span class="line">	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
+</span><span class="line">	<span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class="line">	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">());</span>
+</span><span class="line">	<span class="nx">async</span><span class="p">.</span><span class="nx">series</span><span class="p">({</span>
+</span><span class="line">        <span class="nx">one</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class="line">           <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">j</span><span class="o">&lt;=</span> <span class="mi">3000000000</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">){</span>
+</span><span class="line">                <span class="k">if</span><span class="p">(</span><span class="nx">j</span> <span class="o">===</span> <span class="mi">3000000000</span><span class="p">){</span>
+</span><span class="line">                    <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="s2">&quot;one&quot;</span><span class="p">)</span>
+</span><span class="line">                <span class="p">}</span>
+</span><span class="line">            <span class="p">}</span>
+</span><span class="line">        <span class="p">},</span>
+</span><span class="line">        <span class="nx">two</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class="line">            <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">k</span><span class="o">&lt;=</span> <span class="mi">6000000000</span><span class="p">;</span> <span class="nx">k</span><span class="o">++</span><span class="p">){</span>
+</span><span class="line">                <span class="k">if</span><span class="p">(</span><span class="nx">k</span> <span class="o">===</span> <span class="mi">6000000000</span><span class="p">){</span>
+</span><span class="line">                    <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="s2">&quot;two&quot;</span><span class="p">)</span>
+</span><span class="line">                <span class="p">}</span>
+</span><span class="line">            <span class="p">}</span>
+</span><span class="line">        <span class="p">},</span>
+</span><span class="line">        <span class="nx">three</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class="line">            <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;=</span> <span class="mi">100</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+</span><span class="line">                <span class="k">if</span><span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="mi">100</span><span class="p">){</span>
+</span><span class="line">                    <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="s2">&quot;three&quot;</span><span class="p">)</span>
+</span><span class="line">                <span class="p">}</span>
+</span><span class="line">            <span class="p">}</span>
+</span><span class="line">        <span class="p">},</span>
+</span><span class="line">    <span class="p">},</span>
+</span><span class="line">    <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class="line">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">());</span>
+</span><span class="line">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
+</span><span class="line">    <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sonuç aşağıdaki gibidir.</p>
+
+<p><img src="http://bsaral.github.io/images/async2.png" /></p>
+
+<p>Son olarak async.waterfall modeline bakalım. Bu kullanım yönteminde ise fonksiyonlar sırasıyla çalışır ve bir fonksiyonun çalışması kendinden önce gelen fonksiyonun döndürdüğü sonuç ile sağlanır.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>async2.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+</pre></td><td class="code"><pre><code class="js"><span class="line">	<span class="kd">var</span> <span class="nx">async</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;async&#39;</span><span class="p">)</span>
+</span><span class="line">	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
+</span><span class="line">	<span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class="line">	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">());</span>
+</span><span class="line">
+</span><span class="line">	<span class="nx">async</span><span class="p">.</span><span class="nx">waterfall</span><span class="p">([</span>
+</span><span class="line">	    <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class="line">	        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">j</span><span class="o">&lt;=</span> <span class="mi">3000000000</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">){</span>
+</span><span class="line">	            <span class="k">if</span><span class="p">(</span><span class="nx">j</span> <span class="o">===</span> <span class="mi">3000000000</span><span class="p">){</span>
+</span><span class="line">	                <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="s2">&quot;bitti1&quot;</span><span class="p">)</span>
+</span><span class="line">	            <span class="p">}</span>
+</span><span class="line">	        <span class="p">}</span>
+</span><span class="line">	    <span class="p">},</span>
+</span><span class="line">	    <span class="kd">function</span><span class="p">(</span><span class="nx">val1</span><span class="p">,</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class="line">	        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="s2">&quot;bitti2&quot;</span><span class="p">)</span>
+</span><span class="line">	    <span class="p">},</span>
+</span><span class="line">	    <span class="kd">function</span><span class="p">(</span><span class="nx">val2</span><span class="p">,</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class="line">	        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="s2">&quot;bitti3&quot;</span><span class="p">)</span>
+</span><span class="line">	    <span class="p">},</span>
+</span><span class="line">	<span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">	    <span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class="line">	    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">());</span>
+</span><span class="line">	    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</span><span class="line">	<span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sonucumuz :</p>
+
+<p><img src="http://bsaral.github.io/images/async3.png" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails - Ajax Datatables]]></title>
+    <link href="http://bsaral.github.io/blog/2014/07/04/rails-ajax-datatables/"/>
+    <updated>2014-07-04T11:58:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2014/07/04/rails-ajax-datatables</id>
+    <content type="html"><![CDATA[<p>Datatables, JavaScript ve jQuery ile yapılan sıralama,sayfalama yada arama işlemlerini düz bir html tablosu üzerinde kullanılmasını sağlar. Daha iyi bir kullanıcı arayüzü vardır ve kullanıcıya birçok seçenek sunar. Bu yazıda Rails’e nasıl entegre edileceği gösterilmektedir.</p>
+
+<p>İlk olarak Gemfile içerisine aşağıdaki gemlerin yüklenip bundle edilmesi gerekmektedir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="rb"><span class="line"><span class="n">group</span> <span class="ss">:assets</span> <span class="k">do</span>
+</span><span class="line">  <span class="n">gem</span> <span class="s1">&#39;jquery-datatables-rails&#39;</span><span class="p">,</span> <span class="ss">github</span><span class="p">:</span> <span class="s1">&#39;rweng/jquery-datatables-rails&#39;</span>
+</span><span class="line">  <span class="n">gem</span> <span class="s1">&#39;jquery-ui-rails&#39;</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line">
+</span><span class="line"><span class="n">gem</span> <span class="s1">&#39;kaminari&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Ben sayfalama işlemi için kaminari gemini kullandım. Bu işlem için benzer gemlerde kullanılabilir. Ama datatables ayarlaması yapılırken birkaç yerin değiştirilmesi gerekir.</p>
+
+<p>Sistemi bundle ettikten sonra layouts içerisinde application.html.erb dosyasınıza yada datatables hangi view sayfasında oluşacaksa o sayfanının içerisinde gerekli kütüphaneleri eklemeliyiz.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>index.html.slim </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="rb"><span class="line"><span class="o">=</span> <span class="n">stylesheet_link_tag</span> <span class="s1">&#39;//cdn.datatables.net/1.10.0/css/jquery.dataTables.css&#39;</span>
+</span><span class="line"><span class="o">=</span> <span class="n">javascript_include_tag</span> <span class="s2">&quot;//code.jquery.com/jquery-1.10.2.min.js&quot;</span>
+</span><span class="line"><span class="o">=</span> <span class="n">javascript_include_tag</span> <span class="s2">&quot;//cdn.datatables.net/1.10.0/js/jquery.dataTables.js</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Şimdi tablomuzun olduğu sayfa içerisine gidelim ve gerekli düzenlemeleri yapalım.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>index.html.slim </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+</pre></td><td class="code"><pre><code class="rb"><span class="line"><span class="n">table</span><span class="c1">#attendant_list data-source=(admin_attendants_url(format: &quot;json&quot;))</span>
+</span><span class="line">  <span class="n">thead</span>
+</span><span class="line">    <span class="n">tr</span>
+</span><span class="line">      <span class="n">th</span> <span class="no">Ad</span>
+</span><span class="line">      <span class="n">th</span> <span class="no">Soyad</span>
+</span><span class="line">      <span class="n">th</span> <span class="no">TC</span>
+</span><span class="line">      <span class="n">th</span> <span class="no">IBAN</span>
+</span><span class="line">      <span class="n">th</span> <span class="no">Telefon</span>
+</span><span class="line">      <span class="n">th</span> <span class="err">Ü</span><span class="n">nvan</span>
+</span><span class="line">      <span class="n">th</span> <span class="err">İş</span><span class="n">lemler</span>
+</span><span class="line">
+</span><span class="line"><span class="sr">/datatables ayarlamaları</span>
+</span><span class="line">
+</span><span class="line"><span class="sr">javascript:</span>
+</span><span class="line"><span class="sr">  $(document).ready(function() {</span>
+</span><span class="line"><span class="sr">    $(&#39;#attendant_list&#39;).dataTable({</span>
+</span><span class="line"><span class="sr">      language: { &#39;url&#39;: &#39;http:/</span><span class="o">/</span><span class="n">cdn</span><span class="o">.</span><span class="n">datatables</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">plug</span><span class="o">-</span><span class="n">ins</span><span class="o">/</span><span class="mi">28</span><span class="n">e7751dbec</span><span class="o">/</span><span class="n">i18n</span><span class="o">/</span><span class="no">Turkish</span><span class="o">.</span><span class="n">json</span><span class="s1">&#39; },</span>
+</span><span class="line"><span class="s1">      &quot;bPaginate&quot;: true,</span>
+</span><span class="line"><span class="s1">      &quot;bProcessing&quot;: true,</span>
+</span><span class="line"><span class="s1">      &quot;bServerSide&quot;: true,</span>
+</span><span class="line"><span class="s1">      &quot;ajax&quot;: $(&#39;</span><span class="c1">#attendant_list&#39;).data(&#39;source&#39;),</span>
+</span><span class="line">    <span class="p">});</span>
+</span><span class="line">  <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>app dizini altında datatables adında bir dizin oluşturalım ve ajax server side işlemlerini için gerçekleştirdiğimiz yapılandırmaları <code> attendants_datatable.rb </code>  içerisine yerleştirelim. Burada önemli olan kısım parametrelerdir. Rails sürümünde dolayı internette çoğu yerde parametreler farklı isimlerde geçmektedir. Parametre isimlerinizi rails uygulaması çalışırken loglardan takip ederek bulabilirsiniz. Örnek olarak benim uygulamamdaki parametreler;</p>
+
+<p><img src="http://bsaral.github.io/images/k1.png" /></p>
+
+<p>Eski parametreler ise ;</p>
+
+<p><img src="http://bsaral.github.io/images/k2.png" /></p>
+
+<p>Bunları karşılaştıracak olursak;</p>
+
+<li> params[:iDisplayLength] = params[:length] </li>
+<li> params[:iDisplayStart] = params[:start] </li>
+<li> params[:iSortCol_0] = params[:column] </li>
+<li> params[:sSortDir_0] = params[:dir] </li>
+<li> params[:sSearch] = params[:search][:value] </li>
+<p><br /></p>
+
+<p>Sonuç olarak dosyamızın içeriği şu şekilde oluyor:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>attendants_datatable.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+</pre></td><td class="code"><pre><code class="rb"><span class="line"><span class="c1"># encoding: UTF-8</span>
+</span><span class="line"><span class="k">class</span> <span class="nc">AttendantsDatatable</span>
+</span><span class="line">  <span class="n">delegate</span> <span class="ss">:params</span><span class="p">,</span> <span class="ss">:h</span><span class="p">,</span> <span class="ss">:link_to</span><span class="p">,</span> <span class="ss">:number_to_currency</span><span class="p">,</span> <span class="ss">to</span><span class="p">:</span> <span class="ss">:@view</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
+</span><span class="line">    <span class="vi">@view</span> <span class="o">=</span> <span class="n">view</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">def</span> <span class="nf">as_json</span><span class="p">(</span><span class="n">options</span> <span class="o">=</span> <span class="p">{})</span>
+</span><span class="line">    <span class="p">{</span>
+</span><span class="line">      <span class="ss">sEcho</span><span class="p">:</span> <span class="n">params</span><span class="o">[</span><span class="ss">:sEcho</span><span class="o">].</span><span class="n">to_i</span><span class="p">,</span>
+</span><span class="line">      <span class="ss">iTotalRecords</span><span class="p">:</span> <span class="no">Attendant</span><span class="o">.</span><span class="n">count</span><span class="p">,</span>
+</span><span class="line">      <span class="ss">iTotalDisplayRecords</span><span class="p">:</span> <span class="n">attendants</span><span class="o">.</span><span class="n">total_count</span><span class="p">,</span> <span class="c1">#kaminari gemine göre düzenlendi.</span>
+</span><span class="line">      <span class="ss">aaData</span><span class="p">:</span> <span class="n">data</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line">
+</span><span class="line"><span class="kp">private</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">def</span> <span class="nf">data</span>
+</span><span class="line">    <span class="n">attendants</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">attendant</span><span class="o">|</span>
+</span><span class="line">      <span class="o">[</span>
+</span><span class="line">        <span class="n">h</span><span class="p">(</span><span class="n">attendant</span><span class="o">.</span><span class="n">first_name</span><span class="p">),</span>
+</span><span class="line">        <span class="n">h</span><span class="p">(</span><span class="n">attendant</span><span class="o">.</span><span class="n">last_name</span><span class="p">),</span>
+</span><span class="line">        <span class="n">h</span><span class="p">(</span><span class="n">attendant</span><span class="o">.</span><span class="n">title_name</span><span class="p">),</span>
+</span><span class="line">        <span class="n">link_to</span><span class="p">(</span><span class="s2">&quot;Görüntüle&quot;</span><span class="p">,</span> <span class="n">attendant</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span><span class="o">+</span><span class="n">link_to</span><span class="p">(</span><span class="s2">&quot;Düzenle&quot;</span><span class="p">,</span> <span class="s2">&quot;#&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span> <span class="o">+</span><span class="n">link_to</span><span class="p">(</span><span class="s2">&quot;Sil&quot;</span><span class="p">,</span> <span class="n">attendant</span><span class="p">,</span> <span class="nb">method</span><span class="p">:</span> <span class="ss">:delete</span><span class="p">)</span>
+</span><span class="line">      <span class="o">]</span>
+</span><span class="line">    <span class="k">end</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">def</span> <span class="nf">attendants</span>
+</span><span class="line">    <span class="vi">@attendants</span> <span class="o">||=</span> <span class="n">fetch_attendants</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">def</span> <span class="nf">fetch_attendants</span>
+</span><span class="line">    <span class="n">attendants</span> <span class="o">=</span> <span class="no">Attendant</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">sort_column</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">sort_direction</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">per</span><span class="p">(</span><span class="n">per_page</span><span class="p">)</span>
+</span><span class="line">    <span class="k">if</span> <span class="n">params</span><span class="o">[</span><span class="ss">:search</span><span class="o">].</span><span class="n">present?</span>
+</span><span class="line">      <span class="n">attendants</span> <span class="o">=</span> <span class="n">attendants</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;first_name like :s or last_name like :s &quot;</span><span class="p">,</span> <span class="ss">s</span><span class="p">:</span> <span class="s2">&quot;%</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:search</span><span class="o">][</span><span class="ss">:value</span><span class="o">]</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</span><span class="line">    <span class="k">end</span>
+</span><span class="line">    <span class="n">attendants</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">def</span> <span class="nf">page</span>
+</span><span class="line">    <span class="n">params</span><span class="o">[</span><span class="ss">:start</span><span class="o">].</span><span class="n">to_i</span><span class="o">/</span><span class="n">per_page</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">def</span> <span class="nf">per_page</span>
+</span><span class="line">    <span class="n">params</span><span class="o">[</span><span class="ss">:length</span><span class="o">].</span><span class="n">to_i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">params</span><span class="o">[</span><span class="ss">:length</span><span class="o">].</span><span class="n">to_i</span> <span class="p">:</span> <span class="mi">10</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">def</span> <span class="nf">sort_column</span>
+</span><span class="line">    <span class="n">columns</span> <span class="o">=</span> <span class="sx">%w[first_name last_name]</span>
+</span><span class="line">    <span class="n">columns</span><span class="o">[</span><span class="n">params</span><span class="o">[</span><span class="ss">:column</span><span class="o">].</span><span class="n">to_i</span><span class="o">]</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">def</span> <span class="nf">sort_direction</span>
+</span><span class="line">    <span class="n">params</span><span class="o">[</span><span class="ss">:dir</span><span class="o">]</span> <span class="o">==</span> <span class="s2">&quot;desc&quot;</span> <span class="p">?</span> <span class="s2">&quot;desc&quot;</span> <span class="p">:</span> <span class="s2">&quot;asc&quot;</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Son olarak Controller’da json kısmına küçük bir eklenti yapıyoruz.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>attendants_controller.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="rb"><span class="line"><span class="k">def</span> <span class="nf">index</span>
+</span><span class="line">    <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+</span><span class="line">      <span class="nb">format</span><span class="o">.</span><span class="n">html</span>
+</span><span class="line">      <span class="nb">format</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span><span class="n">render</span> <span class="ss">json</span><span class="p">:</span> <span class="no">AttendantsDatatable</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">view_context</span><span class="p">)</span> <span class="p">}</span>
+</span><span class="line">    <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ORACLE- SYSTEM Hesabının Parolasını Değiştirmek]]></title>
+    <link href="http://bsaral.github.io/blog/2014/03/29/oracle-forgot-password/"/>
+    <updated>2014-03-29T11:55:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2014/03/29/oracle-forgot-password</id>
+    <content type="html"><![CDATA[<p>Oracle XE, SYSTEM/SYS parolasını unuttuysanız veya değiştirmek istiyorsanız aşağıdaki adımları takip edebilirsiniz. </p>
+
+<li> Oracle kurulumunda sisteminize, veritabanını komutlarla çalıştırabileceğiniz sistem menüsü programları eklenir. Bunlardan “Start Database” olanını çalıştırın.</li>
+<p><img src="http://bsaral.github.io/images/s1.png" /></p>
+
+<li>Açılan ekrana <code> sqlplus "/ as sysdba"  </code> komutunu girin. Bu komut OS kimlik ataması yaparak Oracle’a yetkili giriş için izin verir ve sistem kullanıcıları üzerinde çalışmamıza olanak sağlar.</li>
+<p><br /></p>
+
+<p><img src="http://bsaral.github.io/images/s2.png" /></p>
+
+<li>Son olarak aşağıdaki komutları da girip veritabanını yeniden başlattığımızda SYSTEM hesap parolası değişmiş olur.</li>
+<p><br /></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>SQL </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class="sql"><span class="line"><span class="k">SQL</span><span class="o">&gt;</span> <span class="k">show</span> <span class="k">user</span>
+</span><span class="line">
+</span><span class="line"><span class="k">USER</span> <span class="k">is</span> <span class="ss">&quot;SYS&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">SQL</span><span class="o">&gt;</span> <span class="n">passw</span> <span class="k">system</span>
+</span><span class="line"><span class="n">Changing</span> <span class="n">password</span> <span class="k">for</span> <span class="k">system</span>
+</span><span class="line"><span class="k">New</span> <span class="n">password</span><span class="p">:</span>
+</span><span class="line"><span class="n">Retype</span> <span class="k">new</span> <span class="n">password</span><span class="p">:</span>
+</span><span class="line"><span class="n">Password</span> <span class="n">changed</span>
+</span><span class="line">
+</span><span class="line"><span class="k">SQL</span><span class="o">&gt;</span> <span class="n">quit</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ORACLE - DDL,DCL,DML Ve TCL İşlemleri]]></title>
+    <link href="http://bsaral.github.io/blog/2014/03/14/oracle-ddl/"/>
+    <updated>2014-03-14T11:50:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2014/03/14/oracle-ddl</id>
+    <content type="html"><![CDATA[<h3><a>Data Definition Language (DDL) </a></h3>
+
+<p>Veritabanı yapısı ve şema tanımlamak için kullanılan komutlardır. Bunlardan bazıları;</p>
+
+<li> CREATE, veritabanında objeleri oluşturur. </li>
+<li> DROP, objelerin veritabanından silinmesini sağlar. </li>
+<li> ALTER, veritabanı nesnelerinin yapısını değiştirmek için kullanılır. </li>
+<li> TRUNCATE, bir tablo içerisindeki tüm kayıtları silmek için kullanılır. </li>
+<li> RENAME, veritabanı nesnesinin adını değiştirir. </li>
+<li> COMMENT, veri sözlüğüne yorum ekler. </li>
+<p><br /></p>
+
+<h3><a>Data Manipulation Language (DML) </a></h3>
+
+<p>Veritabanı objelerinin içerisindeki verileri yönetmeye yarayan komutlardır. Bunlardan bazıları;</p>
+
+<li>SELECT, veritabanından veri çekmek, listelemek, göstermek için kullanılır.</li>
+<li>INSERT, tablo içerisine veri eklemek için kullanılır.</li>
+<li>UPDATE, tablo içerisindeki verilerin güncellenmesinde kullanılır. ALTER komutundan farkı ise; ALTER tablonun yapısı ile ilgili güncelleme yaparken UPDATE ise veri içeriğinden güncelleme yapar.</li>
+<li>DELETE, tablodaki kayıtları silmek için kullanılır. TRUNCATE komutundan en önemli farkı ise, DELETE komutu ile belli bir aralığı silebilirken, TRUNCATE ile tablonun tamamını silebiliyoruz. TRUNCATE komutu parçalı silme yapmaz ama DELETE, WHERE kullanıldığında parçalı silme yapabilir</li>
+<li>MERGE - UPSERT, operasyonunun yapılması (insert etmek, eğer insert hata alırsa update etmek işlemi)</li>
+<li>CALL, bir PL/SQL yada JAVA alt programı çağırmak için kullanılır.</li>
+<li>LOCK TABLE, kontrol altında tutma işlemleri.</li>
+<p><br /></p>
+
+<h3><a>Data Control Language (DCL)   </a></h3>
+
+<p>Veritabanında erişim izinlerinin verilmesi veya verilen izinlerin iptal edilmesini sağlayan,yetki tanımlama kontrol unsurlarını içeren komutlardır. Bunlardan bazıları;</p>
+
+<li>GRANT, kullanıcıya veritabanı üzerinde yetki tanımlamak için kullanılır. </li>
+<li>REVOKE, yetkilerin iptal edilmesi için kullanılır. </li>
+<p><br /></p>
+
+<h3><a>Transaction Control (TCL)</a></h3>
+
+<p>DML ile yapılan işlemlerin yönetilmesini ve kontrol edilmesini sağlayan komutlardır. Bunlardan bazıları;</p>
+
+<li>COMMIT, yapılanları kayıt eder.</li>
+<li>SAVEPOINT, daha sonra rollback yapılmak üzere bir nokta belirler.</li>
+<li>ROLLBACK, veritabanında son COMMIT’e kadar olan yere geri alır.</li>
+<li>SET TRANSACTION, işlemlerin izolasyon seviyesini modifiye etmek veya mevcut işlemin özelliklerini değiştirmek için kullanılabilir.</li>
+<p><br /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ORACLE Kurulum Problemi]]></title>
+    <link href="http://bsaral.github.io/blog/2014/03/08/oracle-kurulumu/"/>
+    <updated>2014-03-08T11:48:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2014/03/08/oracle-kurulumu</id>
+    <content type="html"><![CDATA[<p>Oracle kurulumunu tamamladıktan sonra, dizin altında bulunan “Get Started” çalıştırınca aşağıdaki gibi bir hata alıyorsanız;</p>
+
+<p><img src="http://bsaral.github.io/images/o1.png" /></p>
+
+<p>şu adımları izleyerek sorununuzu çözebilirsiniz. </p>
+
+<li>“Get Started” ikonuna sağ tıklayıp özellikler kısmını açın.</li>
+<p><br /></p>
+
+<p><img src="http://bsaral.github.io/images/o2.png" /></p>
+
+<li> Burda birlikte aç kısmından Google Chrome,Mozilla Firefox yada kullandığınız tarayıcınızı seçin.</li>
+
+<li>Şimdi tekrar “Get Started” çalıştırmayı deneyin. URL’ yi <code> http://127.0.0.1:8080/apex/f?p=4950  </code> tarayıcınıza yazdığınızda karşınıza aşağıdaki gibi giriş ekranı çıkması gerekir. Kullanıcı adınızı “SYSTEM” ve parolanızı da girdikten sonra Oracle kurulumu tamamlanmış olur.</li>
+<p><br /></p>
+
+<p><img src="http://bsaral.github.io/images/o3.png" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL - Büyük Boyutlu Veritabanlarını İçe Aktarma Problemi]]></title>
+    <link href="http://bsaral.github.io/blog/2014/02/03/import-large-database/"/>
+    <updated>2014-02-03T11:45:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2014/02/03/import-large-database</id>
+    <content type="html"><![CDATA[<p>PhpMyAdmin aracılığı ile büyük boyutlu veritabanlarını import ederken 
+<br /></p>
+
+<p><code> Muhtemelen çok büyük dosya göndermeyi denediniz. Lütfen bu sınıra çözüm yolu bulmak için belgeden yararlanın. </code></p>
+
+<p>şeklinde bir hata alabiliriz. Bu hatanın çözüm yolu şöyledir : İlk olarak <code> /php5/apache/php.ini </code> dosyasını açalım. Bu dosya içerisinde bazı değişiklikler yapmamız gerekiyor. Bunlar :</p>
+
+<li> post_max_size = 750M </li>
+<li> upload_max_filesize = 750M </li>
+<li> max_execution_time = 5000 </li>
+<li> max_input_time = 5000 </li>
+<li> memory_limit = 1000M </li>
+<p><br /></p>
+
+<p>Karşılık gelen değerleri değiştirdikten sonra Windows da Wamp , Ubuntu da ise <code> sudo /etc/init.d/apache2 restart </code>  diyerek servisleri yeniden başlattığınız da sorununuzun çözüldüğünü görebilirsiniz.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Matlab - STPRTool Kurulum Ve Kullanım]]></title>
+    <link href="http://bsaral.github.io/blog/2014/02/01/stprtool/"/>
+    <updated>2014-02-01T11:35:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2014/02/01/stprtool</id>
+    <content type="html"><![CDATA[<h3><a>STPRTool Nedir ?  </a></h3>
+
+<p>STPRTool (Statistical Pattern Recognition Toolbox for Matlab ), matlab içerisinde istatiksel örüntü tanıma için kullanılan bir toolbox olarak tanımlanır. Bu araç içerisinde kNN, SVM gibi örüntü tanıma yöntemleri bulunur. İçerisinde farklı algoritma yöntemleri barındırdığı için sonuçlarımızı gerçeğe yakın bulmamıza yardımcı olur.</p>
+
+<h3><a>Kurulum </a></h3>
+
+<li> İlk olarak <a href="http://cmp.felk.cvut.cz/cmp/software/stprtool/">STPRTool </a>  indirelim. </li>
+
+<li> Dizini zip içerisinden C sürücüsü hariç herhangi bir yere çıkartın. Eğer STPRTool C sürücüsünde olursa derlenme sırasında problemler yaşanabilir.</li>
+
+<li> Matlab içerisinde Open diyerek STPRTool içerisindeki <code> stprpath.m </code>  dosyasını çalıştırın. </li>
+
+<li> Daha sonra <code> compilemex.m </code> dosyasını çalıştırın. Eğer derlenme sırasında sorun çıkmamışsa STPRTool içerisinde olan tüm algoritmalar kullanılabilir hale gelmiştir. </li>
+<p><br /></p>
+
+<h3><a>Çıkabilecek Sorunlar </a></h3>
+
+<p>STPRTool kurulumu sırasında biraz sorun çıkartabilir. Şimdi o sorunların çözümlerine bakalım.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">&gt;&gt; compilemex
+</span><span class="line">Compiling MEX files of STPRtool...
+</span><span class="line">mex -O -IC:<span class="se">\P</span>rogram Files<span class="se">\M</span>ATLAB<span class="se">\R</span>2013a<span class="se">\t</span>oolbox<span class="se">\s</span>tprtool<span class="se">\k</span>ernels -outdir C:<span class="se">\P</span>rogram Files<span class="se">\M</span>ATLAB<span class="se">\R</span>2013a<span class="se">\t</span>oolbox<span class="se">\s</span>tprtool<span class="se">\k</span>ernels C:<span class="se">\P</span>rogram Files<span class="se">\M</span>ATLAB<span class="se">\R</span>2013a<span class="se">\t</span>oolbox<span class="se">\s</span>tprtool<span class="se">\k</span>ernels<span class="se">\k</span>ernel.c C:<span class="se">\P</span>rogram Files<span class="se">\M</span>ATLAB<span class="se">\R</span>2013a<span class="se">\t</span>oolbox<span class="se">\s</span>tprtool<span class="se">\k</span>ernels<span class="se">\k</span>ernel_fun.c
+</span><span class="line">Error using mex <span class="o">(</span>line 206<span class="o">)</span>
+</span><span class="line">The destination directory <span class="s2">&quot;C:\Program&quot;</span> cannot be found.
+</span><span class="line">
+</span><span class="line">Error in compilemex <span class="o">(</span>line 113<span class="o">)</span>
+</span><span class="line">  <span class="nb">eval</span><span class="o">(</span>mexstr<span class="o">)</span>;
+</span><span class="line">
+</span><span class="line">Error in compilemex <span class="o">(</span>line 113<span class="o">)</span>
+</span><span class="line">  <span class="nb">eval</span><span class="o">(</span>mexstr<span class="o">)</span>;
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Eğer yukarıdaki gibi bir hata alıyorsunuz <code> compilemex.m</code>  içerisinde 102.satırda aşağıdaki değişikliği yapmanız gerekir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>compilemex.m </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="o">%</span> <span class="o">--</span> <span class="n">Compile</span> <span class="n">functions</span> <span class="o">-----------------------------</span>
+</span><span class="line"><span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">fun</span><span class="p">),</span>
+</span><span class="line">   <span class="n">mexstr</span> <span class="o">=</span> <span class="p">[</span><span class="err">&#39;</span><span class="n">mex</span> <span class="o">-</span><span class="n">O</span> <span class="o">-</span><span class="n">I</span><span class="err">&#39;&#39;&#39;</span> <span class="n">translate</span><span class="p">(</span><span class="n">fun</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="n">include</span><span class="p">,</span><span class="n">root</span><span class="p">)</span> <span class="p">...</span>
+</span><span class="line">             <span class="err">&#39;&#39;&#39;</span> <span class="o">-</span><span class="n">outdir</span> <span class="err">&#39;&#39;&#39;</span> <span class="n">translate</span><span class="p">(</span><span class="n">fun</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="n">outdir</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span> <span class="err">&#39;&#39;</span><span class="sc">&#39; &#39;</span><span class="p">];</span>
+</span><span class="line">
+</span><span class="line">  <span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="o">:</span><span class="n">length</span><span class="p">(</span><span class="n">fun</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="n">source</span><span class="p">),</span>
+</span><span class="line">    <span class="n">mexstr</span> <span class="o">=</span> <span class="p">[</span><span class="n">mexstr</span> <span class="err">&#39;&#39;&#39;&#39;</span> <span class="n">translate</span><span class="p">(</span><span class="kt">char</span><span class="p">(</span><span class="n">fun</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="n">source</span><span class="p">(</span><span class="n">j</span><span class="p">)),</span><span class="n">root</span><span class="p">)</span> <span class="err">&#39;&#39;</span><span class="sc">&#39; &#39;</span><span class="p">];</span>
+</span><span class="line">  <span class="n">end</span>
+</span><span class="line">
+</span><span class="line">  <span class="nf">fprintf</span><span class="p">(</span><span class="err">&#39;</span><span class="o">%</span><span class="n">s</span><span class="err">\</span><span class="n">n</span><span class="err">&#39;</span><span class="p">,</span><span class="n">mexstr</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">  <span class="n">eval</span><span class="p">(</span><span class="n">mexstr</span><span class="p">);</span>
+</span><span class="line"><span class="n">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Diğeri ise <code> compilemex.m </code> derlenme sırasında mex ile ilgili aşağıdaki gibi hata alınıyorsa;</p>
+
+<p><img src="http://bsaral.github.io/images/c1.png" /></p>
+
+<p>SDK kurmanız gerekmektedir. Bunu <a href="http://www.mathworks.com/support/compilers/R2012a/win64.html?requestedDomain=www.mathworks.com"> şu siteden </a>  indirebilirsiniz. SDK kurulum sırasında da hata alabilirsiniz. Ben kurulum yaparken aşağıdaki gibi bir hata aldım.</p>
+
+<p><img src="http://bsaral.github.io/images/c2.png" /></p>
+
+<p>Bu hatayı yok etmek için <a href="https://support.microsoft.com/tr-tr/mats/program_install_and_uninstall"> kayıt defterini </a>  çalıştırın. Kayır defteri sistemde düzgün kurulmamış veya kaldırılamamış programları belirler ve gerekeni yapar. Kayıt defterini çalıştırdığımız zaman SDK kurulumunun yapabilmemiz için <code> Uninstall VC++ 2010 (x86 and x64)</code>  kaldırılması gerekir. Böylece SDK kurulur ve derleme başarılı bir şekilde gerçekleşir.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Matlab - Video İşlemede FFMPEG Kullanımı]]></title>
+    <link href="http://bsaral.github.io/blog/2013/12/15/ffmpeg/"/>
+    <updated>2013-12-15T10:45:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2013/12/15/ffmpeg</id>
+    <content type="html"><![CDATA[<h3><a>KURULUM</a></h3>
+
+<p>Elimizde bir videomuz var ve framelere ayırmamız gerekiyor. Bunun en iyi yolu ffmpeg  ‘dir. FFmpeg kullanmak için önce sistemimize kurup tanıtmamız gerekir. Ben Windows üzerinden gideceğim. İlk önce <a href="http://ffmpeg.zeranoe.com/builds/">  bu adresten </a>  sisteminize uygun olanı indirin.</p>
+
+<li> İndirdiğiniz sürümü zip içerisinden çıkartın. C sürücüsü altına ffmpeg adında bir dizin oluşturun ve buraya aktarın.</li>
+<p><br /></p>
+
+<li> Sistemde ffmpeg yolunu tanımlamamız gerekir. Bilgisayarıma sağa tıklayıp “Özellikler” kısmından “Gelişmiş Sistem Ayarlarını” seçin </li>
+<p><br /></p>
+
+<p><img src="http://bsaral.github.io/images/w1.png" /></p>
+
+<li> User Variables kısmından yeni yol tanımlamayı seçin. Variable kısmına “PATH” , Value kısmına ise ffmpeg yolunu yani “C:\ffmpeg\bin” tanımlayın</li>
+<p><br /></p>
+
+<p><img src="http://bsaral.github.io/images/w2.jpg" /></p>
+
+<li> Ayarlamaları yapıp tamam dedikten sonra komut istemini açın ve ffmpeg -version  yazın. Sonuç olarak aşağıdaki çıktıyı alıyorsanız kurulum tamamlanmış demektir. </li>
+<p><br /></p>
+
+<p><img src="http://bsaral.github.io/images/w3.jpg" /></p>
+
+<h3><a>KULLANIM </a></h3>
+
+<p>Kurulumu halletik peki bunu Matlab içerisinde nasıl kullanacağız. Elimizde bulunan videoyu framelere ayırmak istiyoruz o zaman</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">% wave1.mp4 adındaki videomun tüm framelerini
+</span><span class="line">%images dizini altında image1.jpg,image2.jpg .. şeklinde oluşmasını istedim.
+</span><span class="line">
+</span><span class="line">system<span class="o">(</span><span class="s1">&#39;ffmpeg -i wave1.mp4 images/image%d.jpg&#39;</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Resimlerden video oluşturmak ise</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">% wave1.mp4 images altına çıkardığım frameleri
+</span><span class="line">% birleştirerek test.avi isminde yeni bir video oluşturdum.
+</span><span class="line">% burdaki -r saniyede geçen kare sayısıdır
+</span><span class="line">
+</span><span class="line">system<span class="o">(</span><span class="s1">&#39;ffmpeg -r 10 -i images/image%d.jpg -vcodec mpeg4 test.avi&#39;</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><a href="https://github.com/bsaral/pro-lang/blob/master/Matlab/Video%20Processing/runme_video.m"> Örnek Bir Kodlama </a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Matlab - Solution Methods for Systems of Linear Equations]]></title>
+    <link href="http://bsaral.github.io/blog/2013/11/06/matlab-lineer/"/>
+    <updated>2013-11-06T10:39:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2013/11/06/matlab-lineer</id>
+    <content type="html"><![CDATA[<h3><a>GAUSS ELIMINATION YÖNTEMİ </a></h3>
+
+<p>Gauss yöntemini matlab yardımı ile gerçekleştirmek için aşağıdaki program kullanılabilir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>test.m </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line">	<span class="o">%</span> <span class="n">AX</span> <span class="o">=</span> <span class="n">B</span> <span class="n">ise</span>
+</span><span class="line">	
+</span><span class="line">	<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="o">-</span><span class="mi">3</span>  <span class="mi">4</span> <span class="o">-</span><span class="mi">5</span><span class="p">;</span><span class="mi">2</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">8</span> <span class="p">;</span><span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span> <span class="p">;</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">3</span><span class="p">];</span>  <span class="o">%</span> <span class="n">ilk</span> <span class="n">matrisimiz</span>
+</span><span class="line">	<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">11</span>  <span class="mi">42</span> <span class="o">-</span><span class="mi">11</span> <span class="o">-</span><span class="mi">38</span><span class="p">]</span><span class="err">&#39;</span><span class="p">;</span>  	<span class="o">%</span> <span class="n">sonu</span><span class="err">ç</span> <span class="n">matrisimiz</span>
+</span><span class="line">
+</span><span class="line">	<span class="n">a</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="n">length</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="n">b</span><span class="p">;</span>   <span class="o">%</span> <span class="n">Artt</span><span class="err">ı</span><span class="n">r</span><span class="err">ı</span><span class="n">lm</span><span class="err">ış</span> <span class="n">matrisimizi</span> <span class="n">olu</span><span class="err">ş</span><span class="n">turduk</span><span class="p">.</span>
+</span><span class="line">	<span class="p">[</span><span class="n">rows</span> <span class="n">cols</span><span class="p">]</span><span class="o">=</span><span class="n">size</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>  <span class="o">%</span> <span class="n">matrisimizin</span> <span class="n">boyutlar</span><span class="err">ı</span><span class="n">m</span><span class="err">ı</span><span class="n">z</span><span class="err">ı</span> <span class="n">bulduk</span><span class="p">.</span>
+</span><span class="line">
+</span><span class="line">	<span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">:</span><span class="n">cols</span>
+</span><span class="line">		<span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="n">rows</span>
+</span><span class="line">			<span class="n">tmp</span><span class="o">=</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="o">:</span><span class="p">).</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">));</span>
+</span><span class="line">			<span class="n">a</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="o">:</span><span class="p">)</span><span class="o">=</span><span class="n">tmp</span><span class="o">+</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="o">:</span><span class="p">));</span>
+</span><span class="line">		<span class="n">end</span>
+</span><span class="line">	<span class="n">end</span>
+</span><span class="line">	
+</span><span class="line">	<span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="n">length</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">rows</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">rows</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+</span><span class="line">		<span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">cols</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class="line">			<span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">cols</span><span class="p">)</span><span class="o">=</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">cols</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="n">cols</span><span class="o">-</span><span class="mi">1</span><span class="p">)));</span>
+</span><span class="line">		<span class="n">end</span>
+</span><span class="line">		<span class="nf">sonuc</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">=</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">cols</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">));</span>
+</span><span class="line">		<span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">=</span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">).</span><span class="o">*</span><span class="n">sonuc</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span><span class="line">	<span class="n">end</span>
+</span><span class="line">
+</span><span class="line">	
+</span><span class="line">	<span class="nf">disp</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Sonuc</span> <span class="o">=</span> <span class="err">&#39;</span><span class="p">);</span>
+</span><span class="line">	<span class="n">disp</span><span class="p">(</span><span class="n">sonuc</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3><a>TERS MATRİS YÖNTEMİ  </a></h3>
+
+<p>Ters matris yöntemini matlab yardımı ile gerçekleştirmek için aşağıdaki program kullanılabilir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line">	<span class="n">clc</span>
+</span><span class="line">	<span class="n">clear</span>
+</span><span class="line">
+</span><span class="line">	<span class="o">%</span> <span class="n">AX</span> <span class="o">=</span> <span class="n">B</span>  <span class="o">=&gt;</span> <span class="n">A</span><span class="p">.</span><span class="n">A</span><span class="o">^-</span><span class="mf">1.</span><span class="n">X</span> <span class="o">=</span> <span class="n">B</span><span class="p">.</span><span class="n">A</span><span class="o">^-</span><span class="mi">1</span>  <span class="o">=&gt;</span> <span class="n">I</span><span class="p">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">B</span><span class="p">.</span><span class="n">A</span><span class="o">^-</span><span class="mi">1</span> <span class="o">=&gt;</span>  <span class="n">X</span> <span class="o">=</span> <span class="n">B</span><span class="p">.</span><span class="n">A</span><span class="o">^-</span><span class="mi">1</span>
+</span><span class="line">
+</span><span class="line">	<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">;</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+</span><span class="line">	<span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">11</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="err">&#39;</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line">	<span class="n">X</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">*</span><span class="n">B</span>  	<span class="o">%</span> <span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="n">matrisimizin</span> <span class="n">tersini</span> <span class="n">al</span><span class="err">ı</span><span class="n">r</span> <span class="n">ve</span> <span class="n">B</span> <span class="n">ile</span> <span class="err">ç</span><span class="n">arpt</span><span class="err">ı</span><span class="n">ktan</span> <span class="n">sonra</span> <span class="n">x</span> <span class="n">de</span><span class="err">ğ</span><span class="n">erlerimiz</span> <span class="n">bulunur</span><span class="p">.</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3>&lt;aCRAMER YÖNTEMİ   </h3>
+
+<p>Cramer yöntemini matlab yardımı ile gerçekleştirmek için aşağıdaki program kullanılabilir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line">	<span class="n">clc</span>
+</span><span class="line">	<span class="n">clear</span>
+</span><span class="line">
+</span><span class="line">	<span class="n">A</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">;</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">;</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">];</span>
+</span><span class="line">	<span class="n">B</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">47</span><span class="p">;</span><span class="mi">56</span><span class="p">;</span><span class="mi">15</span><span class="p">];</span>
+</span><span class="line">
+</span><span class="line">	<span class="n">A1</span> <span class="o">=</span> <span class="n">A</span><span class="p">;</span>
+</span><span class="line">	<span class="n">A1</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">B</span><span class="p">;</span>
+</span><span class="line">	<span class="n">A2</span> <span class="o">=</span> <span class="n">A</span><span class="p">;</span>
+</span><span class="line">	<span class="n">A2</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">B</span><span class="p">;</span>
+</span><span class="line">	<span class="n">A3</span> <span class="o">=</span> <span class="n">A</span><span class="p">;</span>
+</span><span class="line">	<span class="n">A3</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">B</span> <span class="p">;</span>
+</span><span class="line">
+</span><span class="line">	<span class="n">D</span><span class="o">=</span><span class="n">det</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+</span><span class="line">	<span class="n">D1</span><span class="o">=</span><span class="n">det</span><span class="p">(</span><span class="n">A1</span><span class="p">);</span>
+</span><span class="line">	<span class="n">D2</span><span class="o">=</span><span class="n">det</span><span class="p">(</span><span class="n">A2</span><span class="p">);</span>
+</span><span class="line">	<span class="n">D3</span><span class="o">=</span><span class="n">det</span><span class="p">(</span><span class="n">A3</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">	<span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="n">D1</span><span class="o">/</span><span class="n">D</span><span class="p">;</span>
+</span><span class="line">	<span class="n">X</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">=</span><span class="n">D2</span><span class="o">/</span><span class="n">D</span><span class="p">;</span>
+</span><span class="line">	<span class="n">X</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">=</span><span class="n">D3</span><span class="o">/</span><span class="n">D</span>   <span class="o">%</span> <span class="n">sonuc</span> <span class="o">%</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3><a>SECANT YÖNTEMİ    </a></h3>
+
+<p>Sekant yöntemini matlab yardımı ile gerçekleştirmek için aşağıdaki program kullanılabilir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line">	<span class="n">clc</span>
+</span><span class="line">	<span class="n">clear</span>
+</span><span class="line">	<span class="n">syms</span> <span class="n">x</span><span class="p">;</span>  	<span class="o">%</span> <span class="n">x</span> <span class="n">atamalar</span><span class="err">ı</span> <span class="n">i</span><span class="err">ç</span><span class="k">in</span>
+</span><span class="line">	<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class="line">	<span class="n">err</span> <span class="o">=</span> <span class="mf">0.000001</span><span class="p">;</span>
+</span><span class="line">	<span class="n">f</span> <span class="o">=</span> <span class="kr">inline</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="mi">6</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">sin</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="p">)));</span>  <span class="o">%</span><span class="n">fonksiyonu</span> <span class="n">tan</span><span class="err">ı</span><span class="n">mlamak</span> <span class="n">i</span><span class="err">ç</span><span class="k">in</span> <span class="kr">inline</span> <span class="n">kullan</span><span class="err">ı</span><span class="n">l</span><span class="err">ı</span><span class="n">r</span><span class="p">.</span>
+</span><span class="line">	<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>   <span class="o">%</span><span class="n">secant</span> <span class="n">y</span><span class="err">ö</span><span class="n">ntem</span> <span class="n">i</span><span class="err">ş</span><span class="n">lemi</span>
+</span><span class="line">	<span class="k">while</span> <span class="n">abs</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">err</span>
+</span><span class="line">		<span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+</span><span class="line">		<span class="n">b</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+</span><span class="line">		<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
+</span><span class="line">		<span class="n">disp</span><span class="p">([</span><span class="n">a</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">b</span> <span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="n">c</span> <span class="n">f</span><span class="p">(</span><span class="n">c</span><span class="p">)]);</span>
+</span><span class="line">		<span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="line">		<span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)</span>
+</span><span class="line">			<span class="k">break</span><span class="p">;</span>
+</span><span class="line">		<span class="n">end</span>
+</span><span class="line">	<span class="n">end</span>
+</span><span class="line">	<span class="nf">disp</span><span class="p">([</span><span class="err">&#39;</span><span class="n">K</span><span class="err">ö</span><span class="n">k</span><span class="err">ü</span><span class="n">m</span><span class="err">ü</span><span class="n">z</span> <span class="o">=</span> <span class="err">&#39;</span> <span class="n">num2str</span><span class="p">(</span><span class="n">c</span><span class="p">)]);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Matlab - İki Resim Arasında Fark Bulma]]></title>
+    <link href="http://bsaral.github.io/blog/2013/11/01/matlab-fark/"/>
+    <updated>2013-11-01T10:36:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2013/11/01/matlab-fark</id>
+    <content type="html"><![CDATA[<p>İki resim arasındaki farkı Matlab yardımı ile bulalım.</p>
+
+<table>
+<tr>
+	<td>Resim-1<img src="http://bsaral.github.io/images/m1.png" /></td>
+	<td>Resim-2<img src="http://bsaral.github.io/images/m2.png" /></td>
+</tr>
+</table>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">im1</span> <span class="o">=</span> rgb2gray<span class="o">(</span>imread<span class="o">(</span><span class="s1">&#39;fark1.bmp&#39;</span><span class="o">))</span>;
+</span><span class="line"><span class="nv">im2</span> <span class="o">=</span> rgb2gray<span class="o">(</span>imread<span class="o">(</span><span class="s1">&#39;fark2.bmp&#39;</span><span class="o">))</span>;
+</span><span class="line">
+</span><span class="line"><span class="nv">fark</span> <span class="o">=</span> imabsdiff<span class="o">(</span>im1,im2<span class="o">)</span>;
+</span><span class="line"><span class="nv">bw</span> <span class="o">=</span> bwareaopen<span class="o">(</span>fark,55<span class="o">)</span>;
+</span><span class="line"><span class="nv">bw</span> <span class="o">=</span> imfill<span class="o">(</span>bw,<span class="s1">&#39;holes&#39;</span><span class="o">)</span>;
+</span><span class="line"><span class="nv">SE</span> <span class="o">=</span> strel<span class="o">(</span><span class="s1">&#39;square&#39;</span>,1<span class="o">)</span>;
+</span><span class="line"><span class="nv">bw2</span> <span class="o">=</span> imerode<span class="o">(</span>bw,SE<span class="o">)</span>;
+</span><span class="line"><span class="nv">fark</span> <span class="o">=</span> regionprops<span class="o">(</span>bw2, <span class="s1">&#39;all&#39;</span><span class="o">)</span>;
+</span><span class="line"><span class="nv">c</span> <span class="o">=</span> <span class="o">[</span>fark.Centroid<span class="o">]</span>;
+</span><span class="line">
+</span><span class="line">imshow<span class="o">(</span><span class="s1">&#39;fark2.bmp&#39;</span><span class="o">)</span>;
+</span><span class="line">title<span class="o">([</span><span class="s1">&#39;Toplam fark : &#39;</span>,num2str<span class="o">(</span>length<span class="o">(</span>fark<span class="o">))])</span>;
+</span><span class="line">hold on;
+</span><span class="line"><span class="nv">x</span> <span class="o">=</span> c<span class="o">(</span>1:2:end<span class="o">)</span>;
+</span><span class="line"><span class="nv">y</span> <span class="o">=</span> c<span class="o">(</span>2:2:end<span class="o">)</span>;
+</span><span class="line">plot<span class="o">(</span>x,y,<span class="s1">&#39;yo&#39;</span>,<span class="s1">&#39;MarkerSize&#39;</span>,20,<span class="s1">&#39;LineWidth&#39;</span>,4<span class="o">)</span>;
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Program çıktımız :</p>
+
+<p><img src="http://bsaral.github.io/images/mson.png" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Matlab - Arkaplan Çıkarımı]]></title>
+    <link href="http://bsaral.github.io/blog/2013/10/31/matlab-arkaplan/"/>
+    <updated>2013-10-31T10:31:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2013/10/31/matlab-arkaplan</id>
+    <content type="html"><![CDATA[<p>Matlab kullanarak aşağıdaki resmin arkaplanını çıkartan bir uygulama yapalım.</p>
+
+<table>
+<tr>
+	<td>Resim-1<img src="http://bsaral.github.io/images/r1.png" /></td>
+	<td>Resim-2<img src="http://bsaral.github.io/images/r2.png" /></td>
+</tr>
+</table>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">input</span> <span class="o">=</span> imread<span class="o">(</span><span class="s1">&#39;kapi_biri.bmp&#39;</span><span class="o">)</span>;
+</span><span class="line"><span class="nv">im1</span> <span class="o">=</span> rgb2gray<span class="o">(</span>imread<span class="o">(</span><span class="s1">&#39;kapi.bmp&#39;</span><span class="o">))</span>;
+</span><span class="line"><span class="nv">im2</span> <span class="o">=</span> rgb2gray<span class="o">(</span>imread<span class="o">(</span><span class="s1">&#39;kapi_biri.bmp&#39;</span><span class="o">))</span>;
+</span><span class="line">
+</span><span class="line"><span class="nv">im3</span> <span class="o">=</span> imsubtract<span class="o">(</span>im1,im2<span class="o">)</span>;
+</span><span class="line"><span class="nv">im3</span> <span class="o">=</span> bwareaopen<span class="o">(</span>im3,500,8<span class="o">)</span>;
+</span><span class="line"><span class="nv">im3</span> <span class="o">=</span> imfill<span class="o">(</span>im3,<span class="s1">&#39;holes&#39;</span><span class="o">)</span>;
+</span><span class="line"><span class="nv">im3</span><span class="o">=</span>uint8<span class="o">(</span>im3<span class="o">)</span>;
+</span><span class="line">
+</span><span class="line">im3<span class="o">(</span><span class="nv">im3</span> <span class="o">==</span> 255<span class="o">)</span> <span class="o">=</span> 1;
+</span><span class="line"><span class="nv">im33</span> <span class="o">=</span> cat<span class="o">(</span>3, im3, im3, im3<span class="o">)</span>;
+</span><span class="line"><span class="nv">im</span> <span class="o">=</span> input .* im33;
+</span><span class="line">imshow<span class="o">(</span>im<span class="o">)</span>;
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Program çıktımız :</p>
+
+<p><img src="http://bsaral.github.io/images/rson.png" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Matlab - Bozuk Para Sayma]]></title>
+    <link href="http://bsaral.github.io/blog/2013/10/30/matlab-1/"/>
+    <updated>2013-10-30T10:26:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2013/10/30/matlab-1</id>
+    <content type="html"><![CDATA[<p>Matlab kullanarak aşağıdaki resimde ne kadar bozuk paramız var onu bulmaya çalışalım.</p>
+
+<p><img src="http://bsaral.github.io/images/para.jpg" /></p>
+
+<p>Programımız aşağıdaki gibidir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>test.m </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line">	<span class="n">img</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="err">&#39;</span><span class="n">image3</span><span class="p">.</span><span class="n">jpg</span><span class="err">&#39;</span><span class="p">);</span>
+</span><span class="line">    <span class="n">th</span> <span class="o">=</span> <span class="n">graythresh</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+</span><span class="line">    <span class="n">bw</span> <span class="o">=</span> <span class="n">imcomplement</span><span class="p">(</span><span class="n">im2bw</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">th</span><span class="p">));</span>  <span class="o">%</span><span class="n">gri</span> <span class="n">seviyeli</span> <span class="n">resimlerde</span> <span class="n">negatiflik</span> <span class="n">alir</span>
+</span><span class="line">    <span class="n">bw</span> <span class="o">=</span> <span class="n">bwareaopen</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span><span class="mi">30</span><span class="p">);</span>  <span class="o">%</span> <span class="mi">30</span><span class="n">pixelden</span> <span class="n">kucuk</span> <span class="n">olanlar</span> <span class="n">kaldiriliyor</span><span class="p">.</span>
+</span><span class="line">    <span class="n">bw</span> <span class="o">=</span> <span class="n">imfill</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span><span class="err">&#39;</span><span class="n">holes</span><span class="err">&#39;</span><span class="p">);</span>
+</span><span class="line">    <span class="n">SE</span> <span class="o">=</span><span class="n">strel</span><span class="p">(</span><span class="err">&#39;</span><span class="n">disk</span><span class="err">&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>    <span class="o">%</span> <span class="n">birlesik</span> <span class="n">madeni</span> <span class="n">paralarin</span> <span class="n">ayrilmasi</span> <span class="n">saglaniyor</span><span class="p">.</span>
+</span><span class="line">    <span class="n">bw2</span> <span class="o">=</span> <span class="n">imerode</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span><span class="n">SE</span><span class="p">);</span>
+</span><span class="line">    <span class="p">[</span><span class="n">L</span><span class="p">,</span><span class="n">num</span><span class="p">]</span> <span class="o">=</span> <span class="n">bwlabel</span><span class="p">(</span><span class="n">bw2</span><span class="p">);</span>  <span class="o">%</span> <span class="n">num</span> <span class="n">ile</span> <span class="n">para</span> <span class="n">adetini</span> <span class="n">ogrendik</span> <span class="n">ve</span> <span class="n">etiket</span> <span class="n">atadik</span>
+</span><span class="line">    <span class="n">stats</span> <span class="o">=</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">bw2</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Area</span><span class="err">&#39;</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line">    <span class="k">for</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="o">:</span><span class="n">num</span>
+</span><span class="line">        <span class="n">a</span> <span class="o">=</span> <span class="n">stats</span><span class="p">(</span><span class="n">n</span><span class="p">).</span><span class="n">Area</span><span class="p">;</span>  <span class="o">%</span> <span class="n">her</span> <span class="n">paran</span><span class="err">ı</span><span class="n">n</span> <span class="n">alan</span><span class="err">ı</span><span class="n">n</span><span class="err">ı</span> <span class="err">öğ</span><span class="n">rendik</span><span class="p">.</span> <span class="n">Boyutlara</span> <span class="n">g</span><span class="err">ö</span><span class="n">re</span> <span class="n">hesaplama</span> <span class="n">yapt</span><span class="err">ı</span><span class="n">k</span><span class="p">.</span>
+</span><span class="line">        <span class="k">switch</span> <span class="n">logical</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
+</span><span class="line">            <span class="k">case</span> <span class="n">a</span><span class="o">&gt;</span> <span class="mi">35000</span>
+</span><span class="line">                 <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="line">            <span class="k">case</span> <span class="n">a</span> <span class="o">&gt;</span><span class="mi">25000</span>  <span class="o">&amp;&amp;</span>  <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">35000</span>
+</span><span class="line">                <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">;</span>
+</span><span class="line">            <span class="k">case</span> <span class="n">a</span> <span class="o">&gt;</span><span class="mi">15000</span> <span class="o">&amp;&amp;</span>  <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">20000</span>
+</span><span class="line">                <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mf">0.25</span><span class="p">;</span>
+</span><span class="line">            <span class="k">case</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">11000</span> <span class="o">&amp;&amp;</span>  <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">13000</span>
+</span><span class="line">                <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mf">0.10</span><span class="p">;</span>
+</span><span class="line">            <span class="n">otherwise</span>
+</span><span class="line">                 <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mf">0.05</span><span class="p">;</span>
+</span><span class="line">        <span class="n">end</span>
+</span><span class="line">    <span class="n">end</span>
+</span><span class="line">
+</span><span class="line">   <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</span><span class="line">   <span class="n">title</span><span class="p">([</span><span class="err">&#39;</span><span class="n">Toplam</span> <span class="n">para</span> <span class="n">miktari</span> <span class="o">=</span> <span class="err">&#39;</span><span class="p">,</span><span class="n">num2str</span><span class="p">(</span><span class="n">count</span><span class="p">),</span><span class="err">&#39;</span> <span class="n">TL</span><span class="err">&#39;</span><span class="p">])</span>
+</span><span class="line">   <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">imshow</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+</span><span class="line">   <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">imshow</span><span class="p">(</span><span class="n">bw2</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Program çıktımız :</p>
+
+<p><img src="http://bsaral.github.io/images/sonuc.png" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android-Ekran Dönüşünü Engelleme]]></title>
+    <link href="http://bsaral.github.io/blog/2013/10/28/android-ekran-dondurme/"/>
+    <updated>2013-10-28T10:21:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2013/10/28/android-ekran-dondurme</id>
+    <content type="html"><![CDATA[<p>Android uygulamalarında tasarlanan ekran görünümü, ekranın yatay veya dikey konuma çevrilmesiyle görünümde sorunlara yol açabilir. Ekran dönüşümünü engellemek için screenOrientation özelliğini nosensor olarak ayarlamamız gerekir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>AndroidManifest.xml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+</span><span class="line"><span class="nt">&lt;manifest</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+</span><span class="line">    <span class="na">package=</span><span class="s">&quot;com.example.mwe&quot;</span>
+</span><span class="line">    <span class="na">android:versionCode=</span><span class="s">&quot;1&quot;</span>
+</span><span class="line">    <span class="na">android:versionName=</span><span class="s">&quot;1.0&quot;</span> <span class="nt">&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;uses-sdk</span>
+</span><span class="line">        <span class="na">android:minSdkVersion=</span><span class="s">&quot;8&quot;</span>
+</span><span class="line">        <span class="na">android:targetSdkVersion=</span><span class="s">&quot;17&quot;</span> <span class="nt">/&gt;</span>
+</span><span class="line">
+</span><span class="line">    <span class="nt">&lt;application</span>
+</span><span class="line">        <span class="na">android:allowBackup=</span><span class="s">&quot;true&quot;</span>
+</span><span class="line">        <span class="na">android:icon=</span><span class="s">&quot;@drawable/ic_launcher&quot;</span>
+</span><span class="line">        <span class="na">android:label=</span><span class="s">&quot;@string/app_name&quot;</span>
+</span><span class="line">        <span class="na">android:theme=</span><span class="s">&quot;@style/AppTheme&quot;</span> <span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;activity</span>
+</span><span class="line">            <span class="na">android:name=</span><span class="s">&quot;com.example.mwe.MainActivity&quot;</span>
+</span><span class="line">            <span class="na">android:label=</span><span class="s">&quot;@string/app_name&quot;</span>
+</span><span class="line">            <span class="na">android:screenOrientation=</span><span class="s">&quot;nosensor&quot;</span><span class="nt">&gt;</span> <span class="c">&lt;!-- BU SATIRDAKİ KOD KULLANILIR --&gt;</span>
+</span><span class="line">            <span class="nt">&lt;intent-filter&gt;</span>
+</span><span class="line">                <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">&quot;android.intent.action.MAIN&quot;</span> <span class="nt">/&gt;</span>
+</span><span class="line">
+</span><span class="line">                <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">&quot;android.intent.category.LAUNCHER&quot;</span> <span class="nt">/&gt;</span>
+</span><span class="line">            <span class="nt">&lt;/intent-filter&gt;</span>
+</span><span class="line">        <span class="nt">&lt;/activity&gt;</span>
+</span><span class="line">     <span class="nt">&lt;/application&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;/manifest&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Android - Veritabanı Kullanımı]]></title>
@@ -542,917 +1741,6 @@ dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşa�
 <li> Rehber çerçevesi kısmına tıklayın </li>
 
 <li> Son kullanılan tablolar kısmını 0 olarak değiştirin </li>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ncurses Kurulumu ve Kullanımı]]></title>
-    <link href="http://bsaral.github.io/blog/2013/03/31/ncurses/"/>
-    <updated>2013-03-31T22:39:00+03:00</updated>
-    <id>http://bsaral.github.io/blog/2013/03/31/ncurses</id>
-    <content type="html"><![CDATA[<p>Merhabalar,</p>
-
-<p>Bugünkü konumuz ncurses. Ncurses’ın ne olduğunu , kurulumunun nasıl yapıldığını ve kullanımıyla ilgili bilgiler vereceğim.</p>
-
-<li><a href="#n1"> NCURSES Nedir ?</a></li>
-<li><a href="#n2"> Nasıl Kurulur ? </a></li>
-<li><a href="#n3"> Nasıl Derlenir ? </a></li>
-<blockquote>
-
-</blockquote>
-
-<h3 id="a-idn1-1--ncurses-nedir--a"><a id="n1"> 1- NCURSES Nedir ? </a></h3>
-
-<p>Bir uygulamanın karakter tabanlı uçbirimlerde görüntüleri üzerinde çalışabilmeyi sağlayan ve özgür olarak dağıtılan işlevler kütüphanesidir. NCURSES sadece uçbirim yetenekleri sarmalayan bir yapı oluşturmaz aynı 
-zamanda metin kipinde hoş görüşünüşlü arayüzler oluşturmak için sağlam bir çalışma taslağı da oluşturur. Pencereler v.b. görünümleri oluşturmak için işlevler sağlar. Kardeş kütüphaneleri olan panel, menu ve form, 
-temel curses kütüphanesine bir genişleme sağlar. </p>
-
-<h3 id="a-idn2-2--nasl-kurulur--a"><a id="n2"> 2- Nasıl Kurulur ? </a></h3>
-
-<p>İlk olarak <a href="http://ftp.gnu.org/pub/gnu/ncurses/ "> bu adresten  </a> ncurses kütüphanesini indiriyoruz.Sonra arşivi açıyoruz yani :</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>tar zxvf ncurses-4.2.tar.gz
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span><span class="nb">cd </span>ncurses-4.2
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>./configure
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>make
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>sudo make install
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h3 id="a-idn3-3--nasl-derlenir--a"><a id="n3"> 3- Nasıl Derlenir ? </a></h3>
-
-<p>Şimdi bir örnekle bunu açıklayalım. Merhaba.c adında bir belge açın ve içine aşağıdakileri kopyalayın.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Merhaba.c </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-</pre></td><td class="code"><pre><code class="c"><span class="line"><span class="n">include</span> <span class="o">&lt;</span><span class="n">ncurses</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
-</span><span class="line">  <span class="n">initscr</span><span class="p">();</span>                      <span class="cm">/* Curses kipine giriş           */</span>
-</span><span class="line">  <span class="n">printw</span><span class="p">(</span><span class="s">&quot;Merhaba Dünya !!!&quot;</span><span class="p">);</span>    <span class="cm">/* Merhaba Dünya yazdırma        */</span>
-</span><span class="line">  <span class="n">refresh</span><span class="p">();</span>                      <span class="cm">/* Onu gerçek ekrana yazdırın    */</span>
-</span><span class="line">  <span class="n">getch</span><span class="p">();</span>                        <span class="cm">/* Kullanıcıyı bekleyin          */</span>
-</span><span class="line">  <span class="n">endwin</span><span class="p">();</span>                       <span class="cm">/* Curses kipinden çıkış         */</span>
-</span><span class="line">
-</span><span class="line">  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">	
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Şimdi derleyelim, terminali açalım ve dosyanın olduğu dizine geldikten sonra :</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>gcc merhaba.c -lncurses
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Ve işte bu kadar…</p>
-
-<p>Kaynak : <a href="http://docs.comu.edu.tr/howto/ncurses-howto-intro.html">http://docs.comu.edu.tr/howto/ncurses-howto-intro.html</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails 3 Production Mod]]></title>
-    <link href="http://bsaral.github.io/blog/2013/03/15/production/"/>
-    <updated>2013-03-15T22:36:00+02:00</updated>
-    <id>http://bsaral.github.io/blog/2013/03/15/production</id>
-    <content type="html"><![CDATA[<p>Merhabalar,</p>
-
-<p>Rails ile yaptığınız uygulamayı production modda çalıştırmanız gerekebilir. Bunun için aşağıdaki işlemleri yapmalısınız.
-İlk önce veritabanımızı production moduna almamız gerekir.Terminale gidip;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ RAILS_ENV</span><span class="o">=</span>production rake db:create
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ RAILS_ENV</span><span class="o">=</span>production rake db:migrate
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Eğer seed dosyanız da varsa;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ RAILS_ENV</span><span class="o">=</span>production rake db:seed
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Şimdi rails server’ ımızı çalıştıralım. 2 şekilde de server’ı production modunda çalıştırabiliriz.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ RAILS_ENV</span><span class="o">=</span>production rails server
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>ya da  </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rails server -e production
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>rails server çalıştıktan sonra <a href="http://localhost:3000"> yerelinizde </a>  açtığınız zaman 404 hatası alıyorsanız :</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle <span class="nb">exec </span>rake assets:precompile
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/environments/production.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line">	
-</span><span class="line"><span class="n">config</span><span class="o">.</span><span class="n">serve_static_assets</span> <span class="o">=</span> <span class="kp">true</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Ve böylece uygulamanızı production modda çalıştırmış olursunuz.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails Devise Sign_up Problemi]]></title>
-    <link href="http://bsaral.github.io/blog/2013/02/19/devise/"/>
-    <updated>2013-02-19T22:37:00+02:00</updated>
-    <id>http://bsaral.github.io/blog/2013/02/19/devise</id>
-    <content type="html"><![CDATA[<p>Merhabalar;</p>
-
-<p>Devise kurulumundan sonra  <a href="http://localhost:3000/users/registration/sign_up">http://localhost:3000/users/registration/sign_up </a>  sayfasında aşağıdaki gibi bir hata alıyorsanız ;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">undefined method <span class="sb">`</span>user_registration_path<span class="err">&#39;</span> <span class="k">for</span> <span class="c">#&lt;#&lt;Class:0x007fd5d3503d58&gt;:0x007fd5d3b0dcd0&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Ya da sign_up kısmı hiç açılmıyorsa sürekli problem yaşıyorsanız bu sorunun sebebi Gemfile içerisinde bulunan <b> devise </b> gem’inin versiyonuyla ilgilidir.
-Gemfile içerisinde devise gem’inin versiyonu yazılmamalıdır yani aşağıdaki gibi yer almalıdır.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="l-Scalar-Plain">gem &#39;devise&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle update
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>yazdıktan sonra sorununuz çözülecektir.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ImageMagick / RMagick Gem Install Error]]></title>
-    <link href="http://bsaral.github.io/blog/2013/02/16/rmagick/"/>
-    <updated>2013-02-16T22:37:00+02:00</updated>
-    <id>http://bsaral.github.io/blog/2013/02/16/rmagick</id>
-    <content type="html"><![CDATA[<p>Gemfile içerisinde bulunan <code> gem "rmagick" ,   '~&gt; 2.13.2' </code> bundle ettiğiniz zaman aşağıdaki gibi bir hata alıyorsanız ;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">ERROR:  Error installing rmagick:
-</span><span class="line">ERROR: Failed to build gem native extension.
-</span><span class="line">
-</span><span class="line">..........
-</span><span class="line">..........
-</span><span class="line">
-</span><span class="line">Gem files will remain installed in /usr/lib/ruby/gems/1.8/gems/rmagick-2.13.1 <span class="k">for </span>inspection.
-</span><span class="line">Results logged to /usr/lib/ruby/gems/1.8/gems/rmagick-2.13.1/ext/RMagick/gem_make.out
-</span><span class="line">	
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Sorunu halletmek için ;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo apt-get install libmagickwand-dev
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>bundle install
-</span><span class="line">	
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails 3 de Nested Form Nasıl Oluşturulur ?]]></title>
-    <link href="http://bsaral.github.io/blog/2013/02/11/nested-forms/"/>
-    <updated>2013-02-11T22:16:00+02:00</updated>
-    <id>http://bsaral.github.io/blog/2013/02/11/nested-forms</id>
-    <content type="html"><![CDATA[<p>Aşağıdakilerin adım adım uygulanması gerekir.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">gem <span class="s2">&quot;nested_form&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle install
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>rails g nested_form:install
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Bu koddan sonra <code> public/javascripts/nested_form.js </code>  oluşması gerekiyor.Biz bu js belgesini <code> app/assets/javascripts/ </code> altına kopyalayalım. Daha sonra;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>controllers/projects_controller.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">def</span> <span class="nf">new</span>
-</span><span class="line">	<span class="vi">@project</span><span class="o">=</span><span class="no">Project</span><span class="o">.</span><span class="n">new</span>
-</span><span class="line">	<span class="vi">@project</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">build</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>model/project.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Project</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class="line">
-</span><span class="line">	<span class="n">has_many</span> <span class="ss">:tasks</span><span class="p">,</span> <span class="ss">:dependent</span> <span class="o">=&gt;</span> <span class="ss">:destroy</span>
-</span><span class="line">	<span class="n">attr_accessible</span> <span class="ss">:tasks_attributes</span><span class="p">,</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:description</span>
-</span><span class="line">	<span class="n">accepts_nested_attributes_for</span> <span class="ss">:tasks</span><span class="p">,</span> <span class="ss">:allow_destroy</span> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span><span class="line">
-</span><span class="line"><span class="k">end</span>
-</span><span class="line">	
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>model/task.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Task</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class="line">	<span class="n">belongs_to</span> <span class="ss">:project</span>
-</span><span class="line"><span class="k">end</span>
-</span><span class="line">	
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>views/projects/_form.html.erb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="o">&lt;</span><span class="sx">%= nested_form_for @project do |f| %&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="sx">	&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:name</span> <span class="sx">%&gt;</span>
-</span><span class="line"><span class="sx">	&lt;%= f.text_field(:name) %&gt;</span><span class="o">&lt;</span><span class="n">br</span> <span class="sr">/&gt;</span>
-</span><span class="line"><span class="sr">	&lt;%= f.label :description %&gt;</span>
-</span><span class="line"><span class="sr">	&lt;%= f.text_field(:description) %&gt;&lt;br /</span><span class="o">&gt;</span>
-</span><span class="line">	
-</span><span class="line">	<span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span> <span class="no">Tasks</span><span class="o">&lt;</span><span class="sr">/h3&gt;</span>
-</span><span class="line"><span class="sr">	</span>
-</span><span class="line"><span class="sr">	&lt;%= f.fields_for :tasks do |task| %&gt;</span>
-</span><span class="line"><span class="sr">		&lt;%= task.label :name %&gt;&lt;br /</span><span class="o">&gt;</span>
-</span><span class="line">		<span class="o">&lt;</span><span class="sx">%= task.text_field :name %&gt;&lt;br /&gt;</span>
-</span><span class="line"><span class="sx">		&lt;%=</span> <span class="n">task</span><span class="o">.</span><span class="n">link_to_remove</span> <span class="s2">&quot;Remove this task&quot;</span> <span class="sx">%&gt;</span>
-</span><span class="line"><span class="sx">	&lt;% end %&gt;</span>
-</span><span class="line">	<span class="o">&lt;</span><span class="sx">%= f.link_to_add &quot;Add a task&quot;, :tasks %&gt;</span>
-</span><span class="line"><span class="sx">	&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">submit</span> <span class="sx">%&gt;</span>
-</span><span class="line"><span class="sx">&lt;% end %&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails de Sqlite3 Veritabanını Mysql'e Aktarmak]]></title>
-    <link href="http://bsaral.github.io/blog/2013/01/11/sqlite3-from-mysql/"/>
-    <updated>2013-01-11T22:16:00+02:00</updated>
-    <id>http://bsaral.github.io/blog/2013/01/11/sqlite3-from-mysql</id>
-    <content type="html"><![CDATA[<p>Veritabanını Sqlite 3 ile sağladığınız bir rails projesinde , her ne kadar ilerlemiş olursanız olun her zaman mysql’e çevirme
-şansınız vardır.İlk olarak ;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>database.yml </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="err">	</span><span class="l-Scalar-Plain">development</span><span class="p-Indicator">:</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mysql2</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">reconnect</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">databasename_development</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">root</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&quot;parola&quot;</span><span class="p-Indicator">]</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">socket</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/var/run/mysqld/mysqld.sock</span>
-</span><span class="line">
-</span><span class="line"><span class="err">	</span><span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mysql2</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">reconnect</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">databasename_test</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">root</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&quot;parola&quot;</span><span class="p-Indicator">]</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">socket</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/var/run/mysqld/mysqld.sock</span>
-</span><span class="line">
-</span><span class="line"><span class="err">	</span><span class="l-Scalar-Plain">production</span><span class="p-Indicator">:</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mysql2</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">reconnect</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">databasename_production</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">root</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&quot;parola&quot;</span><span class="p-Indicator">]</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">socket</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/var/run/mysqld/mysqld.sock</span>
-</span><span class="line"><span class="err">	</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>şimdi bu kodları terminale girmemiz gerekiyor.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:create
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:schema:dump
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>bu koddan sonra aşağıdaki gibi bir hata alıyorsanız ;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">rake aborted!
-</span><span class="line">
-</span><span class="line">Please install the mysql2 adapter: gem install activerecord-mysql2-adapter
-</span><span class="line">   <span class="o">(</span>mysql2 is not part of the bundle.
-</span><span class="line">Add it to Gemfile.<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Bu hata için;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem install activerecord-mysql2-adapter
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">gem</span> <span class="s2">&quot;activerecord-mysql2-adapter&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:load
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Ve hata alırız:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">	rake aborted!
-</span><span class="line">	Don<span class="s1">&#39;t know how to build task &#39;</span>db:load<span class="err">&#39;</span>
-</span><span class="line">	<span class="o">(</span>See full trace by running task with --trace<span class="o">)</span>
-</span><span class="line">	
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">gem</span> <span class="s1">&#39;yaml_db&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:load
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:migrate
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Ve veritabanlarımızı mysql’e aktarmış olduk.Eğer sisteminiz de phpmyadmin varsa, aktarmış olduğumuz tabloları orda takip edebilirsiniz.</p>
-
-<blockquote>
-
-</blockquote>
-
-<h4>UYARI : </h4>
-<p>Eğer rails server çalıştırdığınız da </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">mysql undefined method <span class="sb">`</span>accept<span class="err">&#39;</span> <span class="k">for </span>nil:NilClass
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>hatasını alıyorsanız Gemfile içerisinde <code> gem "activerecord-mysql2-adapter" </code> silmeniz gerekiyor.Ayrıca
-<code> gem  "mysql2", "&gt;= 0.3.11" </code> Gemfile içerisinde bulunması gerekir.Bu işlemleri yaptıktan sonra veritabanınızda bulunan
-tüm tabloları silin ve yeniden oluşturun yani :</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rake db:migrate
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>ve seed dosyanız dolu ise;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rake db:seed
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Kolay gelsin.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Phpmyadmin 404 hatası]]></title>
-    <link href="http://bsaral.github.io/blog/2012/12/28/phpmyadmin/"/>
-    <updated>2012-12-28T22:39:00+02:00</updated>
-    <id>http://bsaral.github.io/blog/2012/12/28/phpmyadmin</id>
-    <content type="html"><![CDATA[<p>Yerelinizde (http://localhost/phpmyadmin) phpmyadmin’i çalıştırdığınız da aşağıdaki gibi bir hata alıyorsarsanız ;</p>
-
-<p><code> The requested URL /phpmyadmin was not found on this server. </code></p>
-
-<p>şu kodları terminalde çalıştırarak bu problemi halledebilirsiniz.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo dpkg-reconfigure -plow phpmyadmin
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf.d/phpmyadmin.conf
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>sudo /etc/init.d/apache2 reload
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails de Csv ile Kullanıcıları İçe Aktarmak]]></title>
-    <link href="http://bsaral.github.io/blog/2012/12/19/csv/"/>
-    <updated>2012-12-19T22:37:00+02:00</updated>
-    <id>http://bsaral.github.io/blog/2012/12/19/csv</id>
-    <content type="html"><![CDATA[<p>Elimiz de kullanıcıların bulunduğu bir tablo var ve biz bunu csv ile içe aktarmak istiyoruz. İlk olarak gem’i yüklememiz gerekiyor.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="l-Scalar-Plain">gem &#39;roo&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle install
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>sessions/index.html.erb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;h2&gt;</span>Import Users<span class="nt">&lt;/h2&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="err">&lt;</span>%= form_tag import_sessions_path, multipart: true do %&gt;
-</span><span class="line">  <span class="err">&lt;</span>%= file_field_tag :file %&gt;
-</span><span class="line">  <span class="err">&lt;</span>%= submit_tag &quot;Import&quot; %&gt;
-</span><span class="line"><span class="err">&lt;</span>% end %&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/routes.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">resources</span> <span class="ss">:sessions</span> <span class="k">do</span>
-</span><span class="line">	<span class="n">collection</span> <span class="p">{</span> <span class="n">post</span> <span class="ss">:import</span> <span class="p">}</span>
-</span><span class="line"><span class="k">end</span>
-</span><span class="line">	
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/application.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
-</span><span class="line"><span class="nb">require</span> <span class="s1">&#39;iconv&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>controllers/sessions_controller.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">def</span> <span class="nf">import</span>
-</span><span class="line">  <span class="no">User</span><span class="o">.</span><span class="n">import</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:file</span><span class="o">]</span><span class="p">)</span>
-</span><span class="line">  <span class="n">redirect_to</span> <span class="n">root_url</span><span class="p">,</span> <span class="ss">notice</span><span class="p">:</span> <span class="s2">&quot;Products imported.&quot;</span>
-</span><span class="line"><span class="k">end</span>
-</span><span class="line">	
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>models/user.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">import</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-</span><span class="line">  <span class="n">spreadsheet</span> <span class="o">=</span> <span class="n">open_spreadsheet</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-</span><span class="line">  <span class="n">header</span> <span class="o">=</span> <span class="n">spreadsheet</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span class="line">  <span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="n">.spreadsheet</span><span class="o">.</span><span class="n">last_row</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
-</span><span class="line">	<span class="n">row</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">[[</span><span class="n">header</span><span class="p">,</span> <span class="n">spreadsheet</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">].</span><span class="n">transpose</span><span class="o">]</span>
-</span><span class="line">	<span class="n">product</span> <span class="o">=</span> <span class="n">find_by_id</span><span class="p">(</span><span class="n">row</span><span class="o">[</span><span class="s2">&quot;id&quot;</span><span class="o">]</span><span class="p">)</span> <span class="o">||</span> <span class="kp">new</span>
-</span><span class="line">	<span class="n">product</span><span class="o">.</span><span class="n">attributes</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">to_hash</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="o">*</span><span class="n">accessible_attributes</span><span class="p">)</span>
-</span><span class="line">	<span class="n">product</span><span class="o">.</span><span class="n">save!</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span><span class="line">
-</span><span class="line"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">open_spreadsheet</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-</span><span class="line">  <span class="k">case</span> <span class="no">File</span><span class="o">.</span><span class="n">extname</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">original_filename</span><span class="p">)</span>
-</span><span class="line">  <span class="k">when</span> <span class="s2">&quot;.csv&quot;</span> <span class="k">then</span> <span class="no">Csv</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="ss">:ignore</span><span class="p">)</span>
-</span><span class="line">  <span class="k">when</span> <span class="s2">&quot;.xls&quot;</span> <span class="k">then</span> <span class="no">Excel</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="ss">:ignore</span><span class="p">)</span>
-</span><span class="line">  <span class="k">when</span> <span class="s2">&quot;.xlsx&quot;</span> <span class="k">then</span> <span class="no">Excelx</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="ss">:ignore</span><span class="p">)</span>
-</span><span class="line">  <span class="k">else</span> <span class="k">raise</span> <span class="s2">&quot;Unknown file type: </span><span class="si">#{</span><span class="n">file</span><span class="o">.</span><span class="n">original_filename</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Eğer yerelinizde çalışıyorsanız sisteme http://localhost:3000/sessions  ulaşabilirsiniz.</p>
-
-<h4> DİKKAT !  </h4>
-<p>İmport edilen csv dosyasının içeriği, oluşturduğunuz kullanıcı tablosundaki özellikleri dikkate alınarak şekillenmelidir. </p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails Therubyracer gem kurulum problemi]]></title>
-    <link href="http://bsaral.github.io/blog/2012/12/18/therubyracer/"/>
-    <updated>2012-12-18T22:37:00+02:00</updated>
-    <id>http://bsaral.github.io/blog/2012/12/18/therubyracer</id>
-    <content type="html"><![CDATA[<p>Deponuzda gemfile içerisinde therubyracer gem kurulumunda eğer aşağıdaki gibi bir kurulum hatası alıyorsanız ;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">Gem::Installer::ExtensionBuildError: ERROR: Failed to build gem native extension.
-</span><span class="line">
-</span><span class="line">		/usr/bin/ruby1.9.1 extconf.rb
-</span><span class="line">*** extconf.rb failed ***
-</span><span class="line">Could not create Makefile due to some reason, probably lack of
-</span><span class="line">necessary libraries and/or headers.  Check the mkmf.log file <span class="k">for </span>more
-</span><span class="line">details.  You may need configuration options.
-</span><span class="line">
-</span><span class="line">Provided configuration options:
-</span><span class="line">	--with-opt-dir
-</span><span class="line">	--without-opt-dir
-</span><span class="line">	--with-opt-include
-</span><span class="line">	--without-opt-include<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/include
-</span><span class="line">	--with-opt-lib
-</span><span class="line">	--without-opt-lib<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/lib
-</span><span class="line">	--with-make-prog
-</span><span class="line">	--without-make-prog
-</span><span class="line">	--srcdir<span class="o">=</span>.
-</span><span class="line">	--curdir
-</span><span class="line">	--ruby<span class="o">=</span>/usr/bin/ruby1.9.1
-</span><span class="line">extconf.rb:15:in &lt;main&gt;: undefined method include_path <span class="k">for </span>Libv8:Module <span class="o">(</span>NoMethodError<span class="o">)</span>
-</span><span class="line">
-</span><span class="line">
-</span><span class="line">Gem files will remain installed in /home/uzem/.bundler/tmp/8120/gems/therubyracer-0.10.1 <span class="k">for </span>inspection.
-</span><span class="line">Results logged to /home/uzem/.bundler/tmp/8120/gems/therubyracer-0.10.1/ext/v8/gem_make.out
-</span><span class="line">
-</span><span class="line">An error occurred <span class="k">while </span>installing therubyracer <span class="o">(</span>0.10.1<span class="o">)</span>, and Bundler cannot <span class="k">continue</span>.
-</span><span class="line">Make sure that gem install therubyracer -v <span class="s1">&#39;0.10.1&#39;</span>succeeds before bundling.
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>aşağıdaki kodlar bu sorunu ortadan kaldırır.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem uninstall libv8
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>çıktı aşağıdaki gibiyse 3 ‘e basıp devam ediniz ;</p>
-
-<pre><code>Select gem to uninstall:
- 1. libv8-3.3.10.4-x86-linux
- 2. libv8-3.11.8.4
- 3. All versions
- &gt; 3 
-</code></pre>
-
-<p>en son olarak da </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem install therubyracer
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle install
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>sorunumuz çözüldü.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails Sqlite3 Gem Problemi]]></title>
-    <link href="http://bsaral.github.io/blog/2012/11/23/sqlite3/"/>
-    <updated>2012-11-23T22:38:00+02:00</updated>
-    <id>http://bsaral.github.io/blog/2012/11/23/sqlite3</id>
-    <content type="html"><![CDATA[<p>Yeni bir rails projesi oluştururken</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle install
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>gemler yüklendiğinde sqlite3 gem problemiyle karşılaşıyorsanız ;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo apt-get install libsqlite3-0 libsqlite3-dev
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem install sqlite3-ruby
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[TTNET Yeteneğe Destek Eğitim Projesi]]></title>
-    <link href="http://bsaral.github.io/blog/2012/09/05/ttnet/"/>
-    <updated>2012-09-05T21:30:00+03:00</updated>
-    <id>http://bsaral.github.io/blog/2012/09/05/ttnet</id>
-    <content type="html"><![CDATA[<p>Bugün sabahın erken vakitlerinde kalkarak (saat tam olarak 7 de ) üniversitemizde Ttnet’in yaptığı eğitim seminerinin katıldık. 2 gün sürecek olana seminerin ilk gününü geride bıraktık.Açık konuşmak gerekirse arkadaş zoruyla katıldığım ve hiç de iyi geçmeyeceğini düşündüğüm bir seminerdi.
-Ama böyle olmadı. Verilen eğitimler,yapılan sohbetler son derece önemliydi ve özellikle seminerde ki hocalarımızın kendi anılarını anlatması,örnekler vermesi,kişiler ve gruplarla birebir ilgilenilmesi katılımcılara büyük fayda sağladı.</p>
-
-<p>Şimdi can alıcı noktaya değinmek istiyorum.Seminerde eğitim kısmı bittikten sonra son 45 dk hocaların rastgele belirlediği grubunla bir proje fikri üretmen gerekiyor.Düşünün grupta kimse kimseyi tanımıyor ama her ağızdan farklı bir fikir çıkıyor iyi olsun kötü olsun her şekilde saygı duyuluyor ve eleştiriliyor.Hem karşındaki insanın ufku genişliyor,hem de senin hiç aklına gelmiyecek ya da ilgi alanının olmadığı bir konu hakkında sende bilgi sahibi olup kendi alanında bunu nasıl geliştirebileceğini düşünmeye başlıyorsun.Zaten ttnet de bu seminerden bu amacın çıkarılmasını istiyor.Katılımcıları özellikle rastgele farklı gruplara dağıtıyor ki, gruplarda alanlar ne kadar farklı olursa o kadar büyük düşünülüyor ve çok değişik fikirler ortaya çıkıyor.</p>
-
-<p>Kısacası gerçekten bizim için yararlı ve güzel bir seminerdi.Ayrıca en kısa zaman içerisinde anlatılan teknik konuları buraya da aktarmayı planlıyorum.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Mysql Root Şifresini Yeniden Oluşturmak]]></title>
-    <link href="http://bsaral.github.io/blog/2012/06/01/mysql/"/>
-    <updated>2012-06-01T22:14:00+03:00</updated>
-    <id>http://bsaral.github.io/blog/2012/06/01/mysql</id>
-    <content type="html"><![CDATA[<p>Mysql root şifrenizi unuttuysanız eğer aşağıdaki adımları takip ederek
-şifrenizi yeniden oluşturabilirsiniz.</p>
-
-<li> ilk olarak mysql durdurulur. </li>
-<blockquote>
-
-</blockquote>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$/</span>etc/init.d/mysql stop
-</span><span class="line">
-</span><span class="line">Stopping MySQL:		<span class="o">[</span>OK<span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<li> şimdi mysql skip-grant özelliği ile yeniden başlatalım </li>
-<blockquote>
-
-</blockquote>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>mysqld_safe --skip-grant-tables &amp;
-</span><span class="line">
-</span><span class="line">Starting mysqld daemon with databases from /var/lib/mysql
-</span><span class="line">
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>mysql -u root
-</span><span class="line">
-</span><span class="line">Welcome to the MySQL monitor.  Commands end with ; or g.
-</span><span class="line">Your MySQL connection id is 1
-</span><span class="line">Server version: 5.0.45 Source distribution
-</span><span class="line">
-</span><span class="line">Type <span class="s1">&#39;help;&#39;</span> or <span class="s1">&#39;h&#39;</span> <span class="k">for </span>help. Type <span class="s1">&#39;c&#39;</span> to clear the buffer.
-</span><span class="line">
-</span><span class="line">mysql&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<li> şimdi yeniden şifre oluşturalım </li>
-<blockquote>
-
-</blockquote>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">mysql&gt; use mysql;
-</span><span class="line">mysql&gt; update user <span class="nb">set </span><span class="nv">password</span><span class="o">=</span>PASSWORD<span class="o">(</span><span class="s2">&quot;Yeni_Sifreniz&quot;</span><span class="o">)</span> where <span class="nv">User</span><span class="o">=</span><span class="s1">&#39;root&#39;</span>;
-</span><span class="line">mysql&gt; flush privileges;
-</span><span class="line">mysql&gt; quit;
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<li> mysql yeniden durdurulur. </li>
-<blockquote>
-
-</blockquote>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>/etc/init.d/mysqld stop
-</span><span class="line">
-</span><span class="line">Stopping MySQL:      <span class="o">[</span>  OK  <span class="o">]</span>
-</span><span class="line"><span class="o">[</span>1<span class="o">]</span>+  Done mysqld_safe --skip-grant-tables
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<li> ve son adım da mysql normal olarak yeniden başlatılır. </li>
-<blockquote>
-
-</blockquote>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>/etc/init.d/mysqld start
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Google Chrome Gizli Mod]]></title>
-    <link href="http://bsaral.github.io/blog/2012/05/31/chrome/"/>
-    <updated>2012-05-31T22:40:00+03:00</updated>
-    <id>http://bsaral.github.io/blog/2012/05/31/chrome</id>
-    <content type="html"><![CDATA[<p>Gizli mod Google Chrome ‘un kullanıcılarına sunduğu önemli özelliklerinden biridir. Peki bu gizli mod ne işe yarar? Nasıl kullanılır ?</p>
-
-<li> Gizli moddayken açılan web sayfaları,indirilen dosyalar tarama ve indirme geçmişinde gözükmez. </li>
-
-<li> Tüm çerezler gizli mod kapatıldıktan sonra silinir. </li>
-
-<li> Gizli moddayken Google Chrome yer işaretleriniz ve genel ayarlarınız üzerinde yapılan değişiklikler her zaman kaydedilir. </li>
-
-<li> Yazmış olduğunuz şifreler ve kullanıcı adları kaydedilmez.</li>
-
-<p>Browser da gizli modu açmak için CTRL+SHIFT+N tuş kombinasyonu kullanılır.<img src="http://bsaral.github.io/images/secret.gif" /></p>
 ]]></content>
   </entry>
   

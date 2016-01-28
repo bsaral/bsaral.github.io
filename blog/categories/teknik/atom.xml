@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Teknik | Betül SARAL]]></title>
   <link href="http://bsaral.github.io/blog/categories/teknik/atom.xml" rel="self"/>
   <link href="http://bsaral.github.io/"/>
-  <updated>2013-09-12T02:04:28+03:00</updated>
+  <updated>2016-01-28T12:16:59+02:00</updated>
   <id>http://bsaral.github.io/</id>
   <author>
     <name><![CDATA[BETÜL SARAL]]></name>
@@ -14,222 +14,15 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Android - Veritabanı Kullanımı]]></title>
-    <link href="http://bsaral.github.io/blog/2013/09/12/android-database/"/>
-    <updated>2013-09-12T01:35:00+03:00</updated>
-    <id>http://bsaral.github.io/blog/2013/09/12/android-database</id>
-    <content type="html"><![CDATA[<p>Android’e yeni başlayanlar için önemli ve uğraştırıcı olan bir konu veritabanıdır. Android uygulamalarında veritabanı olarak Oracle, Mysql, Sqlite gibi birçok seçenek vardır. Ama kurulum ve konfigürasyon bakımından en kolayı Sqlite olduğu için genellikle Android de bu tercih edilir.</p>
+    <title type="html"><![CDATA[Node.js - Async]]></title>
+    <link href="http://bsaral.github.io/blog/2016/01/28/node-async/"/>
+    <updated>2016-01-28T12:14:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2016/01/28/node-async</id>
+    <content type="html"><![CDATA[<p>Async, asenkron işlemler için kullanılan bir javascript kütüphanesidir. Bu kütüphanede önemli olan asenkron işlemlerinin yönetimini kolaylaştıracak control flow fonksiyonlarıdır. Async ile işlem yapabilmek için önce npm ile <a href="https://www.npmjs.com/package/async"> modülü </a> yüklemek gerekir.</p>
 
-<p>Android de oluşturduğumuz ya da var olan veritabanları <b> /data/data/package_name/databases </b> dizini altında bulunur. Bu dizine erişebilmek için Eclipse ‘de DDMS sekmesinden ya da açık değilse, Window-Show View-File Explorer ‘ı seçmemiz gerekiyor. Daha sonra dizin altından veritabanımıza erişebiliriz. DDMS ‘den sadece veritabanına erişimi sağlayabiliriz. Veritabanı içerisindeki tabloları,yapıları görmek için 
-SQLiteManager kullanabiliriz. SQLiteManager, Firefox <a href="https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/"> eklentisi </a> olarak kullanılır.</p>
+<p>İlk olarak async.parallel fonksiyonuna bakalım. Bu kullanım, fonksiyonların birbirlerini bekletmeden çalışmasını sağlar. Yani 3 fonksiyonunuzda aynı anda çalışmaya başlar ve işlem bittiğinde size sonuç döner. Aşağıda örnek kullanımı bulunmaktadır.</p>
 
-<p><img src="http://i.imgur.com/zk5UezT.png" /></p>
-
-<p>Şimdi oluşturduğumuz veritabanını önce push ederek dışarı aktaralım. Databasename.db adındaki dosyamızı push ettikten sonra Firefox’dan SQLiteManager’ı açarak veritabanımızı içeri aktaralım. Burda veritabanında yaptığımız her değişiklik .db dosyamıza kaydedilir. Yaptığımız değişiklikleri uygulamamızın içerisine aktarmak içinde tekrar DDMS sekmesinden dizinimizin altındaki veritabanımıza gelip, önceden dışarı aktardığımız ve üzerinde SQLiteManager ile çalıştığımız veritabanı dosyamızı pull ederek yaparız.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Vagrant - Ansible Playbook]]></title>
-    <link href="http://bsaral.github.io/blog/2013/07/05/vagrant/"/>
-    <updated>2013-07-05T01:18:00+03:00</updated>
-    <id>http://bsaral.github.io/blog/2013/07/05/vagrant</id>
-    <content type="html"><![CDATA[<p>Merhabalar,</p>
-
-<p>Vagrant ansible playbook paketlerinin bulunduğu bir depoyu kurmaya çalışırken $ vagrant up kısmında aşağıdaki hata ile karşılaştım.</p>
-
-<p><img src="http://i.imgur.com/i5N41sq.png" /></p>
-
-<p>Hatada anlatılmak istenilen vagrant-ansible geminin kurulmamış olmasıdır. Bu sorunu düzeltmek için ilk önce sistemi update ettim.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>sudo apt-get update
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>Sistemim kendini update ederken /etc/apt/sources.list.d dizini altındaki bazı dosyalar yüzünden birkaç hata ile karşılaşarak güncelleştirmeyi yarıda kesti.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>…&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;N: Ignoring file ‘ferramroberto-java-oneiric.list.save’ in directory ‘/etc/apt/sources.list.d/’ as it has an invalid filename extension
-</span><span class='line'>N: Ignoring file ‘webupd8team-java-oneiric.list.save’ in directory ‘/etc/apt/sources.list.d/’ as it has an invalid filename extension
-</span><span class='line'>N: Ignoring file ‘oneiric-partner.list.save’ in directory ‘/etc/apt/sources.list.d/’ as it has an invalid filename extension&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;…
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>Bu sorunu halletmek için sources.list.d dizinimiz altındaki hata veren dosyaları silmeliyiz.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span><span class="nb">cd</span> /etc/apt/sources.list.d/&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo rm ferramroberto-java-oneiric.list.save webupd8team-java-oneiric.list.save oneiric-partner.list.save&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo apt-get update
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>Böylece sistemimiz sorunsuz bir şekilde güncelleştirmesini tamamlamış oldu. Şimdi ansible gem kurulumunu yapalım.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>sudo add-apt-repository ppa:rquillo/ansible&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo apt-get update&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo apt-get install ansible -y&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo gem install vagrant-ansible
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>Ve gemimiz kurulmuş oldu. Şimdi depomuza giderek</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span><span class="nb">cd </span>repository&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>vagrant up&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>vagrant ssh
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>Sanal makinanız sorunsuz bir şekilde çalışmış olmalıdır. Eğer $ vagrant up kısmında</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>…&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;ImportError: No module named yaml
-</span><span class='line'>…&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>sudo apt-get install python-yaml
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>Sorunumuz halledilir. Kolay gelsin.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Octopress İle Blog Oluşturma]]></title>
-    <link href="http://bsaral.github.io/blog/2013/06/23/octopress/"/>
-    <updated>2013-06-23T01:04:00+03:00</updated>
-    <id>http://bsaral.github.io/blog/2013/06/23/octopress</id>
-    <content type="html"><![CDATA[<p>Octopress, Jekyll için hazırlanan, Github Pages’in arkasında da kullanılan bir statik blog framework’ü. En popüler engine olarak görülüyor. Octopress rails tabanlı olduğundan kullanımı diğer blog yazılımlarına göre çok farklı. Şimdi adım adım octopress kurulumu ve kullanımına geçelim. Sisteminizde Ruby kurulu olmalıdır.</p>
-
-<p>İlk olarak Octopress deposunu klonlayalım.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git clone git://github.com/imathis/octopress.git octopress&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span><span class="nb">cd </span>octopress&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>bundle install
-</span><span class='line'>…
-</span><span class='line'>…
-</span><span class='line'>Your bundle is <span class="nb">complete</span>!&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>rake install&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h2 <span class="nv">id</span><span class="o">=</span><span class="s2">&quot;copying-classic-theme-into-source-and-sass&quot;</span>&gt;Copying classic theme into ./source and ./sass&lt;/h2&gt;
-</span><span class='line'>&lt;p&gt;mkdir -p <span class="nb">source</span>
-</span><span class='line'>cp -r .themes/classic/source/. <span class="nb">source</span>
-</span><span class='line'>mkdir -p sass
-</span><span class='line'>cp -r .themes/classic/sass/. sass
-</span><span class='line'>mkdir -p <span class="nb">source</span>/_posts
-</span><span class='line'>mkdir -p public&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>Blogumuz oluştu. Şimdi blog içerisindeki ayarlamaları yapalım. Bunun için octopress ayarlarının bulunduğu _config.yml dosyasında düzenlemeler yapmamız gerekiyor. Bu dosyadaki kesin düzenlenmesi gereken kısım aşağıdaki gibidir.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>url:  			<span class="c"># Blog adresiniz</span>
-</span><span class='line'>title:  		<span class="c"># Blog Başlığı</span>
-</span><span class='line'>subtitle: 		<span class="c"># Alt Başlık</span>
-</span><span class='line'>author: 		<span class="c"># Blogger Adı</span>
-</span><span class='line'>simple_search: 		<span class="c"># http://google.com/search</span>
-</span><span class='line'>description:		<span class="c"># Blog Hakkında Bilgi&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>Dosyanın alt taraflarında sosyal ağ bağlantılarınızla ilgili ayarlamalarınızı yapmanız mümkündür.</p>
-
-<p>Şimdi ilk blog yazımızı oluşturalım.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>rake new_post<span class="o">[</span>“hello-octopress”<span class="o">]</span>
-</span><span class='line'>…
-</span><span class='line'>Creating new post: <span class="nb">source</span>/_posts/2013-06-23-hello-octopress.markdown&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>_posts dizinimizin altında dosyamız oluştu. Şimdi dosyayı açıp blogunuzu markdown syntax uygun bir biçimde yazabilirsiniz.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>async2.js </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -254,39 +47,58 @@ SQLiteManager kullanabiliriz. SQLiteManager, Firefox <a href="https://addons.moz
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
 <span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>rake generate&lt;/p&gt;
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>	<span class="kd">var</span> <span class="nx">async</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="err">‘</span><span class="nx">async</span><span class="err">’</span><span class="p">)</span>
+</span><span class='line'>	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="err">‘</span><span class="nx">fs</span><span class="err">’</span><span class="p">);</span>
+</span><span class='line'>	<span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span><span class="o">+</span><span class="err">”</span><span class="o">:</span><span class="err">”</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span><span class="o">+</span><span class="err">”</span><span class="o">:</span><span class="err">”</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">());</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;…
-</span><span class='line'>Building site: <span class="nb">source</span> -&amp;gt; public
-</span><span class='line'>Successfully generated site: <span class="nb">source</span> -&amp;gt; public&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>rake preview&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Configuration from /home/betul/octopress/_config.yml
-</span><span class='line'><span class="o">[</span>2013-06-23 23:43:46<span class="o">]</span> INFO  WEBrick 1.3.1
-</span><span class='line'><span class="o">[</span>2013-06-23 23:43:46<span class="o">]</span> INFO  ruby 1.9.2 <span class="o">(</span>2011-07-09<span class="o">)</span> <span class="o">[</span>i686-linux<span class="o">]</span>
-</span><span class='line'><span class="o">[</span>2013-06-23 23:43:46<span class="o">]</span> INFO  WEBrick::HTTPServer#start: <span class="nv">pid</span><span class="o">=</span>4168 <span class="nv">port</span><span class="o">=</span>4000
-</span><span class='line'>Auto-regenerating enabled: <span class="nb">source</span> -&amp;gt; public
-</span><span class='line'><span class="o">[</span>2013-06-23 23:43:46<span class="o">]</span> regeneration: 94 files changed
-</span><span class='line'>»&amp;gt; Change detected at 23:43:46 to: screen.scss
-</span><span class='line'>identical public/stylesheets/screen.css&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Dear developers making use of FSSM in your projects,
-</span><span class='line'>FSSM is essentially dead at this point. Further development will
-</span><span class='line'>be taking place in the new shared guard/listen project. Please
-</span><span class='line'><span class="nb">let </span>us know <span class="k">if </span>you need <span class="nb">help </span>transitioning! ^_^b
-</span><span class='line'>- Travis Tilley&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">async</span><span class="p">.</span><span class="nx">parallel</span><span class="p">({</span>
+</span><span class='line'>    <span class="nx">one</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class='line'>       <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">j</span><span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">=</span> <span class="mi">3000000000</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">){</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="nx">j</span> <span class="o">===</span> <span class="mi">3000000000</span><span class="p">){</span>
+</span><span class='line'>                <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="s2">&quot;one&quot;</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nx">two</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">k</span><span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">=</span> <span class="mi">6000000000</span><span class="p">;</span> <span class="nx">k</span><span class="o">++</span><span class="p">){</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="nx">k</span> <span class="o">===</span> <span class="mi">6000000000</span><span class="p">){</span>
+</span><span class='line'>                <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="s2">&quot;two&quot;</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="nx">three</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">=</span> <span class="mi">100</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="mi">100</span><span class="p">){</span>
+</span><span class='line'>                <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="s2">&quot;three&quot;</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'><span class="p">},</span>
+</span><span class='line'><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">());</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</code></pre>
 
-<p>En son kodumuz ile localhost:4000 adresinde bir server açtık. Bu adrese girdiğinizde blogunuzun güncel halini görebilirsiniz.</p>
+<p>Fonksiyonun ne kadar süre çalıştığını göstermek için zamanı da ekledim. Sonuç aşağıdaki gibidir </p>
 
-<p>Blogumuzu oluşturduk şimdi deploy aşamasına geçelim. Ben github üzerinden gidicem fakat octopress sadece github değil heroku,rsync gibi hosting servisleri sağlayan sitelerede deploy edilebilir.</p>
+<p><img src="http://bsaral.github.io/images/async1.png" /></p>
 
-<p>İlk olarak github da create new Github reposity diyerek kendi kullanıcı adımızla oluşturduğumuz yani username.github.io adında bir depo oluşturalım. Daha sonra yerelimizde bulunan octopress dizinine girip terminalde şu kodları yazalım :</p>
+<p>İkinci olarak ise async.series fonksiyonuna bakalım. Bu kullanımda ise fonksiyonlar sıraya dizilir ve birbirlerini bekleyip callback döndürürler. Örnek olarak aşağıdaki gibidir.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>async2.js </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -303,63 +115,63 @@ SQLiteManager kullanabiliriz. SQLiteManager, Firefox <a href="https://addons.moz
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>rake setup_github_pages&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Enter the <span class="nb">read</span>/write url <span class="k">for </span>your repository: git@github.com:username/username.github.com.git&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;Added remote git@github.com:username/username.github.com.git as origin
-</span><span class='line'>Set origin as default remote
-</span><span class='line'>Master branch renamed to ‘source’ <span class="k">for </span>committing your blog <span class="nb">source </span>files
-</span><span class='line'>Initialized empty Git repository in /home/username/source/octopress/_deploy/.git/
-</span><span class='line'><span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 2a4e9e7<span class="o">]</span> Octopress init
-</span><span class='line'>1 files changed, 1 insertions<span class="o">(</span>+<span class="o">)</span>, 0 deletions<span class="o">(</span>-<span class="o">)</span>
-</span><span class='line'>create mode 100644 index.html&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;hr /&gt;
-</span><span class='line'>&lt;p&gt;## Now you can deploy to http://username.github.com with &lt;code&gt;rake deploy&lt;/code&gt; <span class="c">##&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>	<span class="kd">var</span> <span class="nx">async</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="err">‘</span><span class="nx">async</span><span class="err">’</span><span class="p">)</span>
+</span><span class='line'>	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="err">‘</span><span class="nx">fs</span><span class="err">’</span><span class="p">);</span>
+</span><span class='line'>	<span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span><span class="o">+</span><span class="err">”</span><span class="o">:</span><span class="err">”</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span><span class="o">+</span><span class="err">”</span><span class="o">:</span><span class="err">”</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">());</span>
+</span><span class='line'>	<span class="nx">async</span><span class="p">.</span><span class="nx">series</span><span class="p">({</span>
+</span><span class='line'>        <span class="nx">one</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class='line'>           <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">j</span><span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">=</span> <span class="mi">3000000000</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">){</span>
+</span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="nx">j</span> <span class="o">===</span> <span class="mi">3000000000</span><span class="p">){</span>
+</span><span class='line'>                    <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="err">”</span><span class="nx">one</span><span class="err">”</span><span class="p">)</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nx">two</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">k</span><span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">=</span> <span class="mi">6000000000</span><span class="p">;</span> <span class="nx">k</span><span class="o">++</span><span class="p">){</span>
+</span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="nx">k</span> <span class="o">===</span> <span class="mi">6000000000</span><span class="p">){</span>
+</span><span class='line'>                    <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="err">”</span><span class="nx">two</span><span class="err">”</span><span class="p">)</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>        <span class="nx">three</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class='line'>            <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">=</span> <span class="mi">100</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+</span><span class='line'>                <span class="k">if</span><span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="mi">100</span><span class="p">){</span>
+</span><span class='line'>                    <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="err">”</span><span class="nx">three</span><span class="err">”</span><span class="p">)</span>
+</span><span class='line'>                <span class="p">}</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">},</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span><span class="o">+</span><span class="err">”</span><span class="o">:</span><span class="err">”</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span><span class="o">+</span><span class="err">”</span><span class="o">:</span><span class="err">”</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">());</span>
+</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>Her yeni blog yazısı oluşturduğumuzda</p>
+<p>Sonuç aşağıdaki gibidir.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>rake generate&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="nv">$ </span>rake deploy
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p><img src="http://bsaral.github.io/images/async2.png" /></p>
 
-<p>username.github.io adresinizden blogunuzu görebilirsiniz.</p>
+<p>Son olarak async.waterfall modeline bakalım. Bu kullanım yönteminde ise fonksiyonlar sırasıyla çalışır ve bir fonksiyonun çalışması kendinden önce gelen fonksiyonun döndürdüğü sonuç ile sağlanır.</p>
 
-<h2 id="ortaya-kabilecek-sorunlar">Ortaya Çıkabilecek Sorunlar</h2>
-
-<p>Yerelime kurulum yaparken bazı sorunlarla karşılaştım. Siz de karşılaşmış olabilirsiniz.</p>
-
-<li> İlk olarak depoyu bundle ettiğimde aşağıdaki hatayı aldım. </li>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>….
-</span><span class='line'>An error occurred <span class="k">while </span>installing rdiscount <span class="o">(</span>2.0.7.3<span class="o">)</span>, and Bundler cannot
-</span><span class='line'><span class="k">continue</span>.
-</span><span class='line'>Make sure that &lt;code&gt;gem install rdiscount -v <span class="s1">&#39;2.0.7.3&#39;</span>&lt;/code&gt; succeeds before bundling.&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>Bu rdiscount geminin versiyonuyla ilgili bir hatadır. Gemfile içerisinde bu gem’i bulup versiyon kısmını silip tekrar bundle ettiğimizde sorunumuz ortadan kalkar.</p>
-
-<li> Diğerini ise blog yazımı oluşturduktan sonra aldım. </li>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>async2.js </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -367,117 +179,420 @@ SQLiteManager kullanabiliriz. SQLiteManager, Firefox <a href="https://addons.moz
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>rake generate
-</span><span class='line'>…&lt;/p&gt;
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>	<span class="kd">var</span> <span class="nx">async</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="err">‘</span><span class="nx">async</span><span class="err">’</span><span class="p">)</span>
+</span><span class='line'>	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="err">‘</span><span class="nx">fs</span><span class="err">’</span><span class="p">);</span>
+</span><span class='line'>	<span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span><span class="o">+</span><span class="err">”</span><span class="o">:</span><span class="err">”</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span><span class="o">+</span><span class="err">”</span><span class="o">:</span><span class="err">”</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">());</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;Building site: <span class="nb">source</span> -&amp;gt; public
-</span><span class='line'>/var/lib/gems/1.9.1/gems/rdiscount-1.6.8/lib/rdiscount.rb:89:in &lt;code&gt;block in initialize<span class="err">&#39;</span>: undefined method &lt;/code&gt;footnotes<span class="o">=</span>’ <span class="k">for</span> <span class="c">#&amp;lt;RDiscount:0xac76988 @text=””, @autolink=true&amp;gt; (NoMethodError)&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">async</span><span class="p">.</span><span class="nx">waterfall</span><span class="p">([</span>
+</span><span class='line'>    <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">j</span><span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">=</span> <span class="mi">3000000000</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">){</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="nx">j</span> <span class="o">===</span> <span class="mi">3000000000</span><span class="p">){</span>
+</span><span class='line'>                <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="s2">&quot;bitti1&quot;</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="kd">function</span><span class="p">(</span><span class="nx">val1</span><span class="p">,</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class='line'>        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="s2">&quot;bitti2&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="kd">function</span><span class="p">(</span><span class="nx">val2</span><span class="p">,</span><span class="nx">callback</span><span class="p">){</span>
+</span><span class='line'>        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="s2">&quot;bitti3&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">date</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">date</span><span class="p">.</span><span class="nx">getHours</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getMinutes</span><span class="p">()</span><span class="o">+</span><span class="s2">&quot;:&quot;</span><span class="o">+</span><span class="nx">date</span><span class="p">.</span><span class="nx">getSeconds</span><span class="p">());</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</code></pre>
 
-<p>Bu hata rdiscount yani markdown syntax’ı için kullanılan bir gem tarafından kaynaklanmaktadır. Markdown için rdiscount dışında maruku,kramdown gibi seçenekleri de kullanabiliriz. Şimdi _config.yml dosyasını açıp markdown kısmındaki rdiscount’u silmeniz gerekir ve yerine maruku yada kromdown dan birini yazın.</p>
+<p>Sonucumuz :</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml </span></figcaption>
+<p><img src="http://bsaral.github.io/images/async3.png" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails - Ajax Datatables]]></title>
+    <link href="http://bsaral.github.io/blog/2014/07/04/rails-ajax-datatables/"/>
+    <updated>2014-07-04T11:58:00+03:00</updated>
+    <id>http://bsaral.github.io/blog/2014/07/04/rails-ajax-datatables</id>
+    <content type="html"><![CDATA[<p>Datatables, JavaScript ve jQuery ile yapılan sıralama,sayfalama yada arama işlemlerini düz bir html tablosu üzerinde kullanılmasını sağlar. Daha iyi bir kullanıcı arayüzü vardır ve kullanıcıya birçok seçenek sunar. Bu yazıda Rails’e nasıl entegre edileceği gösterilmektedir.</p>
+
+<p>İlk olarak Gemfile içerisine aşağıdaki gemlerin yüklenip bundle edilmesi gerekmektedir.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Gemfile </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>…
-</span><span class='line'>markdown: kramdown
-</span><span class='line'>pygments: <span class="nb">false</span> <span class="c"># default python pygments have been replaced by pygments.rb</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">group</span> <span class="ss">:assets</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="err">‘</span><span class="n">jquery</span><span class="o">-</span><span class="n">datatables</span><span class="o">-</span><span class="n">rails</span><span class="err">’</span><span class="p">,</span> <span class="ss">github</span><span class="p">:</span> <span class="err">‘</span><span class="n">rweng</span><span class="o">/</span><span class="n">jquery</span><span class="o">-</span><span class="n">datatables</span><span class="o">-</span><span class="n">rails</span><span class="err">’</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="err">‘</span><span class="n">jquery</span><span class="o">-</span><span class="n">ui</span><span class="o">-</span><span class="n">rails</span><span class="err">’</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;gem ‘kaminari’</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
+<p>Ben sayfalama işlemi için kaminari gemini kullandım. Bu işlem için benzer gemlerde kullanılabilir. Ama datatables ayarlaması yapılırken birkaç yerin değiştirilmesi gerekir.</p>
+
+<p>Sistemi bundle ettikten sonra layouts içerisinde application.html.erb dosyasınıza yada datatables hangi view sayfasında oluşacaksa o sayfanının içerisinde gerekli kütüphaneleri eklemeliyiz.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>index.html.slim </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="o">=</span> <span class="n">stylesheet_link_tag</span> <span class="err">‘</span><span class="o">//</span><span class="n">cdn</span><span class="o">.</span><span class="n">datatables</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="mi">1</span><span class="o">.</span><span class="mi">10</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">css</span><span class="o">/</span><span class="n">jquery</span><span class="o">.</span><span class="n">dataTables</span><span class="o">.</span><span class="n">css</span><span class="err">’</span>
+</span><span class='line'><span class="o">=</span> <span class="n">javascript_include_tag</span> <span class="err">“</span><span class="o">//</span><span class="n">code</span><span class="o">.</span><span class="n">jquery</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">jquery</span><span class="o">-</span><span class="mi">1</span><span class="o">.</span><span class="mi">10</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="n">min</span><span class="o">.</span><span class="n">js</span><span class="err">”</span>
+</span><span class='line'><span class="o">=</span> <span class="n">javascript_include_tag</span> <span class="err">“</span><span class="o">//</span><span class="n">cdn</span><span class="o">.</span><span class="n">datatables</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="mi">1</span><span class="o">.</span><span class="mi">10</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">js</span><span class="o">/</span><span class="n">jquery</span><span class="o">.</span><span class="n">dataTables</span><span class="o">.</span><span class="n">js</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Şimdi tablomuzun olduğu sayfa içerisine gidelim ve gerekli düzenlemeleri yapalım.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>index.html.slim </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="n">table</span><span class="c1">#attendant_list data-source=(admin_attendants_url(format: “json”))</span>
+</span><span class='line'>  <span class="n">thead</span>
+</span><span class='line'>    <span class="n">tr</span>
+</span><span class='line'>      <span class="n">th</span> <span class="no">Ad</span>
+</span><span class='line'>      <span class="n">th</span> <span class="no">Soyad</span>
+</span><span class='line'>      <span class="n">th</span> <span class="no">TC</span>
+</span><span class='line'>      <span class="n">th</span> <span class="no">IBAN</span>
+</span><span class='line'>      <span class="n">th</span> <span class="no">Telefon</span>
+</span><span class='line'>      <span class="n">th</span> <span class="err">Ü</span><span class="n">nvan</span>
+</span><span class='line'>      <span class="n">th</span> <span class="err">İş</span><span class="n">lemler</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;/</span><span class="n">datatables</span> <span class="n">ayarlamalar</span><span class="err">ı</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;javascript:</span>
+</span><span class='line'><span class="sr">  $(document).ready(function() {</span>
+</span><span class='line'><span class="sr">    $(‘#attendant_list’).dataTable({</span>
+</span><span class='line'><span class="sr">      language: { ‘url’: ‘http:/</span><span class="o">/</span><span class="n">cdn</span><span class="o">.</span><span class="n">datatables</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">plug</span><span class="o">-</span><span class="n">ins</span><span class="o">/</span><span class="mi">28</span><span class="n">e7751dbec</span><span class="o">/</span><span class="n">i18n</span><span class="o">/</span><span class="no">Turkish</span><span class="o">.</span><span class="n">json</span><span class="err">’</span> <span class="p">},</span>
+</span><span class='line'>      <span class="err">“</span><span class="n">bPaginate</span><span class="err">”</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+</span><span class='line'>      <span class="err">“</span><span class="n">bProcessing</span><span class="err">”</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+</span><span class='line'>      <span class="err">“</span><span class="n">bServerSide</span><span class="err">”</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+</span><span class='line'>      <span class="err">“</span><span class="n">ajax</span><span class="err">”</span><span class="p">:</span> <span class="err">$</span><span class="p">(</span><span class="err">‘</span><span class="c1">#attendant_list’).data(‘source’),</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>app dizini altında datatables adında bir dizin oluşturalım ve ajax server side işlemlerini için gerçekleştirdiğimiz yapılandırmaları <code> attendants_datatable.rb </code>  içerisine yerleştirelim. Burada önemli olan kısım parametrelerdir. Rails sürümünde dolayı internette çoğu yerde parametreler farklı isimlerde geçmektedir. Parametre isimlerinizi rails uygulaması çalışırken loglardan takip ederek bulabilirsiniz. Örnek olarak benim uygulamamdaki parametreler;</p>
+
+<p><img src="http://bsaral.github.io/images/k1.png" /></p>
+
+<p>Eski parametreler ise ;</p>
+
+<p><img src="http://bsaral.github.io/images/k2.png" /></p>
+
+<p>Bunları karşılaştıracak olursak;</p>
+
+<li> params[:iDisplayLength] = params[:length] </li>
+<li> params[:iDisplayStart] = params[:start] </li>
+<li> params[:iSortCol_0] = params[:column] </li>
+<li> params[:sSortDir_0] = params[:dir] </li>
+<li> params[:sSearch] = params[:search][:value] </li>
+<p><br /></p>
+
+<p>Sonuç olarak dosyamızın içeriği şu şekilde oluyor:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>attendants_datatable.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="c1"># encoding: UTF-8</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">AttendantsDatatable</span>
+</span><span class='line'>  <span class="n">delegate</span> <span class="ss">:params</span><span class="p">,</span> <span class="ss">:h</span><span class="p">,</span> <span class="ss">:link_to</span><span class="p">,</span> <span class="ss">:number_to_currency</span><span class="p">,</span> <span class="ss">to</span><span class="p">:</span> <span class="ss">:@view</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;def initialize(view)</span>
+</span><span class='line'><span class="sr">    @view = view</span>
+</span><span class='line'><span class="sr">  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">as_json</span><span class="p">(</span><span class="n">options</span> <span class="o">=</span> <span class="p">{})</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>      <span class="ss">sEcho</span><span class="p">:</span> <span class="n">params</span><span class="o">[</span><span class="ss">:sEcho</span><span class="o">].</span><span class="n">to_i</span><span class="p">,</span>
+</span><span class='line'>      <span class="ss">iTotalRecords</span><span class="p">:</span> <span class="no">Attendant</span><span class="o">.</span><span class="n">count</span><span class="p">,</span>
+</span><span class='line'>      <span class="ss">iTotalDisplayRecords</span><span class="p">:</span> <span class="n">attendants</span><span class="o">.</span><span class="n">total_count</span><span class="p">,</span> <span class="c1">#kaminari gemine göre düzenlendi.</span>
+</span><span class='line'>      <span class="ss">aaData</span><span class="p">:</span> <span class="n">data</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;private&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">data</span>
+</span><span class='line'>    <span class="n">attendants</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">attendant</span><span class="o">|</span>
+</span><span class='line'>      <span class="o">[</span>
+</span><span class='line'>        <span class="n">h</span><span class="p">(</span><span class="n">attendant</span><span class="o">.</span><span class="n">first_name</span><span class="p">),</span>
+</span><span class='line'>        <span class="n">h</span><span class="p">(</span><span class="n">attendant</span><span class="o">.</span><span class="n">last_name</span><span class="p">),</span>
+</span><span class='line'>        <span class="n">h</span><span class="p">(</span><span class="n">attendant</span><span class="o">.</span><span class="n">title_name</span><span class="p">),</span>
+</span><span class='line'>        <span class="n">link_to</span><span class="p">(</span><span class="err">“</span><span class="n">G</span><span class="err">ö</span><span class="n">r</span><span class="err">ü</span><span class="n">nt</span><span class="err">ü</span><span class="n">le</span><span class="err">”</span><span class="p">,</span> <span class="n">attendant</span><span class="p">)</span> <span class="o">+</span> <span class="err">“</span> <span class="o">|</span> <span class="err">“</span><span class="o">+</span><span class="n">link_to</span><span class="p">(</span><span class="err">“</span><span class="n">D</span><span class="err">ü</span><span class="n">zenle</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="c1">#”) + “ | “ +link_to(“Sil”, attendant, method: :delete)</span>
+</span><span class='line'>      <span class="o">]</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;def attendants</span>
+</span><span class='line'><span class="sr">    @attendants ||= fetch_attendants</span>
+</span><span class='line'><span class="sr">  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">fetch_attendants</span>
+</span><span class='line'>    <span class="n">attendants</span> <span class="o">=</span> <span class="no">Attendant</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="err">“</span><span class="c1">#{sort_column} #{sort_direction}”).page(page).per(per_page)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">params</span><span class="o">[</span><span class="ss">:search</span><span class="o">].</span><span class="n">present?</span>
+</span><span class='line'>      <span class="n">attendants</span> <span class="o">=</span> <span class="n">attendants</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="err">“</span><span class="n">first_name</span> <span class="n">like</span> <span class="ss">:s</span> <span class="ow">or</span> <span class="n">last_name</span> <span class="n">like</span> <span class="ss">:s</span> <span class="err">“</span><span class="p">,</span> <span class="ss">s</span><span class="p">:</span> <span class="err">“</span><span class="o">%</span><span class="c1">#{params[:search][:value]}%”)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="n">attendants</span>
+</span><span class='line'>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;def page</span>
+</span><span class='line'><span class="sr">    params[:start].to_i/</span><span class="n">per_page</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;def per_page</span>
+</span><span class='line'><span class="sr">    params[:length].to_i &amp;gt; 0 ? params[:length].to_i : 10</span>
+</span><span class='line'><span class="sr">  end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">sort_column</span>
+</span><span class='line'>    <span class="n">columns</span> <span class="o">=</span> <span class="sx">%w[first_name last_name]</span>
+</span><span class='line'>    <span class="n">columns</span><span class="o">[</span><span class="n">params</span><span class="o">[</span><span class="ss">:column</span><span class="o">].</span><span class="n">to_i</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;def sort_direction</span>
+</span><span class='line'><span class="sr">    params[:dir] == “desc” ? “desc” : “asc”</span>
+</span><span class='line'><span class="sr">  end</span>
+</span><span class='line'><span class="sr">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Son olarak Controller’da json kısmına küçük bir eklenti yapıyoruz.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>attendants_controller.rb </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='rb'><span class='line'><span class="k">def</span> <span class="nf">index</span>
+</span><span class='line'>    <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+</span><span class='line'>      <span class="nb">format</span><span class="o">.</span><span class="n">html</span>
+</span><span class='line'>      <span class="nb">format</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span><span class="n">render</span> <span class="ss">json</span><span class="p">:</span> <span class="no">AttendantsDatatable</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">view_context</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Localhost Beyaz Sayfa Hatası]]></title>
-    <link href="http://bsaral.github.io/blog/2013/06/01/pid/"/>
-    <updated>2013-06-01T22:14:00+03:00</updated>
-    <id>http://bsaral.github.io/blog/2013/06/01/pid</id>
-    <content type="html"><![CDATA[<p>Bugün yerelimde bir problemle karşılaştım. Yerelimi çalıştırdığımda bomboş beyaz bir sayfa(blank page) önüme geliyordu. Sistemimde WampServer kurulu.
-İnternette biraz araştırma yaptıktan sonra bu sorunu da hallettim.</p>
+    <title type="html"><![CDATA[ORACLE- SYSTEM Hesabının Parolasını Değiştirmek]]></title>
+    <link href="http://bsaral.github.io/blog/2014/03/29/oracle-forgot-password/"/>
+    <updated>2014-03-29T11:55:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2014/03/29/oracle-forgot-password</id>
+    <content type="html"><![CDATA[<p>Oracle XE, SYSTEM/SYS parolasını unuttuysanız veya değiştirmek istiyorsanız aşağıdaki adımları takip edebilirsiniz. </p>
 
-<p>Beyaz sayfa hatasının temel nedeni port çakışmasıdır. Yerelden başka port 80 ‘ni kullanan  bir uygulama varsa çakışma yaşanır ve localhost çalışmaz.
-Bu çakışmayı anlamak için pid ‘leri kontrol etmeliyiz . Öncelikle cmd ‘yi açalım ve şu komutu yazalım.</p>
+<li> Oracle kurulumunda sisteminize, veritabanını komutlarla çalıştırabileceğiniz sistem menüsü programları eklenir. Bunlardan “Start Database” olanını çalıştırın.</li>
+<p><img src="http://bsaral.github.io/images/s1.png" /></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
+<li>Açılan ekrana <code> sqlplus "/ as sysdba"  </code> komutunu girin. Bu komut OS kimlik ataması yaparak Oracle’a yetkili giriş için izin verir ve sistem kullanıcıları üzerinde çalışmamıza olanak sağlar.</li>
+<p><br /></p>
+
+<p><img src="http://bsaral.github.io/images/s2.png" /></p>
+
+<li>Son olarak aşağıdaki komutları da girip veritabanını yeniden başlattığımızda SYSTEM hesap parolası değişmiş olur.</li>
+<p><br /></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>SQL </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>netstat -aon
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SQL</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="k">show</span> <span class="k">user</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">USER</span> <span class="k">is</span> <span class="err">“</span><span class="n">SYS</span><span class="err">”</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">SQL</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">passw</span> <span class="k">system</span>
+</span><span class='line'><span class="n">Changing</span> <span class="n">password</span> <span class="k">for</span> <span class="k">system</span>
+</span><span class='line'><span class="k">New</span> <span class="n">password</span><span class="p">:</span>
+</span><span class='line'><span class="n">Retype</span> <span class="k">new</span> <span class="n">password</span><span class="p">:</span>
+</span><span class='line'><span class="n">Password</span> <span class="n">changed</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">SQL</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">quit</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>Eğer aşağıdaki gibi bir sonuç üretiliyorsa :</p>
-
-<p><img src="http://bsaral.github.io/images/pid.PNG" />
-&gt;</p>
-
-<li> Görev Yöneticisini açın. </li>
-<li> Görünüm kısmından "sütun seç " deyip "pid" işaretleyin.  </li>
-<li> port 80 de çalışan uygulamanın pid 'sini bulup prosesi sonlandır diyerek işlemi bitirin. </li>
-<blockquote>
-
-</blockquote>
-
-<p>Şimdi önemli bir noktaya geldik. Eğer 80 portu pid ‘si 4 olan bir uygulamada çalışıyorsa yani komutun çıktısı aşağıdaki gibiyse :</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>TCP     0.0.0.0:80     0.0.0.0:0     LISTENING     4
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-portunuz IIS (Internet Information Services) tarafından kullanılıyor demektir. Bu sorunun çözümü basit. </p>
-
-<li> Internet Information Services (IIS) Yöneticisini çalıştırın.  </li>
-<li> Sunucuyu durdurun </li>
-<blockquote>
-
-</blockquote>
-
-<p><img src="http://bsaral.github.io/images/pid2.PNG" style="width:800px;height:400px;" /></p>
-
-<p>WampServer’ tekrar çalıştırın yeşil rengini almışsa sorununuz halledilmiş demektir.</p>
-
-<h2> EDIT !!! </h2>
-<blockquote>
-
-</blockquote>
-
-<p>Bilgisayarınızı yeniden başlattığınızda yine aynı sorunla karşılaşıyorsanız aşağıdaki adımları uygulayarak sorunu tamamen ortadan kaldırabilirsiniz.
-&gt;</p>
-
-<li> İlk olarak şunu bilmek gerekir ki IIS prosesi görev yöneticisinden kaldırılmaz. IIS yöneticisine gidip servisi durdurmak ise bize sadece geçici çözüm sunar. </li>
-<li> Masaüstüne gelip "bilgisayar" sağa tıklayın ve "Yönet" i seçin. </li>
-<li> Karşınıza gelen ekranda  "Hizmetler ve Uygulamar" açın ve "hizmetler" kısmına çift tıklayın. </li>
-<li> En aşağıdan "Web dağıtım aracı hizmeti" ni seçin . (Web Deployment Agent Service) </li>
-<li> Servisi durdurun ve tekrar başlamaması için devredışı bırakın. Aşağıdaki gibi bir görüntü oluşturmanız gerekir. </li>
-<blockquote>
-
-</blockquote>
-
-<p><img src="http://bsaral.github.io/images/pid3.PNG" />
-&gt;</p>
-
-<p>Şimdi yerelinizi tekrar çalıştırın. Artık port 80 sadece yereline ait.</p>
-
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Java Servlet API Problemi]]></title>
-    <link href="http://bsaral.github.io/blog/2013/05/21/java/"/>
-    <updated>2013-05-21T22:38:00+03:00</updated>
-    <id>http://bsaral.github.io/blog/2013/05/21/java</id>
-    <content type="html"><![CDATA[<p>Gün geçmiyor ki Eclipse’den bir hata almayalım. Bugün Servlet ile ilgili bir hata aldım. Yeni bir proje oluşturduğunuz da yada varolan bir
-projeyi <a href="http://tugdev.github.io/105/JAVA-PROJES%C4%B0N%C4%B0-ECL%C4%B0PSTE-%C4%B0CE-AKTAR/"> import ettiğinizde </a>  Servlet’ın her 
-bir köşesi size hata veriyorsa aşağıdaki adımları uygulayarak bu problemi çözebilirsiniz.
-&gt;</p>
+    <title type="html"><![CDATA[ORACLE - DDL,DCL,DML Ve TCL İşlemleri]]></title>
+    <link href="http://bsaral.github.io/blog/2014/03/14/oracle-ddl/"/>
+    <updated>2014-03-14T11:50:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2014/03/14/oracle-ddl</id>
+    <content type="html"><![CDATA[<h3><a>Data Definition Language (DDL) </a></h3>
 
-<p><img src="http://bsaral.github.io/images/java.png" /> 
-&gt;</p>
+<p>Veritabanı yapısı ve şema tanımlamak için kullanılan komutlardır. Bunlardan bazıları;</p>
 
-<p><img src="http://bsaral.github.io/images/servlet.PNG" /> 
-&gt;</p>
+<li> CREATE, veritabanında objeleri oluşturur. </li>
+<li> DROP, objelerin veritabanından silinmesini sağlar. </li>
+<li> ALTER, veritabanı nesnelerinin yapısını değiştirmek için kullanılır. </li>
+<li> TRUNCATE, bir tablo içerisindeki tüm kayıtları silmek için kullanılır. </li>
+<li> RENAME, veritabanı nesnesinin adını değiştirir. </li>
+<li> COMMENT, veri sözlüğüne yorum ekler. </li>
+<p><br /></p>
 
-<p><img src="http://bsaral.github.io/images/servlet2.PNG" /> </p>
+<h3><a>Data Manipulation Language (DML) </a></h3>
+
+<p>Veritabanı objelerinin içerisindeki verileri yönetmeye yarayan komutlardır. Bunlardan bazıları;</p>
+
+<li>SELECT, veritabanından veri çekmek, listelemek, göstermek için kullanılır.</li>
+<li>INSERT, tablo içerisine veri eklemek için kullanılır.</li>
+<li>UPDATE, tablo içerisindeki verilerin güncellenmesinde kullanılır. ALTER komutundan farkı ise; ALTER tablonun yapısı ile ilgili güncelleme yaparken UPDATE ise veri içeriğinden güncelleme yapar.</li>
+<li>DELETE, tablodaki kayıtları silmek için kullanılır. TRUNCATE komutundan en önemli farkı ise, DELETE komutu ile belli bir aralığı silebilirken, TRUNCATE ile tablonun tamamını silebiliyoruz. TRUNCATE komutu parçalı silme yapmaz ama DELETE, WHERE kullanıldığında parçalı silme yapabilir</li>
+<li>MERGE - UPSERT, operasyonunun yapılması (insert etmek, eğer insert hata alırsa update etmek işlemi)</li>
+<li>CALL, bir PL/SQL yada JAVA alt programı çağırmak için kullanılır.</li>
+<li>LOCK TABLE, kontrol altında tutma işlemleri.</li>
+<p><br /></p>
+
+<h3><a>Data Control Language (DCL)   </a></h3>
+
+<p>Veritabanında erişim izinlerinin verilmesi veya verilen izinlerin iptal edilmesini sağlayan,yetki tanımlama kontrol unsurlarını içeren komutlardır. Bunlardan bazıları;</p>
+
+<li>GRANT, kullanıcıya veritabanı üzerinde yetki tanımlamak için kullanılır. </li>
+<li>REVOKE, yetkilerin iptal edilmesi için kullanılır. </li>
+<p><br /></p>
+
+<h3><a>Transaction Control (TCL)</a></h3>
+
+<p>DML ile yapılan işlemlerin yönetilmesini ve kontrol edilmesini sağlayan komutlardır. Bunlardan bazıları;</p>
+
+<li>COMMIT, yapılanları kayıt eder.</li>
+<li>SAVEPOINT, daha sonra rollback yapılmak üzere bir nokta belirler.</li>
+<li>ROLLBACK, veritabanında son COMMIT’e kadar olan yere geri alır.</li>
+<li>SET TRANSACTION, işlemlerin izolasyon seviyesini modifiye etmek veya mevcut işlemin özelliklerini değiştirmek için kullanılabilir.</li>
+<p><br /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ORACLE Kurulum Problemi]]></title>
+    <link href="http://bsaral.github.io/blog/2014/03/08/oracle-kurulumu/"/>
+    <updated>2014-03-08T11:48:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2014/03/08/oracle-kurulumu</id>
+    <content type="html"><![CDATA[<p>Oracle kurulumunu tamamladıktan sonra, dizin altında bulunan “Get Started” çalıştırınca aşağıdaki gibi bir hata alıyorsanız;</p>
+
+<p><img src="http://bsaral.github.io/images/o1.png" /></p>
+
+<p>şu adımları izleyerek sorununuzu çözebilirsiniz. </p>
+
+<li>“Get Started” ikonuna sağ tıklayıp özellikler kısmını açın.</li>
+<p><br /></p>
+
+<p><img src="http://bsaral.github.io/images/o2.png" /></p>
+
+<li> Burda birlikte aç kısmından Google Chrome,Mozilla Firefox yada kullandığınız tarayıcınızı seçin.</li>
+
+<li>Şimdi tekrar “Get Started” çalıştırmayı deneyin. URL’ yi <code> http://127.0.0.1:8080/apex/f?p=4950  </code> tarayıcınıza yazdığınızda karşınıza aşağıdaki gibi giriş ekranı çıkması gerekir. Kullanıcı adınızı “SYSTEM” ve parolanızı da girdikten sonra Oracle kurulumu tamamlanmış olur.</li>
+<p><br /></p>
+
+<p><img src="http://bsaral.github.io/images/o3.png" /></p>
 ]]></content>
   </entry>
   

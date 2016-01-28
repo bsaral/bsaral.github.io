@@ -9,7 +9,7 @@
   <meta name="author" content="BETÜL SARAL">
 
   
-  <meta name="description" content="Gemfile içerisinde bulunan gem "rmagick" , '~&gt; 2.13.2' bundle ettiğiniz zaman aşağıdaki gibi bir hata alıyorsanız ; Terminal 1
+  <meta name="description" content="Matlab kullanarak aşağıdaki resmin arkaplanını çıkartan bir uygulama yapalım. Resim-1 Resim-2 Terminal 1
 2
 3
 4
@@ -17,7 +17,12 @@
 6
 7
 8
-9 &hellip;">
+9
+10
+11
+12
+13
+input = imread &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -94,7 +99,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/02/16/rmagick/">ImageMagick / RMagick Gem Install Error</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/10/31/matlab-arkaplan/">Matlab - Arkaplan Çıkarımı</a></h1>
     
     
       <p class="meta">
@@ -110,148 +115,25 @@
   
 
 
-<time datetime="2013-02-16T22:37:00+02:00" pubdate data-updated="true">Feb 16<span>th</span>, 2013</time>
+<time datetime="2013-10-31T10:31:00+02:00" pubdate data-updated="true">Oct 31<span>st</span>, 2013</time>
         
-         | <a href="/blog/2013/02/16/rmagick/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Gemfile içerisinde bulunan <code> gem "rmagick" ,   '~&gt; 2.13.2' </code> bundle ettiğiniz zaman aşağıdaki gibi bir hata alıyorsanız ;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">ERROR:  Error installing rmagick:
-</span><span class="line">ERROR: Failed to build gem native extension.
-</span><span class="line">
-</span><span class="line">..........
-</span><span class="line">..........
-</span><span class="line">
-</span><span class="line">Gem files will remain installed in /usr/lib/ruby/gems/1.8/gems/rmagick-2.13.1 <span class="k">for </span>inspection.
-</span><span class="line">Results logged to /usr/lib/ruby/gems/1.8/gems/rmagick-2.13.1/ext/RMagick/gem_make.out
-</span><span class="line">	
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Sorunu halletmek için ;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo apt-get install libmagickwand-dev
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>bundle install
-</span><span class="line">	
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/02/11/nested-forms/">Rails 3 De Nested Form Nasıl Oluşturulur ?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-11T22:16:00+02:00" pubdate data-updated="true">Feb 11<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/02/11/nested-forms/#disqus_thread">Comments</a>
+         | <a href="/blog/2013/10/31/matlab-arkaplan/#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Aşağıdakilerin adım adım uygulanması gerekir.</p>
+  <div class="entry-content"><p>Matlab kullanarak aşağıdaki resmin arkaplanını çıkartan bir uygulama yapalım.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">gem <span class="s2">&quot;nested_form&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<table>
+<tr>
+	<td>Resim-1<img src="/images/r1.png" /></td>
+	<td>Resim-2<img src="/images/r2.png" /></td>
+</tr>
+</table>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle install
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>rails g nested_form:install
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Bu koddan sonra <code> public/javascripts/nested_form.js </code>  oluşması gerekiyor.Biz bu js belgesini <code> app/assets/javascripts/ </code> altına kopyalayalım. Daha sonra;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>controllers/projects_controller.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">def</span> <span class="nf">new</span>
-</span><span class="line">	<span class="vi">@project</span><span class="o">=</span><span class="no">Project</span><span class="o">.</span><span class="n">new</span>
-</span><span class="line">	<span class="vi">@project</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">build</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>model/project.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Project</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class="line">
-</span><span class="line">	<span class="n">has_many</span> <span class="ss">:tasks</span><span class="p">,</span> <span class="ss">:dependent</span> <span class="o">=&gt;</span> <span class="ss">:destroy</span>
-</span><span class="line">	<span class="n">attr_accessible</span> <span class="ss">:tasks_attributes</span><span class="p">,</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:description</span>
-</span><span class="line">	<span class="n">accepts_nested_attributes_for</span> <span class="ss">:tasks</span><span class="p">,</span> <span class="ss">:allow_destroy</span> <span class="o">=&gt;</span> <span class="kp">true</span>
-</span><span class="line">
-</span><span class="line"><span class="k">end</span>
-</span><span class="line">	
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>model/task.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">class</span> <span class="nc">Task</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class="line">	<span class="n">belongs_to</span> <span class="ss">:project</span>
-</span><span class="line"><span class="k">end</span>
-</span><span class="line">	
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>views/projects/_form.html.erb </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -265,29 +147,24 @@
 <span class="line-number">11</span>
 <span class="line-number">12</span>
 <span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="o">&lt;</span><span class="sx">%= nested_form_for @project do |f| %&gt;</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">input</span> <span class="o">=</span> imread<span class="o">(</span><span class="s1">&#39;kapi_biri.bmp&#39;</span><span class="o">)</span>;
+</span><span class="line"><span class="nv">im1</span> <span class="o">=</span> rgb2gray<span class="o">(</span>imread<span class="o">(</span><span class="s1">&#39;kapi.bmp&#39;</span><span class="o">))</span>;
+</span><span class="line"><span class="nv">im2</span> <span class="o">=</span> rgb2gray<span class="o">(</span>imread<span class="o">(</span><span class="s1">&#39;kapi_biri.bmp&#39;</span><span class="o">))</span>;
 </span><span class="line">
-</span><span class="line"><span class="sx">	&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:name</span> <span class="sx">%&gt;</span>
-</span><span class="line"><span class="sx">	&lt;%= f.text_field(:name) %&gt;</span><span class="o">&lt;</span><span class="n">br</span> <span class="sr">/&gt;</span>
-</span><span class="line"><span class="sr">	&lt;%= f.label :description %&gt;</span>
-</span><span class="line"><span class="sr">	&lt;%= f.text_field(:description) %&gt;&lt;br /</span><span class="o">&gt;</span>
-</span><span class="line">	
-</span><span class="line">	<span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span> <span class="no">Tasks</span><span class="o">&lt;</span><span class="sr">/h3&gt;</span>
-</span><span class="line"><span class="sr">	</span>
-</span><span class="line"><span class="sr">	&lt;%= f.fields_for :tasks do |task| %&gt;</span>
-</span><span class="line"><span class="sr">		&lt;%= task.label :name %&gt;&lt;br /</span><span class="o">&gt;</span>
-</span><span class="line">		<span class="o">&lt;</span><span class="sx">%= task.text_field :name %&gt;&lt;br /&gt;</span>
-</span><span class="line"><span class="sx">		&lt;%=</span> <span class="n">task</span><span class="o">.</span><span class="n">link_to_remove</span> <span class="s2">&quot;Remove this task&quot;</span> <span class="sx">%&gt;</span>
-</span><span class="line"><span class="sx">	&lt;% end %&gt;</span>
-</span><span class="line">	<span class="o">&lt;</span><span class="sx">%= f.link_to_add &quot;Add a task&quot;, :tasks %&gt;</span>
-</span><span class="line"><span class="sx">	&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">submit</span> <span class="sx">%&gt;</span>
-</span><span class="line"><span class="sx">&lt;% end %&gt;</span>
+</span><span class="line"><span class="nv">im3</span> <span class="o">=</span> imsubtract<span class="o">(</span>im1,im2<span class="o">)</span>;
+</span><span class="line"><span class="nv">im3</span> <span class="o">=</span> bwareaopen<span class="o">(</span>im3,500,8<span class="o">)</span>;
+</span><span class="line"><span class="nv">im3</span> <span class="o">=</span> imfill<span class="o">(</span>im3,<span class="s1">&#39;holes&#39;</span><span class="o">)</span>;
+</span><span class="line"><span class="nv">im3</span><span class="o">=</span>uint8<span class="o">(</span>im3<span class="o">)</span>;
+</span><span class="line">
+</span><span class="line">im3<span class="o">(</span><span class="nv">im3</span> <span class="o">==</span> 255<span class="o">)</span> <span class="o">=</span> 1;
+</span><span class="line"><span class="nv">im33</span> <span class="o">=</span> cat<span class="o">(</span>3, im3, im3, im3<span class="o">)</span>;
+</span><span class="line"><span class="nv">im</span> <span class="o">=</span> input .* im33;
+</span><span class="line">imshow<span class="o">(</span>im<span class="o">)</span>;
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>Program çıktımız :</p>
+
+<p><img src="/images/rson.png" /></p>
 </div>
   
   
@@ -300,7 +177,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/01/11/sqlite3-from-mysql/">Rails De Sqlite3 Veritabanını Mysql&#8217;e Aktarmak</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/10/30/matlab-1/">Matlab - Bozuk Para Sayma</a></h1>
     
     
       <p class="meta">
@@ -316,19 +193,22 @@
   
 
 
-<time datetime="2013-01-11T22:16:00+02:00" pubdate data-updated="true">Jan 11<span>th</span>, 2013</time>
+<time datetime="2013-10-30T10:26:00+02:00" pubdate data-updated="true">Oct 30<span>th</span>, 2013</time>
         
-         | <a href="/blog/2013/01/11/sqlite3-from-mysql/#disqus_thread">Comments</a>
+         | <a href="/blog/2013/10/30/matlab-1/#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Veritabanını Sqlite 3 ile sağladığınız bir rails projesinde , her ne kadar ilerlemiş olursanız olun her zaman mysql’e çevirme
-şansınız vardır.İlk olarak ;</p>
+  <div class="entry-content"><p>Matlab kullanarak aşağıdaki resimde ne kadar bozuk paramız var onu bulmaya çalışalım.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>database.yml </span></figcaption>
+<p><img src="/images/para.jpg" /></p>
+
+<p>Programımız aşağıdaki gibidir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>test.m </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -359,147 +239,43 @@
 <span class="line-number">28</span>
 <span class="line-number">29</span>
 <span class="line-number">30</span>
-</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="err">	</span><span class="l-Scalar-Plain">development</span><span class="p-Indicator">:</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mysql2</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">reconnect</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">databasename_development</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">root</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&quot;parola&quot;</span><span class="p-Indicator">]</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">socket</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/var/run/mysqld/mysqld.sock</span>
+<span class="line-number">31</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line">	<span class="n">img</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="err">&#39;</span><span class="n">image3</span><span class="p">.</span><span class="n">jpg</span><span class="err">&#39;</span><span class="p">);</span>
+</span><span class="line">    <span class="n">th</span> <span class="o">=</span> <span class="n">graythresh</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+</span><span class="line">    <span class="n">bw</span> <span class="o">=</span> <span class="n">imcomplement</span><span class="p">(</span><span class="n">im2bw</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">th</span><span class="p">));</span>  <span class="o">%</span><span class="n">gri</span> <span class="n">seviyeli</span> <span class="n">resimlerde</span> <span class="n">negatiflik</span> <span class="n">alir</span>
+</span><span class="line">    <span class="n">bw</span> <span class="o">=</span> <span class="n">bwareaopen</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span><span class="mi">30</span><span class="p">);</span>  <span class="o">%</span> <span class="mi">30</span><span class="n">pixelden</span> <span class="n">kucuk</span> <span class="n">olanlar</span> <span class="n">kaldiriliyor</span><span class="p">.</span>
+</span><span class="line">    <span class="n">bw</span> <span class="o">=</span> <span class="n">imfill</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span><span class="err">&#39;</span><span class="n">holes</span><span class="err">&#39;</span><span class="p">);</span>
+</span><span class="line">    <span class="n">SE</span> <span class="o">=</span><span class="n">strel</span><span class="p">(</span><span class="err">&#39;</span><span class="n">disk</span><span class="err">&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>    <span class="o">%</span> <span class="n">birlesik</span> <span class="n">madeni</span> <span class="n">paralarin</span> <span class="n">ayrilmasi</span> <span class="n">saglaniyor</span><span class="p">.</span>
+</span><span class="line">    <span class="n">bw2</span> <span class="o">=</span> <span class="n">imerode</span><span class="p">(</span><span class="n">bw</span><span class="p">,</span><span class="n">SE</span><span class="p">);</span>
+</span><span class="line">    <span class="p">[</span><span class="n">L</span><span class="p">,</span><span class="n">num</span><span class="p">]</span> <span class="o">=</span> <span class="n">bwlabel</span><span class="p">(</span><span class="n">bw2</span><span class="p">);</span>  <span class="o">%</span> <span class="n">num</span> <span class="n">ile</span> <span class="n">para</span> <span class="n">adetini</span> <span class="n">ogrendik</span> <span class="n">ve</span> <span class="n">etiket</span> <span class="n">atadik</span>
+</span><span class="line">    <span class="n">stats</span> <span class="o">=</span> <span class="n">regionprops</span><span class="p">(</span><span class="n">bw2</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Area</span><span class="err">&#39;</span><span class="p">);</span>
 </span><span class="line">
-</span><span class="line"><span class="err">	</span><span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mysql2</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">reconnect</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">databasename_test</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">root</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&quot;parola&quot;</span><span class="p-Indicator">]</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">socket</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/var/run/mysqld/mysqld.sock</span>
+</span><span class="line">    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class="line">    <span class="k">for</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="o">:</span><span class="n">num</span>
+</span><span class="line">        <span class="n">a</span> <span class="o">=</span> <span class="n">stats</span><span class="p">(</span><span class="n">n</span><span class="p">).</span><span class="n">Area</span><span class="p">;</span>  <span class="o">%</span> <span class="n">her</span> <span class="n">paran</span><span class="err">ı</span><span class="n">n</span> <span class="n">alan</span><span class="err">ı</span><span class="n">n</span><span class="err">ı</span> <span class="err">öğ</span><span class="n">rendik</span><span class="p">.</span> <span class="n">Boyutlara</span> <span class="n">g</span><span class="err">ö</span><span class="n">re</span> <span class="n">hesaplama</span> <span class="n">yapt</span><span class="err">ı</span><span class="n">k</span><span class="p">.</span>
+</span><span class="line">        <span class="k">switch</span> <span class="n">logical</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
+</span><span class="line">            <span class="k">case</span> <span class="n">a</span><span class="o">&gt;</span> <span class="mi">35000</span>
+</span><span class="line">                 <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="line">            <span class="k">case</span> <span class="n">a</span> <span class="o">&gt;</span><span class="mi">25000</span>  <span class="o">&amp;&amp;</span>  <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">35000</span>
+</span><span class="line">                <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">;</span>
+</span><span class="line">            <span class="k">case</span> <span class="n">a</span> <span class="o">&gt;</span><span class="mi">15000</span> <span class="o">&amp;&amp;</span>  <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">20000</span>
+</span><span class="line">                <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mf">0.25</span><span class="p">;</span>
+</span><span class="line">            <span class="k">case</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">11000</span> <span class="o">&amp;&amp;</span>  <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">13000</span>
+</span><span class="line">                <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mf">0.10</span><span class="p">;</span>
+</span><span class="line">            <span class="n">otherwise</span>
+</span><span class="line">                 <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mf">0.05</span><span class="p">;</span>
+</span><span class="line">        <span class="n">end</span>
+</span><span class="line">    <span class="n">end</span>
 </span><span class="line">
-</span><span class="line"><span class="err">	</span><span class="l-Scalar-Plain">production</span><span class="p-Indicator">:</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mysql2</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">reconnect</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">databasename_production</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">root</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">&quot;parola&quot;</span><span class="p-Indicator">]</span>
-</span><span class="line"><span class="err">	</span>  <span class="l-Scalar-Plain">socket</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/var/run/mysqld/mysqld.sock</span>
-</span><span class="line"><span class="err">	</span>
+</span><span class="line">   <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</span><span class="line">   <span class="n">title</span><span class="p">([</span><span class="err">&#39;</span><span class="n">Toplam</span> <span class="n">para</span> <span class="n">miktari</span> <span class="o">=</span> <span class="err">&#39;</span><span class="p">,</span><span class="n">num2str</span><span class="p">(</span><span class="n">count</span><span class="p">),</span><span class="err">&#39;</span> <span class="n">TL</span><span class="err">&#39;</span><span class="p">])</span>
+</span><span class="line">   <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">imshow</span><span class="p">(</span><span class="n">bw</span><span class="p">)</span>
+</span><span class="line">   <span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">imshow</span><span class="p">(</span><span class="n">bw2</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>şimdi bu kodları terminale girmemiz gerekiyor.</p>
+<p>Program çıktımız :</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:create
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:schema:dump
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>bu koddan sonra aşağıdaki gibi bir hata alıyorsanız ;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">rake aborted!
-</span><span class="line">
-</span><span class="line">Please install the mysql2 adapter: gem install activerecord-mysql2-adapter
-</span><span class="line">   <span class="o">(</span>mysql2 is not part of the bundle.
-</span><span class="line">Add it to Gemfile.<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Bu hata için;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem install activerecord-mysql2-adapter
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">gem</span> <span class="s2">&quot;activerecord-mysql2-adapter&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:load
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Ve hata alırız:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">	rake aborted!
-</span><span class="line">	Don<span class="s1">&#39;t know how to build task &#39;</span>db:load<span class="err">&#39;</span>
-</span><span class="line">	<span class="o">(</span>See full trace by running task with --trace<span class="o">)</span>
-</span><span class="line">	
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">gem</span> <span class="s1">&#39;yaml_db&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:load
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>bundle <span class="nb">exec </span>rake db:migrate
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Ve veritabanlarımızı mysql’e aktarmış olduk.Eğer sisteminiz de phpmyadmin varsa, aktarmış olduğumuz tabloları orda takip edebilirsiniz.</p>
-
-<blockquote>
-
-</blockquote>
-
-<h4>UYARI : </h4>
-<p>Eğer rails server çalıştırdığınız da </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">mysql undefined method <span class="sb">`</span>accept<span class="err">&#39;</span> <span class="k">for </span>nil:NilClass
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>hatasını alıyorsanız Gemfile içerisinde <code> gem "activerecord-mysql2-adapter" </code> silmeniz gerekiyor.Ayrıca
-<code> gem  "mysql2", "&gt;= 0.3.11" </code> Gemfile içerisinde bulunması gerekir.Bu işlemleri yaptıktan sonra veritabanınızda bulunan
-tüm tabloları silin ve yeniden oluşturun yani :</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rake db:migrate
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>ve seed dosyanız dolu ise;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rake db:seed
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Kolay gelsin.</p>
+<p><img src="/images/sonuc.png" /></p>
 </div>
   
   
@@ -512,7 +288,7 @@ tüm tabloları silin ve yeniden oluşturun yani :</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/12/28/phpmyadmin/">Phpmyadmin 404 Hatası</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/10/28/android-ekran-dondurme/">Android-Ekran Dönüşünü Engelleme</a></h1>
     
     
       <p class="meta">
@@ -528,214 +304,18 @@ tüm tabloları silin ve yeniden oluşturun yani :</p>
   
 
 
-<time datetime="2012-12-28T22:39:00+02:00" pubdate data-updated="true">Dec 28<span>th</span>, 2012</time>
+<time datetime="2013-10-28T10:21:00+02:00" pubdate data-updated="true">Oct 28<span>th</span>, 2013</time>
         
-         | <a href="/blog/2012/12/28/phpmyadmin/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Yerelinizde (http://localhost/phpmyadmin) phpmyadmin’i çalıştırdığınız da aşağıdaki gibi bir hata alıyorsarsanız ;</p>
-
-<p><code> The requested URL /phpmyadmin was not found on this server. </code></p>
-
-<p>şu kodları terminalde çalıştırarak bu problemi halledebilirsiniz.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo dpkg-reconfigure -plow phpmyadmin
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>sudo ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf.d/phpmyadmin.conf
-</span><span class="line">
-</span><span class="line"><span class="nv">$ </span>sudo /etc/init.d/apache2 reload
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/19/csv/">Rails De Csv Ile Kullanıcıları İçe Aktarmak</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-19T22:37:00+02:00" pubdate data-updated="true">Dec 19<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/12/19/csv/#disqus_thread">Comments</a>
+         | <a href="/blog/2013/10/28/android-ekran-dondurme/#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Elimiz de kullanıcıların bulunduğu bir tablo var ve biz bunu csv ile içe aktarmak istiyoruz. İlk olarak gem’i yüklememiz gerekiyor.</p>
+  <div class="entry-content"><p>Android uygulamalarında tasarlanan ekran görünümü, ekranın yatay veya dikey konuma çevrilmesiyle görünümde sorunlara yol açabilir. Ekran dönüşümünü engellemek için screenOrientation özelliğini nosensor olarak ayarlamamız gerekir.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Gemfile </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="yaml"><span class="line"><span class="l-Scalar-Plain">gem &#39;roo&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle install
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>sessions/index.html.erb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;h2&gt;</span>Import Users<span class="nt">&lt;/h2&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="err">&lt;</span>%= form_tag import_sessions_path, multipart: true do %&gt;
-</span><span class="line">  <span class="err">&lt;</span>%= file_field_tag :file %&gt;
-</span><span class="line">  <span class="err">&lt;</span>%= submit_tag &quot;Import&quot; %&gt;
-</span><span class="line"><span class="err">&lt;</span>% end %&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/routes.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">resources</span> <span class="ss">:sessions</span> <span class="k">do</span>
-</span><span class="line">	<span class="n">collection</span> <span class="p">{</span> <span class="n">post</span> <span class="ss">:import</span> <span class="p">}</span>
-</span><span class="line"><span class="k">end</span>
-</span><span class="line">	
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>config/application.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">require</span> <span class="s1">&#39;csv&#39;</span>
-</span><span class="line"><span class="nb">require</span> <span class="s1">&#39;iconv&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>controllers/sessions_controller.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">def</span> <span class="nf">import</span>
-</span><span class="line">  <span class="no">User</span><span class="o">.</span><span class="n">import</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:file</span><span class="o">]</span><span class="p">)</span>
-</span><span class="line">  <span class="n">redirect_to</span> <span class="n">root_url</span><span class="p">,</span> <span class="ss">notice</span><span class="p">:</span> <span class="s2">&quot;Products imported.&quot;</span>
-</span><span class="line"><span class="k">end</span>
-</span><span class="line">	
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>models/user.rb </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">import</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-</span><span class="line">  <span class="n">spreadsheet</span> <span class="o">=</span> <span class="n">open_spreadsheet</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-</span><span class="line">  <span class="n">header</span> <span class="o">=</span> <span class="n">spreadsheet</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span class="line">  <span class="p">(</span><span class="mi">2</span><span class="o">.</span><span class="n">.spreadsheet</span><span class="o">.</span><span class="n">last_row</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
-</span><span class="line">	<span class="n">row</span> <span class="o">=</span> <span class="no">Hash</span><span class="o">[[</span><span class="n">header</span><span class="p">,</span> <span class="n">spreadsheet</span><span class="o">.</span><span class="n">row</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">].</span><span class="n">transpose</span><span class="o">]</span>
-</span><span class="line">	<span class="n">product</span> <span class="o">=</span> <span class="n">find_by_id</span><span class="p">(</span><span class="n">row</span><span class="o">[</span><span class="s2">&quot;id&quot;</span><span class="o">]</span><span class="p">)</span> <span class="o">||</span> <span class="kp">new</span>
-</span><span class="line">	<span class="n">product</span><span class="o">.</span><span class="n">attributes</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">to_hash</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="o">*</span><span class="n">accessible_attributes</span><span class="p">)</span>
-</span><span class="line">	<span class="n">product</span><span class="o">.</span><span class="n">save!</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span><span class="line">
-</span><span class="line"><span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">open_spreadsheet</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-</span><span class="line">  <span class="k">case</span> <span class="no">File</span><span class="o">.</span><span class="n">extname</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">original_filename</span><span class="p">)</span>
-</span><span class="line">  <span class="k">when</span> <span class="s2">&quot;.csv&quot;</span> <span class="k">then</span> <span class="no">Csv</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="ss">:ignore</span><span class="p">)</span>
-</span><span class="line">  <span class="k">when</span> <span class="s2">&quot;.xls&quot;</span> <span class="k">then</span> <span class="no">Excel</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="ss">:ignore</span><span class="p">)</span>
-</span><span class="line">  <span class="k">when</span> <span class="s2">&quot;.xlsx&quot;</span> <span class="k">then</span> <span class="no">Excelx</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="kp">nil</span><span class="p">,</span> <span class="ss">:ignore</span><span class="p">)</span>
-</span><span class="line">  <span class="k">else</span> <span class="k">raise</span> <span class="s2">&quot;Unknown file type: </span><span class="si">#{</span><span class="n">file</span><span class="o">.</span><span class="n">original_filename</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Eğer yerelinizde çalışıyorsanız sisteme http://localhost:3000/sessions  ulaşabilirsiniz.</p>
-
-<h4> DİKKAT !  </h4>
-<p>İmport edilen csv dosyasının içeriği, oluşturduğunuz kullanıcı tablosundaki özellikleri dikkate alınarak şekillenmelidir. </p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/18/therubyracer/">Rails Therubyracer Gem Kurulum Problemi</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-18T22:37:00+02:00" pubdate data-updated="true">Dec 18<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/12/18/therubyracer/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Deponuzda gemfile içerisinde therubyracer gem kurulumunda eğer aşağıdaki gibi bir kurulum hatası alıyorsanız ;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>AndroidManifest.xml </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -764,65 +344,35 @@ tüm tabloları silin ve yeniden oluşturun yani :</p>
 <span class="line-number">26</span>
 <span class="line-number">27</span>
 <span class="line-number">28</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">Gem::Installer::ExtensionBuildError: ERROR: Failed to build gem native extension.
+</pre></td><td class="code"><pre><code class="xml"><span class="line"><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+</span><span class="line"><span class="nt">&lt;manifest</span> <span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+</span><span class="line">    <span class="na">package=</span><span class="s">&quot;com.example.mwe&quot;</span>
+</span><span class="line">    <span class="na">android:versionCode=</span><span class="s">&quot;1&quot;</span>
+</span><span class="line">    <span class="na">android:versionName=</span><span class="s">&quot;1.0&quot;</span> <span class="nt">&gt;</span>
 </span><span class="line">
-</span><span class="line">		/usr/bin/ruby1.9.1 extconf.rb
-</span><span class="line">*** extconf.rb failed ***
-</span><span class="line">Could not create Makefile due to some reason, probably lack of
-</span><span class="line">necessary libraries and/or headers.  Check the mkmf.log file <span class="k">for </span>more
-</span><span class="line">details.  You may need configuration options.
+</span><span class="line">    <span class="nt">&lt;uses-sdk</span>
+</span><span class="line">        <span class="na">android:minSdkVersion=</span><span class="s">&quot;8&quot;</span>
+</span><span class="line">        <span class="na">android:targetSdkVersion=</span><span class="s">&quot;17&quot;</span> <span class="nt">/&gt;</span>
 </span><span class="line">
-</span><span class="line">Provided configuration options:
-</span><span class="line">	--with-opt-dir
-</span><span class="line">	--without-opt-dir
-</span><span class="line">	--with-opt-include
-</span><span class="line">	--without-opt-include<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/include
-</span><span class="line">	--with-opt-lib
-</span><span class="line">	--without-opt-lib<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/lib
-</span><span class="line">	--with-make-prog
-</span><span class="line">	--without-make-prog
-</span><span class="line">	--srcdir<span class="o">=</span>.
-</span><span class="line">	--curdir
-</span><span class="line">	--ruby<span class="o">=</span>/usr/bin/ruby1.9.1
-</span><span class="line">extconf.rb:15:in &lt;main&gt;: undefined method include_path <span class="k">for </span>Libv8:Module <span class="o">(</span>NoMethodError<span class="o">)</span>
+</span><span class="line">    <span class="nt">&lt;application</span>
+</span><span class="line">        <span class="na">android:allowBackup=</span><span class="s">&quot;true&quot;</span>
+</span><span class="line">        <span class="na">android:icon=</span><span class="s">&quot;@drawable/ic_launcher&quot;</span>
+</span><span class="line">        <span class="na">android:label=</span><span class="s">&quot;@string/app_name&quot;</span>
+</span><span class="line">        <span class="na">android:theme=</span><span class="s">&quot;@style/AppTheme&quot;</span> <span class="nt">&gt;</span>
+</span><span class="line">        <span class="nt">&lt;activity</span>
+</span><span class="line">            <span class="na">android:name=</span><span class="s">&quot;com.example.mwe.MainActivity&quot;</span>
+</span><span class="line">            <span class="na">android:label=</span><span class="s">&quot;@string/app_name&quot;</span>
+</span><span class="line">            <span class="na">android:screenOrientation=</span><span class="s">&quot;nosensor&quot;</span><span class="nt">&gt;</span> <span class="c">&lt;!-- BU SATIRDAKİ KOD KULLANILIR --&gt;</span>
+</span><span class="line">            <span class="nt">&lt;intent-filter&gt;</span>
+</span><span class="line">                <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">&quot;android.intent.action.MAIN&quot;</span> <span class="nt">/&gt;</span>
 </span><span class="line">
+</span><span class="line">                <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">&quot;android.intent.category.LAUNCHER&quot;</span> <span class="nt">/&gt;</span>
+</span><span class="line">            <span class="nt">&lt;/intent-filter&gt;</span>
+</span><span class="line">        <span class="nt">&lt;/activity&gt;</span>
+</span><span class="line">     <span class="nt">&lt;/application&gt;</span>
 </span><span class="line">
-</span><span class="line">Gem files will remain installed in /home/uzem/.bundler/tmp/8120/gems/therubyracer-0.10.1 <span class="k">for </span>inspection.
-</span><span class="line">Results logged to /home/uzem/.bundler/tmp/8120/gems/therubyracer-0.10.1/ext/v8/gem_make.out
-</span><span class="line">
-</span><span class="line">An error occurred <span class="k">while </span>installing therubyracer <span class="o">(</span>0.10.1<span class="o">)</span>, and Bundler cannot <span class="k">continue</span>.
-</span><span class="line">Make sure that gem install therubyracer -v <span class="s1">&#39;0.10.1&#39;</span>succeeds before bundling.
+</span><span class="line"><span class="nt">&lt;/manifest&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>aşağıdaki kodlar bu sorunu ortadan kaldırır.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem uninstall libv8
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>çıktı aşağıdaki gibiyse 3 ‘e basıp devam ediniz ;</p>
-
-<pre><code>Select gem to uninstall:
- 1. libv8-3.3.10.4-x86-linux
- 2. libv8-3.11.8.4
- 3. All versions
- &gt; 3 
-</code></pre>
-
-<p>en son olarak da </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem install therubyracer
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle install
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>sorunumuz çözüldü.</p>
 </div>
   
   
@@ -835,7 +385,7 @@ tüm tabloları silin ve yeniden oluşturun yani :</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/11/23/sqlite3/">Rails Sqlite3 Gem Problemi</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/09/12/android-database/">Android - Veritabanı Kullanımı</a></h1>
     
     
       <p class="meta">
@@ -851,34 +401,23 @@ tüm tabloları silin ve yeniden oluşturun yani :</p>
   
 
 
-<time datetime="2012-11-23T22:38:00+02:00" pubdate data-updated="true">Nov 23<span>rd</span>, 2012</time>
+<time datetime="2013-09-12T01:35:00+03:00" pubdate data-updated="true">Sep 12<span>th</span>, 2013</time>
         
-         | <a href="/blog/2012/11/23/sqlite3/#disqus_thread">Comments</a>
+         | <a href="/blog/2013/09/12/android-database/#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Yeni bir rails projesi oluştururken</p>
+  <div class="entry-content"><p>Android’e yeni başlayanlar için önemli ve uğraştırıcı olan bir konu veritabanıdır. Android uygulamalarında veritabanı olarak Oracle, Mysql, Sqlite gibi birçok seçenek vardır. Ama kurulum ve konfigürasyon bakımından en kolayı Sqlite olduğu için genellikle Android de bu tercih edilir.</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle install
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>Android de oluşturduğumuz ya da var olan veritabanları <b> /data/data/package_name/databases </b> dizini altında bulunur. Bu dizine erişebilmek için Eclipse ‘de DDMS sekmesinden ya da açık değilse, Window-Show View-File Explorer ‘ı seçmemiz gerekiyor. Daha sonra dizin altından veritabanımıza erişebiliriz. DDMS ‘den sadece veritabanına erişimi sağlayabiliriz. Veritabanı içerisindeki tabloları,yapıları görmek için 
+SQLiteManager kullanabiliriz. SQLiteManager, Firefox <a href="https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/"> eklentisi </a> olarak kullanılır.</p>
 
-<p>gemler yüklendiğinde sqlite3 gem problemiyle karşılaşıyorsanız ;</p>
+<p><img src="http://i.imgur.com/zk5UezT.png" /></p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo apt-get install libsqlite3-0 libsqlite3-dev
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem install sqlite3-ruby
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
+<p>Şimdi oluşturduğumuz veritabanını önce push ederek dışarı aktaralım. Databasename.db adındaki dosyamızı push ettikten sonra Firefox’dan SQLiteManager’ı açarak veritabanımızı içeri aktaralım. Burda veritabanında yaptığımız her değişiklik .db dosyamıza kaydedilir. Yaptığımız değişiklikleri uygulamamızın içerisine aktarmak içinde tekrar DDMS sekmesinden dizinimizin altındaki veritabanımıza gelip, önceden dışarı aktardığımız ve üzerinde SQLiteManager ile çalıştığımız veritabanı dosyamızı pull ederek yaparız.</p>
 </div>
   
   
@@ -891,7 +430,7 @@ tüm tabloları silin ve yeniden oluşturun yani :</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/09/05/ttnet/">TTNET Yeteneğe Destek Eğitim Projesi</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/07/05/vagrant/">Vagrant - Ansible Playbook</a></h1>
     
     
       <p class="meta">
@@ -907,79 +446,155 @@ tüm tabloları silin ve yeniden oluşturun yani :</p>
   
 
 
-<time datetime="2012-09-05T21:30:00+03:00" pubdate data-updated="true">Sep 5<span>th</span>, 2012</time>
+<time datetime="2013-07-05T01:18:00+03:00" pubdate data-updated="true">Jul 5<span>th</span>, 2013</time>
         
-         | <a href="/blog/2012/09/05/ttnet/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Bugün sabahın erken vakitlerinde kalkarak (saat tam olarak 7 de ) üniversitemizde Ttnet’in yaptığı eğitim seminerinin katıldık. 2 gün sürecek olana seminerin ilk gününü geride bıraktık.Açık konuşmak gerekirse arkadaş zoruyla katıldığım ve hiç de iyi geçmeyeceğini düşündüğüm bir seminerdi.
-Ama böyle olmadı. Verilen eğitimler,yapılan sohbetler son derece önemliydi ve özellikle seminerde ki hocalarımızın kendi anılarını anlatması,örnekler vermesi,kişiler ve gruplarla birebir ilgilenilmesi katılımcılara büyük fayda sağladı.</p>
-
-<p>Şimdi can alıcı noktaya değinmek istiyorum.Seminerde eğitim kısmı bittikten sonra son 45 dk hocaların rastgele belirlediği grubunla bir proje fikri üretmen gerekiyor.Düşünün grupta kimse kimseyi tanımıyor ama her ağızdan farklı bir fikir çıkıyor iyi olsun kötü olsun her şekilde saygı duyuluyor ve eleştiriliyor.Hem karşındaki insanın ufku genişliyor,hem de senin hiç aklına gelmiyecek ya da ilgi alanının olmadığı bir konu hakkında sende bilgi sahibi olup kendi alanında bunu nasıl geliştirebileceğini düşünmeye başlıyorsun.Zaten ttnet de bu seminerden bu amacın çıkarılmasını istiyor.Katılımcıları özellikle rastgele farklı gruplara dağıtıyor ki, gruplarda alanlar ne kadar farklı olursa o kadar büyük düşünülüyor ve çok değişik fikirler ortaya çıkıyor.</p>
-
-<p>Kısacası gerçekten bizim için yararlı ve güzel bir seminerdi.Ayrıca en kısa zaman içerisinde anlatılan teknik konuları buraya da aktarmayı planlıyorum.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/01/mysql/">Mysql Root Şifresini Yeniden Oluşturmak</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-01T22:14:00+03:00" pubdate data-updated="true">Jun 1<span>st</span>, 2012</time>
-        
-         | <a href="/blog/2012/06/01/mysql/#disqus_thread">Comments</a>
+         | <a href="/blog/2013/07/05/vagrant/#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Mysql root şifrenizi unuttuysanız eğer aşağıdaki adımları takip ederek
-şifrenizi yeniden oluşturabilirsiniz.</p>
+  <div class="entry-content"><p>Merhabalar,</p>
 
-<li> ilk olarak mysql durdurulur. </li>
-<blockquote>
+<p>Vagrant ansible playbook paketlerinin bulunduğu bir depoyu kurmaya çalışırken $ vagrant up kısmında aşağıdaki hata ile karşılaştım.</p>
 
-</blockquote>
+<p><img src="http://i.imgur.com/i5N41sq.png" /></p>
+
+<p>Hatada anlatılmak istenilen vagrant-ansible geminin kurulmamış olmasıdır. Bu sorunu düzeltmek için ilk önce sistemi update ettim.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo apt-get update
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sistemim kendini update ederken /etc/apt/sources.list.d dizini altındaki bazı dosyalar yüzünden birkaç hata ile karşılaşarak güncelleştirmeyi yarıda kesti.</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$/</span>etc/init.d/mysql stop
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">...
 </span><span class="line">
-</span><span class="line">Stopping MySQL:		<span class="o">[</span>OK<span class="o">]</span>
+</span><span class="line">N: Ignoring file <span class="s1">&#39;ferramroberto-java-oneiric.list.save&#39;</span> in directory <span class="s1">&#39;/etc/apt/sources.list.d/&#39;</span> as it has an invalid filename extension
+</span><span class="line">N: Ignoring file <span class="s1">&#39;webupd8team-java-oneiric.list.save&#39;</span> in directory <span class="s1">&#39;/etc/apt/sources.list.d/&#39;</span> as it has an invalid filename extension
+</span><span class="line">N: Ignoring file <span class="s1">&#39;oneiric-partner.list.save&#39;</span> in directory <span class="s1">&#39;/etc/apt/sources.list.d/&#39;</span> as it has an invalid filename extension
+</span><span class="line">
+</span><span class="line">...
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<li> şimdi mysql skip-grant özelliği ile yeniden başlatalım </li>
-<blockquote>
+<p>Bu sorunu halletmek için sources.list.d dizinimiz altındaki hata veren dosyaları silmeliyiz.</p>
 
-</blockquote>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span><span class="nb">cd</span> /etc/apt/sources.list.d/
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo rm ferramroberto-java-oneiric.list.save webupd8team-java-oneiric.list.save oneiric-partner.list.save
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get update
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Böylece sistemimiz sorunsuz bir şekilde güncelleştirmesini tamamlamış oldu. Şimdi ansible gem kurulumunu yapalım.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo add-apt-repository ppa:rquillo/ansible
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get update
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get install ansible -y
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo gem install vagrant-ansible
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Ve gemimiz kurulmuş oldu. Şimdi depomuza giderek</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span><span class="nb">cd </span>repository
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>vagrant up
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>vagrant ssh
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sanal makinanız sorunsuz bir şekilde çalışmış olmalıdır. Eğer $ vagrant up kısmında</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">...
+</span><span class="line">
+</span><span class="line">ImportError: No module named yaml
+</span><span class="line">...
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>sudo apt-get install python-yaml
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Sorunumuz halledilir. Kolay gelsin.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/23/octopress/">Octopress İle Blog Oluşturma</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-23T01:04:00+03:00" pubdate data-updated="true">Jun 23<span>rd</span>, 2013</time>
+        
+         | <a href="/blog/2013/06/23/octopress/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Octopress, Jekyll için hazırlanan, Github Pages’in arkasında da kullanılan bir statik blog framework’ü. En popüler engine olarak görülüyor. Octopress rails tabanlı olduğundan kullanımı diğer blog yazılımlarına göre çok farklı. Şimdi adım adım octopress kurulumu ve kullanımına geçelim. Sisteminizde Ruby kurulu olmalıdır.</p>
+
+<p>İlk olarak Octopress deposunu klonlayalım.</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
@@ -996,62 +611,204 @@ Ama böyle olmadı. Verilen eğitimler,yapılan sohbetler son derece önemliydi 
 <span class="line-number">12</span>
 <span class="line-number">13</span>
 <span class="line-number">14</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>mysqld_safe --skip-grant-tables &amp;
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>git clone git://github.com/imathis/octopress.git octopress
 </span><span class="line">
-</span><span class="line">Starting mysqld daemon with databases from /var/lib/mysql
+</span><span class="line"><span class="nv">$ </span><span class="nb">cd </span>octopress
 </span><span class="line">
+</span><span class="line"><span class="nv">$ </span>bundle install
+</span><span class="line">...
+</span><span class="line">...
+</span><span class="line">Your bundle is <span class="nb">complete</span>!
 </span><span class="line">
-</span><span class="line"><span class="nv">$ </span>mysql -u root
+</span><span class="line"><span class="nv">$ </span>rake install
 </span><span class="line">
-</span><span class="line">Welcome to the MySQL monitor.  Commands end with ; or g.
-</span><span class="line">Your MySQL connection id is 1
-</span><span class="line">Server version: 5.0.45 Source distribution
-</span><span class="line">
-</span><span class="line">Type <span class="s1">&#39;help;&#39;</span> or <span class="s1">&#39;h&#39;</span> <span class="k">for </span>help. Type <span class="s1">&#39;c&#39;</span> to clear the buffer.
-</span><span class="line">
-</span><span class="line">mysql&gt;
+</span><span class="line"><span class="c">## Copying classic theme into ./source and ./sass</span>
+</span><span class="line">mkdir -p <span class="nb">source</span>
+</span><span class="line">cp -r .themes/classic/source/. <span class="nb">source</span>
+</span><span class="line">mkdir -p sass
+</span><span class="line">cp -r .themes/classic/sass/. sass
+</span><span class="line">mkdir -p <span class="nb">source</span>/_posts
+</span><span class="line">mkdir -p public
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<li> şimdi yeniden şifre oluşturalım </li>
-<blockquote>
+<p>Blogumuz oluştu. Şimdi blog içerisindeki ayarlamaları yapalım. Bunun için octopress ayarlarının bulunduğu _config.yml dosyasında düzenlemeler yapmamız gerekiyor. Bu dosyadaki kesin düzenlenmesi gereken kısım aşağıdaki gibidir.</p>
 
-</blockquote>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>_config.yml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">url:  			<span class="c"># Blog adresiniz</span>
+</span><span class="line">title:  		<span class="c"># Blog Başlığı</span>
+</span><span class="line">subtitle: 		<span class="c"># Alt Başlık</span>
+</span><span class="line">author: 		<span class="c"># Blogger Adı</span>
+</span><span class="line">simple_search: 		<span class="c"># http://google.com/search</span>
+</span><span class="line">description:		<span class="c"># Blog Hakkında Bilgi</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Dosyanın alt taraflarında sosyal ağ bağlantılarınızla ilgili ayarlamalarınızı yapmanız mümkündür.</p>
+
+<p>Şimdi ilk blog yazımızı oluşturalım.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rake new_post<span class="o">[</span><span class="s2">&quot;hello-octopress&quot;</span><span class="o">]</span>
+</span><span class="line">...
+</span><span class="line">Creating new post: <span class="nb">source</span>/_posts/2013-06-23-hello-octopress.markdown
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>_posts dizinimizin altında dosyamız oluştu. Şimdi dosyayı açıp blogunuzu markdown syntax uygun bir biçimde yazabilirsiniz.</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">mysql&gt; use mysql;
-</span><span class="line">mysql&gt; update user <span class="nb">set </span><span class="nv">password</span><span class="o">=</span>PASSWORD<span class="o">(</span><span class="s2">&quot;Yeni_Sifreniz&quot;</span><span class="o">)</span> where <span class="nv">User</span><span class="o">=</span><span class="s1">&#39;root&#39;</span>;
-</span><span class="line">mysql&gt; flush privileges;
-</span><span class="line">mysql&gt; quit;
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rake generate
+</span><span class="line">
+</span><span class="line">...
+</span><span class="line">Building site: <span class="nb">source</span> -&gt; public
+</span><span class="line">Successfully generated site: <span class="nb">source</span> -&gt; public
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>rake preview
+</span><span class="line">
+</span><span class="line">Configuration from /home/betul/octopress/_config.yml
+</span><span class="line"><span class="o">[</span>2013-06-23 23:43:46<span class="o">]</span> INFO  WEBrick 1.3.1
+</span><span class="line"><span class="o">[</span>2013-06-23 23:43:46<span class="o">]</span> INFO  ruby 1.9.2 <span class="o">(</span>2011-07-09<span class="o">)</span> <span class="o">[</span>i686-linux<span class="o">]</span>
+</span><span class="line"><span class="o">[</span>2013-06-23 23:43:46<span class="o">]</span> INFO  WEBrick::HTTPServer#start: <span class="nv">pid</span><span class="o">=</span>4168 <span class="nv">port</span><span class="o">=</span>4000
+</span><span class="line">Auto-regenerating enabled: <span class="nb">source</span> -&gt; public
+</span><span class="line"><span class="o">[</span>2013-06-23 23:43:46<span class="o">]</span> regeneration: 94 files changed
+</span><span class="line">&gt;&gt;&gt; Change detected at 23:43:46 to: screen.scss
+</span><span class="line">identical public/stylesheets/screen.css
+</span><span class="line">
+</span><span class="line">Dear developers making use of FSSM in your projects,
+</span><span class="line">FSSM is essentially dead at this point. Further development will
+</span><span class="line">be taking place in the new shared guard/listen project. Please
+</span><span class="line"><span class="nb">let </span>us know <span class="k">if </span>you need <span class="nb">help </span>transitioning! ^_^b
+</span><span class="line">- Travis Tilley
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<li> mysql yeniden durdurulur. </li>
-<blockquote>
+<p>En son kodumuz ile localhost:4000 adresinde bir server açtık. Bu adrese girdiğinizde blogunuzun güncel halini görebilirsiniz.</p>
 
-</blockquote>
+<p>Blogumuzu oluşturduk şimdi deploy aşamasına geçelim. Ben github üzerinden gidicem fakat octopress sadece github değil heroku,rsync gibi hosting servisleri sağlayan sitelerede deploy edilebilir.</p>
+
+<p>İlk olarak github da create new Github reposity diyerek kendi kullanıcı adımızla oluşturduğumuz yani username.github.io adında bir depo oluşturalım. Daha sonra yerelimizde bulunan octopress dizinine girip terminalde şu kodları yazalım :</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>/etc/init.d/mysqld stop
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rake setup_github_pages
 </span><span class="line">
-</span><span class="line">Stopping MySQL:      <span class="o">[</span>  OK  <span class="o">]</span>
-</span><span class="line"><span class="o">[</span>1<span class="o">]</span>+  Done mysqld_safe --skip-grant-tables
+</span><span class="line">Enter the <span class="nb">read</span>/write url <span class="k">for </span>your repository: git@github.com:username/username.github.com.git
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">Added remote git@github.com:username/username.github.com.git as origin
+</span><span class="line">Set origin as default remote
+</span><span class="line">Master branch renamed to <span class="s1">&#39;source&#39;</span> <span class="k">for </span>committing your blog <span class="nb">source </span>files
+</span><span class="line">Initialized empty Git repository in /home/username/source/octopress/_deploy/.git/
+</span><span class="line"><span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 2a4e9e7<span class="o">]</span> Octopress init
+</span><span class="line">1 files changed, 1 insertions<span class="o">(</span>+<span class="o">)</span>, 0 deletions<span class="o">(</span>-<span class="o">)</span>
+</span><span class="line">create mode 100644 index.html
+</span><span class="line">
+</span><span class="line">---
+</span><span class="line"><span class="c">## Now you can deploy to http://username.github.com with `rake deploy` ##</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<li> ve son adım da mysql normal olarak yeniden başlatılır. </li>
-<blockquote>
-
-</blockquote>
+<p>Her yeni blog yazısı oluşturduğumuzda</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>/etc/init.d/mysqld start
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rake generate
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>rake deploy
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>username.github.io adresinizden blogunuzu görebilirsiniz.</p>
+
+<h2 id="ortaya-kabilecek-sorunlar">Ortaya Çıkabilecek Sorunlar</h2>
+
+<p>Yerelime kurulum yaparken bazı sorunlarla karşılaştım. Siz de karşılaşmış olabilirsiniz.</p>
+
+<li> İlk olarak depoyu bundle ettiğimde aşağıdaki hatayı aldım. </li>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">....
+</span><span class="line">An error occurred <span class="k">while </span>installing rdiscount <span class="o">(</span>2.0.7.3<span class="o">)</span>, and Bundler cannot
+</span><span class="line"><span class="k">continue</span>.
+</span><span class="line">Make sure that <span class="sb">`</span>gem install rdiscount -v <span class="s1">&#39;2.0.7.3&#39;</span><span class="sb">`</span> succeeds before bundling.
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Bu rdiscount geminin versiyonuyla ilgili bir hatadır. Gemfile içerisinde bu gem’i bulup versiyon kısmını silip tekrar bundle ettiğimizde sorunumuz ortadan kalkar.</p>
+
+<li> Diğerini ise blog yazımı oluşturduktan sonra aldım. </li>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>rake generate
+</span><span class="line">...
+</span><span class="line">
+</span><span class="line">Building site: <span class="nb">source</span> -&gt; public
+</span><span class="line">/var/lib/gems/1.9.1/gems/rdiscount-1.6.8/lib/rdiscount.rb:89:in <span class="sb">`</span>block in initialize<span class="s1">&#39;: undefined method `footnotes=&#39;</span> <span class="k">for</span> <span class="c">#&lt;RDiscount:0xac76988 @text=&quot;&quot;, @autolink=true&gt; (NoMethodError)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Bu hata rdiscount yani markdown syntax’ı için kullanılan bir gem tarafından kaynaklanmaktadır. Markdown için rdiscount dışında maruku,kramdown gibi seçenekleri de kullanabiliriz. Şimdi _config.yml dosyasını açıp markdown kısmındaki rdiscount’u silmeniz gerekir ve yerine maruku yada kromdown dan birini yazın.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>_config.yml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">...
+</span><span class="line">markdown: kramdown
+</span><span class="line">pygments: <span class="nb">false</span> <span class="c"># default python pygments have been replaced by pygments.rb</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 </div>
@@ -1066,7 +823,7 @@ Ama böyle olmadı. Verilen eğitimler,yapılan sohbetler son derece önemliydi 
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/05/31/chrome/">Google Chrome Gizli Mod</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/06/01/pid/">Localhost Beyaz Sayfa Hatası</a></h1>
     
     
       <p class="meta">
@@ -1082,26 +839,275 @@ Ama böyle olmadı. Verilen eğitimler,yapılan sohbetler son derece önemliydi 
   
 
 
-<time datetime="2012-05-31T22:40:00+03:00" pubdate data-updated="true">May 31<span>st</span>, 2012</time>
+<time datetime="2013-06-01T22:14:00+03:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
         
-         | <a href="/blog/2012/05/31/chrome/#disqus_thread">Comments</a>
+         | <a href="/blog/2013/06/01/pid/#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>Gizli mod Google Chrome ‘un kullanıcılarına sunduğu önemli özelliklerinden biridir. Peki bu gizli mod ne işe yarar? Nasıl kullanılır ?</p>
+  <div class="entry-content"><p>Bugün yerelimde bir problemle karşılaştım. Yerelimi çalıştırdığımda bomboş beyaz bir sayfa(blank page) önüme geliyordu. Sistemimde WampServer kurulu.
+İnternette biraz araştırma yaptıktan sonra bu sorunu da hallettim.</p>
 
-<li> Gizli moddayken açılan web sayfaları,indirilen dosyalar tarama ve indirme geçmişinde gözükmez. </li>
+<p>Beyaz sayfa hatasının temel nedeni port çakışmasıdır. Yerelden başka port 80 ‘ni kullanan  bir uygulama varsa çakışma yaşanır ve localhost çalışmaz.
+Bu çakışmayı anlamak için pid ‘leri kontrol etmeliyiz . Öncelikle cmd ‘yi açalım ve şu komutu yazalım.</p>
 
-<li> Tüm çerezler gizli mod kapatıldıktan sonra silinir. </li>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">netstat -aon
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<li> Gizli moddayken Google Chrome yer işaretleriniz ve genel ayarlarınız üzerinde yapılan değişiklikler her zaman kaydedilir. </li>
+<p>Eğer aşağıdaki gibi bir sonuç üretiliyorsa :</p>
 
-<li> Yazmış olduğunuz şifreler ve kullanıcı adları kaydedilmez.</li>
+<p><img src="/images/pid.PNG" />
+&gt;</p>
 
-<p>Browser da gizli modu açmak için CTRL+SHIFT+N tuş kombinasyonu kullanılır.<img src="/images/secret.gif" /></p>
+<li> Görev Yöneticisini açın. </li>
+<li> Görünüm kısmından &#8220;sütun seç &#8221; deyip &#8220;pid&#8221; işaretleyin.  </li>
+<li> port 80 de çalışan uygulamanın pid &#8216;sini bulup prosesi sonlandır diyerek işlemi bitirin. </li>
+<blockquote>
+
+</blockquote>
+
+<p>Şimdi önemli bir noktaya geldik. Eğer 80 portu pid ‘si 4 olan bir uygulamada çalışıyorsa yani komutun çıktısı aşağıdaki gibiyse :</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">TCP     0.0.0.0:80     0.0.0.0:0     LISTENING     4
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>portunuz IIS (Internet Information Services) tarafından kullanılıyor demektir. Bu sorunun çözümü basit. </p>
+
+<li> Internet Information Services (IIS) Yöneticisini çalıştırın.  </li>
+<li> Sunucuyu durdurun </li>
+<blockquote>
+
+</blockquote>
+
+<p><img src="/images/pid2.PNG" style="width:800px;height:400px;" /></p>
+
+<p>WampServer’ tekrar çalıştırın yeşil rengini almışsa sorununuz halledilmiş demektir.</p>
+
+<h2> EDIT !!! </h2>
+<blockquote>
+
+</blockquote>
+
+<p>Bilgisayarınızı yeniden başlattığınızda yine aynı sorunla karşılaşıyorsanız aşağıdaki adımları uygulayarak sorunu tamamen ortadan kaldırabilirsiniz.
+&gt;</p>
+
+<li> İlk olarak şunu bilmek gerekir ki IIS prosesi görev yöneticisinden kaldırılmaz. IIS yöneticisine gidip servisi durdurmak ise bize sadece geçici çözüm sunar. </li>
+<li> Masaüstüne gelip &#8220;bilgisayar&#8221; sağa tıklayın ve &#8220;Yönet&#8221; i seçin. </li>
+<li> Karşınıza gelen ekranda  &#8220;Hizmetler ve Uygulamar&#8221; açın ve &#8220;hizmetler&#8221; kısmına çift tıklayın. </li>
+<li> En aşağıdan &#8220;Web dağıtım aracı hizmeti&#8221; ni seçin . (Web Deployment Agent Service) </li>
+<li> Servisi durdurun ve tekrar başlamaması için devredışı bırakın. Aşağıdaki gibi bir görüntü oluşturmanız gerekir. </li>
+<blockquote>
+
+</blockquote>
+
+<p><img src="/images/pid3.PNG" />
+&gt;</p>
+
+<p>Şimdi yerelinizi tekrar çalıştırın. Artık port 80 sadece yereline ait.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/21/java/">Java Servlet API Problemi</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-21T22:38:00+03:00" pubdate data-updated="true">May 21<span>st</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/21/java/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Gün geçmiyor ki Eclipse’den bir hata almayalım. Bugün Servlet ile ilgili bir hata aldım. Yeni bir proje oluşturduğunuz da yada varolan bir
+projeyi <a href="http://tugdev.github.io/105/JAVA-PROJES%C4%B0N%C4%B0-ECL%C4%B0PSTE-%C4%B0CE-AKTAR/"> import ettiğinizde </a>  Servlet’ın her 
+bir köşesi size hata veriyorsa aşağıdaki adımları uygulayarak bu problemi çözebilirsiniz.
+&gt;</p>
+
+<p><img src="/images/java.png" /> 
+&gt;</p>
+
+<p><img src="/images/servlet.PNG" /> 
+&gt;</p>
+
+<p><img src="/images/servlet2.PNG" /> </p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/17/jdbc/">Java Da Mysql Bağlantısı</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-17T22:37:00+03:00" pubdate data-updated="true">May 17<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/17/jdbc/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Merhabalar,</p>
+
+<p>Java da mysql bağlantısı yapmak için öncelikle wampserver ya da xampp gibi herhangi bir paket sunucu programının yüklü olması gerekir.
+Mysql’ e bağlanabilmek için bu gibi bir paket program gerekmektedir. Daha sonra java ile bağlantıyı sağlamak için mysql-connector isimli
+jar dosyası indirmemiz gerekir. <a href="http://www.mysql.com/products/connector/"> Buradan </a> JDBC Driver for MySQL (Connector/J) jar 
+dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşağıdaki adımları gerçekleyin.</p>
+
+<p><img src="/images/java.png" /></p>
+
+<blockquote>
+
+</blockquote>
+
+<p><img src="/images/java2.png" /></p>
+
+<p>İndirdiğimiz jar dosyasını ekleyin. Ekleme işlemi bittikten sonra projenizin src klasörü altına Database adında bir class oluşturun ve aşağıdaki kodları ekleyin.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Database.java </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">java.sql.DriverManager</span><span class="o">;</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">java.sql.SQLException</span><span class="o">;</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">java.util.Properties</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line"><span class="kn">import</span> <span class="nn">com.mysql.jdbc.Connection</span><span class="o">;</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">com.mysql.jdbc.Statement</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Database</span> <span class="o">{</span>
+</span><span class="line">	 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ClassNotFoundException</span><span class="o">,</span> <span class="n">SQLException</span> <span class="o">{</span>
+</span><span class="line">		<span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&quot;com.mysql.jdbc.Driver&quot;</span><span class="o">);</span>
+</span><span class="line">		<span class="n">Connection</span> <span class="n">baglanti</span> <span class="o">=</span> <span class="o">(</span><span class="n">Connection</span><span class="o">)</span> <span class="n">DriverManager</span><span class="o">.</span><span class="na">getConnection</span>
+</span><span class="line">					  <span class="o">(</span><span class="s">&quot;jdbc:mysql://localhost/deneme&quot;</span><span class="o">,</span><span class="s">&quot;root&quot;</span><span class="o">,</span><span class="s">&quot;&quot;</span><span class="o">);</span>
+</span><span class="line">		<span class="n">Statement</span> <span class="n">komut</span> <span class="o">=</span> <span class="o">(</span><span class="n">Statement</span><span class="o">)</span> <span class="n">baglanti</span><span class="o">.</span><span class="na">createStatement</span><span class="o">();</span>
+</span><span class="line">		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;Bağlantı Başarılı&quot;</span><span class="o">);</span>
+</span><span class="line">		<span class="n">baglanti</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span><span class="line">	<span class="o">}</span>
+</span><span class="line"><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Kaydedip çalıştırdığınız da “Bağlantı Başarılı” şeklinde bir çıktı alıyorsanız mysql ile bağlantıyı sağladınız demektir.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/17/error/">PhpMyAdmin Error #1142</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-17T22:37:00+03:00" pubdate data-updated="true">May 17<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/17/error/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Phpmyadmin de aşağıdaki gibi bir hata alıyorsanız;</p>
+
+<pre><code>#1142 - SELECT command denied to user ''@'localhost' for table 'pma_column_info' 
+</code></pre>
+
+<p>Şu adımları takip ederek düzeltebilirsiniz:</p>
+
+<li> Ayarlar kısmına girin </li>
+
+<li> Rehber çerçevesi kısmına tıklayın </li>
+
+<li> Son kullanılan tablolar kısmını 0 olarak değiştirin </li>
 </div>
   
   
@@ -1126,23 +1132,23 @@ Ama böyle olmadı. Verilen eğitimler,yapılan sohbetler son derece önemliydi 
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/09/12/android-database/">Android - Veritabanı Kullanımı</a>
+        <a href="/blog/2016/01/28/node-async/">Node.js - Async</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/07/05/vagrant/">Vagrant - Ansible Playbook</a>
+        <a href="/blog/2014/07/04/rails-ajax-datatables/">Rails - Ajax Datatables</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/06/23/octopress/">Octopress İle Blog Oluşturma</a>
+        <a href="/blog/2014/03/29/oracle-forgot-password/">ORACLE- SYSTEM Hesabının Parolasını Değiştirmek</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/06/01/pid/">Localhost Beyaz Sayfa Hatası</a>
+        <a href="/blog/2014/03/14/oracle-ddl/">ORACLE - DDL,DCL,DML Ve TCL İşlemleri</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2013/05/21/java/">Java Servlet API Problemi</a>
+        <a href="/blog/2014/03/08/oracle-kurulumu/">ORACLE Kurulum Problemi</a>
       </li>
     
   </ul>
@@ -1187,7 +1193,7 @@ Ama böyle olmadı. Verilen eğitimler,yapılan sohbetler son derece önemliydi 
       </div>
     </div>
     <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - BETÜL SARAL -
+  Copyright &copy; 2016 - BETÜL SARAL -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a></span>
 </p>
 

@@ -1,0 +1,68 @@
+---
+layout: post
+title: "Ncurses Kurulumu ve Kullanımı"
+date: 2013-03-31 22:39
+comments: true
+categories: Teknik
+---
+
+Merhabalar,
+
+Bugünkü konumuz ncurses. Ncurses'ın ne olduğunu , kurulumunun nasıl yapıldığını ve kullanımıyla ilgili bilgiler vereceğim.
+
+
+<li><a href="#n1"> NCURSES Nedir ?</a></li>
+<li><a href="#n2"> Nasıl Kurulur ? </a></li>
+<li><a href="#n3"> Nasıl Derlenir ? </a></li>
+>
+
+###<a id="n1"> 1- NCURSES Nedir ? </a>
+
+Bir uygulamanın karakter tabanlı uçbirimlerde görüntüleri üzerinde çalışabilmeyi sağlayan ve özgür olarak dağıtılan işlevler kütüphanesidir. NCURSES sadece uçbirim yetenekleri sarmalayan bir yapı oluşturmaz aynı 
+zamanda metin kipinde hoş görüşünüşlü arayüzler oluşturmak için sağlam bir çalışma taslağı da oluşturur. Pencereler v.b. görünümleri oluşturmak için işlevler sağlar. Kardeş kütüphaneleri olan panel, menu ve form, 
+temel curses kütüphanesine bir genişleme sağlar. 
+
+###<a id="n2"> 2- Nasıl Kurulur ? </a>
+
+İlk olarak <a href = "http://ftp.gnu.org/pub/gnu/ncurses/ "> bu adresten  </a> ncurses kütüphanesini indiriyoruz.Sonra arşivi açıyoruz yani :
+
+{% codeblock Terminal lang:sh %}
+$ tar zxvf ncurses-4.2.tar.gz 
+
+$ cd ncurses-4.2  
+
+$ ./configure 
+
+$ make 
+
+$ sudo make install
+{% endcodeblock %}	
+
+###<a id="n3"> 3- Nasıl Derlenir ? </a>
+
+Şimdi bir örnekle bunu açıklayalım. Merhaba.c adında bir belge açın ve içine aşağıdakileri kopyalayın.
+{% codeblock Merhaba.c lang:c %}
+include <ncurses.h>
+
+int main(){
+  initscr();                      /* Curses kipine giriş           */
+  printw("Merhaba Dünya !!!");    /* Merhaba Dünya yazdırma        */
+  refresh();                      /* Onu gerçek ekrana yazdırın    */
+  getch();                        /* Kullanıcıyı bekleyin          */
+  endwin();                       /* Curses kipinden çıkış         */
+
+  return 0;
+}
+	
+{% endcodeblock %}
+
+Şimdi derleyelim, terminali açalım ve dosyanın olduğu dizine geldikten sonra :
+{% codeblock Terminal lang:sh %}
+
+$ gcc merhaba.c -lncurses 
+{% endcodeblock %}
+
+Ve işte bu kadar...
+
+
+Kaynak : <a href ="http://docs.comu.edu.tr/howto/ncurses-howto-intro.html">http://docs.comu.edu.tr/howto/ncurses-howto-intro.html</a>

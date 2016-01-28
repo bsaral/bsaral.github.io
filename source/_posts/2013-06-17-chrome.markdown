@@ -1,0 +1,19 @@
+---
+layout: post
+title: "Google Chrome Gizli Mod"
+date: 2012-05-31 22:40
+comments: true
+categories: Teknik
+---
+
+Gizli mod Google Chrome 'un kullanıcılarına sunduğu önemli özelliklerinden biridir. Peki bu gizli mod ne işe yarar? Nasıl kullanılır ?
+
+<li> Gizli moddayken açılan web sayfaları,indirilen dosyalar tarama ve indirme geçmişinde gözükmez. </li>
+
+<li> Tüm çerezler gizli mod kapatıldıktan sonra silinir. </li>
+
+<li> Gizli moddayken Google Chrome yer işaretleriniz ve genel ayarlarınız üzerinde yapılan değişiklikler her zaman kaydedilir. </li> 
+
+<li> Yazmış olduğunuz şifreler ve kullanıcı adları kaydedilmez.</li>
+
+Browser da gizli modu açmak için CTRL+SHIFT+N tuş kombinasyonu kullanılır.<img src="/images/secret.gif"/>

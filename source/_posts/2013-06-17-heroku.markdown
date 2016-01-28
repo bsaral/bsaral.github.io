@@ -1,0 +1,23 @@
+---
+layout: post
+title: "Heroku Nedir? Nasıl Kullanılır?"
+date: 2012-03-08 22:15
+comments: true
+categories: Teknik
+---
+
+Heroku Bir bulut (cloud) uygulama platformudur. Java, php, python vb gibi dilleri hızlıca geliştirmenizi ve server kurmaya ya da çalışma ortamı yaratmaya gerek kalmadan  doğrudan canlı ortamı görmenizi sağlayan bir platformdur. 
+
+<b> Nasıl Kullanılır? </b>
+
+<li><a href="http://www.heroku.com/"> heroku sitesine </a> üye olmanız gerekir.</li>
+
+<li>Eğer github ı kullanıyorsanız  <code> $ heroku keys:add </code> ile heroku public key ortak kullanılmasını sağlar.</li>
+
+<li><code> $ heroku create </code> bir uygulama örneği oluşturursunuz. </li>
+
+<li><code> $ git push heroku master </code> push ederek değişiklikleri heroku ya aktarmış olursunuz. </li>
+
+<li><code> $ heroku open </code> sayfanın size açılmasını sağlar. </li>
+
+<li> ayrıca eğer size verilen sitenin ismini değiştirmek istiyorsanız <code> $ heroku rename newname </code> kodunu kullanabilirsiniz </li>

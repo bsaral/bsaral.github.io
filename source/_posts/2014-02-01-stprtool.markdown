@@ -1,0 +1,68 @@
+---
+layout: post
+title: "Matlab - STPRTool Kurulum Ve Kullanım"
+date: 2014-02-01 11:35
+comments: true
+categories: Teknik
+---
+
+<h3><a>STPRTool Nedir ?  </a></h3>
+
+STPRTool (Statistical Pattern Recognition Toolbox for Matlab ), matlab içerisinde istatiksel örüntü tanıma için kullanılan bir toolbox olarak tanımlanır. Bu araç içerisinde kNN, SVM gibi örüntü tanıma yöntemleri bulunur. İçerisinde farklı algoritma yöntemleri barındırdığı için sonuçlarımızı gerçeğe yakın bulmamıza yardımcı olur.
+
+<h3><a>Kurulum </a></h3>
+
+<li> İlk olarak <a href = "http://cmp.felk.cvut.cz/cmp/software/stprtool/">STPRTool </a>  indirelim. </li>
+
+<li> Dizini zip içerisinden C sürücüsü hariç herhangi bir yere çıkartın. Eğer STPRTool C sürücüsünde olursa derlenme sırasında problemler yaşanabilir.</li>
+
+<li> Matlab içerisinde Open diyerek STPRTool içerisindeki <code> stprpath.m </code>  dosyasını çalıştırın. </li>
+
+<li> Daha sonra <code> compilemex.m </code> dosyasını çalıştırın. Eğer derlenme sırasında sorun çıkmamışsa STPRTool içerisinde olan tüm algoritmalar kullanılabilir hale gelmiştir. </li><br>
+
+<h3><a>Çıkabilecek Sorunlar </a></h3>
+
+STPRTool kurulumu sırasında biraz sorun çıkartabilir. Şimdi o sorunların çözümlerine bakalım.
+
+{% codeblock Terminal lang:sh %}
+>> compilemex
+Compiling MEX files of STPRtool...
+mex -O -IC:\Program Files\MATLAB\R2013a\toolbox\stprtool\kernels -outdir C:\Program Files\MATLAB\R2013a\toolbox\stprtool\kernels C:\Program Files\MATLAB\R2013a\toolbox\stprtool\kernels\kernel.c C:\Program Files\MATLAB\R2013a\toolbox\stprtool\kernels\kernel_fun.c
+Error using mex (line 206)
+The destination directory "C:\Program" cannot be found.
+
+Error in compilemex (line 113)
+  eval(mexstr);
+
+Error in compilemex (line 113)
+  eval(mexstr);
+{% endcodeblock %} 
+
+Eğer yukarıdaki gibi bir hata alıyorsunuz <code> compilemex.m</code>  içerisinde 102.satırda aşağıdaki değişikliği yapmanız gerekir.
+
+{% codeblock compilemex.m lang:m %}
+% -- Compile functions -----------------------------
+for i=1:length(fun),
+   mexstr = ['mex -O -I''' translate(fun(i).include,root) ...
+             ''' -outdir ''' translate(fun(i).outdir, root) ''' '];
+
+  for j=1:length(fun(i).source),
+    mexstr = [mexstr '''' translate(char(fun(i).source(j)),root) ''' '];
+  end
+
+  fprintf('%s\n',mexstr);
+
+  eval(mexstr);
+end
+{% endcodeblock %} 
+
+Diğeri ise <code> compilemex.m </code> derlenme sırasında mex ile ilgili aşağıdaki gibi hata alınıyorsa;
+
+<img src="/images/c1.png"/>
+
+SDK kurmanız gerekmektedir. Bunu <a href = "http://www.mathworks.com/support/compilers/R2012a/win64.html?requestedDomain=www.mathworks.com" > şu siteden </a>  indirebilirsiniz. SDK kurulum sırasında da hata alabilirsiniz. Ben kurulum yaparken aşağıdaki gibi bir hata aldım.
+
+<img src="/images/c2.png"/>
+
+Bu hatayı yok etmek için <a href = "https://support.microsoft.com/tr-tr/mats/program_install_and_uninstall" > kayıt defterini </a>  çalıştırın. Kayır defteri sistemde düzgün kurulmamış veya kaldırılamamış programları belirler ve gerekeni yapar. Kayıt defterini çalıştırdığımız zaman SDK kurulumunun yapabilmemiz için <code> Uninstall VC++ 2010 (x86 and x64)</code>  kaldırılması gerekir. Böylece SDK kurulur ve derleme başarılı bir şekilde gerçekleşir.
+

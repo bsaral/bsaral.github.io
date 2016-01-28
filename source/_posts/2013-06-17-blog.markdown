@@ -1,0 +1,48 @@
+---
+layout: post
+title: "Github Blog Sayfası Oluşturmak"
+date: 2012-01-14 22:36
+comments: true
+categories: Teknik 
+---
+
+Github üzerinde bir bloga sahip olmak için öncelikle (kullanıcı-adınız).github.com isimli bir depo oluşturmalısınız.
+Benim bloguma ait depo <a href = "https://github.com/bsaral/bsaral.github.com"> bsaral.github.com </a> adıyla Github'da yer alıyor. 
+Herhangi bir github deposunu ya da benim depomu (<b> İÇERİĞİ SİLİP GÖRÜNÜMÜ DEĞİŞTİRMEK ŞARTIYLA </b>) forklayıp istediğiniz gibi değişiklikler
+yapıp kendi blogunuzu oluşturabilirsiniz.
+
+## Kullanım
+
+Sitede `0-1-2-7-9` sayfalama sisteminin Jekyll'a uyarlanmış bir modeli kullanılmaktadır.Site girdilerini doğrudan HTML olarak yazmak yerine, 
+dosya uzantısını `.md` yapmak kaydıyla, HTML üreten hafif bir etiketleme dili olan [Markdown](http://daringfireball.net/projects/markdown/syntax) 
+sözdizimini kullanabilirsiniz.
+
+### Sayfa Ekleme
+
+1- Ekleyeceğiniz sayfanın kategorisini belirleyin.
+ 
+Kişisel düşünce ve duygularınızı yansıtan "Web Günlüğü" niteliğinde yazılar **`0 `** kategorisinde
+
+Öğretici değer taşıyan teknik yazılar **`1`** kategorisinde
+    
+2- Örneğin 1 kategorisinde “GitHub’a Giriş” başlıklı bir girdi oluşturmak istediniz. O zaman dosya yolu  **`1/_posts/2010-09-19-github-giris.md`** şeklinde olmalıdır.
+
+3- Girdiyi depoya ekleyin ve GitHub'a gönderin.
+
+{% codeblock Terminal lang:sh %}
+$ git add 1/_posts/2010-09-19-github-giris.md 
+
+$ git commit -m "yeni girdi: github-giris"
+
+$ git push origin master
+{% endcodeblock %}
+Eğer dosyalarda birden fazla değişiklik yada ekleme yaptıysanız **`git add * `**  komutunu kullanabilirsiniz.Bu komut depoda yaptığınız
+tüm değişiklikleri göndermenizi sağlar.
+{% codeblock Terminal lang:sh %}
+$ git add * 
+
+$ git commit -m "yorum yaz" 
+
+$ git push origin master 
+{% endcodeblock %}
+Ayrıntılı bilgi için <a href = "http://ondokuz.biz/109/sayfa-kilavuzu/"> 19 Sayfa Şablonu </a> bakabilirsiniz.

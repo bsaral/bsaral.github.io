@@ -1,0 +1,31 @@
+---
+layout: post
+title: "ImageMagick / RMagick Gem Install Error"
+date: 2013-02-16 22:37
+comments: true
+categories: Teknik
+---
+
+Gemfile içerisinde bulunan <code> gem "rmagick" ,   '~> 2.13.2' </code> bundle ettiğiniz zaman aşağıdaki gibi bir hata alıyorsanız ;
+
+{% codeblock Terminal lang:sh %}
+
+ERROR:  Error installing rmagick:
+ERROR: Failed to build gem native extension.
+
+..........
+..........
+
+Gem files will remain installed in /usr/lib/ruby/gems/1.8/gems/rmagick-2.13.1 for inspection.
+Results logged to /usr/lib/ruby/gems/1.8/gems/rmagick-2.13.1/ext/RMagick/gem_make.out
+	
+{% endcodeblock %}
+
+Sorunu halletmek için ;
+
+{% codeblock Terminal lang:sh %}
+$ sudo apt-get install libmagickwand-dev
+
+$ bundle install 
+	
+{% endcodeblock %}

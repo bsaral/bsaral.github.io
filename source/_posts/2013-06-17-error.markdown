@@ -1,0 +1,20 @@
+---
+layout: post
+title: "PhpMyAdmin Error #1142"
+date: 2013-05-17 22:37
+comments: true
+categories: Teknik
+---
+
+Phpmyadmin de aşağıdaki gibi bir hata alıyorsanız;
+
+	#1142 - SELECT command denied to user ''@'localhost' for table 'pma_column_info' 
+
+Şu adımları takip ederek düzeltebilirsiniz:
+
+
+<li> Ayarlar kısmına girin </li>
+
+<li> Rehber çerçevesi kısmına tıklayın </li>
+
+<li> Son kullanılan tablolar kısmını 0 olarak değiştirin </li>

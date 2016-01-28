@@ -1,0 +1,32 @@
+---
+layout: post
+title: "Rails Devise Sign_up Problemi"
+date: 2013-02-19 22:37
+comments: true
+categories: Teknik
+---
+
+
+Merhabalar;
+
+
+Devise kurulumundan sonra  <a href ="http://localhost:3000/users/registration/sign_up">http://localhost:3000/users/registration/sign_up </a>  sayfasında aşağıdaki gibi bir hata alıyorsanız ;
+
+{% codeblock Terminal lang:sh %}
+undefined method `user_registration_path' for #<#<Class:0x007fd5d3503d58>:0x007fd5d3b0dcd0>
+{% endcodeblock %}
+
+Ya da sign_up kısmı hiç açılmıyorsa sürekli problem yaşıyorsanız bu sorunun sebebi Gemfile içerisinde bulunan <b> devise </b> gem'inin versiyonuyla ilgilidir.
+Gemfile içerisinde devise gem'inin versiyonu yazılmamalıdır yani aşağıdaki gibi yer almalıdır.
+
+{% codeblock Gemfile lang:yml %}
+gem 'devise' 
+{% endcodeblock %}
+
+
+
+{% codeblock Terminal lang:sh %}
+$ bundle update 
+{% endcodeblock %}
+
+yazdıktan sonra sorununuz çözülecektir.

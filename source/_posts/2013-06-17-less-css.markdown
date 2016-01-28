@@ -1,0 +1,130 @@
+---
+layout: post
+title: "Less Css NEDİR?"
+date: 2011-12-17 22:37
+comments: true
+categories: Teknik
+---
+
+<li><a href="#less1"> LESS CSS Nedir?</a></li>
+<li><a href="#less2"> Neden Less Css Kullanmalıyız ? </a></li>
+<li><a href="#less3"> Less Css Kurulum Ve Kullanımı</a></li>
+<li><a href="#less4"> Less Css Özellikleri</a></li>
+>
+
+###<a id="less1"> 1- LESS CSS Nedir? </a>
+
+Less css adından da anlaşılacağı gibi css de daha az kod yazarak daha kısa zamanda çok iş yapmamızı sağlar. Ayrıca kodların daha düzenli ve anlaşılır bir biçime gelmesine de önemli bir rol oynar.
+
+###<a id="less2"> 2- Neden Less Css Kullanmalıyız ? </a>
+
+Artık web uygulamaları basit veya küçük css dosyaları ile şekillendirilen uygulamalar olmaktan çıkıp daha karmaşık ve daha uzun stil dosyalarına dönüştüler.Kodlarımızın anlaşılır olması,belirli bir düzene sahip olması
+ve daha az yer kaplamasını sağlamak amacıyla less css yi kullanırız.
+
+###<a id="less3"> 3- Less Css Kurulum Ve Kullanımı </a><br>
+
+
+<h4> A-)Linux ve Türevleri İçin </h4>
+
+Linux ve türevleri olan işletim sistemlerinde less css yi kurmak için ilk başta aşağıdaki 4 kod terminale girilir.
+{% codeblock Terminal lang:sh %}
+$ sudo apt-get install rubygems1.8 ruby1.8-dev 
+
+$ sudo gem install rubygems-update 
+
+$ sudo gem update rubygems 
+
+$ sudo gem install less 
+{% endcodeblock %}
+Kurulum tamamlandıktan sonra .less uzantılı belgemizi aşağıdaki komut sayesinde terminalden derlemiş oluruz.
+{% codeblock Terminal lang:sh %}
+$ lessc deneme.less 
+{% endcodeblock %}
+
+<h4> B-)Windows İçin </h4>
+
+Windows işletim sisteminde less css yi kullanmak için <a href ="http://winless.org"> WİNLESS </a> adında bir derleyici program kullanılır.Kullanıcının yaptığı .less uzantılı belge bu derleyicide seçilir ve derleme işlemi sonunda .less belgesiyle aynı isimde yeni bir css belgesi
+oluşur.
+
+
+###<a id="less4"> 4- Less Css Özellikleri </a>
+
+<h4> A-)Değişkenler </h4>
+
+CSS de tekrar tekrar kullanmamız gereken değerleri bir değişkene atamamızı sağlar.
+{% codeblock  lang:css %}
+// LESS CSS					/* COMPİLED CSS */
+
+	  @renk: #4D926F;			#header {
+	  #header {	
+									color: #4D926F;
+		color: @renk;
+	  } 						}
+	  h2 { 						h2 {
+									color: #4D926F;
+		color: @renk;			}
+	  }
+
+{% endcodeblock %}
+<h4> B-)Katmanlar </h4>
+
+Bir sınıfı başka bir sınıf içerisinde kullanabilme olanağı sağlar.
+{% codeblock  lang:css %}
+//LESS CSS							/* COMPİLED CSS */
+
+	.bordered {  						#menu a {
+	  border-top: dotted 1px			  	color: #111;
+	  black;					  			border-top: dotted 1px black;
+	border-bottom: solid 2px				border-bottom:		  		
+		black;					  			solid 2px black;
+	}						 			}
+	#menu a {					
+		color: #111;
+		.bordered;
+	}
+{% endcodeblock %}
+
+<h4> C-)İç İçe Kurallar </h4>
+
+Kodları iç içe yazarak daha anlaşılır bir hale getirebilriz.
+{% codeblock  lang:css %}
+//LESS CSS					/*COMPİLED CSS */
+
+   #header {						#header h1 {
+	h1 {					 		 	font-weight: bold;
+	font-size: 26px;			  			font-size: 26px;}
+	font-weight: bold;
+        }									#header p {
+   p { font-size: 12px;				  			font-size: 12px;}
+		a { text-decoration:				#header p a {
+			none;					  			text-decoration:none;}
+			&:hover { border-width: 1px     #header p a :hover{
+					}				  			border-width:1px} 				
+		}
+     }
+  }
+
+{% endcodeblock %}
+<h4> D-)Fonksiyonlar Ve Operatörler </h4>
+
+Fonksiyonlar üzerinde çarpma, çıkarma, toplama, bölme gibi işlemler yaparak değerleri yeniden ayarlayabiliriz.
+{% codeblock  lang:css %}
+//LESS CSS						/*COMPİLED CSS */
+
+@the-border: 1px;							#header {
+@base-color: #111;								color:#333;
+@red:  #842210;									border-left:1px;
+#header {										border-right:2px;
+	color: @base-color * 3;					}
+	border-left: @the-border;		
+	border-right: @the-border * 2;			#footer {
+}												color:#114411;
+												border-color:#7d2717;
+#footer {									}
+	color: @base-color + #003300;
+	border-color: desaturate(@red, 10%);
+}
+
+{% endcodeblock %}
+
+

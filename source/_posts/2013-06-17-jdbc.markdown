@@ -1,0 +1,48 @@
+---
+layout: post
+title: "Java da Mysql Bağlantısı"
+date: 2013-05-17 22:37
+comments: true
+categories: Teknik
+---
+
+Merhabalar,
+
+Java da mysql bağlantısı yapmak için öncelikle wampserver ya da xampp gibi herhangi bir paket sunucu programının yüklü olması gerekir.
+Mysql' e bağlanabilmek için bu gibi bir paket program gerekmektedir. Daha sonra java ile bağlantıyı sağlamak için mysql-connector isimli
+jar dosyası indirmemiz gerekir. <a href = "http://www.mysql.com/products/connector/"> Buradan </a> JDBC Driver for MySQL (Connector/J) jar 
+dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşağıdaki adımları gerçekleyin.
+
+
+<img src="/images/java.png"/>
+
+>
+
+<img src="/images/java2.png"/>
+
+
+İndirdiğimiz jar dosyasını ekleyin. Ekleme işlemi bittikten sonra projenizin src klasörü altına Database adında bir class oluşturun ve aşağıdaki kodları ekleyin.
+{% codeblock Database.java lang:java %}
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
+
+public class Database {
+	 public static void main(String[] args) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection baglanti = (Connection) DriverManager.getConnection 
+					  ("jdbc:mysql://localhost/deneme","root","");
+		Statement komut = (Statement) baglanti.createStatement();
+		System.out.printf("Bağlantı Başarılı");
+		baglanti.close();
+	}
+}
+{% endcodeblock %}
+Kaydedip çalıştırdığınız da "Bağlantı Başarılı" şeklinde bir çıktı alıyorsanız mysql ile bağlantıyı sağladınız demektir.

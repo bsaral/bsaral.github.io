@@ -1,0 +1,80 @@
+---
+layout: post
+title: "Vagrant - Ansible Playbook"
+date: 2013-07-05 01:18
+comments: true
+categories: Teknik
+---
+
+Merhabalar,
+
+Vagrant ansible playbook paketlerinin bulunduğu bir depoyu kurmaya çalışırken $ vagrant up kısmında aşağıdaki hata ile karşılaştım.
+
+<img src="http://i.imgur.com/i5N41sq.png" />
+
+Hatada anlatılmak istenilen vagrant-ansible geminin kurulmamış olmasıdır. Bu sorunu düzeltmek için ilk önce sistemi update ettim.
+
+{% codeblock Terminal lang:sh %}
+$ sudo apt-get update 
+{% endcodeblock %}
+
+Sistemim kendini update ederken /etc/apt/sources.list.d dizini altındaki bazı dosyalar yüzünden birkaç hata ile karşılaşarak güncelleştirmeyi yarıda kesti.
+
+{% codeblock Terminal lang:sh %}
+...
+
+N: Ignoring file 'ferramroberto-java-oneiric.list.save' in directory '/etc/apt/sources.list.d/' as it has an invalid filename extension
+N: Ignoring file 'webupd8team-java-oneiric.list.save' in directory '/etc/apt/sources.list.d/' as it has an invalid filename extension
+N: Ignoring file 'oneiric-partner.list.save' in directory '/etc/apt/sources.list.d/' as it has an invalid filename extension
+
+...
+{% endcodeblock %}
+
+Bu sorunu halletmek için sources.list.d dizinimiz altındaki hata veren dosyaları silmeliyiz.
+
+
+{% codeblock Terminal lang:sh %}
+$ cd /etc/apt/sources.list.d/
+
+$ sudo rm ferramroberto-java-oneiric.list.save webupd8team-java-oneiric.list.save oneiric-partner.list.save
+
+$ sudo apt-get update
+{% endcodeblock %}
+
+Böylece sistemimiz sorunsuz bir şekilde güncelleştirmesini tamamlamış oldu. Şimdi ansible gem kurulumunu yapalım.
+
+{% codeblock Terminal lang:sh %}
+$ sudo add-apt-repository ppa:rquillo/ansible
+
+$ sudo apt-get update
+
+$ sudo apt-get install ansible -y
+
+$ sudo gem install vagrant-ansible
+{% endcodeblock %}
+
+
+Ve gemimiz kurulmuş oldu. Şimdi depomuza giderek
+
+{% codeblock Terminal lang:sh %}
+$ cd repository
+
+$ vagrant up
+
+$ vagrant ssh
+{% endcodeblock %}
+
+
+Sanal makinanız sorunsuz bir şekilde çalışmış olmalıdır. Eğer $ vagrant up kısmında
+
+{% codeblock Terminal lang:sh %}
+...
+
+ImportError: No module named yaml
+...
+
+$ sudo apt-get install python-yaml
+{% endcodeblock %}
+
+Sorunumuz halledilir. Kolay gelsin.
+

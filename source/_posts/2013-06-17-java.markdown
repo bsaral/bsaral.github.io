@@ -1,0 +1,20 @@
+---
+layout: post
+title: "Java Servlet API Problemi"
+date: 2013-05-21 22:38
+comments: true
+categories: Teknik
+---
+
+Gün geçmiyor ki Eclipse'den bir hata almayalım. Bugün Servlet ile ilgili bir hata aldım. Yeni bir proje oluşturduğunuz da yada varolan bir
+projeyi <a href = "http://tugdev.github.io/105/JAVA-PROJES%C4%B0N%C4%B0-ECL%C4%B0PSTE-%C4%B0CE-AKTAR/"> import ettiğinizde </a>  Servlet'ın her 
+bir köşesi size hata veriyorsa aşağıdaki adımları uygulayarak bu problemi çözebilirsiniz.
+>
+
+<img src="/images/java.png"/> 
+>
+
+<img src="/images/servlet.PNG"/> 
+>
+
+<img src="/images/servlet2.PNG"/> 

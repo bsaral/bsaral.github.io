@@ -1,0 +1,51 @@
+---
+layout: post
+title: "Matlab - Video İşlemede FFMPEG Kullanımı"
+date: 2013-12-15 10:45
+comments: true
+categories: Teknik
+---
+
+<h3><a>KURULUM</a></h3>
+
+Elimizde bir videomuz var ve framelere ayırmamız gerekiyor. Bunun en iyi yolu ffmpeg  ‘dir. FFmpeg kullanmak için önce sistemimize kurup tanıtmamız gerekir. Ben Windows üzerinden gideceğim. İlk önce <a href="http://ffmpeg.zeranoe.com/builds/">  bu adresten </a>  sisteminize uygun olanı indirin.
+
+<li> İndirdiğiniz sürümü zip içerisinden çıkartın. C sürücüsü altına ffmpeg adında bir dizin oluşturun ve buraya aktarın.</li><br>
+
+<li> Sistemde ffmpeg yolunu tanımlamamız gerekir. Bilgisayarıma sağa tıklayıp “Özellikler” kısmından “Gelişmiş Sistem Ayarlarını” seçin </li><br>
+
+<img src="/images/w1.png"/>
+
+<li> User Variables kısmından yeni yol tanımlamayı seçin. Variable kısmına “PATH” , Value kısmına ise ffmpeg yolunu yani “C:\ffmpeg\bin” tanımlayın</li><br>
+
+<img src="/images/w2.jpg"/>
+
+<li> Ayarlamaları yapıp tamam dedikten sonra komut istemini açın ve ffmpeg -version  yazın. Sonuç olarak aşağıdaki çıktıyı alıyorsanız kurulum tamamlanmış demektir. </li><br>
+
+<img src = "/images/w3.jpg"/>
+
+<h3><a>KULLANIM </a></h3>
+
+Kurulumu halletik peki bunu Matlab içerisinde nasıl kullanacağız. Elimizde bulunan videoyu framelere ayırmak istiyoruz o zaman
+
+{% codeblock Terminal lang:sh %}
+% wave1.mp4 adındaki videomun tüm framelerini 
+%images dizini altında image1.jpg,image2.jpg .. şeklinde oluşmasını istedim.
+
+system('ffmpeg -i wave1.mp4 images/image%d.jpg')
+{% endcodeblock %}
+
+Resimlerden video oluşturmak ise
+
+
+{% codeblock Terminal lang:sh %}
+% wave1.mp4 images altına çıkardığım frameleri  
+% birleştirerek test.avi isminde yeni bir video oluşturdum.
+% burdaki -r saniyede geçen kare sayısıdır
+
+system('ffmpeg -r 10 -i images/image%d.jpg -vcodec mpeg4 test.avi')
+{% endcodeblock %}
+
+<a href = "https://github.com/bsaral/pro-lang/blob/master/Matlab/Video%20Processing/runme_video.m"> Örnek Bir Kodlama </a>
+
+

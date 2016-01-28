@@ -1,0 +1,21 @@
+---
+layout: post
+title: "Rails Sqlite3 Gem Problemi"
+date: 2012-11-23 22:38
+comments: true
+categories: Teknik 
+---
+
+Yeni bir rails projesi oluştururken
+
+{% codeblock Terminal lang:sh %}
+$ bundle install 
+{% endcodeblock %}
+
+gemler yüklendiğinde sqlite3 gem problemiyle karşılaşıyorsanız ;
+{% codeblock Terminal lang:sh %}
+$ sudo apt-get install libsqlite3-0 libsqlite3-dev
+{% endcodeblock %}
+{% codeblock Terminal lang:sh %}
+$ sudo gem install sqlite3-ruby
+{% endcodeblock %}

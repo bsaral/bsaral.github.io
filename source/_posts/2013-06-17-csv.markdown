@@ -1,0 +1,81 @@
+---
+layout: post
+title: "Rails de Csv ile Kullanıcıları İçe Aktarmak"
+date: 2012-12-19 22:37
+comments: true
+categories: Teknik
+---
+
+Elimiz de kullanıcıların bulunduğu bir tablo var ve biz bunu csv ile içe aktarmak istiyoruz. İlk olarak gem'i yüklememiz gerekiyor.
+
+
+{% codeblock Gemfile lang:yml %}
+
+gem 'roo' 
+{% endcodeblock %}	
+{% codeblock Terminal lang:sh %}
+$ bundle install 
+{% endcodeblock %}
+
+{% codeblock sessions/index.html.erb lang:html %}
+
+<h2>Import Users</h2>
+
+<%= form_tag import_sessions_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>
+{% endcodeblock %}	
+	
+	
+{% codeblock config/routes.rb lang:ruby %}
+
+resources :sessions do
+	collection { post :import }
+end
+	
+{% endcodeblock %}
+	
+{% codeblock config/application.rb lang:ruby %}
+
+require 'csv'
+require 'iconv'
+{% endcodeblock %}	
+	
+	
+{% codeblock controllers/sessions_controller.rb lang:ruby %}
+
+def import
+  User.import(params[:file])
+  redirect_to root_url, notice: "Products imported."
+end
+	
+{% endcodeblock %}	
+	
+{% codeblock models/user.rb lang:ruby %}
+
+def self.import(file)
+  spreadsheet = open_spreadsheet(file)
+  header = spreadsheet.row(1)
+  (2..spreadsheet.last_row).each do |i|
+	row = Hash[[header, spreadsheet.row(i)].transpose]
+	product = find_by_id(row["id"]) || new
+	product.attributes = row.to_hash.slice(*accessible_attributes)
+	product.save!
+  end
+end
+
+def self.open_spreadsheet(file)
+  case File.extname(file.original_filename)
+  when ".csv" then Csv.new(file.path, nil, :ignore)
+  when ".xls" then Excel.new(file.path, nil, :ignore)
+  when ".xlsx" then Excelx.new(file.path, nil, :ignore)
+  else raise "Unknown file type: #{file.original_filename}"
+  end
+end
+{% endcodeblock %}	
+	
+Eğer yerelinizde çalışıyorsanız sisteme http://localhost:3000/sessions  ulaşabilirsiniz.
+
+
+<h4> DİKKAT !  </h4> İmport edilen csv dosyasının içeriği, oluşturduğunuz kullanıcı tablosundaki özellikleri dikkate alınarak şekillenmelidir. 

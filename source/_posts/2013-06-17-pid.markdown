@@ -1,0 +1,64 @@
+---
+layout: post
+title: "Localhost Beyaz Sayfa Hatası"
+date: 2013-06-01 22:14
+comments: true
+categories: Teknik
+---
+
+Bugün yerelimde bir problemle karşılaştım. Yerelimi çalıştırdığımda bomboş beyaz bir sayfa(blank page) önüme geliyordu. Sistemimde WampServer kurulu.
+İnternette biraz araştırma yaptıktan sonra bu sorunu da hallettim.
+
+Beyaz sayfa hatasının temel nedeni port çakışmasıdır. Yerelden başka port 80 'ni kullanan  bir uygulama varsa çakışma yaşanır ve localhost çalışmaz.
+Bu çakışmayı anlamak için pid 'leri kontrol etmeliyiz . Öncelikle cmd 'yi açalım ve şu komutu yazalım.
+
+{% codeblock Terminal lang:sh %}
+netstat -aon 
+{% endcodeblock %}
+
+Eğer aşağıdaki gibi bir sonuç üretiliyorsa :
+
+<img src="/images/pid.PNG"/>
+>
+
+<li> Görev Yöneticisini açın. </li>
+<li> Görünüm kısmından "sütun seç " deyip "pid" işaretleyin.  </li>
+<li> port 80 de çalışan uygulamanın pid 'sini bulup prosesi sonlandır diyerek işlemi bitirin. </li>
+>
+
+Şimdi önemli bir noktaya geldik. Eğer 80 portu pid 'si 4 olan bir uygulamada çalışıyorsa yani komutun çıktısı aşağıdaki gibiyse :
+
+{% codeblock Terminal lang:sh %}
+TCP     0.0.0.0:80     0.0.0.0:0     LISTENING     4 
+{% endcodeblock %}
+portunuz IIS (Internet Information Services) tarafından kullanılıyor demektir. Bu sorunun çözümü basit. 
+
+
+<li> Internet Information Services (IIS) Yöneticisini çalıştırın.  </li>
+<li> Sunucuyu durdurun </li>
+>
+
+<img src="/images/pid2.PNG" style="width:800px;height:400px;"/>
+
+
+WampServer' tekrar çalıştırın yeşil rengini almışsa sorununuz halledilmiş demektir.
+
+<h2> EDIT !!! </h2> 
+>
+
+Bilgisayarınızı yeniden başlattığınızda yine aynı sorunla karşılaşıyorsanız aşağıdaki adımları uygulayarak sorunu tamamen ortadan kaldırabilirsiniz.
+>
+
+<li> İlk olarak şunu bilmek gerekir ki IIS prosesi görev yöneticisinden kaldırılmaz. IIS yöneticisine gidip servisi durdurmak ise bize sadece geçici çözüm sunar. </li>
+<li> Masaüstüne gelip "bilgisayar" sağa tıklayın ve "Yönet" i seçin. </li>
+<li> Karşınıza gelen ekranda  "Hizmetler ve Uygulamar" açın ve "hizmetler" kısmına çift tıklayın. </li>
+<li> En aşağıdan "Web dağıtım aracı hizmeti" ni seçin . (Web Deployment Agent Service) </li>
+<li> Servisi durdurun ve tekrar başlamaması için devredışı bırakın. Aşağıdaki gibi bir görüntü oluşturmanız gerekir. </li>
+>
+
+<img src="/images/pid3.PNG" />
+>
+
+Şimdi yerelinizi tekrar çalıştırın. Artık port 80 sadece yereline ait.
+
+

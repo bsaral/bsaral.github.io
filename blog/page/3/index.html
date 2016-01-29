@@ -9,7 +9,7 @@
   <meta name="author" content="BETÜL SARAL">
 
   
-  <meta name="description" content="Merhabalar, Bugünkü konumuz ncurses. Ncurses’ın ne olduğunu , kurulumunun nasıl yapıldığını ve kullanımıyla ilgili bilgiler vereceğim. NCURSES Nedir &hellip;">
+  <meta name="description" content="Phpmyadmin de aşağıdaki gibi bir hata alıyorsanız; #1142 - SELECT command denied to user ''@'localhost' for table 'pma_column_info' Şu adımları takip &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,55 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/17/error/">PhpMyAdmin Error #1142</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-17T22:37:00+03:00" pubdate data-updated="true">May 17<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/17/error/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Phpmyadmin de aşağıdaki gibi bir hata alıyorsanız;</p>
+
+<pre><code>#1142 - SELECT command denied to user ''@'localhost' for table 'pma_column_info' 
+</code></pre>
+
+<p>Şu adımları takip ederek düzeltebilirsiniz:</p>
+
+<li> Ayarlar kısmına girin </li>
+
+<li> Rehber çerçevesi kısmına tıklayın </li>
+
+<li> Son kullanılan tablolar kısmını 0 olarak değiştirin </li>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1090,62 +1139,6 @@ tüm tabloları silin ve yeniden oluşturun yani :</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/11/23/sqlite3/">Rails Sqlite3 Gem Problemi</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-23T22:38:00+02:00" pubdate data-updated="true">Nov 23<span>rd</span>, 2012</time>
-        
-         | <a href="/blog/2012/11/23/sqlite3/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Yeni bir rails projesi oluştururken</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle install
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>gemler yüklendiğinde sqlite3 gem problemiyle karşılaşıyorsanız ;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo apt-get install libsqlite3-0 libsqlite3-dev
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem install sqlite3-ruby
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -1163,6 +1156,10 @@ tüm tabloları silin ve yeniden oluşturun yani :</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/01/28/node-promise/">Node.js - Promises</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/28/node-async/">Node.js - Async</a>
       </li>
     
@@ -1176,10 +1173,6 @@ tüm tabloları silin ve yeniden oluşturun yani :</p>
     
       <li class="post">
         <a href="/blog/2014/03/14/oracle-ddl/">ORACLE - DDL,DCL,DML Ve TCL İşlemleri</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/08/oracle-kurulumu/">ORACLE Kurulum Problemi</a>
       </li>
     
   </ul>

@@ -19,7 +19,7 @@ date_format: "ordinal"
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email: betul.saral@bil.omu.edu.tr
+email: btlsaral@gmail.com
 
 # ----------------------- #
 #    Jekyll & Plugins     #

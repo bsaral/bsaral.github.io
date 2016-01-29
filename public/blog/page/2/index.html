@@ -9,7 +9,7 @@
   <meta name="author" content="BETÜL SARAL">
 
   
-  <meta name="description" content="Matlab kullanarak aşağıdaki resmin arkaplanını çıkartan bir uygulama yapalım. Resim-1 Resim-2 Terminal 1
+  <meta name="description" content="İki resim arasındaki farkı Matlab yardımı ile bulalım. Resim-1 Resim-2 Terminal 1
 2
 3
 4
@@ -22,7 +22,11 @@
 11
 12
 13
-input = imread &hellip;">
+14
+15
+16
+17
+im1 = rgb2gray(imread(&#39; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -93,6 +97,92 @@ input = imread &hellip;">
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/01/matlab-fark/">Matlab - İki Resim Arasında Fark Bulma</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-01T10:36:00+02:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time>
+        
+         | <a href="/blog/2013/11/01/matlab-fark/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>İki resim arasındaki farkı Matlab yardımı ile bulalım.</p>
+
+<table>
+<tr>
+	<td>Resim-1<img src="/images/m1.png" /></td>
+	<td>Resim-2<img src="/images/m2.png" /></td>
+</tr>
+</table>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">im1</span> <span class="o">=</span> rgb2gray<span class="o">(</span>imread<span class="o">(</span><span class="s1">&#39;fark1.bmp&#39;</span><span class="o">))</span>;
+</span><span class="line"><span class="nv">im2</span> <span class="o">=</span> rgb2gray<span class="o">(</span>imread<span class="o">(</span><span class="s1">&#39;fark2.bmp&#39;</span><span class="o">))</span>;
+</span><span class="line">
+</span><span class="line"><span class="nv">fark</span> <span class="o">=</span> imabsdiff<span class="o">(</span>im1,im2<span class="o">)</span>;
+</span><span class="line"><span class="nv">bw</span> <span class="o">=</span> bwareaopen<span class="o">(</span>fark,55<span class="o">)</span>;
+</span><span class="line"><span class="nv">bw</span> <span class="o">=</span> imfill<span class="o">(</span>bw,<span class="s1">&#39;holes&#39;</span><span class="o">)</span>;
+</span><span class="line"><span class="nv">SE</span> <span class="o">=</span> strel<span class="o">(</span><span class="s1">&#39;square&#39;</span>,1<span class="o">)</span>;
+</span><span class="line"><span class="nv">bw2</span> <span class="o">=</span> imerode<span class="o">(</span>bw,SE<span class="o">)</span>;
+</span><span class="line"><span class="nv">fark</span> <span class="o">=</span> regionprops<span class="o">(</span>bw2, <span class="s1">&#39;all&#39;</span><span class="o">)</span>;
+</span><span class="line"><span class="nv">c</span> <span class="o">=</span> <span class="o">[</span>fark.Centroid<span class="o">]</span>;
+</span><span class="line">
+</span><span class="line">imshow<span class="o">(</span><span class="s1">&#39;fark2.bmp&#39;</span><span class="o">)</span>;
+</span><span class="line">title<span class="o">([</span><span class="s1">&#39;Toplam fark : &#39;</span>,num2str<span class="o">(</span>length<span class="o">(</span>fark<span class="o">))])</span>;
+</span><span class="line">hold on;
+</span><span class="line"><span class="nv">x</span> <span class="o">=</span> c<span class="o">(</span>1:2:end<span class="o">)</span>;
+</span><span class="line"><span class="nv">y</span> <span class="o">=</span> c<span class="o">(</span>2:2:end<span class="o">)</span>;
+</span><span class="line">plot<span class="o">(</span>x,y,<span class="s1">&#39;yo&#39;</span>,<span class="s1">&#39;MarkerSize&#39;</span>,20,<span class="s1">&#39;LineWidth&#39;</span>,4<span class="o">)</span>;
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Program çıktımız :</p>
+
+<p><img src="/images/mson.png" /></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1066,55 +1156,6 @@ dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşa�
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/17/error/">PhpMyAdmin Error #1142</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-17T22:37:00+03:00" pubdate data-updated="true">May 17<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/05/17/error/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Phpmyadmin de aşağıdaki gibi bir hata alıyorsanız;</p>
-
-<pre><code>#1142 - SELECT command denied to user ''@'localhost' for table 'pma_column_info' 
-</code></pre>
-
-<p>Şu adımları takip ederek düzeltebilirsiniz:</p>
-
-<li> Ayarlar kısmına girin </li>
-
-<li> Rehber çerçevesi kısmına tıklayın </li>
-
-<li> Son kullanılan tablolar kısmını 0 olarak değiştirin </li>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1132,6 +1173,10 @@ dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşa�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/01/28/node-promise/">Node.js - Promises</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/28/node-async/">Node.js - Async</a>
       </li>
     
@@ -1145,10 +1190,6 @@ dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşa�
     
       <li class="post">
         <a href="/blog/2014/03/14/oracle-ddl/">ORACLE - DDL,DCL,DML Ve TCL İşlemleri</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/08/oracle-kurulumu/">ORACLE Kurulum Problemi</a>
       </li>
     
   </ul>

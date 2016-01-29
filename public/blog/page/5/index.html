@@ -9,8 +9,8 @@
   <meta name="author" content="BETÜL SARAL">
 
   
-  <meta name="description" content="Linux ‘ ta yapılan web sitelerini yayınlamak amacıyla PHP+Apache+Mysql üçlüsü
-gereklidir.Bunları sisteme ayrı ayrı kurmak mümkündür. Fakat Ubuntu ve &hellip;">
+  <meta name="description" content="Amacımız kullanıcı kaydı tutan bir web formu ve bu formdan bilgi alıcak bir php dosyası oluşturup , Php
+dosyası içerisinde ki bilgileri veri tabanına &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +81,183 @@ gereklidir.Bunları sisteme ayrı ayrı kurmak mümkündür. Fakat Ubuntu ve &he
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/12/22/html-php-mysql/">HTML-PHP-MYSQL İle Form Tasarlamak</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-12-22T22:38:00+02:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2011</time>
+        
+         | <a href="/blog/2011/12/22/html-php-mysql/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Amacımız kullanıcı kaydı tutan bir web formu ve bu formdan bilgi alıcak bir php dosyası oluşturup , Php
+dosyası içerisinde ki bilgileri veri tabanına aktarımını sağlayan tasarımı oluşturmaktır.İlk önce web formumuzu yapalım :</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;html&gt;</span>
+</span><span class="line"><span class="nt">&lt;head&gt;</span>
+</span><span class="line"><span class="nt">&lt;META</span> <span class="na">http-equiv=</span><span class="s">content-type</span> <span class="na">content=</span><span class="s">text/html;charset=UTF-8</span><span class="nt">&gt;</span>
+</span><span class="line"><span class="nt">&lt;title&gt;</span>   PHP-MYSQL   <span class="nt">&lt;/title&gt;</span>
+</span><span class="line"><span class="nt">&lt;/head&gt;</span>
+</span><span class="line"><span class="nt">&lt;body&gt;</span>
+</span><span class="line"><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&quot;form.php&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span><span class="nt">&gt;</span>
+</span><span class="line">İSMİNİZ
+</span><span class="line"><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;isim&quot;</span><span class="nt">/&gt;&lt;br&gt;</span>
+</span><span class="line">PAROLANIZ
+</span><span class="line"><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;password&quot;</span> <span class="na">name=</span><span class="s">&quot;par&quot;</span><span class="nt">/&gt;&lt;br&gt;</span>
+</span><span class="line">MAİL ADRESİNİZ
+</span><span class="line"><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;mail&quot;</span><span class="nt">/&gt;&lt;br&gt;</span>
+</span><span class="line">			
+</span><span class="line"><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span> <span class="na">value=</span><span class="s">&quot;GONDER&quot;</span><span class="nt">/&gt;</span>
+</span><span class="line"><span class="nt">&lt;/form&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="nt">&lt;/body&gt;</span>
+</span><span class="line"><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>En basit haliyle kullanıcı için bir web formu oluşturduk. Daha sonra bu formdan bilgileri alıcak ve veri tabanına aktarımını sağlayacak
+olan PHP dosyamızı oluşturalım :</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+</pre></td><td class="code"><pre><code class="php"><span class="line"><span class="x">&lt;META http-equiv=content-type content=text/html;charset=UTF-8&gt;</span>
+</span><span class="line">
+</span><span class="line"><span class="cp">&lt;?php</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">//mysql e bağlanma kısmı</span>
+</span><span class="line"><span class="nv">$baglan</span><span class="o">=</span><span class="nb">mysql_connect</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span><span class="s2">&quot;KULLANICI ADINIZ&quot;</span><span class="p">,</span><span class="s2">&quot;KULLANICI ŞİFRENİZ&quot;</span><span class="p">)</span>
+</span><span class="line"><span class="k">or</span> <span class="k">die</span> <span class="p">(</span><span class="s2">&quot;veri tabanına bağlanamadı.&quot;</span><span class="p">);</span>
+</span><span class="line"><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nv">$baglan</span><span class="p">){</span>
+</span><span class="line">	<span class="k">die</span> <span class="p">(</span><span class="s2">&quot;veritabanına bağlanılmadı.&quot;</span><span class="o">.</span><span class="nb">mysql_error</span><span class="p">());</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">//kaydet adında veri tabanınızı oluşturur.</span>
+</span><span class="line"><span class="c1">//(eğer kayıtlı veri tabanlarınızdan herhangi biri &quot;kaydet&quot; isminde değil ise).</span>
+</span><span class="line"><span class="nv">$veri</span><span class="o">=</span><span class="nb">mysql_query</span><span class="p">(</span><span class="s2">&quot;create database if not exists kaydet&quot;</span><span class="p">,</span><span class="nv">$baglan</span><span class="p">);</span>
+</span><span class="line"><span class="k">if</span> <span class="p">(</span><span class="nv">$veri</span><span class="p">){</span>
+</span><span class="line">	<span class="k">echo</span> <span class="s2">&quot;veritabanı oluşturuldu.&quot;</span><span class="p">;}</span>
+</span><span class="line"><span class="k">else</span> <span class="p">{</span>
+</span><span class="line">	<span class="k">echo</span> <span class="s2">&quot;hata&quot;</span><span class="o">.</span><span class="nb">mysql_error</span><span class="p">();}</span>
+</span><span class="line">	
+</span><span class="line">	
+</span><span class="line"><span class="c1">//veri tabanı seçilir.</span>
+</span><span class="line"><span class="nb">mysql_select_db</span><span class="p">(</span><span class="s2">&quot;kaydet&quot;</span><span class="p">)</span> <span class="k">or</span> <span class="k">die</span> <span class="p">(</span><span class="s2">&quot;hata2&quot;</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">//kaydet adlı veritabanı içinde form adlı tablo varsa silinir.</span>
+</span><span class="line"><span class="nb">mysql_query</span><span class="p">(</span><span class="s2">&quot;drop table if exists form&quot;</span><span class="p">)</span> <span class="k">or</span> <span class="k">die</span> <span class="p">(</span><span class="s2">&quot;hata3&quot;</span><span class="p">);</span>
+</span><span class="line"><span class="c1">// ve yenisi oluşturulur.</span>
+</span><span class="line"><span class="nb">mysql_query</span><span class="p">(</span><span class="s2">&quot;create table form(</span>
+</span><span class="line"><span class="s2">isim varchar(30),</span>
+</span><span class="line"><span class="s2">parola char(100) primary key,</span>
+</span><span class="line"><span class="s2">mail text(150))&quot;</span><span class="p">)</span> <span class="k">or</span> <span class="k">die</span> <span class="p">(</span><span class="s2">&quot;hata4&quot;</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">//htm dosyasından aldığı verileri POST metodu ile veri tabanına aktarır.</span>
+</span><span class="line"><span class="nb">mysql_query</span><span class="p">(</span><span class="s2">&quot;insert into form (isim,parola,mail) values </span>
+</span><span class="line"><span class="s2">(&#39;</span><span class="si">$_POST[isim]&#39;,&#39;$_POST[par]&#39;,&#39;$_POST[mail]</span><span class="s2">&#39;)&quot;</span><span class="p">)</span>
+</span><span class="line"><span class="k">or</span> <span class="k">die</span> <span class="p">(</span><span class="s2">&quot;hata5&quot;</span><span class="o">.</span><span class="nb">mysql_error</span><span class="p">());</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="nb">mysql_close</span><span class="p">(</span><span class="nv">$baglan</span><span class="p">);</span>
+</span><span class="line">	
+</span><span class="line"><span class="cp">?&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Eğer herşeyi doğru yapmışsanız kullanıcı form da bilgileri girdikten sonra ekrana “veri tabanı oluşturuldu” şeklinde bir yazı gelir.
+ekranda herhangi bir “hata” şeklinde yazı alıyorsanız yukardaki “hata” yazan kod sırasının herhangi birinde yanlış demektir.</p>
+
+<p>form.htm için:
+<a href="https://gist.github.com/1511957"> https://gist.github.com/1511957 </a></p>
+
+<p>form.php için :
+<a href="https://gist.github.com/1511960"> https://gist.github.com/1511960 </a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -791,6 +968,10 @@ istiyorsanız hosts dosyasında yazdığınız sitenin IP adresini ve kendisini 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/01/28/node-promise/">Node.js - Promises</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/28/node-async/">Node.js - Async</a>
       </li>
     
@@ -804,10 +985,6 @@ istiyorsanız hosts dosyasında yazdığınız sitenin IP adresini ve kendisini 
     
       <li class="post">
         <a href="/blog/2014/03/14/oracle-ddl/">ORACLE - DDL,DCL,DML Ve TCL İşlemleri</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/08/oracle-kurulumu/">ORACLE Kurulum Problemi</a>
       </li>
     
   </ul>

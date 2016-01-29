@@ -9,7 +9,7 @@
   <meta name="author" content="BETÜL SARAL">
 
   
-  <meta name="description" content="Async, asenkron işlemler için kullanılan bir javascript kütüphanesidir. Bu kütüphanede önemli olan asenkron işlemlerinin yönetimini kolaylaştıracak &hellip;">
+  <meta name="description" content="Promises, Node.js gibi asenkron çalışma mantığını kullanan programlamalar için önemli bir yöntemdir. Pyramid of Doom olarak nitelendirilen iç içe &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +76,7 @@
   <li><a href="/blog/categories/teknik/">Teknik Yazılar</a></li>
 </ul>
 
+
 </nav>
   </div>
   <div id="body"  >
@@ -83,6 +84,310 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/01/28/node-promise/">Node.js - Promises</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-01-28T17:27:00+02:00" pubdate data-updated="true">Jan 28<span>th</span>, 2016</time>
+        
+         | <a href="/blog/2016/01/28/node-promise/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Promises, Node.js gibi asenkron çalışma mantığını kullanan programlamalar için önemli bir yöntemdir. <a href="https://en.wikipedia.org/wiki/Pyramid_of_doom_(programming)">  Pyramid of Doom </a> olarak nitelendirilen iç içe geçmiş karmaşık ve uzun kodların daha düzenli ve daha sade hale gelmesini sağlar. Bu yöntem belki tek başına kullanılan asenkron bir fonksiyon için çok etkili değil ama birden fazla fonksiyon olma durumunda kullanılması gereken bir yöntemdir. </p>
+
+<p>Promises için birçok kütüphane bulunur. Bunlardan en çok bilineni <a href="http://bluebirdjs.com/docs/getting-started.html"> Blubird </a> ve <a href="https://github.com/kriskowal/q"> Q </a> kütüphanesidir. Node.js kullanan birçok framework de aslında promises yapısını kullanılan kütüphaneler eklidir. Mesela benim şu an kullandığım Sails.js veritabanı sorguları için promise yapısı olarak bluebird ile çalışabilmektedir.</p>
+
+<p>Şimdi promise yapısı kullanmadan iç içe geçmiş küçük bir programlama yapalım. setTimeout olarak farklı milisaniyelerde çalışan 4 adet fonksiyon tanımlıyoruz. </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Pyramid of Doom </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="kd">function</span> <span class="nx">testFunc1</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class="line">        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="nx">name</span><span class="p">);</span>
+</span><span class="line">    <span class="p">},</span> <span class="mi">500</span><span class="p">);</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">function</span> <span class="nx">testFunc2</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class="line">        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="nx">name</span><span class="p">)</span>
+</span><span class="line">    <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">function</span> <span class="nx">testFunc3</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class="line">        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="nx">name</span><span class="p">)</span>
+</span><span class="line">    <span class="p">},</span> <span class="mi">900</span><span class="p">);</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">function</span> <span class="nx">testFunc4</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class="line">        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="nx">name</span><span class="p">)</span>
+</span><span class="line">    <span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nx">testFunc1</span><span class="p">(</span><span class="s2">&quot;Betül&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">result1</span><span class="p">){</span>
+</span><span class="line">    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+</span><span class="line">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">    <span class="k">else</span><span class="p">{</span>
+</span><span class="line">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;testFunc1 sonucu : &quot;</span><span class="o">+</span><span class="nx">result1</span><span class="p">);</span>
+</span><span class="line">        <span class="nx">testFunc2</span><span class="p">(</span><span class="s2">&quot;Hande&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">result2</span><span class="p">){</span>
+</span><span class="line">            <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+</span><span class="line">                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+</span><span class="line">            <span class="p">}</span>
+</span><span class="line">            <span class="k">else</span><span class="p">{</span>
+</span><span class="line">                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;testFunc2 sonucu : &quot;</span><span class="o">+</span><span class="nx">result2</span><span class="p">);</span>
+</span><span class="line">                <span class="nx">testFunc3</span><span class="p">(</span><span class="s2">&quot;Tuğba&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">result3</span><span class="p">){</span>
+</span><span class="line">                    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+</span><span class="line">                        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+</span><span class="line">                    <span class="p">}</span>
+</span><span class="line">                    <span class="k">else</span><span class="p">{</span>
+</span><span class="line">                        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;testFunc3 sonucu : &quot;</span><span class="o">+</span><span class="nx">result3</span><span class="p">);</span>
+</span><span class="line">                        <span class="nx">testFunc4</span><span class="p">(</span><span class="s2">&quot;Yasemin&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">result4</span><span class="p">){</span>
+</span><span class="line">                            <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+</span><span class="line">                                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+</span><span class="line">                            <span class="p">}</span>
+</span><span class="line">                            <span class="k">else</span><span class="p">{</span>
+</span><span class="line">                                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;testFunc4 sonucu : &quot;</span><span class="o">+</span><span class="nx">result4</span><span class="p">);</span>
+</span><span class="line">                            <span class="p">}</span>
+</span><span class="line">                        <span class="p">});</span>
+</span><span class="line">                    <span class="p">}</span>
+</span><span class="line">                <span class="p">});</span>
+</span><span class="line">            <span class="p">}</span>
+</span><span class="line">        <span class="p">});</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line"><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><img src="/images/p1.png" /></p>
+
+<p>Bu şekilde 10 tane daha fonksiyon çalıştırdığınızı düşünün. Hepsi iç içe. Ne kadar kötü gözüküyor değil mi ? Ama promises ile çalıştığımız zaman bu problemi ortadan kaldırıyoruz.</p>
+
+<p>Ben Q kütüphanesini kullandım. Siz isterseniz blubird kullanabilirsiniz. Çalışma mantıkları aynı ama söz dizimleri birbirine benzemiyor. Q kütüphanesini npm ile <a href="https://www.npmjs.com/package/q"> burdan </a> yükleyebilirsiniz.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>promise.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+</pre></td><td class="code"><pre><code class="js"><span class="line"><span class="kd">var</span> <span class="nx">Q</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">function</span> <span class="nx">testFunc1</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">	<span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
+</span><span class="line">	<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class="line">	    <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;test1 fonksiyonu : &quot;</span><span class="o">+</span><span class="nx">name</span><span class="p">);</span>
+</span><span class="line">	<span class="p">},</span> <span class="mi">500</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">	<span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">function</span> <span class="nx">testFunc2</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
+</span><span class="line">
+</span><span class="line">    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class="line">        <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;test2 fonksiyonu : &quot;</span><span class="o">+</span> <span class="nx">name</span><span class="p">);</span>
+</span><span class="line">    <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">function</span> <span class="nx">testFunc3</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line"> 	<span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
+</span><span class="line">
+</span><span class="line">    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class="line">        <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;test3 fonksiyonu : &quot;</span><span class="o">+</span><span class="nx">name</span><span class="p">);</span>
+</span><span class="line">    <span class="p">},</span> <span class="mi">900</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">function</span> <span class="nx">testFunc4</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line"> 	<span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
+</span><span class="line">
+</span><span class="line">    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class="line">        <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;test4 fonksiyonu : &quot;</span><span class="o">+</span><span class="nx">name</span><span class="p">);</span>
+</span><span class="line">    <span class="p">},</span> <span class="mi">300</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">    <span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="nx">testFunc1</span><span class="p">(</span><span class="s2">&quot;Betül&quot;</span><span class="p">)</span>
+</span><span class="line">    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</span><span class="line">        <span class="c1">// testFunc2 fonksiyonunu çağırıyoruz</span>
+</span><span class="line">        <span class="k">return</span> <span class="nx">testFunc2</span><span class="p">(</span><span class="s2">&quot;Hande&quot;</span><span class="p">);</span>
+</span><span class="line">    <span class="p">})</span>
+</span><span class="line">    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">
+</span><span class="line">       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">        <span class="c1">// testFunc3 fonksiyonunu çağırıyoruz</span>
+</span><span class="line">        <span class="k">return</span> <span class="nx">testFunc3</span><span class="p">(</span><span class="s2">&quot;Tuğba&quot;</span><span class="p">);</span>
+</span><span class="line">    <span class="p">})</span>
+</span><span class="line">    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">        <span class="c1">// testFunc4 fonksiyonunu çağırıyoruz</span>
+</span><span class="line">        <span class="k">return</span> <span class="nx">testFunc4</span><span class="p">(</span><span class="s2">&quot;Yasemin&quot;</span><span class="p">);</span>
+</span><span class="line">    <span class="p">})</span>
+</span><span class="line">    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    	<span class="c1">//testFunc4 fonksiyonunu sonucu</span>
+</span><span class="line">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</span><span class="line">    <span class="p">})</span>
+</span><span class="line">    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Hata : &quot;</span><span class="o">+</span><span class="nx">error</span><span class="p">);</span>
+</span><span class="line">    <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><code> deferred </code> ile promises nesnemizi tanımlıyoruz. <code> then </code> ve <code> catch </code> ile fonksiyon sonucunda oluşan nesnemizi döndürüyoruz. Promises yapısında callback kullanılmaz. Bunun yerine fonksiyon sonuçları senkron bir şekilde <code> then </code>, <code> catch </code> yapısına gider. Eğer fonksiyon sonucu bir hata oluşmuyorsa <code> then </code> fonksiyonuna, eğer bu fonksiyonlardan herhangi birinden hata alıyorsak ise <code> catch </code> fonksiyonuna gider. Böylece her bir fonksiyon için hata kontrolü yapmak yerine <code> catch </code> kullanarak hata kontrolünü tüm fonksiyonlar için tek bir satırda yapıyoruz. </p>
+
+<p>Şimdilik bu kadar. Promises ile ilgili araştırmalarım devam ediyor. Yeni şeyler öğrendikçe burayı da güncellemeye çalışacağım. </p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1288,92 +1593,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/01/matlab-fark/">Matlab - İki Resim Arasında Fark Bulma</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-01T10:36:00+02:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time>
-        
-         | <a href="/blog/2013/11/01/matlab-fark/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>İki resim arasındaki farkı Matlab yardımı ile bulalım.</p>
-
-<table>
-<tr>
-	<td>Resim-1<img src="/images/m1.png" /></td>
-	<td>Resim-2<img src="/images/m2.png" /></td>
-</tr>
-</table>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">im1</span> <span class="o">=</span> rgb2gray<span class="o">(</span>imread<span class="o">(</span><span class="s1">&#39;fark1.bmp&#39;</span><span class="o">))</span>;
-</span><span class="line"><span class="nv">im2</span> <span class="o">=</span> rgb2gray<span class="o">(</span>imread<span class="o">(</span><span class="s1">&#39;fark2.bmp&#39;</span><span class="o">))</span>;
-</span><span class="line">
-</span><span class="line"><span class="nv">fark</span> <span class="o">=</span> imabsdiff<span class="o">(</span>im1,im2<span class="o">)</span>;
-</span><span class="line"><span class="nv">bw</span> <span class="o">=</span> bwareaopen<span class="o">(</span>fark,55<span class="o">)</span>;
-</span><span class="line"><span class="nv">bw</span> <span class="o">=</span> imfill<span class="o">(</span>bw,<span class="s1">&#39;holes&#39;</span><span class="o">)</span>;
-</span><span class="line"><span class="nv">SE</span> <span class="o">=</span> strel<span class="o">(</span><span class="s1">&#39;square&#39;</span>,1<span class="o">)</span>;
-</span><span class="line"><span class="nv">bw2</span> <span class="o">=</span> imerode<span class="o">(</span>bw,SE<span class="o">)</span>;
-</span><span class="line"><span class="nv">fark</span> <span class="o">=</span> regionprops<span class="o">(</span>bw2, <span class="s1">&#39;all&#39;</span><span class="o">)</span>;
-</span><span class="line"><span class="nv">c</span> <span class="o">=</span> <span class="o">[</span>fark.Centroid<span class="o">]</span>;
-</span><span class="line">
-</span><span class="line">imshow<span class="o">(</span><span class="s1">&#39;fark2.bmp&#39;</span><span class="o">)</span>;
-</span><span class="line">title<span class="o">([</span><span class="s1">&#39;Toplam fark : &#39;</span>,num2str<span class="o">(</span>length<span class="o">(</span>fark<span class="o">))])</span>;
-</span><span class="line">hold on;
-</span><span class="line"><span class="nv">x</span> <span class="o">=</span> c<span class="o">(</span>1:2:end<span class="o">)</span>;
-</span><span class="line"><span class="nv">y</span> <span class="o">=</span> c<span class="o">(</span>2:2:end<span class="o">)</span>;
-</span><span class="line">plot<span class="o">(</span>x,y,<span class="s1">&#39;yo&#39;</span>,<span class="s1">&#39;MarkerSize&#39;</span>,20,<span class="s1">&#39;LineWidth&#39;</span>,4<span class="o">)</span>;
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Program çıktımız :</p>
-
-<p><img src="/images/mson.png" /></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1389,6 +1608,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/01/28/node-promise/">Node.js - Promises</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/28/node-async/">Node.js - Async</a>
       </li>
     
@@ -1402,10 +1625,6 @@
     
       <li class="post">
         <a href="/blog/2014/03/14/oracle-ddl/">ORACLE - DDL,DCL,DML Ve TCL İşlemleri</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/08/oracle-kurulumu/">ORACLE Kurulum Problemi</a>
       </li>
     
   </ul>

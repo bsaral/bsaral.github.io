@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Teknik | Betül SARAL]]></title>
   <link href="http://bsaral.github.io/blog/categories/teknik/atom.xml" rel="self"/>
   <link href="http://bsaral.github.io/"/>
-  <updated>2016-01-28T12:16:59+02:00</updated>
+  <updated>2016-01-29T11:12:01+02:00</updated>
   <id>http://bsaral.github.io/</id>
   <author>
     <name><![CDATA[BETÜL SARAL]]></name>
@@ -12,6 +12,282 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Node.js - Promises]]></title>
+    <link href="http://bsaral.github.io/blog/2016/01/28/node-promise/"/>
+    <updated>2016-01-28T17:27:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2016/01/28/node-promise</id>
+    <content type="html"><![CDATA[<p>Promises, Node.js gibi asenkron çalışma mantığını kullanan programlamalar için önemli bir yöntemdir. <a href="https://en.wikipedia.org/wiki/Pyramid_of_doom_(programming)">  Pyramid of Doom </a> olarak nitelendirilen iç içe geçmiş karmaşık ve uzun kodların daha düzenli ve daha sade hale gelmesini sağlar. Bu yöntem belki tek başına kullanılan asenkron bir fonksiyon için çok etkili değil ama birden fazla fonksiyon olma durumunda kullanılması gereken bir yöntemdir. </p>
+
+<p>Promises için birçok kütüphane bulunur. Bunlardan en çok bilineni <a href="http://bluebirdjs.com/docs/getting-started.html"> Blubird </a> ve <a href="https://github.com/kriskowal/q"> Q </a> kütüphanesidir. Node.js kullanan birçok framework de aslında promises yapısını kullanılan kütüphaneler eklidir. Mesela benim şu an kullandığım Sails.js veritabanı sorguları için promise yapısı olarak bluebird ile çalışabilmektedir.</p>
+
+<p>Şimdi promise yapısı kullanmadan iç içe geçmiş küçük bir programlama yapalım. setTimeout olarak farklı milisaniyelerde çalışan 4 adet fonksiyon tanımlıyoruz. </p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Pyramid of Doom </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">function</span> <span class="nx">testFunc1</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">},</span> <span class="mi">500</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">function</span> <span class="nx">testFunc2</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="nx">name</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">function</span> <span class="nx">testFunc3</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="nx">name</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">},</span> <span class="mi">900</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">function</span> <span class="nx">testFunc4</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="nx">name</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">testFunc1</span><span class="p">(</span><span class="err">“</span><span class="nx">Bet</span><span class="err">ü</span><span class="nx">l</span><span class="err">”</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">result1</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">{</span>
+</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">“</span><span class="nx">testFunc1</span> <span class="nx">sonucu</span> <span class="o">:</span> <span class="err">“</span><span class="o">+</span><span class="nx">result1</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">testFunc2</span><span class="p">(</span><span class="err">“</span><span class="nx">Hande</span><span class="err">”</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">result2</span><span class="p">){</span>
+</span><span class='line'>            <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+</span><span class='line'>                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="k">else</span><span class="p">{</span>
+</span><span class='line'>                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">“</span><span class="nx">testFunc2</span> <span class="nx">sonucu</span> <span class="o">:</span> <span class="err">“</span><span class="o">+</span><span class="nx">result2</span><span class="p">);</span>
+</span><span class='line'>                <span class="nx">testFunc3</span><span class="p">(</span><span class="err">“</span><span class="nx">Tu</span><span class="err">ğ</span><span class="nx">ba</span><span class="err">”</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">result3</span><span class="p">){</span>
+</span><span class='line'>                    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+</span><span class='line'>                        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+</span><span class='line'>                    <span class="p">}</span>
+</span><span class='line'>                    <span class="k">else</span><span class="p">{</span>
+</span><span class='line'>                        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">“</span><span class="nx">testFunc3</span> <span class="nx">sonucu</span> <span class="o">:</span> <span class="err">“</span><span class="o">+</span><span class="nx">result3</span><span class="p">);</span>
+</span><span class='line'>                        <span class="nx">testFunc4</span><span class="p">(</span><span class="err">“</span><span class="nx">Yasemin</span><span class="err">”</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">result4</span><span class="p">){</span>
+</span><span class='line'>                            <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+</span><span class='line'>                                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+</span><span class='line'>                            <span class="p">}</span>
+</span><span class='line'>                            <span class="k">else</span><span class="p">{</span>
+</span><span class='line'>                                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="err">“</span><span class="nx">testFunc4</span> <span class="nx">sonucu</span> <span class="o">:</span> <span class="err">“</span><span class="o">+</span><span class="nx">result4</span><span class="p">);</span>
+</span><span class='line'>                            <span class="p">}</span>
+</span><span class='line'>                        <span class="p">});</span>
+</span><span class='line'>                    <span class="p">}</span>
+</span><span class='line'>                <span class="p">});</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>        <span class="p">});</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><img src="http://bsaral.github.io/images/p1.png" /></p>
+
+<p>Bu şekilde 10 tane daha fonksiyon çalıştırdığınızı düşünün. Hepsi iç içe. Ne kadar kötü gözüküyor değil mi ? Ama promises ile çalıştığımız zaman bu problemi ortadan kaldırıyoruz.</p>
+
+<p>Ben Q kütüphanesini kullandım. Siz isterseniz blubird kullanabilirsiniz. Çalışma mantıkları aynı ama söz dizimleri birbirine benzemiyor. Q kütüphanesini npm ile <a href="https://www.npmjs.com/package/q"> burdan </a> yükleyebilirsiniz.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>promise.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="kd">var</span> <span class="nx">Q</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="err">‘</span><span class="nx">q</span><span class="err">’</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">function</span> <span class="nx">testFunc1</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>	<span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span>
+</span><span class='line'>	<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>	    <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="err">“</span><span class="nx">test1</span> <span class="nx">fonksiyonu</span> <span class="o">:</span> <span class="err">“</span><span class="o">+</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'>	<span class="p">},</span> <span class="mi">500</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">function</span> <span class="nx">testFunc2</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;test2 fonksiyonu : &quot;</span><span class="o">+</span> <span class="nx">name</span><span class="p">);</span>
+</span><span class='line'><span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">function</span> <span class="nx">testFunc3</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'> 	<span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;test3 fonksiyonu : &quot;</span><span class="o">+</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'><span class="p">},</span> <span class="mi">900</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">function</span> <span class="nx">testFunc4</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'> 	<span class="kd">var</span> <span class="nx">deferred</span> <span class="o">=</span> <span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">();</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;test4 fonksiyonu : &quot;</span><span class="o">+</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'><span class="p">},</span> <span class="mi">300</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">return</span> <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">testFunc1</span><span class="p">(</span><span class="err">“</span><span class="nx">Bet</span><span class="err">ü</span><span class="nx">l</span><span class="err">”</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</span><span class='line'>        <span class="c1">// testFunc2 fonksiyonunu çağırıyoruz</span>
+</span><span class='line'>        <span class="k">return</span> <span class="nx">testFunc2</span><span class="p">(</span><span class="err">“</span><span class="nx">Hande</span><span class="err">”</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">})</span>
+</span><span class='line'>    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span>   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// testFunc3 fonksiyonunu çağırıyoruz</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">testFunc3</span><span class="p">(</span><span class="s2">&quot;Tuğba&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">})</span>
+</span><span class='line'><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">// testFunc4 fonksiyonunu çağırıyoruz</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">testFunc4</span><span class="p">(</span><span class="s2">&quot;Yasemin&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">})</span>
+</span><span class='line'><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>	<span class="c1">//testFunc4 fonksiyonunu sonucu</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</span><span class='line'><span class="p">})</span>
+</span><span class='line'><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Hata : &quot;</span><span class="o">+</span><span class="nx">error</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</code></pre>
+
+<p><code> deferred </code> ile promises nesnemizi tanımlıyoruz. <code> then </code> ve <code> catch </code> ile fonksiyon sonucunda oluşan nesnemizi döndürüyoruz. Promises yapısında callback kullanılmaz. Bunun yerine fonksiyon sonuçları senkron bir şekilde <code> then </code>, <code> catch </code> yapısına gider. Eğer fonksiyon sonucu bir hata oluşmuyorsa <code> then </code> fonksiyonuna, eğer bu fonksiyonlardan herhangi birinden hata alıyorsak ise <code> catch </code> fonksiyonuna gider. Böylece her bir fonksiyon için hata kontrolü yapmak yerine <code> catch </code> kullanarak hata kontrolünü tüm fonksiyonlar için tek bir satırda yapıyoruz. </p>
+
+<p>Şimdilik bu kadar. Promises ile ilgili araştırmalarım devam ediyor. Yeni şeyler öğrendikçe burayı da güncellemeye çalışacağım. </p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Node.js - Async]]></title>
@@ -568,31 +844,6 @@
 <li>ROLLBACK, veritabanında son COMMIT’e kadar olan yere geri alır.</li>
 <li>SET TRANSACTION, işlemlerin izolasyon seviyesini modifiye etmek veya mevcut işlemin özelliklerini değiştirmek için kullanılabilir.</li>
 <p><br /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ORACLE Kurulum Problemi]]></title>
-    <link href="http://bsaral.github.io/blog/2014/03/08/oracle-kurulumu/"/>
-    <updated>2014-03-08T11:48:00+02:00</updated>
-    <id>http://bsaral.github.io/blog/2014/03/08/oracle-kurulumu</id>
-    <content type="html"><![CDATA[<p>Oracle kurulumunu tamamladıktan sonra, dizin altında bulunan “Get Started” çalıştırınca aşağıdaki gibi bir hata alıyorsanız;</p>
-
-<p><img src="http://bsaral.github.io/images/o1.png" /></p>
-
-<p>şu adımları izleyerek sorununuzu çözebilirsiniz. </p>
-
-<li>“Get Started” ikonuna sağ tıklayıp özellikler kısmını açın.</li>
-<p><br /></p>
-
-<p><img src="http://bsaral.github.io/images/o2.png" /></p>
-
-<li> Burda birlikte aç kısmından Google Chrome,Mozilla Firefox yada kullandığınız tarayıcınızı seçin.</li>
-
-<li>Şimdi tekrar “Get Started” çalıştırmayı deneyin. URL’ yi <code> http://127.0.0.1:8080/apex/f?p=4950  </code> tarayıcınıza yazdığınızda karşınıza aşağıdaki gibi giriş ekranı çıkması gerekir. Kullanıcı adınızı “SYSTEM” ve parolanızı da girdikten sonra Oracle kurulumu tamamlanmış olur.</li>
-<p><br /></p>
-
-<p><img src="http://bsaral.github.io/images/o3.png" /></p>
 ]]></content>
   </entry>
   

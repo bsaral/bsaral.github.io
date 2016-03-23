@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Teknik | Betül SARAL]]></title>
   <link href="http://bsaral.github.io/blog/categories/teknik/atom.xml" rel="self"/>
   <link href="http://bsaral.github.io/"/>
-  <updated>2016-01-29T11:12:01+02:00</updated>
+  <updated>2016-03-23T16:46:00+02:00</updated>
   <id>http://bsaral.github.io/</id>
   <author>
     <name><![CDATA[BETÜL SARAL]]></name>
@@ -12,6 +12,156 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Node.js - Streams]]></title>
+    <link href="http://bsaral.github.io/blog/2016/03/23/node-streams/"/>
+    <updated>2016-03-23T15:13:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2016/03/23/node-streams</id>
+    <content type="html"><![CDATA[<p>Streams, kaynaktan sürekli veri okuyan ve hedef veriye kolayca aktarım yapılan nesnelerdir. Node.js 4 farklı streams çeşidi kullanır. Ben bunların üçünden bahsedeceğim.</p>
+
+<li> <b> Readable Stream </b>, kaynaktan veriyi okuyan akıştır </li>
+<li> <b> Writable Stream </b>, hedefe veriyi gönderen akıştır </li>
+<li> <b> Duplex Stream </b>, hem okuma hemde yazma işlemi yapan akıştır. </li>
+<p><br />
+Basit bir Node uygulamasında kullandığımız http server da request aslında bizim için readable stream, response writable stream ve fs modülü ise dublex stream olarak kullanılabilmektedir.</p>
+
+<p>Streams nesnelerini kullanırken EventEmitter yapısını da kullanarak farklı zamanlarda oluşan olayları rahat bir şekilde takip edebiliriz. Bu yapıda kullanılan bazı eventler aşağıdaki gibidir.</p>
+
+<li> <b> data</b>, veri okunurken bu event tetiklenir.</li>
+<li> <b> end </b>, kaynaktan okunacak data kalmadığında bu kısma düşer. </li>
+<li> <b> error </b>, veriyi okuma veya yazmada herhangi bir problem olursa bu kısma düşer. </li>
+<p><br /></p>
+
+<p>Şimdi birkaç örnek üzerinden konuyu açıklayalım. İlk önce readable stream örneğine bakalım.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>app.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="err">‘</span><span class="nx">fs</span><span class="err">’</span><span class="p">);</span>
+</span><span class='line'>	<span class="kd">var</span> <span class="nx">readableStream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="err">‘</span><span class="nx">file</span><span class="p">.</span><span class="nx">txt</span><span class="err">’</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">readableStream</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">chunk</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">data</span><span class="o">+=</span><span class="nx">chunk</span><span class="p">;</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">readableStream</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>file.txt adında bir dosyamız var ve fs.createReadStream yaparak bu dosyayı stream olarak okumamızı sağlıyoruz. readableStream.on diyerek EventEmitter yapısındaki fonksiyonları çağırıyoruz. Kaynaktan okuma yaparken yukarıda bahsettiğim gibi data event yapısına düşer. readableStream’den gelen her bir parçayı dataya ekliyoruz. Okunacak veri bittiğinde ise end event yapısına gidiyor ve datayı bastırıyor.</p>
+
+<p>Pipe yapısını inceleyelim.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>app.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="err">‘</span><span class="nx">fs</span><span class="err">’</span><span class="p">);</span>
+</span><span class='line'>	<span class="kd">var</span> <span class="nx">readableStream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="err">‘</span><span class="nx">file1</span><span class="p">.</span><span class="nx">txt</span><span class="err">’</span><span class="p">);</span>
+</span><span class='line'>	<span class="kd">var</span> <span class="nx">writableStream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">(</span><span class="err">‘</span><span class="nx">file2</span><span class="p">.</span><span class="nx">txt</span><span class="err">’</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">readableStream</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">writableStream</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Pipe yapısı streams okumak ve yazmak için kullanılabilecek en iyi yöntemdir. Çünkü akışı size bırakmaz kontrolü kendindedir. Datayı okuma veya yazma hızını yönetme işini kendi yapar. Bu örnekte file1.txt içerisindeki veriyi pipe yaparak yani bir boru hattı oluşturup veriyi bu yapı içerisinden file2.txt aktardığını hayal edebilirsiniz. Pipe ile zincirleme bir yapısı kurarak birden fazla streams nesnesini kullanabilirsiniz.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>app.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="err">‘</span><span class="nx">fs</span><span class="err">’</span><span class="p">);</span>
+</span><span class='line'>	<span class="kd">var</span> <span class="nx">zlib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="err">‘</span><span class="nx">zlib</span><span class="err">’</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="s1">&#39;input.txt.gz&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">zlib</span><span class="p">.</span><span class="nx">createGunzip</span><span class="p">())</span>
+</span><span class='line'>  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">(</span><span class="s1">&#39;output.txt&#39;</span><span class="p">));</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Bu örnekte ilk önce input.txt.gz adında okunabilir bir streams yapısı oluşturuyoruz. zlib.createGunzip() ile unzip işlemi yaparak içeriği okunup output.txt’e yazılabilir bir stream oluşturup veriyi aktarıyoruz.</p>
+
+<p>Şimdi basit bir streams yazma örneği yapalım. Gerekli açıklamaları kod içerisinde yaptım.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>app.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'>	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="err">“</span><span class="nx">fs</span><span class="err">”</span><span class="p">);</span>
+</span><span class='line'>	<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="err">‘</span><span class="nx">test123</span><span class="err">’</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="c1">//streams yazmak için output.txt adında dosya oluşturuyoruz</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">writerStream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">(</span><span class="s1">&#39;output.txt&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// streams yazmak için write fonksiyonu kullanılır. datayı UTF8 cinsinsen txt dosyamıza yazıyoruz.</span>
+</span><span class='line'><span class="nx">writerStream</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="s1">&#39;UTF8&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// streams yazma işlemini bitiriyoruz</span>
+</span><span class='line'><span class="nx">writerStream</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// herhangi bir problem sonucu bu kısma düşer</span>
+</span><span class='line'><span class="nx">writerStream</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+</span><span class='line'>   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">stack</span><span class="p">);</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Streams konusu özetle şimdilik bu kadar. Bu konuda araştırma yaptıkça buraya da aktaracağım.  </p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Node.js - Promises]]></title>
@@ -794,56 +944,6 @@
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">SQL</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">quit</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ORACLE - DDL,DCL,DML Ve TCL İşlemleri]]></title>
-    <link href="http://bsaral.github.io/blog/2014/03/14/oracle-ddl/"/>
-    <updated>2014-03-14T11:50:00+02:00</updated>
-    <id>http://bsaral.github.io/blog/2014/03/14/oracle-ddl</id>
-    <content type="html"><![CDATA[<h3><a>Data Definition Language (DDL) </a></h3>
-
-<p>Veritabanı yapısı ve şema tanımlamak için kullanılan komutlardır. Bunlardan bazıları;</p>
-
-<li> CREATE, veritabanında objeleri oluşturur. </li>
-<li> DROP, objelerin veritabanından silinmesini sağlar. </li>
-<li> ALTER, veritabanı nesnelerinin yapısını değiştirmek için kullanılır. </li>
-<li> TRUNCATE, bir tablo içerisindeki tüm kayıtları silmek için kullanılır. </li>
-<li> RENAME, veritabanı nesnesinin adını değiştirir. </li>
-<li> COMMENT, veri sözlüğüne yorum ekler. </li>
-<p><br /></p>
-
-<h3><a>Data Manipulation Language (DML) </a></h3>
-
-<p>Veritabanı objelerinin içerisindeki verileri yönetmeye yarayan komutlardır. Bunlardan bazıları;</p>
-
-<li>SELECT, veritabanından veri çekmek, listelemek, göstermek için kullanılır.</li>
-<li>INSERT, tablo içerisine veri eklemek için kullanılır.</li>
-<li>UPDATE, tablo içerisindeki verilerin güncellenmesinde kullanılır. ALTER komutundan farkı ise; ALTER tablonun yapısı ile ilgili güncelleme yaparken UPDATE ise veri içeriğinden güncelleme yapar.</li>
-<li>DELETE, tablodaki kayıtları silmek için kullanılır. TRUNCATE komutundan en önemli farkı ise, DELETE komutu ile belli bir aralığı silebilirken, TRUNCATE ile tablonun tamamını silebiliyoruz. TRUNCATE komutu parçalı silme yapmaz ama DELETE, WHERE kullanıldığında parçalı silme yapabilir</li>
-<li>MERGE - UPSERT, operasyonunun yapılması (insert etmek, eğer insert hata alırsa update etmek işlemi)</li>
-<li>CALL, bir PL/SQL yada JAVA alt programı çağırmak için kullanılır.</li>
-<li>LOCK TABLE, kontrol altında tutma işlemleri.</li>
-<p><br /></p>
-
-<h3><a>Data Control Language (DCL)   </a></h3>
-
-<p>Veritabanında erişim izinlerinin verilmesi veya verilen izinlerin iptal edilmesini sağlayan,yetki tanımlama kontrol unsurlarını içeren komutlardır. Bunlardan bazıları;</p>
-
-<li>GRANT, kullanıcıya veritabanı üzerinde yetki tanımlamak için kullanılır. </li>
-<li>REVOKE, yetkilerin iptal edilmesi için kullanılır. </li>
-<p><br /></p>
-
-<h3><a>Transaction Control (TCL)</a></h3>
-
-<p>DML ile yapılan işlemlerin yönetilmesini ve kontrol edilmesini sağlayan komutlardır. Bunlardan bazıları;</p>
-
-<li>COMMIT, yapılanları kayıt eder.</li>
-<li>SAVEPOINT, daha sonra rollback yapılmak üzere bir nokta belirler.</li>
-<li>ROLLBACK, veritabanında son COMMIT’e kadar olan yere geri alır.</li>
-<li>SET TRANSACTION, işlemlerin izolasyon seviyesini modifiye etmek veya mevcut işlemin özelliklerini değiştirmek için kullanılabilir.</li>
-<p><br /></p>
 ]]></content>
   </entry>
   

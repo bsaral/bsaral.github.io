@@ -9,8 +9,8 @@
   <meta name="author" content="BETÜL SARAL">
 
   
-  <meta name="description" content="Amacımız kullanıcı kaydı tutan bir web formu ve bu formdan bilgi alıcak bir php dosyası oluşturup , Php
-dosyası içerisinde ki bilgileri veri tabanına &hellip;">
+  <meta name="description" content="Github üzerinde bir bloga sahip olmak için öncelikle (kullanıcı-adınız).github.com isimli bir depo oluşturmalısınız.
+Benim bloguma ait depo bsaral. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -81,6 +81,96 @@ dosyası içerisinde ki bilgileri veri tabanına &hellip;">
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/01/14/blog/">Github Blog Sayfası Oluşturmak</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-14T22:36:00+02:00" pubdate data-updated="true">Jan 14<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/01/14/blog/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Github üzerinde bir bloga sahip olmak için öncelikle (kullanıcı-adınız).github.com isimli bir depo oluşturmalısınız.
+Benim bloguma ait depo <a href="https://github.com/bsaral/bsaral.github.com"> bsaral.github.com </a> adıyla Github’da yer alıyor. 
+Herhangi bir github deposunu ya da benim depomu (<b> İÇERİĞİ SİLİP GÖRÜNÜMÜ DEĞİŞTİRMEK ŞARTIYLA </b>) forklayıp istediğiniz gibi değişiklikler
+yapıp kendi blogunuzu oluşturabilirsiniz.</p>
+
+<h2 id="kullanm">Kullanım</h2>
+
+<p>Sitede <code>0-1-2-7-9</code> sayfalama sisteminin Jekyll’a uyarlanmış bir modeli kullanılmaktadır.Site girdilerini doğrudan HTML olarak yazmak yerine, 
+dosya uzantısını <code>.md</code> yapmak kaydıyla, HTML üreten hafif bir etiketleme dili olan <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> 
+sözdizimini kullanabilirsiniz.</p>
+
+<h3 id="sayfa-ekleme">Sayfa Ekleme</h3>
+
+<p>1- Ekleyeceğiniz sayfanın kategorisini belirleyin.</p>
+
+<p>Kişisel düşünce ve duygularınızı yansıtan “Web Günlüğü” niteliğinde yazılar <strong><code>0 </code></strong> kategorisinde</p>
+
+<p>Öğretici değer taşıyan teknik yazılar <strong><code>1</code></strong> kategorisinde</p>
+
+<p>2- Örneğin 1 kategorisinde “GitHub’a Giriş” başlıklı bir girdi oluşturmak istediniz. O zaman dosya yolu  <strong><code>1/_posts/2010-09-19-github-giris.md</code></strong> şeklinde olmalıdır.</p>
+
+<p>3- Girdiyi depoya ekleyin ve GitHub’a gönderin.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>git add 1/_posts/2010-09-19-github-giris.md
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>git commit -m <span class="s2">&quot;yeni girdi: github-giris&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>git push origin master
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Eğer dosyalarda birden fazla değişiklik yada ekleme yaptıysanız <strong><code>git add * </code></strong>  komutunu kullanabilirsiniz.Bu komut depoda yaptığınız
+tüm değişiklikleri göndermenizi sağlar.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>git add *
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>git commit -m <span class="s2">&quot;yorum yaz&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="nv">$ </span>git push origin master
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Ayrıntılı bilgi için <a href="http://ondokuz.biz/109/sayfa-kilavuzu/"> 19 Sayfa Şablonu </a> bakabilirsiniz.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -903,7 +993,7 @@ en az 24 saat sonra sisteminiz aktif hale gelecektir.eğer süre 24 saati geçmi
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gedit /etc/hosts
+</pre></td><td class="code"><pre><code class="sh"><span class="line">	<span class="nv">$ </span>sudo gedit /etc/hosts
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>komutunu yazarak hosts dosyamızı açıyoruz.</p>
@@ -926,7 +1016,7 @@ istiyorsanız hosts dosyasında yazdığınız sitenin IP adresini ve kendisini 
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>ping -c 1 www.omu.edu.tr
+</pre></td><td class="code"><pre><code class="sh"><span class="line">	<span class="nv">$ </span>ping -c 1 www.omu.edu.tr
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>komutunu yazdığımızda siteye 1 adet ping göndermiş oluruz.</p>
@@ -937,7 +1027,7 @@ istiyorsanız hosts dosyasında yazdığınız sitenin IP adresini ve kendisini 
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gedit /etc/hosts
+</pre></td><td class="code"><pre><code class="sh"><span class="line">	<span class="nv">$ </span>sudo gedit /etc/hosts
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>ve IP adresleri eklenir.</p>
@@ -968,6 +1058,10 @@ istiyorsanız hosts dosyasında yazdığınız sitenin IP adresini ve kendisini 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/03/23/node-streams/">Node.js - Streams</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/28/node-promise/">Node.js - Promises</a>
       </li>
     
@@ -981,10 +1075,6 @@ istiyorsanız hosts dosyasında yazdığınız sitenin IP adresini ve kendisini 
     
       <li class="post">
         <a href="/blog/2014/03/29/oracle-forgot-password/">ORACLE- SYSTEM Hesabının Parolasını Değiştirmek</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/14/oracle-ddl/">ORACLE - DDL,DCL,DML Ve TCL İşlemleri</a>
       </li>
     
   </ul>

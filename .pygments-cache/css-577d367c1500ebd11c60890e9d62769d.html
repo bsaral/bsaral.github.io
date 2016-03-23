@@ -1,0 +1,16 @@
+<div class="highlight"><pre><span class="o">//</span><span class="nt">LESS</span> <span class="nt">CSS</span>						<span class="c">/*COMPİLED CSS */</span>
+
+<span class="k">@the-border</span><span class="o">:</span> <span class="nt">1px</span><span class="p">;</span>							<span class="nf">#header</span> <span class="p">{</span>
+<span class="cp">@base-color: #111;								color:#333;</span>
+<span class="cp">@red:  #842210;									border-left:1px;</span>
+<span class="m">#header</span> <span class="err">{</span>										<span class="k">border-right</span><span class="o">:</span><span class="m">2px</span><span class="p">;</span>
+	<span class="k">color</span><span class="o">:</span> <span class="o">@</span><span class="n">base</span><span class="o">-</span><span class="k">color</span> <span class="o">*</span> <span class="m">3</span><span class="p">;</span>					<span class="p">}</span>
+	<span class="nt">border-left</span><span class="o">:</span> <span class="k">@the-border</span><span class="p">;</span>		
+	<span class="nt">border-right</span><span class="o">:</span> <span class="k">@the-border</span> <span class="o">*</span> <span class="nt">2</span><span class="p">;</span>			<span class="nf">#footer</span> <span class="p">{</span>
+<span class="p">}</span>												<span class="nt">color</span><span class="o">:</span><span class="nf">#114411</span><span class="o">;</span>
+												<span class="nt">border-color</span><span class="o">:</span><span class="nf">#7d2717</span><span class="o">;</span>
+<span class="nf">#footer</span> <span class="p">{</span>									<span class="p">}</span>
+	<span class="nt">color</span><span class="o">:</span> <span class="k">@base-color</span> <span class="o">+</span> <span class="nf">#003300</span><span class="p">;</span>
+	<span class="nt">border-color</span><span class="o">:</span> <span class="nt">desaturate</span><span class="o">(</span><span class="k">@red</span><span class="o">,</span> <span class="nt">10</span><span class="o">%)</span><span class="p">;</span>
+<span class="err">}</span>
+</pre></div>

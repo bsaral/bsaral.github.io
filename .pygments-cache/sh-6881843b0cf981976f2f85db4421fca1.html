@@ -1,0 +1,29 @@
+<div class="highlight"><pre>Gem::Installer::ExtensionBuildError: ERROR: Failed to build gem native extension.
+
+		/usr/bin/ruby1.9.1 extconf.rb 
+*** extconf.rb failed ***
+Could not create Makefile due to some reason, probably lack of
+necessary libraries and/or headers.  Check the mkmf.log file <span class="k">for </span>more
+details.  You may need configuration options.
+
+Provided configuration options:
+	--with-opt-dir
+	--without-opt-dir
+	--with-opt-include
+	--without-opt-include<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/include
+	--with-opt-lib
+	--without-opt-lib<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/lib
+	--with-make-prog
+	--without-make-prog
+	--srcdir<span class="o">=</span>.
+	--curdir
+	--ruby<span class="o">=</span>/usr/bin/ruby1.9.1
+extconf.rb:15:in &lt;main&gt;: undefined method include_path <span class="k">for </span>Libv8:Module <span class="o">(</span>NoMethodError<span class="o">)</span>
+
+
+Gem files will remain installed in /home/uzem/.bundler/tmp/8120/gems/therubyracer-0.10.1 <span class="k">for </span>inspection.
+Results logged to /home/uzem/.bundler/tmp/8120/gems/therubyracer-0.10.1/ext/v8/gem_make.out
+
+An error occurred <span class="k">while </span>installing therubyracer <span class="o">(</span>0.10.1<span class="o">)</span>, and Bundler cannot <span class="k">continue</span>.
+Make sure that gem install therubyracer -v <span class="s1">&#39;0.10.1&#39;</span>succeeds before bundling.
+</pre></div>

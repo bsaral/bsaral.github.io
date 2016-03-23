@@ -1,0 +1,43 @@
+<div class="highlight"><pre><span class="x">&lt;META http-equiv=content-type content=text/html;charset=UTF-8&gt;</span>
+
+<span class="cp">&lt;?php</span>
+
+<span class="c1">//mysql e bağlanma kısmı</span>
+<span class="nv">$baglan</span><span class="o">=</span><span class="nb">mysql_connect</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span><span class="s2">&quot;KULLANICI ADINIZ&quot;</span><span class="p">,</span><span class="s2">&quot;KULLANICI ŞİFRENİZ&quot;</span><span class="p">)</span> 
+<span class="k">or</span> <span class="k">die</span> <span class="p">(</span><span class="s2">&quot;veri tabanına bağlanamadı.&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nv">$baglan</span><span class="p">){</span>
+	<span class="k">die</span> <span class="p">(</span><span class="s2">&quot;veritabanına bağlanılmadı.&quot;</span><span class="o">.</span><span class="nb">mysql_error</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="c1">//kaydet adında veri tabanınızı oluşturur.</span>
+<span class="c1">//(eğer kayıtlı veri tabanlarınızdan herhangi biri &quot;kaydet&quot; isminde değil ise).</span>
+<span class="nv">$veri</span><span class="o">=</span><span class="nb">mysql_query</span><span class="p">(</span><span class="s2">&quot;create database if not exists kaydet&quot;</span><span class="p">,</span><span class="nv">$baglan</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$veri</span><span class="p">){</span>
+	<span class="k">echo</span> <span class="s2">&quot;veritabanı oluşturuldu.&quot;</span><span class="p">;}</span>
+<span class="k">else</span> <span class="p">{</span>
+	<span class="k">echo</span> <span class="s2">&quot;hata&quot;</span><span class="o">.</span><span class="nb">mysql_error</span><span class="p">();}</span>
+	
+	
+<span class="c1">//veri tabanı seçilir.</span>
+<span class="nb">mysql_select_db</span><span class="p">(</span><span class="s2">&quot;kaydet&quot;</span><span class="p">)</span> <span class="k">or</span> <span class="k">die</span> <span class="p">(</span><span class="s2">&quot;hata2&quot;</span><span class="p">);</span>
+
+<span class="c1">//kaydet adlı veritabanı içinde form adlı tablo varsa silinir.</span>
+<span class="nb">mysql_query</span><span class="p">(</span><span class="s2">&quot;drop table if exists form&quot;</span><span class="p">)</span> <span class="k">or</span> <span class="k">die</span> <span class="p">(</span><span class="s2">&quot;hata3&quot;</span><span class="p">);</span>
+<span class="c1">// ve yenisi oluşturulur.</span>
+<span class="nb">mysql_query</span><span class="p">(</span><span class="s2">&quot;create table form(</span>
+<span class="s2">isim varchar(30),</span>
+<span class="s2">parola char(100) primary key,</span>
+<span class="s2">mail text(150))&quot;</span><span class="p">)</span> <span class="k">or</span> <span class="k">die</span> <span class="p">(</span><span class="s2">&quot;hata4&quot;</span><span class="p">);</span>
+
+<span class="c1">//htm dosyasından aldığı verileri POST metodu ile veri tabanına aktarır.</span>
+<span class="nb">mysql_query</span><span class="p">(</span><span class="s2">&quot;insert into form (isim,parola,mail) values </span>
+<span class="s2">(&#39;</span><span class="si">$_POST[isim]&#39;,&#39;$_POST[par]&#39;,&#39;$_POST[mail]</span><span class="s2">&#39;)&quot;</span><span class="p">)</span> 
+<span class="k">or</span> <span class="k">die</span> <span class="p">(</span><span class="s2">&quot;hata5&quot;</span><span class="o">.</span><span class="nb">mysql_error</span><span class="p">());</span>
+
+
+
+
+<span class="nb">mysql_close</span><span class="p">(</span><span class="nv">$baglan</span><span class="p">);</span>
+	
+<span class="cp">?&gt;</span><span class="x"></span>
+</pre></div>

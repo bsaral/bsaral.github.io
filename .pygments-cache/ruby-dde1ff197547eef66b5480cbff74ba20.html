@@ -1,0 +1,18 @@
+<div class="highlight"><pre><span class="o">&lt;</span><span class="sx">%= nested_form_for @project do |f| %&gt;</span>
+
+<span class="sx">	&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:name</span> <span class="sx">%&gt;</span>
+<span class="sx">	&lt;%= f.text_field(:name) %&gt;</span><span class="o">&lt;</span><span class="n">br</span> <span class="sr">/&gt;</span>
+<span class="sr">	&lt;%= f.label :description %&gt;</span>
+<span class="sr">	&lt;%= f.text_field(:description) %&gt;&lt;br /</span><span class="o">&gt;</span>
+	
+	<span class="o">&lt;</span><span class="n">h3</span><span class="o">&gt;</span> <span class="no">Tasks</span><span class="o">&lt;</span><span class="sr">/h3&gt;</span>
+<span class="sr">	</span>
+<span class="sr">	&lt;%= f.fields_for :tasks do |task| %&gt;</span>
+<span class="sr">		&lt;%= task.label :name %&gt;&lt;br /</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="sx">%= task.text_field :name %&gt;&lt;br /&gt;</span>
+<span class="sx">		&lt;%=</span> <span class="n">task</span><span class="o">.</span><span class="n">link_to_remove</span> <span class="s2">&quot;Remove this task&quot;</span> <span class="sx">%&gt;</span>
+<span class="sx">	&lt;% end %&gt;</span>
+	<span class="o">&lt;</span><span class="sx">%= f.link_to_add &quot;Add a task&quot;, :tasks %&gt;</span>
+<span class="sx">	&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">submit</span> <span class="sx">%&gt;</span>
+<span class="sx">&lt;% end %&gt;</span>
+</pre></div>

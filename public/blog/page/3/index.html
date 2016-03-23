@@ -9,7 +9,7 @@
   <meta name="author" content="BETÜL SARAL">
 
   
-  <meta name="description" content="Phpmyadmin de aşağıdaki gibi bir hata alıyorsanız; #1142 - SELECT command denied to user ''@'localhost' for table 'pma_column_info' Şu adımları takip &hellip;">
+  <meta name="description" content="Merhabalar, Java da mysql bağlantısı yapmak için öncelikle wampserver ya da xampp gibi herhangi bir paket sunucu programının yüklü olması gerekir. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,104 @@
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/17/jdbc/">Java Da Mysql Bağlantısı</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-17T22:37:00+03:00" pubdate data-updated="true">May 17<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/17/jdbc/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Merhabalar,</p>
+
+<p>Java da mysql bağlantısı yapmak için öncelikle wampserver ya da xampp gibi herhangi bir paket sunucu programının yüklü olması gerekir.
+Mysql’ e bağlanabilmek için bu gibi bir paket program gerekmektedir. Daha sonra java ile bağlantıyı sağlamak için mysql-connector isimli
+jar dosyası indirmemiz gerekir. <a href="http://www.mysql.com/products/connector/"> Buradan </a> JDBC Driver for MySQL (Connector/J) jar 
+dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşağıdaki adımları gerçekleyin.</p>
+
+<p><img src="/images/java.png" /></p>
+
+<blockquote>
+
+</blockquote>
+
+<p><img src="/images/java2.png" /></p>
+
+<p>İndirdiğimiz jar dosyasını ekleyin. Ekleme işlemi bittikten sonra projenizin src klasörü altına Database adında bir class oluşturun ve aşağıdaki kodları ekleyin.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Database.java </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">java.sql.DriverManager</span><span class="o">;</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">java.sql.SQLException</span><span class="o">;</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">java.util.Properties</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line"><span class="kn">import</span> <span class="nn">com.mysql.jdbc.Connection</span><span class="o">;</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">com.mysql.jdbc.Statement</span><span class="o">;</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Database</span> <span class="o">{</span>
+</span><span class="line">	 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ClassNotFoundException</span><span class="o">,</span> <span class="n">SQLException</span> <span class="o">{</span>
+</span><span class="line">		<span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&quot;com.mysql.jdbc.Driver&quot;</span><span class="o">);</span>
+</span><span class="line">		<span class="n">Connection</span> <span class="n">baglanti</span> <span class="o">=</span> <span class="o">(</span><span class="n">Connection</span><span class="o">)</span> <span class="n">DriverManager</span><span class="o">.</span><span class="na">getConnection</span>
+</span><span class="line">					  <span class="o">(</span><span class="s">&quot;jdbc:mysql://localhost/deneme&quot;</span><span class="o">,</span><span class="s">&quot;root&quot;</span><span class="o">,</span><span class="s">&quot;&quot;</span><span class="o">);</span>
+</span><span class="line">		<span class="n">Statement</span> <span class="n">komut</span> <span class="o">=</span> <span class="o">(</span><span class="n">Statement</span><span class="o">)</span> <span class="n">baglanti</span><span class="o">.</span><span class="na">createStatement</span><span class="o">();</span>
+</span><span class="line">		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;Bağlantı Başarılı&quot;</span><span class="o">);</span>
+</span><span class="line">		<span class="n">baglanti</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span><span class="line">	<span class="o">}</span>
+</span><span class="line"><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Kaydedip çalıştırdığınız da “Bağlantı Başarılı” şeklinde bir çıktı alıyorsanız mysql ile bağlantıyı sağladınız demektir.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1012,133 +1110,6 @@ tüm tabloları silin ve yeniden oluşturun yani :</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/18/therubyracer/">Rails Therubyracer Gem Kurulum Problemi</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-18T22:37:00+02:00" pubdate data-updated="true">Dec 18<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/12/18/therubyracer/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Deponuzda gemfile içerisinde therubyracer gem kurulumunda eğer aşağıdaki gibi bir kurulum hatası alıyorsanız ;</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line">Gem::Installer::ExtensionBuildError: ERROR: Failed to build gem native extension.
-</span><span class="line">
-</span><span class="line">		/usr/bin/ruby1.9.1 extconf.rb
-</span><span class="line">*** extconf.rb failed ***
-</span><span class="line">Could not create Makefile due to some reason, probably lack of
-</span><span class="line">necessary libraries and/or headers.  Check the mkmf.log file <span class="k">for </span>more
-</span><span class="line">details.  You may need configuration options.
-</span><span class="line">
-</span><span class="line">Provided configuration options:
-</span><span class="line">	--with-opt-dir
-</span><span class="line">	--without-opt-dir
-</span><span class="line">	--with-opt-include
-</span><span class="line">	--without-opt-include<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/include
-</span><span class="line">	--with-opt-lib
-</span><span class="line">	--without-opt-lib<span class="o">=</span><span class="k">${</span><span class="nv">opt</span><span class="p">-dir</span><span class="k">}</span>/lib
-</span><span class="line">	--with-make-prog
-</span><span class="line">	--without-make-prog
-</span><span class="line">	--srcdir<span class="o">=</span>.
-</span><span class="line">	--curdir
-</span><span class="line">	--ruby<span class="o">=</span>/usr/bin/ruby1.9.1
-</span><span class="line">extconf.rb:15:in &lt;main&gt;: undefined method include_path <span class="k">for </span>Libv8:Module <span class="o">(</span>NoMethodError<span class="o">)</span>
-</span><span class="line">
-</span><span class="line">
-</span><span class="line">Gem files will remain installed in /home/uzem/.bundler/tmp/8120/gems/therubyracer-0.10.1 <span class="k">for </span>inspection.
-</span><span class="line">Results logged to /home/uzem/.bundler/tmp/8120/gems/therubyracer-0.10.1/ext/v8/gem_make.out
-</span><span class="line">
-</span><span class="line">An error occurred <span class="k">while </span>installing therubyracer <span class="o">(</span>0.10.1<span class="o">)</span>, and Bundler cannot <span class="k">continue</span>.
-</span><span class="line">Make sure that gem install therubyracer -v <span class="s1">&#39;0.10.1&#39;</span>succeeds before bundling.
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>aşağıdaki kodlar bu sorunu ortadan kaldırır.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem uninstall libv8
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>çıktı aşağıdaki gibiyse 3 ‘e basıp devam ediniz ;</p>
-
-<pre><code>Select gem to uninstall:
- 1. libv8-3.3.10.4-x86-linux
- 2. libv8-3.11.8.4
- 3. All versions
- &gt; 3 
-</code></pre>
-
-<p>en son olarak da </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>sudo gem install therubyracer
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="nv">$ </span>bundle install
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>sorunumuz çözüldü.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -1156,6 +1127,10 @@ tüm tabloları silin ve yeniden oluşturun yani :</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/03/23/node-streams/">Node.js - Streams</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/28/node-promise/">Node.js - Promises</a>
       </li>
     
@@ -1169,10 +1144,6 @@ tüm tabloları silin ve yeniden oluşturun yani :</p>
     
       <li class="post">
         <a href="/blog/2014/03/29/oracle-forgot-password/">ORACLE- SYSTEM Hesabının Parolasını Değiştirmek</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/14/oracle-ddl/">ORACLE - DDL,DCL,DML Ve TCL İşlemleri</a>
       </li>
     
   </ul>

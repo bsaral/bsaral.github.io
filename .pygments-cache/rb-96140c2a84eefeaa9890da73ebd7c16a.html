@@ -1,0 +1,24 @@
+<div class="highlight"><pre><span class="n">table</span><span class="c1">#attendant_list data-source=(admin_attendants_url(format: &quot;json&quot;))</span>
+  <span class="n">thead</span>
+    <span class="n">tr</span>
+      <span class="n">th</span> <span class="no">Ad</span>
+      <span class="n">th</span> <span class="no">Soyad</span>
+      <span class="n">th</span> <span class="no">TC</span>
+      <span class="n">th</span> <span class="no">IBAN</span>
+      <span class="n">th</span> <span class="no">Telefon</span>
+      <span class="n">th</span> <span class="err">Ü</span><span class="n">nvan</span>
+      <span class="n">th</span> <span class="err">İş</span><span class="n">lemler</span>
+
+<span class="sr">/datatables ayarlamaları</span>
+
+<span class="sr">javascript:</span>
+<span class="sr">  $(document).ready(function() {</span>
+<span class="sr">    $(&#39;#attendant_list&#39;).dataTable({</span>
+<span class="sr">      language: { &#39;url&#39;: &#39;http:/</span><span class="o">/</span><span class="n">cdn</span><span class="o">.</span><span class="n">datatables</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">plug</span><span class="o">-</span><span class="n">ins</span><span class="o">/</span><span class="mi">28</span><span class="n">e7751dbec</span><span class="o">/</span><span class="n">i18n</span><span class="o">/</span><span class="no">Turkish</span><span class="o">.</span><span class="n">json</span><span class="s1">&#39; },</span>
+<span class="s1">      &quot;bPaginate&quot;: true,</span>
+<span class="s1">      &quot;bProcessing&quot;: true,</span>
+<span class="s1">      &quot;bServerSide&quot;: true,</span>
+<span class="s1">      &quot;ajax&quot;: $(&#39;</span><span class="c1">#attendant_list&#39;).data(&#39;source&#39;),</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+</pre></div>

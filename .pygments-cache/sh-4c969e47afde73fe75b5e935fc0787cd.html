@@ -1,0 +1,18 @@
+<div class="highlight"><pre><span class="nv">im1</span> <span class="o">=</span> rgb2gray<span class="o">(</span>imread<span class="o">(</span><span class="s1">&#39;fark1.bmp&#39;</span><span class="o">))</span>;
+<span class="nv">im2</span> <span class="o">=</span> rgb2gray<span class="o">(</span>imread<span class="o">(</span><span class="s1">&#39;fark2.bmp&#39;</span><span class="o">))</span>;
+
+<span class="nv">fark</span> <span class="o">=</span> imabsdiff<span class="o">(</span>im1,im2<span class="o">)</span>;
+<span class="nv">bw</span> <span class="o">=</span> bwareaopen<span class="o">(</span>fark,55<span class="o">)</span>;
+<span class="nv">bw</span> <span class="o">=</span> imfill<span class="o">(</span>bw,<span class="s1">&#39;holes&#39;</span><span class="o">)</span>;
+<span class="nv">SE</span> <span class="o">=</span> strel<span class="o">(</span><span class="s1">&#39;square&#39;</span>,1<span class="o">)</span>;
+<span class="nv">bw2</span> <span class="o">=</span> imerode<span class="o">(</span>bw,SE<span class="o">)</span>;
+<span class="nv">fark</span> <span class="o">=</span> regionprops<span class="o">(</span>bw2, <span class="s1">&#39;all&#39;</span><span class="o">)</span>;
+<span class="nv">c</span> <span class="o">=</span> <span class="o">[</span>fark.Centroid<span class="o">]</span>;
+
+imshow<span class="o">(</span><span class="s1">&#39;fark2.bmp&#39;</span><span class="o">)</span>;
+title<span class="o">([</span><span class="s1">&#39;Toplam fark : &#39;</span>,num2str<span class="o">(</span>length<span class="o">(</span>fark<span class="o">))])</span>;
+hold on;
+<span class="nv">x</span> <span class="o">=</span> c<span class="o">(</span>1:2:end<span class="o">)</span>;
+<span class="nv">y</span> <span class="o">=</span> c<span class="o">(</span>2:2:end<span class="o">)</span>;
+plot<span class="o">(</span>x,y,<span class="s1">&#39;yo&#39;</span>,<span class="s1">&#39;MarkerSize&#39;</span>,20,<span class="s1">&#39;LineWidth&#39;</span>,4<span class="o">)</span>;
+</pre></div>

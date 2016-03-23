@@ -9,7 +9,7 @@
   <meta name="author" content="BETÜL SARAL">
 
   
-  <meta name="description" content="İki resim arasındaki farkı Matlab yardımı ile bulalım. Resim-1 Resim-2 Terminal 1
+  <meta name="description" content="GAUSS ELIMINATION YÖNTEMİ Gauss yöntemini matlab yardımı ile gerçekleştirmek için aşağıdaki program kullanılabilir. test.m 1
 2
 3
 4
@@ -20,13 +20,7 @@
 9
 10
 11
-12
-13
-14
-15
-16
-17
-im1 = rgb2gray(imread(&#39; &hellip;">
+12 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -97,6 +91,219 @@ im1 = rgb2gray(imread(&#39; &hellip;">
       <div id="content">
         <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/06/matlab-lineer/">Matlab - Solution Methods for Systems of Linear Equations</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-06T10:39:00+02:00" pubdate data-updated="true">Nov 6<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/11/06/matlab-lineer/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3><a>GAUSS ELIMINATION YÖNTEMİ </a></h3>
+
+<p>Gauss yöntemini matlab yardımı ile gerçekleştirmek için aşağıdaki program kullanılabilir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>test.m </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line">	<span class="o">%</span> <span class="n">AX</span> <span class="o">=</span> <span class="n">B</span> <span class="n">ise</span>
+</span><span class="line">	
+</span><span class="line">	<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="o">-</span><span class="mi">3</span>  <span class="mi">4</span> <span class="o">-</span><span class="mi">5</span><span class="p">;</span><span class="mi">2</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">8</span> <span class="p">;</span><span class="mi">4</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span> <span class="p">;</span> <span class="mi">5</span> <span class="mi">3</span> <span class="mi">1</span> <span class="o">-</span><span class="mi">3</span><span class="p">];</span>  <span class="o">%</span> <span class="n">ilk</span> <span class="n">matrisimiz</span>
+</span><span class="line">	<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">11</span>  <span class="mi">42</span> <span class="o">-</span><span class="mi">11</span> <span class="o">-</span><span class="mi">38</span><span class="p">]</span><span class="err">&#39;</span><span class="p">;</span>  	<span class="o">%</span> <span class="n">sonu</span><span class="err">ç</span> <span class="n">matrisimiz</span>
+</span><span class="line">
+</span><span class="line">	<span class="n">a</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="n">length</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="n">b</span><span class="p">;</span>   <span class="o">%</span> <span class="n">Artt</span><span class="err">ı</span><span class="n">r</span><span class="err">ı</span><span class="n">lm</span><span class="err">ış</span> <span class="n">matrisimizi</span> <span class="n">olu</span><span class="err">ş</span><span class="n">turduk</span><span class="p">.</span>
+</span><span class="line">	<span class="p">[</span><span class="n">rows</span> <span class="n">cols</span><span class="p">]</span><span class="o">=</span><span class="n">size</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>  <span class="o">%</span> <span class="n">matrisimizin</span> <span class="n">boyutlar</span><span class="err">ı</span><span class="n">m</span><span class="err">ı</span><span class="n">z</span><span class="err">ı</span> <span class="n">bulduk</span><span class="p">.</span>
+</span><span class="line">
+</span><span class="line">	<span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">:</span><span class="n">cols</span>
+</span><span class="line">		<span class="k">for</span> <span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="n">rows</span>
+</span><span class="line">			<span class="n">tmp</span><span class="o">=</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="o">:</span><span class="p">).</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">));</span>
+</span><span class="line">			<span class="n">a</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="o">:</span><span class="p">)</span><span class="o">=</span><span class="n">tmp</span><span class="o">+</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="o">:</span><span class="p">));</span>
+</span><span class="line">		<span class="n">end</span>
+</span><span class="line">	<span class="n">end</span>
+</span><span class="line">	
+</span><span class="line">	<span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="n">length</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">rows</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">rows</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+</span><span class="line">		<span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">cols</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class="line">			<span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">cols</span><span class="p">)</span><span class="o">=</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">cols</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">sum</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="n">cols</span><span class="o">-</span><span class="mi">1</span><span class="p">)));</span>
+</span><span class="line">		<span class="n">end</span>
+</span><span class="line">		<span class="nf">sonuc</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">=</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">cols</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">));</span>
+</span><span class="line">		<span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">=</span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">).</span><span class="o">*</span><span class="n">sonuc</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span><span class="line">	<span class="n">end</span>
+</span><span class="line">
+</span><span class="line">	
+</span><span class="line">	<span class="nf">disp</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Sonuc</span> <span class="o">=</span> <span class="err">&#39;</span><span class="p">);</span>
+</span><span class="line">	<span class="n">disp</span><span class="p">(</span><span class="n">sonuc</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3><a>TERS MATRİS YÖNTEMİ  </a></h3>
+
+<p>Ters matris yöntemini matlab yardımı ile gerçekleştirmek için aşağıdaki program kullanılabilir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line">	<span class="n">clc</span>
+</span><span class="line">	<span class="n">clear</span>
+</span><span class="line">
+</span><span class="line">	<span class="o">%</span> <span class="n">AX</span> <span class="o">=</span> <span class="n">B</span>  <span class="o">=&gt;</span> <span class="n">A</span><span class="p">.</span><span class="n">A</span><span class="o">^-</span><span class="mf">1.</span><span class="n">X</span> <span class="o">=</span> <span class="n">B</span><span class="p">.</span><span class="n">A</span><span class="o">^-</span><span class="mi">1</span>  <span class="o">=&gt;</span> <span class="n">I</span><span class="p">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">B</span><span class="p">.</span><span class="n">A</span><span class="o">^-</span><span class="mi">1</span> <span class="o">=&gt;</span>  <span class="n">X</span> <span class="o">=</span> <span class="n">B</span><span class="p">.</span><span class="n">A</span><span class="o">^-</span><span class="mi">1</span>
+</span><span class="line">
+</span><span class="line">	<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">;</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+</span><span class="line">	<span class="n">B</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">11</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="err">&#39;</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line">	<span class="n">X</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">*</span><span class="n">B</span>  	<span class="o">%</span> <span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="n">matrisimizin</span> <span class="n">tersini</span> <span class="n">al</span><span class="err">ı</span><span class="n">r</span> <span class="n">ve</span> <span class="n">B</span> <span class="n">ile</span> <span class="err">ç</span><span class="n">arpt</span><span class="err">ı</span><span class="n">ktan</span> <span class="n">sonra</span> <span class="n">x</span> <span class="n">de</span><span class="err">ğ</span><span class="n">erlerimiz</span> <span class="n">bulunur</span><span class="p">.</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3>&lt;aCRAMER YÖNTEMİ   </h3>
+
+<p>Cramer yöntemini matlab yardımı ile gerçekleştirmek için aşağıdaki program kullanılabilir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line">	<span class="n">clc</span>
+</span><span class="line">	<span class="n">clear</span>
+</span><span class="line">
+</span><span class="line">	<span class="n">A</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">;</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">;</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">];</span>
+</span><span class="line">	<span class="n">B</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">47</span><span class="p">;</span><span class="mi">56</span><span class="p">;</span><span class="mi">15</span><span class="p">];</span>
+</span><span class="line">
+</span><span class="line">	<span class="n">A1</span> <span class="o">=</span> <span class="n">A</span><span class="p">;</span>
+</span><span class="line">	<span class="n">A1</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">B</span><span class="p">;</span>
+</span><span class="line">	<span class="n">A2</span> <span class="o">=</span> <span class="n">A</span><span class="p">;</span>
+</span><span class="line">	<span class="n">A2</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">B</span><span class="p">;</span>
+</span><span class="line">	<span class="n">A3</span> <span class="o">=</span> <span class="n">A</span><span class="p">;</span>
+</span><span class="line">	<span class="n">A3</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">B</span> <span class="p">;</span>
+</span><span class="line">
+</span><span class="line">	<span class="n">D</span><span class="o">=</span><span class="n">det</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+</span><span class="line">	<span class="n">D1</span><span class="o">=</span><span class="n">det</span><span class="p">(</span><span class="n">A1</span><span class="p">);</span>
+</span><span class="line">	<span class="n">D2</span><span class="o">=</span><span class="n">det</span><span class="p">(</span><span class="n">A2</span><span class="p">);</span>
+</span><span class="line">	<span class="n">D3</span><span class="o">=</span><span class="n">det</span><span class="p">(</span><span class="n">A3</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">	<span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="n">D1</span><span class="o">/</span><span class="n">D</span><span class="p">;</span>
+</span><span class="line">	<span class="n">X</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">=</span><span class="n">D2</span><span class="o">/</span><span class="n">D</span><span class="p">;</span>
+</span><span class="line">	<span class="n">X</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">=</span><span class="n">D3</span><span class="o">/</span><span class="n">D</span>   <span class="o">%</span> <span class="n">sonuc</span> <span class="o">%</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3><a>SECANT YÖNTEMİ    </a></h3>
+
+<p>Sekant yöntemini matlab yardımı ile gerçekleştirmek için aşağıdaki program kullanılabilir.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Terminal </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line">	<span class="n">clc</span>
+</span><span class="line">	<span class="n">clear</span>
+</span><span class="line">	<span class="n">syms</span> <span class="n">x</span><span class="p">;</span>  	<span class="o">%</span> <span class="n">x</span> <span class="n">atamalar</span><span class="err">ı</span> <span class="n">i</span><span class="err">ç</span><span class="k">in</span>
+</span><span class="line">	<span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class="line">	<span class="n">err</span> <span class="o">=</span> <span class="mf">0.000001</span><span class="p">;</span>
+</span><span class="line">	<span class="n">f</span> <span class="o">=</span> <span class="kr">inline</span><span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="mi">6</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="n">sin</span><span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">x</span><span class="p">)));</span>  <span class="o">%</span><span class="n">fonksiyonu</span> <span class="n">tan</span><span class="err">ı</span><span class="n">mlamak</span> <span class="n">i</span><span class="err">ç</span><span class="k">in</span> <span class="kr">inline</span> <span class="n">kullan</span><span class="err">ı</span><span class="n">l</span><span class="err">ı</span><span class="n">r</span><span class="p">.</span>
+</span><span class="line">	<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>   <span class="o">%</span><span class="n">secant</span> <span class="n">y</span><span class="err">ö</span><span class="n">ntem</span> <span class="n">i</span><span class="err">ş</span><span class="n">lemi</span>
+</span><span class="line">	<span class="k">while</span> <span class="n">abs</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="o">&gt;</span> <span class="n">err</span>
+</span><span class="line">		<span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+</span><span class="line">		<span class="n">b</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+</span><span class="line">		<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
+</span><span class="line">		<span class="n">disp</span><span class="p">([</span><span class="n">a</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">b</span> <span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="n">c</span> <span class="n">f</span><span class="p">(</span><span class="n">c</span><span class="p">)]);</span>
+</span><span class="line">		<span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class="line">		<span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)</span>
+</span><span class="line">			<span class="k">break</span><span class="p">;</span>
+</span><span class="line">		<span class="n">end</span>
+</span><span class="line">	<span class="n">end</span>
+</span><span class="line">	<span class="nf">disp</span><span class="p">([</span><span class="err">&#39;</span><span class="n">K</span><span class="err">ö</span><span class="n">k</span><span class="err">ü</span><span class="n">m</span><span class="err">ü</span><span class="n">z</span> <span class="o">=</span> <span class="err">&#39;</span> <span class="n">num2str</span><span class="p">(</span><span class="n">c</span><span class="p">)]);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1058,104 +1265,6 @@ bir köşesi size hata veriyorsa aşağıdaki adımları uygulayarak bu problemi
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/17/jdbc/">Java Da Mysql Bağlantısı</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-17T22:37:00+03:00" pubdate data-updated="true">May 17<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/05/17/jdbc/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Merhabalar,</p>
-
-<p>Java da mysql bağlantısı yapmak için öncelikle wampserver ya da xampp gibi herhangi bir paket sunucu programının yüklü olması gerekir.
-Mysql’ e bağlanabilmek için bu gibi bir paket program gerekmektedir. Daha sonra java ile bağlantıyı sağlamak için mysql-connector isimli
-jar dosyası indirmemiz gerekir. <a href="http://www.mysql.com/products/connector/"> Buradan </a> JDBC Driver for MySQL (Connector/J) jar 
-dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşağıdaki adımları gerçekleyin.</p>
-
-<p><img src="/images/java.png" /></p>
-
-<blockquote>
-
-</blockquote>
-
-<p><img src="/images/java2.png" /></p>
-
-<p>İndirdiğimiz jar dosyasını ekleyin. Ekleme işlemi bittikten sonra projenizin src klasörü altına Database adında bir class oluşturun ve aşağıdaki kodları ekleyin.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Database.java </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">java.sql.DriverManager</span><span class="o">;</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">java.sql.SQLException</span><span class="o">;</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">java.util.Properties</span><span class="o">;</span>
-</span><span class="line">
-</span><span class="line"><span class="kn">import</span> <span class="nn">com.mysql.jdbc.Connection</span><span class="o">;</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">com.mysql.jdbc.Statement</span><span class="o">;</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Database</span> <span class="o">{</span>
-</span><span class="line">	 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ClassNotFoundException</span><span class="o">,</span> <span class="n">SQLException</span> <span class="o">{</span>
-</span><span class="line">		<span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&quot;com.mysql.jdbc.Driver&quot;</span><span class="o">);</span>
-</span><span class="line">		<span class="n">Connection</span> <span class="n">baglanti</span> <span class="o">=</span> <span class="o">(</span><span class="n">Connection</span><span class="o">)</span> <span class="n">DriverManager</span><span class="o">.</span><span class="na">getConnection</span>
-</span><span class="line">					  <span class="o">(</span><span class="s">&quot;jdbc:mysql://localhost/deneme&quot;</span><span class="o">,</span><span class="s">&quot;root&quot;</span><span class="o">,</span><span class="s">&quot;&quot;</span><span class="o">);</span>
-</span><span class="line">		<span class="n">Statement</span> <span class="n">komut</span> <span class="o">=</span> <span class="o">(</span><span class="n">Statement</span><span class="o">)</span> <span class="n">baglanti</span><span class="o">.</span><span class="na">createStatement</span><span class="o">();</span>
-</span><span class="line">		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;Bağlantı Başarılı&quot;</span><span class="o">);</span>
-</span><span class="line">		<span class="n">baglanti</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-</span><span class="line">	<span class="o">}</span>
-</span><span class="line"><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Kaydedip çalıştırdığınız da “Bağlantı Başarılı” şeklinde bir çıktı alıyorsanız mysql ile bağlantıyı sağladınız demektir.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1173,6 +1282,10 @@ dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşa�
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/03/23/node-streams/">Node.js - Streams</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/28/node-promise/">Node.js - Promises</a>
       </li>
     
@@ -1186,10 +1299,6 @@ dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşa�
     
       <li class="post">
         <a href="/blog/2014/03/29/oracle-forgot-password/">ORACLE- SYSTEM Hesabının Parolasını Değiştirmek</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/14/oracle-ddl/">ORACLE - DDL,DCL,DML Ve TCL İşlemleri</a>
       </li>
     
   </ul>

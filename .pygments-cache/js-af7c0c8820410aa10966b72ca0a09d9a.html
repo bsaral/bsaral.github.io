@@ -1,0 +1,57 @@
+<div class="highlight"><pre><span class="kd">function</span> <span class="nx">testFunc1</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="nx">name</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">500</span><span class="p">);</span>
+<span class="p">}</span>
+ 
+<span class="kd">function</span> <span class="nx">testFunc2</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="nx">name</span><span class="p">)</span>
+    <span class="p">},</span> <span class="mi">100</span><span class="p">);</span>
+<span class="p">}</span>
+ 
+<span class="kd">function</span> <span class="nx">testFunc3</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="nx">name</span><span class="p">)</span>
+    <span class="p">},</span> <span class="mi">900</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">testFunc4</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="nx">name</span><span class="p">)</span>
+    <span class="p">},</span> <span class="mi">3000</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">testFunc1</span><span class="p">(</span><span class="s2">&quot;Betül&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">result1</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;testFunc1 sonucu : &quot;</span><span class="o">+</span><span class="nx">result1</span><span class="p">);</span>
+        <span class="nx">testFunc2</span><span class="p">(</span><span class="s2">&quot;Hande&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">result2</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span><span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;testFunc2 sonucu : &quot;</span><span class="o">+</span><span class="nx">result2</span><span class="p">);</span>
+                <span class="nx">testFunc3</span><span class="p">(</span><span class="s2">&quot;Tuğba&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">result3</span><span class="p">){</span>
+                    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+                        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+                    <span class="p">}</span>
+                    <span class="k">else</span><span class="p">{</span>
+                        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;testFunc3 sonucu : &quot;</span><span class="o">+</span><span class="nx">result3</span><span class="p">);</span>
+                        <span class="nx">testFunc4</span><span class="p">(</span><span class="s2">&quot;Yasemin&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="nx">result4</span><span class="p">){</span>
+                            <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+                                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+                            <span class="p">}</span>
+                            <span class="k">else</span><span class="p">{</span>
+                                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;testFunc4 sonucu : &quot;</span><span class="o">+</span><span class="nx">result4</span><span class="p">);</span>
+                            <span class="p">}</span>
+                        <span class="p">});</span>
+                    <span class="p">}</span>
+                <span class="p">});</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>

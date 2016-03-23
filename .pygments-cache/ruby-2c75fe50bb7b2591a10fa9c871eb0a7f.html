@@ -1,0 +1,9 @@
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Project</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+
+	<span class="n">has_many</span> <span class="ss">:tasks</span><span class="p">,</span> <span class="ss">:dependent</span> <span class="o">=&gt;</span> <span class="ss">:destroy</span>
+	<span class="n">attr_accessible</span> <span class="ss">:tasks_attributes</span><span class="p">,</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:description</span>
+	<span class="n">accepts_nested_attributes_for</span> <span class="ss">:tasks</span><span class="p">,</span> <span class="ss">:allow_destroy</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+
+<span class="k">end</span>
+	
+</pre></div>

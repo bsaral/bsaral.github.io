@@ -1,0 +1,22 @@
+<div class="highlight"><pre>	<span class="n">clc</span>
+	<span class="n">clear</span>
+
+	<span class="n">A</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">;</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">;</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">];</span>
+	<span class="n">B</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">47</span><span class="p">;</span><span class="mi">56</span><span class="p">;</span><span class="mi">15</span><span class="p">];</span>
+
+	<span class="n">A1</span> <span class="o">=</span> <span class="n">A</span><span class="p">;</span>
+	<span class="n">A1</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">B</span><span class="p">;</span>
+	<span class="n">A2</span> <span class="o">=</span> <span class="n">A</span><span class="p">;</span>
+	<span class="n">A2</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">B</span><span class="p">;</span>
+	<span class="n">A3</span> <span class="o">=</span> <span class="n">A</span><span class="p">;</span>
+	<span class="n">A3</span><span class="p">(</span><span class="o">:</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="n">B</span> <span class="p">;</span>
+
+	<span class="n">D</span><span class="o">=</span><span class="n">det</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
+	<span class="n">D1</span><span class="o">=</span><span class="n">det</span><span class="p">(</span><span class="n">A1</span><span class="p">);</span>
+	<span class="n">D2</span><span class="o">=</span><span class="n">det</span><span class="p">(</span><span class="n">A2</span><span class="p">);</span>
+	<span class="n">D3</span><span class="o">=</span><span class="n">det</span><span class="p">(</span><span class="n">A3</span><span class="p">);</span>
+
+	<span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="n">D1</span><span class="o">/</span><span class="n">D</span><span class="p">;</span>
+	<span class="n">X</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">=</span><span class="n">D2</span><span class="o">/</span><span class="n">D</span><span class="p">;</span>
+	<span class="n">X</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">=</span><span class="n">D3</span><span class="o">/</span><span class="n">D</span>   <span class="o">%</span> <span class="n">sonuc</span> <span class="o">%</span>
+</pre></div>

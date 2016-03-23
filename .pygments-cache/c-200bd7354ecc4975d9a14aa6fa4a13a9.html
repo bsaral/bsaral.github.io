@@ -1,0 +1,13 @@
+<div class="highlight"><pre><span class="n">include</span> <span class="o">&lt;</span><span class="n">ncurses</span><span class="p">.</span><span class="n">h</span><span class="o">&gt;</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">(){</span>
+  <span class="n">initscr</span><span class="p">();</span>                      <span class="cm">/* Curses kipine giriş           */</span>
+  <span class="n">printw</span><span class="p">(</span><span class="s">&quot;Merhaba Dünya !!!&quot;</span><span class="p">);</span>    <span class="cm">/* Merhaba Dünya yazdırma        */</span>
+  <span class="n">refresh</span><span class="p">();</span>                      <span class="cm">/* Onu gerçek ekrana yazdırın    */</span>
+  <span class="n">getch</span><span class="p">();</span>                        <span class="cm">/* Kullanıcıyı bekleyin          */</span>
+  <span class="n">endwin</span><span class="p">();</span>                       <span class="cm">/* Curses kipinden çıkış         */</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+	
+</pre></div>

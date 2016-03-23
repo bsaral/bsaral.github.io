@@ -4,7 +4,7 @@
   <title><![CDATA[Betül SARAL]]></title>
   <link href="http://bsaral.github.io/atom.xml" rel="self"/>
   <link href="http://bsaral.github.io/"/>
-  <updated>2016-01-29T11:12:01+02:00</updated>
+  <updated>2016-03-23T16:46:00+02:00</updated>
   <id>http://bsaral.github.io/</id>
   <author>
     <name><![CDATA[BETÜL SARAL]]></name>
@@ -12,6 +12,132 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Node.js - Streams]]></title>
+    <link href="http://bsaral.github.io/blog/2016/03/23/node-streams/"/>
+    <updated>2016-03-23T15:13:00+02:00</updated>
+    <id>http://bsaral.github.io/blog/2016/03/23/node-streams</id>
+    <content type="html"><![CDATA[<p>Streams, kaynaktan sürekli veri okuyan ve hedef veriye kolayca aktarım yapılan nesnelerdir. Node.js 4 farklı streams çeşidi kullanır. Ben bunların üçünden bahsedeceğim.</p>
+
+<li> <b> Readable Stream </b>, kaynaktan veriyi okuyan akıştır </li>
+<li> <b> Writable Stream </b>, hedefe veriyi gönderen akıştır </li>
+<li> <b> Duplex Stream </b>, hem okuma hemde yazma işlemi yapan akıştır. </li>
+<p><br />
+Basit bir Node uygulamasında kullandığımız http server da request aslında bizim için readable stream, response writable stream ve fs modülü ise dublex stream olarak kullanılabilmektedir.</p>
+
+<p>Streams nesnelerini kullanırken EventEmitter yapısını da kullanarak farklı zamanlarda oluşan olayları rahat bir şekilde takip edebiliriz. Bu yapıda kullanılan bazı eventler aşağıdaki gibidir.</p>
+
+<li> <b> data</b>, veri okunurken bu event tetiklenir.</li>
+<li> <b> end </b>, kaynaktan okunacak data kalmadığında bu kısma düşer. </li>
+<li> <b> error </b>, veriyi okuma veya yazmada herhangi bir problem olursa bu kısma düşer. </li>
+<p><br /></p>
+
+<p>Şimdi birkaç örnek üzerinden konuyu açıklayalım. İlk önce readable stream örneğine bakalım.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>app.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class="js"><span class="line">	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
+</span><span class="line">	<span class="kd">var</span> <span class="nx">readableStream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="s1">&#39;file.txt&#39;</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">	<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line">	<span class="nx">readableStream</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">chunk</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">	    <span class="nx">data</span><span class="o">+=</span><span class="nx">chunk</span><span class="p">;</span>
+</span><span class="line">	<span class="p">});</span>
+</span><span class="line">
+</span><span class="line">	<span class="nx">readableStream</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">	    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</span><span class="line">	<span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>file.txt adında bir dosyamız var ve fs.createReadStream yaparak bu dosyayı stream olarak okumamızı sağlıyoruz. readableStream.on diyerek EventEmitter yapısındaki fonksiyonları çağırıyoruz. Kaynaktan okuma yaparken yukarıda bahsettiğim gibi data event yapısına düşer. readableStream’den gelen her bir parçayı dataya ekliyoruz. Okunacak veri bittiğinde ise end event yapısına gidiyor ve datayı bastırıyor.</p>
+
+<p>Pipe yapısını inceleyelim.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>app.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="js"><span class="line">	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
+</span><span class="line">	<span class="kd">var</span> <span class="nx">readableStream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="s1">&#39;file1.txt&#39;</span><span class="p">);</span>
+</span><span class="line">	<span class="kd">var</span> <span class="nx">writableStream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">(</span><span class="s1">&#39;file2.txt&#39;</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">	<span class="nx">readableStream</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">writableStream</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Pipe yapısı streams okumak ve yazmak için kullanılabilecek en iyi yöntemdir. Çünkü akışı size bırakmaz kontrolü kendindedir. Datayı okuma veya yazma hızını yönetme işini kendi yapar. Bu örnekte file1.txt içerisindeki veriyi pipe yaparak yani bir boru hattı oluşturup veriyi bu yapı içerisinden file2.txt aktardığını hayal edebilirsiniz. Pipe ile zincirleme bir yapısı kurarak birden fazla streams nesnesini kullanabilirsiniz.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>app.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="js"><span class="line">	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
+</span><span class="line">	<span class="kd">var</span> <span class="nx">zlib</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;zlib&#39;</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">	<span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="s1">&#39;input.txt.gz&#39;</span><span class="p">)</span>
+</span><span class="line">	  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">zlib</span><span class="p">.</span><span class="nx">createGunzip</span><span class="p">())</span>
+</span><span class="line">	  <span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">(</span><span class="s1">&#39;output.txt&#39;</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Bu örnekte ilk önce input.txt.gz adında okunabilir bir streams yapısı oluşturuyoruz. zlib.createGunzip() ile unzip işlemi yaparak içeriği okunup output.txt’e yazılabilir bir stream oluşturup veriyi aktarıyoruz.</p>
+
+<p>Şimdi basit bir streams yazma örneği yapalım. Gerekli açıklamaları kod içerisinde yaptım.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>app.js </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+</pre></td><td class="code"><pre><code class="js"><span class="line">	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;fs&quot;</span><span class="p">);</span>
+</span><span class="line">	<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="s1">&#39;test123&#39;</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line">	<span class="c1">//streams yazmak için output.txt adında dosya oluşturuyoruz</span>
+</span><span class="line">	<span class="kd">var</span> <span class="nx">writerStream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">(</span><span class="s1">&#39;output.txt&#39;</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">	<span class="c1">// streams yazmak için write fonksiyonu kullanılır. datayı UTF8 cinsinsen txt dosyamıza yazıyoruz.</span>
+</span><span class="line">	<span class="nx">writerStream</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="s1">&#39;UTF8&#39;</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line">	<span class="c1">// streams yazma işlemini bitiriyoruz</span>
+</span><span class="line">	<span class="nx">writerStream</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</span><span class="line">
+</span><span class="line">	<span class="c1">// herhangi bir problem sonucu bu kısma düşer</span>
+</span><span class="line">	<span class="nx">writerStream</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+</span><span class="line">	   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">stack</span><span class="p">);</span>
+</span><span class="line">	<span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Streams konusu özetle şimdilik bu kadar. Bu konuda araştırma yaptıkça buraya da aktaracağım.  </p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Node.js - Promises]]></title>
@@ -1927,75 +2053,6 @@ bir köşesi size hata veriyorsa aşağıdaki adımları uygulayarak bu problemi
 &gt;</p>
 
 <p><img src="http://bsaral.github.io/images/servlet2.PNG" /> </p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Java da Mysql Bağlantısı]]></title>
-    <link href="http://bsaral.github.io/blog/2013/05/17/jdbc/"/>
-    <updated>2013-05-17T22:37:00+03:00</updated>
-    <id>http://bsaral.github.io/blog/2013/05/17/jdbc</id>
-    <content type="html"><![CDATA[<p>Merhabalar,</p>
-
-<p>Java da mysql bağlantısı yapmak için öncelikle wampserver ya da xampp gibi herhangi bir paket sunucu programının yüklü olması gerekir.
-Mysql’ e bağlanabilmek için bu gibi bir paket program gerekmektedir. Daha sonra java ile bağlantıyı sağlamak için mysql-connector isimli
-jar dosyası indirmemiz gerekir. <a href="http://www.mysql.com/products/connector/"> Buradan </a> JDBC Driver for MySQL (Connector/J) jar 
-dosyasının zip halini indirin. Dosya indirildikten sonra Eclipse açarak aşağıdaki adımları gerçekleyin.</p>
-
-<p><img src="http://bsaral.github.io/images/java.png" /></p>
-
-<blockquote>
-
-</blockquote>
-
-<p><img src="http://bsaral.github.io/images/java2.png" /></p>
-
-<p>İndirdiğimiz jar dosyasını ekleyin. Ekleme işlemi bittikten sonra projenizin src klasörü altına Database adında bir class oluşturun ve aşağıdaki kodları ekleyin.</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Database.java </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-</pre></td><td class="code"><pre><code class="java"><span class="line"><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">java.sql.DriverManager</span><span class="o">;</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">java.sql.SQLException</span><span class="o">;</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">java.util.Properties</span><span class="o">;</span>
-</span><span class="line">
-</span><span class="line"><span class="kn">import</span> <span class="nn">com.mysql.jdbc.Connection</span><span class="o">;</span>
-</span><span class="line"><span class="kn">import</span> <span class="nn">com.mysql.jdbc.Statement</span><span class="o">;</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Database</span> <span class="o">{</span>
-</span><span class="line">	 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ClassNotFoundException</span><span class="o">,</span> <span class="n">SQLException</span> <span class="o">{</span>
-</span><span class="line">		<span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&quot;com.mysql.jdbc.Driver&quot;</span><span class="o">);</span>
-</span><span class="line">		<span class="n">Connection</span> <span class="n">baglanti</span> <span class="o">=</span> <span class="o">(</span><span class="n">Connection</span><span class="o">)</span> <span class="n">DriverManager</span><span class="o">.</span><span class="na">getConnection</span>
-</span><span class="line">					  <span class="o">(</span><span class="s">&quot;jdbc:mysql://localhost/deneme&quot;</span><span class="o">,</span><span class="s">&quot;root&quot;</span><span class="o">,</span><span class="s">&quot;&quot;</span><span class="o">);</span>
-</span><span class="line">		<span class="n">Statement</span> <span class="n">komut</span> <span class="o">=</span> <span class="o">(</span><span class="n">Statement</span><span class="o">)</span> <span class="n">baglanti</span><span class="o">.</span><span class="na">createStatement</span><span class="o">();</span>
-</span><span class="line">		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;Bağlantı Başarılı&quot;</span><span class="o">);</span>
-</span><span class="line">		<span class="n">baglanti</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-</span><span class="line">	<span class="o">}</span>
-</span><span class="line"><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Kaydedip çalıştırdığınız da “Bağlantı Başarılı” şeklinde bir çıktı alıyorsanız mysql ile bağlantıyı sağladınız demektir.</p>
 ]]></content>
   </entry>
   

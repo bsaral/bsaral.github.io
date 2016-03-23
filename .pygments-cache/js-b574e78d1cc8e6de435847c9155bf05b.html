@@ -1,0 +1,6 @@
+<div class="highlight"><pre>	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">readableStream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="s1">&#39;file1.txt&#39;</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">writableStream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">(</span><span class="s1">&#39;file2.txt&#39;</span><span class="p">);</span>
+
+	<span class="nx">readableStream</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">writableStream</span><span class="p">);</span>
+</pre></div>

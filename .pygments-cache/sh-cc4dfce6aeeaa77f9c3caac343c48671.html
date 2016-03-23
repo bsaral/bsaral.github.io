@@ -1,0 +1,14 @@
+<div class="highlight"><pre><span class="nv">input</span> <span class="o">=</span> imread<span class="o">(</span><span class="s1">&#39;kapi_biri.bmp&#39;</span><span class="o">)</span>;
+<span class="nv">im1</span> <span class="o">=</span> rgb2gray<span class="o">(</span>imread<span class="o">(</span><span class="s1">&#39;kapi.bmp&#39;</span><span class="o">))</span>;
+<span class="nv">im2</span> <span class="o">=</span> rgb2gray<span class="o">(</span>imread<span class="o">(</span><span class="s1">&#39;kapi_biri.bmp&#39;</span><span class="o">))</span>;
+
+<span class="nv">im3</span> <span class="o">=</span> imsubtract<span class="o">(</span>im1,im2<span class="o">)</span>;
+<span class="nv">im3</span> <span class="o">=</span> bwareaopen<span class="o">(</span>im3,500,8<span class="o">)</span>;
+<span class="nv">im3</span> <span class="o">=</span> imfill<span class="o">(</span>im3,<span class="s1">&#39;holes&#39;</span><span class="o">)</span>;
+<span class="nv">im3</span><span class="o">=</span>uint8<span class="o">(</span>im3<span class="o">)</span>;
+
+im3<span class="o">(</span><span class="nv">im3</span> <span class="o">==</span> 255<span class="o">)</span> <span class="o">=</span> 1;
+<span class="nv">im33</span> <span class="o">=</span> cat<span class="o">(</span>3, im3, im3, im3<span class="o">)</span>;
+<span class="nv">im</span> <span class="o">=</span> input .* im33;
+imshow<span class="o">(</span>im<span class="o">)</span>;
+</pre></div>

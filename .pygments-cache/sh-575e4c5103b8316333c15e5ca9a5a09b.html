@@ -1,0 +1,19 @@
+<div class="highlight"><pre><span class="nv">$ </span>git clone git://github.com/imathis/octopress.git octopress
+
+<span class="nv">$ </span><span class="nb">cd </span>octopress
+
+<span class="nv">$ </span>bundle install
+...
+...
+Your bundle is <span class="nb">complete</span>!
+
+<span class="nv">$ </span>rake install
+
+<span class="c">## Copying classic theme into ./source and ./sass</span>
+mkdir -p <span class="nb">source</span>
+cp -r .themes/classic/source/. <span class="nb">source</span>
+mkdir -p sass
+cp -r .themes/classic/sass/. sass
+mkdir -p <span class="nb">source</span>/_posts
+mkdir -p public
+</pre></div>

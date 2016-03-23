@@ -1,0 +1,21 @@
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.sql.DriverManager</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.sql.SQLException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Properties</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.mysql.jdbc.Connection</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.mysql.jdbc.Statement</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Database</span> <span class="o">{</span>
+	 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ClassNotFoundException</span><span class="o">,</span> <span class="n">SQLException</span> <span class="o">{</span>
+		<span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&quot;com.mysql.jdbc.Driver&quot;</span><span class="o">);</span>
+		<span class="n">Connection</span> <span class="n">baglanti</span> <span class="o">=</span> <span class="o">(</span><span class="n">Connection</span><span class="o">)</span> <span class="n">DriverManager</span><span class="o">.</span><span class="na">getConnection</span> 
+					  <span class="o">(</span><span class="s">&quot;jdbc:mysql://localhost/deneme&quot;</span><span class="o">,</span><span class="s">&quot;root&quot;</span><span class="o">,</span><span class="s">&quot;&quot;</span><span class="o">);</span>
+		<span class="n">Statement</span> <span class="n">komut</span> <span class="o">=</span> <span class="o">(</span><span class="n">Statement</span><span class="o">)</span> <span class="n">baglanti</span><span class="o">.</span><span class="na">createStatement</span><span class="o">();</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&quot;Bağlantı Başarılı&quot;</span><span class="o">);</span>
+		<span class="n">baglanti</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</pre></div>

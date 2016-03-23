@@ -12,7 +12,7 @@ engellemek istediğimiz site <code>omu.edu.tr</code> olsun.
 
 {% codeblock Terminal lang:sh %}
 
-$ sudo gedit /etc/hosts 
+	$ sudo gedit /etc/hosts 
 {% endcodeblock %}
 komutunu yazarak hosts dosyamızı açıyoruz.
 
@@ -38,7 +38,7 @@ ilk önce sitenin IP adresi öğrenilir.(örn: yasaklı sitemiz <code> omu.edu.t
 
 {% codeblock Terminal lang:sh %}
 
-$ ping -c 1 www.omu.edu.tr 
+	$ ping -c 1 www.omu.edu.tr 
 {% endcodeblock %}
 komutunu yazdığımızda siteye 1 adet ping göndermiş oluruz.
 
@@ -46,7 +46,7 @@ komutunu yazdığımızda siteye 1 adet ping göndermiş oluruz.
 
 sonra hosts dosyası açılır.
 {% codeblock Terminal lang:sh %}
-$ sudo gedit /etc/hosts 
+	$ sudo gedit /etc/hosts 
 {% endcodeblock %}
 ve IP adresleri eklenir.
 

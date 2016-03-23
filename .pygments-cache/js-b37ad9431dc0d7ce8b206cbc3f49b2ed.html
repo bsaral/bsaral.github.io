@@ -1,0 +1,9 @@
+<div class="highlight"><pre>	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="err">‘</span><span class="nx">fs</span><span class="err">’</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">readableStream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="err">‘</span><span class="nx">file1</span><span class="p">.</span><span class="nx">txt</span><span class="err">’</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">writableStream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">(</span><span class="err">‘</span><span class="nx">file2</span><span class="p">.</span><span class="nx">txt</span><span class="err">’</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="nx">readableStream</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">writableStream</span><span class="p">);</span>
+<span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</pre></div>

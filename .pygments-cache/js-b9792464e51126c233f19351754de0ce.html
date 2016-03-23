@@ -1,0 +1,17 @@
+<div class="highlight"><pre>	<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;fs&quot;</span><span class="p">);</span>
+	<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="s1">&#39;test123&#39;</span><span class="p">;</span>
+
+	<span class="c1">//streams yazmak için output.txt adında dosya oluşturuyoruz</span>
+	<span class="kd">var</span> <span class="nx">writerStream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">(</span><span class="s1">&#39;output.txt&#39;</span><span class="p">);</span>
+
+	<span class="c1">// streams yazmak için write fonksiyonu kullanılır. datayı UTF8 cinsinsen txt dosyamıza yazıyoruz.</span>
+	<span class="nx">writerStream</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="s1">&#39;UTF8&#39;</span><span class="p">);</span>
+
+	<span class="c1">// streams yazma işlemini bitiriyoruz</span>
+	<span class="nx">writerStream</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+
+	<span class="c1">// herhangi bir problem sonucu bu kısma düşer</span>
+	<span class="nx">writerStream</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+	   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">stack</span><span class="p">);</span>
+	<span class="p">});</span>
+</pre></div>

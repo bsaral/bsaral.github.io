@@ -1,0 +1,60 @@
+<div class="highlight"><pre><span class="c1"># encoding: UTF-8</span>
+<span class="k">class</span> <span class="nc">AttendantsDatatable</span>
+  <span class="n">delegate</span> <span class="ss">:params</span><span class="p">,</span> <span class="ss">:h</span><span class="p">,</span> <span class="ss">:link_to</span><span class="p">,</span> <span class="ss">:number_to_currency</span><span class="p">,</span> <span class="ss">to</span><span class="p">:</span> <span class="ss">:@view</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
+    <span class="vi">@view</span> <span class="o">=</span> <span class="n">view</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">as_json</span><span class="p">(</span><span class="n">options</span> <span class="o">=</span> <span class="p">{})</span>
+    <span class="p">{</span>
+      <span class="ss">sEcho</span><span class="p">:</span> <span class="n">params</span><span class="o">[</span><span class="ss">:sEcho</span><span class="o">].</span><span class="n">to_i</span><span class="p">,</span>
+      <span class="ss">iTotalRecords</span><span class="p">:</span> <span class="no">Attendant</span><span class="o">.</span><span class="n">count</span><span class="p">,</span>
+      <span class="ss">iTotalDisplayRecords</span><span class="p">:</span> <span class="n">attendants</span><span class="o">.</span><span class="n">total_count</span><span class="p">,</span> <span class="c1">#kaminari gemine göre düzenlendi.</span>
+      <span class="ss">aaData</span><span class="p">:</span> <span class="n">data</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
+
+<span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">data</span>
+    <span class="n">attendants</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">attendant</span><span class="o">|</span>
+      <span class="o">[</span>
+        <span class="n">h</span><span class="p">(</span><span class="n">attendant</span><span class="o">.</span><span class="n">first_name</span><span class="p">),</span>
+        <span class="n">h</span><span class="p">(</span><span class="n">attendant</span><span class="o">.</span><span class="n">last_name</span><span class="p">),</span>
+        <span class="n">h</span><span class="p">(</span><span class="n">attendant</span><span class="o">.</span><span class="n">title_name</span><span class="p">),</span>
+        <span class="n">link_to</span><span class="p">(</span><span class="s2">&quot;Görüntüle&quot;</span><span class="p">,</span> <span class="n">attendant</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span><span class="o">+</span><span class="n">link_to</span><span class="p">(</span><span class="s2">&quot;Düzenle&quot;</span><span class="p">,</span> <span class="s2">&quot;#&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; | &quot;</span> <span class="o">+</span><span class="n">link_to</span><span class="p">(</span><span class="s2">&quot;Sil&quot;</span><span class="p">,</span> <span class="n">attendant</span><span class="p">,</span> <span class="nb">method</span><span class="p">:</span> <span class="ss">:delete</span><span class="p">)</span>
+      <span class="o">]</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">attendants</span>
+    <span class="vi">@attendants</span> <span class="o">||=</span> <span class="n">fetch_attendants</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">fetch_attendants</span>
+    <span class="n">attendants</span> <span class="o">=</span> <span class="no">Attendant</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">sort_column</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">sort_direction</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="n">page</span><span class="p">)</span><span class="o">.</span><span class="n">per</span><span class="p">(</span><span class="n">per_page</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">params</span><span class="o">[</span><span class="ss">:search</span><span class="o">].</span><span class="n">present?</span>
+      <span class="n">attendants</span> <span class="o">=</span> <span class="n">attendants</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s2">&quot;first_name like :s or last_name like :s &quot;</span><span class="p">,</span> <span class="ss">s</span><span class="p">:</span> <span class="s2">&quot;%</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:search</span><span class="o">][</span><span class="ss">:value</span><span class="o">]</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+    <span class="k">end</span>
+    <span class="n">attendants</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">page</span>
+    <span class="n">params</span><span class="o">[</span><span class="ss">:start</span><span class="o">].</span><span class="n">to_i</span><span class="o">/</span><span class="n">per_page</span> <span class="o">+</span> <span class="mi">1</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">per_page</span>
+    <span class="n">params</span><span class="o">[</span><span class="ss">:length</span><span class="o">].</span><span class="n">to_i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">params</span><span class="o">[</span><span class="ss">:length</span><span class="o">].</span><span class="n">to_i</span> <span class="p">:</span> <span class="mi">10</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">sort_column</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="sx">%w[first_name last_name]</span>
+    <span class="n">columns</span><span class="o">[</span><span class="n">params</span><span class="o">[</span><span class="ss">:column</span><span class="o">].</span><span class="n">to_i</span><span class="o">]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">sort_direction</span>
+    <span class="n">params</span><span class="o">[</span><span class="ss">:dir</span><span class="o">]</span> <span class="o">==</span> <span class="s2">&quot;desc&quot;</span> <span class="p">?</span> <span class="s2">&quot;desc&quot;</span> <span class="p">:</span> <span class="s2">&quot;asc&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>

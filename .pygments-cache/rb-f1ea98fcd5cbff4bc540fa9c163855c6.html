@@ -1,0 +1,24 @@
+<div class="highlight"><pre><span class="n">table</span><span class="c1">#attendant_list data-source=(admin_attendants_url(format: “json”))</span>
+  <span class="n">thead</span>
+    <span class="n">tr</span>
+      <span class="n">th</span> <span class="no">Ad</span>
+      <span class="n">th</span> <span class="no">Soyad</span>
+      <span class="n">th</span> <span class="no">TC</span>
+      <span class="n">th</span> <span class="no">IBAN</span>
+      <span class="n">th</span> <span class="no">Telefon</span>
+      <span class="n">th</span> <span class="err">Ü</span><span class="n">nvan</span>
+      <span class="n">th</span> <span class="err">İş</span><span class="n">lemler</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;p&gt;/</span><span class="n">datatables</span> <span class="n">ayarlamalar</span><span class="err">ı</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+
+<span class="sr">&lt;p&gt;javascript:</span>
+<span class="sr">  $(document).ready(function() {</span>
+<span class="sr">    $(‘#attendant_list’).dataTable({</span>
+<span class="sr">      language: { ‘url’: ‘http:/</span><span class="o">/</span><span class="n">cdn</span><span class="o">.</span><span class="n">datatables</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">plug</span><span class="o">-</span><span class="n">ins</span><span class="o">/</span><span class="mi">28</span><span class="n">e7751dbec</span><span class="o">/</span><span class="n">i18n</span><span class="o">/</span><span class="no">Turkish</span><span class="o">.</span><span class="n">json</span><span class="err">’</span> <span class="p">},</span>
+      <span class="err">“</span><span class="n">bPaginate</span><span class="err">”</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+      <span class="err">“</span><span class="n">bProcessing</span><span class="err">”</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+      <span class="err">“</span><span class="n">bServerSide</span><span class="err">”</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+      <span class="err">“</span><span class="n">ajax</span><span class="err">”</span><span class="p">:</span> <span class="err">$</span><span class="p">(</span><span class="err">‘</span><span class="c1">#attendant_list’).data(‘source’),</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+</pre></div>
